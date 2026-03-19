@@ -12,6 +12,7 @@ A comprehensive, interactive design system documentation app with live component
 - 🔍 **Live Search** - Filter navigation items in real-time
 - 📱 **Responsive Design** - Works on desktop, tablet, and mobile
 - 🎯 **Collapsible Sidebar** - Maximize content space when needed
+- 🎨 **Figma Integration** - Export components directly from Figma to your design system
 
 ## Getting Started
 
@@ -35,10 +36,18 @@ Then visit `http://localhost:8080` in your browser.
 
 ```
 design-system-live-app/
-├── index.html          # Main HTML structure
-├── styles.css          # Complete styling system
-├── script.js           # Interactive functionality
-└── README.md          # This file
+├── index.html              # Main HTML structure
+├── styles.css              # Complete styling system
+├── script.js               # Interactive functionality
+├── component-manager.js    # Component import/export system
+├── components.json         # Stored Figma components
+├── README.md              # This file
+├── FIGMA_WORKFLOW.md      # Complete Figma integration guide
+└── figma-plugin/          # Figma plugin for exporting
+    ├── manifest.json      # Plugin configuration
+    ├── code.js           # Plugin logic
+    ├── ui.html           # Plugin interface
+    └── README.md         # Plugin documentation
 ```
 
 ## Sections
@@ -77,6 +86,38 @@ All design tokens are available as CSS custom properties:
 --radius-lg: 12px;
 ```
 
+## Figma Integration
+
+Export components directly from Figma to your design system documentation!
+
+### Quick Start
+
+1. **Install the Figma Plugin**
+   - Open Figma Desktop App
+   - Go to **Plugins** → **Development** → **Import plugin from manifest**
+   - Select `figma-plugin/manifest.json` from this project
+   
+2. **Export from Figma**
+   - Select any component or frame in Figma
+   - Run the plugin: **Plugins** → **Development** → **Design System Exporter**
+   - Configure name, category, and description
+   - Click **Export Component** and copy the JSON data
+
+3. **Import to Design System**
+   - Open the design system in your browser
+   - Click **Import from Figma** button (top right)
+   - Paste the JSON data
+   - Click **Import Component**
+   - Your component appears in the selected category!
+
+4. **Save & Deploy**
+   - Download the updated `components.json` file
+   - Commit to git: `git add components.json && git commit -m "Add component" && git push`
+   - Component is now live on GitHub Pages!
+
+### Full Documentation
+See [FIGMA_WORKFLOW.md](./FIGMA_WORKFLOW.md) for complete step-by-step instructions.
+
 ## Technologies
 
 - **HTML5** - Semantic markup
@@ -85,6 +126,7 @@ All design tokens are available as CSS custom properties:
 - **Material Icons** - Icon system
 - **Highlight.js** - Code syntax highlighting
 - **Inter Font** - Typography
+- **Figma Plugin API** - Component export integration
 
 ## Browser Support
 
