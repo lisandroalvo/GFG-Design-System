@@ -76,6 +76,10 @@
         <header class="topbar" id="topbar">
             <h1 class="topbar-title" id="topbarTitle">Getting Started</h1>
             <div class="topbar-right">
+                <button class="btn btn-primary btn-sm" onclick="openImportModal()" style="margin-right: 16px;">
+                    <span class="material-icons-outlined" style="font-size: 16px;">upload</span>
+                    Import from Figma
+                </button>
                 <span class="last-updated">Last updated: March 19, 2026</span>
             </div>
         </header>
@@ -707,7 +711,33 @@
         </main>
     </div>
 
+    <!-- Import Component Modal -->
+    <div id="import-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Import Component from Figma</h3>
+                <button class="modal-close" onclick="closeImportModal()">
+                    <span class="material-icons-outlined">close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-description">Paste the JSON data exported from the Figma plugin:</p>
+                <textarea id="import-json" placeholder='{"name": "Button", "category": "buttons", ...}'></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeImportModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="importComponent()">Import Component</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="fab" onclick="openImportModal()" title="Import component from Figma">
+        <span class="material-icons-outlined">add</span>
+    </button>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="component-manager.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

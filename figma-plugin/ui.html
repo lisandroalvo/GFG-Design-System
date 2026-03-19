@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 14px;
+      padding: 16px;
+      background: #ffffff;
+    }
+
+    .header {
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #6B7280;
+      line-height: 1.5;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #374151;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 6px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #D1D5DB;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 13px;
+      color: #111827;
+      background: #ffffff;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #3B82F6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+      font-family: 'Monaco', monospace;
+      font-size: 12px;
+    }
+
+    .preview-container {
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      padding: 16px;
+      background: #F9FAFB;
+      margin-bottom: 12px;
+    }
+
+    .preview-image {
+      width: 100%;
+      border-radius: 6px;
+      background: #ffffff;
+      border: 1px solid #E5E7EB;
+    }
+
+    .code-preview {
+      background: #1F2937;
+      border-radius: 6px;
+      padding: 12px;
+      margin-top: 12px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .code-preview pre {
+      margin: 0;
+      font-family: 'Monaco', monospace;
+      font-size: 11px;
+      color: #E5E7EB;
+      line-height: 1.5;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    button {
+      flex: 1;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 150ms;
+    }
+
+    .btn-primary {
+      background: #3B82F6;
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: #2563EB;
+    }
+
+    .btn-secondary {
+      background: #F3F4F6;
+      color: #374151;
+    }
+
+    .btn-secondary:hover {
+      background: #E5E7EB;
+    }
+
+    .btn-success {
+      background: #10B981;
+      color: #ffffff;
+    }
+
+    .btn-success:hover {
+      background: #059669;
+    }
+
+    .alert {
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    .alert-error {
+      background: #FEE2E2;
+      color: #991B1B;
+      border: 1px solid #FCA5A5;
+    }
+
+    .alert-success {
+      background: #D1FAE5;
+      color: #065F46;
+      border: 1px solid #6EE7B7;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .export-info {
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 16px;
+    }
+
+    .export-info-title {
+      font-weight: 600;
+      color: #1E40AF;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    .export-info-text {
+      font-size: 12px;
+      color: #1E40AF;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>Export to Design System</h2>
+    <p class="subtitle">Select a component or frame in Figma, then export it to your design system documentation.</p>
+  </div>
+
+  <div id="alert-container"></div>
+
+  <div class="section">
+    <div class="section-title">Component Details</div>
+    
+    <div class="form-group">
+      <label>Component Name</label>
+      <input type="text" id="component-name" placeholder="e.g., Primary Button">
+    </div>
+
+    <div class="form-group">
+      <label>Category</label>
+      <select id="component-category">
+        <option value="buttons">Buttons</option>
+        <option value="forms">Form Controls</option>
+        <option value="cards">Cards</option>
+        <option value="badges">Badges</option>
+        <option value="components">Components</option>
+        <option value="navigation">Navigation</option>
+        <option value="feedback">Feedback</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea id="component-description" placeholder="Describe this component and when to use it..."></textarea>
+    </div>
+  </div>
+
+  <div id="preview-section" class="section hidden">
+    <div class="section-title">Preview</div>
+    <div class="preview-container">
+      <img id="preview-image" class="preview-image" alt="Component preview">
+    </div>
+  </div>
+
+  <div id="code-section" class="section hidden">
+    <div class="section-title">Generated Code</div>
+    <div class="code-preview">
+      <pre id="html-code"></pre>
+    </div>
+    <div class="code-preview" style="margin-top: 8px;">
+      <pre id="css-code"></pre>
+    </div>
+  </div>
+
+  <div class="export-info">
+    <div class="export-info-title">📋 How to Export</div>
+    <div class="export-info-text">
+      1. Select a component or frame in Figma<br>
+      2. Click "Export Component"<br>
+      3. Review the generated code<br>
+      4. Copy the JSON data to add to your design system
+    </div>
+  </div>
+
+  <div class="button-group">
+    <button class="btn-secondary" id="cancel-btn">Cancel</button>
+    <button class="btn-primary" id="export-btn">Export Component</button>
+  </div>
+
+  <div id="copy-section" class="hidden">
+    <div class="section-title">Export Data</div>
+    <textarea id="export-data" readonly style="height: 150px;"></textarea>
+    <button class="btn-success" id="copy-btn" style="width: 100%; margin-top: 8px;">Copy to Clipboard</button>
+  </div>
+
+  <script>
+    let componentData = null;
+
+    document.getElementById('export-btn').onclick = () => {
+      parent.postMessage({ pluginMessage: { type: 'export-component' } }, '*');
+    };
+
+    document.getElementById('cancel-btn').onclick = () => {
+      parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*');
+    };
+
+    document.getElementById('copy-btn').onclick = () => {
+      const textarea = document.getElementById('export-data');
+      textarea.select();
+      document.execCommand('copy');
+      
+      const btn = document.getElementById('copy-btn');
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => {
+        btn.textContent = 'Copy to Clipboard';
+      }, 2000);
+    };
+
+    onmessage = (event) => {
+      const msg = event.data.pluginMessage;
+
+      if (msg.type === 'error') {
+        showAlert(msg.message, 'error');
+      }
+
+      if (msg.type === 'component-data') {
+        componentData = msg.data;
+        
+        document.getElementById('component-name').value = componentData.name;
+        
+        document.getElementById('preview-section').classList.remove('hidden');
+        document.getElementById('preview-image').src = 'data:image/png;base64,' + componentData.preview;
+        
+        document.getElementById('code-section').classList.remove('hidden');
+        document.getElementById('html-code').textContent = componentData.html;
+        document.getElementById('css-code').textContent = componentData.css;
+        
+        const exportData = {
+          name: document.getElementById('component-name').value,
+          category: document.getElementById('component-category').value,
+          description: document.getElementById('component-description').value,
+          html: componentData.html,
+          css: componentData.css,
+          preview: componentData.preview,
+          width: componentData.width,
+          height: componentData.height,
+          timestamp: new Date().toISOString()
+        };
+        
+        document.getElementById('export-data').value = JSON.stringify(exportData, null, 2);
+        document.getElementById('copy-section').classList.remove('hidden');
+        
+        showAlert('Component exported successfully! Copy the JSON data below.', 'success');
+      }
+    };
+
+    function showAlert(message, type) {
+      const container = document.getElementById('alert-container');
+      const alert = document.createElement('div');
+      alert.className = `alert alert-${type}`;
+      alert.textContent = message;
+      container.innerHTML = '';
+      container.appendChild(alert);
+      
+      setTimeout(() => {
+        alert.remove();
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
