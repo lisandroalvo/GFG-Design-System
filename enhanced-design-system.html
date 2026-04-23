@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GFG Design System - Live from Figma</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #F9FAFB;
+            color: #111827;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            background: white;
+            border-right: 1px solid #E5E7EB;
+            position: fixed;
+            height: 100vh;
+            width: 280px;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .sidebar-header p {
+            font-size: 0.875rem;
+            color: #6B7280;
+        }
+
+        .sidebar-nav {
+            padding: 1rem 0;
+        }
+
+        .nav-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-section-title {
+            padding: 0.5rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #6B7280;
+        }
+
+        .nav-item {
+            padding: 0.625rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.875rem;
+        }
+
+        .nav-item:hover {
+            background: #F3F4F6;
+        }
+
+        .nav-item.active {
+            background: #EFF6FF;
+            color: #3B82F6;
+            font-weight: 600;
+            border-left: 3px solid #3B82F6;
+        }
+
+        .nav-item-count {
+            font-size: 0.75rem;
+            color: #9CA3AF;
+            background: #F3F4F6;
+            padding: 0.125rem 0.5rem;
+            border-radius: 1rem;
+        }
+
+        .nav-item.active .nav-item-count {
+            background: #DBEAFE;
+            color: #3B82F6;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            padding: 2rem;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            opacity: 0.9;
+        }
+
+        .sync-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .component-sets {
+            margin-top: 2rem;
+        }
+
+        .component-set {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .component-set-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .component-set-count {
+            font-size: 0.875rem;
+            color: #6B7280;
+            background: #F3F4F6;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .component-card {
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 1rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .component-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+            border-color: #3B82F6;
+        }
+
+        .component-thumbnail {
+            width: 100%;
+            height: 120px;
+            background: #F9FAFB;
+            border-radius: 6px;
+            margin-bottom: 0.75rem;
+            object-fit: contain;
+            padding: 0.5rem;
+        }
+
+        .component-name {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: #374151;
+            line-height: 1.4;
+        }
+
+        .search-box {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            font-size: 0.875rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #3B82F6;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.25rem;
+            border-radius: 8px;
+            border-left: 3px solid #3B82F6;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #3B82F6;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #6B7280;
+            margin-top: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .refresh-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #3B82F6;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .refresh-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .refresh-btn.spinning {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #9CA3AF;
+        }
+
+        .empty-state .material-icons-outlined {
+            font-size: 64px;
+            opacity: 0.3;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>🎨 GFG Design System</h1>
+                <p>Live from Figma</p>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search components...">
+            </div>
+
+            <nav class="sidebar-nav" id="sidebarNav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Overview</div>
+                    <div class="nav-item active" data-page="overview">
+                        <span>All Components</span>
+                        <span class="nav-item-count" id="totalCount">0</span>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Components</div>
+                    <div id="componentPages"></div>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="header">
+                <h2 id="pageTitle">All Components</h2>
+                <p id="pageDescription">Browse all components from your Figma design system</p>
+                <div class="sync-status">
+                    <span class="material-icons-outlined">sync</span>
+                    <span id="syncStatus">Connected to Figma</span>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="pagesCount">0</div>
+                    <div class="stat-label">Pages</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="componentSetsCount">0</div>
+                    <div class="stat-label">Component Sets</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="componentsCount">0</div>
+                    <div class="stat-label">Components</div>
+                </div>
+            </div>
+
+            <div id="content"></div>
+        </main>
+    </div>
+
+    <button class="refresh-btn" id="refreshBtn" title="Sync from Figma">
+        <span class="material-icons-outlined">refresh</span>
+    </button>
+
+    <script>
+        let organizedData = null;
+        let currentPage = 'overview';
+
+        async function loadData() {
+            try {
+                const response = await fetch('design-tokens/organized-components.json');
+                organizedData = await response.json();
+                
+                renderSidebar();
+                renderStats();
+                renderPage(currentPage);
+                
+                document.getElementById('syncStatus').textContent = 'Synced with Figma';
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('syncStatus').textContent = 'Error loading data';
+            }
+        }
+
+        function renderSidebar() {
+            const pagesContainer = document.getElementById('componentPages');
+            const pages = Object.keys(organizedData.byPage).sort();
+            
+            pagesContainer.innerHTML = pages.map(pageName => `
+                <div class="nav-item" data-page="${pageName}">
+                    <span>${pageName}</span>
+                    <span class="nav-item-count">${organizedData.byPage[pageName].components.length}</span>
+                </div>
+            `).join('');
+
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    currentPage = item.dataset.page;
+                    renderPage(currentPage);
+                });
+            });
+
+            document.getElementById('totalCount').textContent = organizedData.stats.totalComponents;
+        }
+
+        function renderStats() {
+            document.getElementById('pagesCount').textContent = organizedData.stats.totalPages;
+            document.getElementById('componentSetsCount').textContent = organizedData.stats.totalComponentSets;
+            document.getElementById('componentsCount').textContent = organizedData.stats.totalComponents;
+        }
+
+        function renderPage(pageName) {
+            const content = document.getElementById('content');
+            
+            if (pageName === 'overview') {
+                document.getElementById('pageTitle').textContent = 'All Components';
+                document.getElementById('pageDescription').textContent = 'Browse all components from your Figma design system';
+                
+                const allPages = Object.keys(organizedData.byPage).sort();
+                content.innerHTML = allPages.map(page => {
+                    const pageData = organizedData.byPage[page];
+                    return `
+                        <div class="component-set">
+                            <div class="component-set-title">
+                                ${page}
+                                <span class="component-set-count">${pageData.components.length} components</span>
+                            </div>
+                            <div class="components-grid">
+                                ${pageData.components.slice(0, 12).map(component => `
+                                    <div class="component-card">
+                                        <img src="${component.thumbnail}" alt="${component.name}" class="component-thumbnail" onerror="this.style.display='none'">
+                                        <div class="component-name">${component.name}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } else {
+                const pageData = organizedData.byPage[pageName];
+                document.getElementById('pageTitle').textContent = pageName;
+                document.getElementById('pageDescription').textContent = `${pageData.components.length} components organized in ${Object.keys(pageData.componentSets).length} component sets`;
+                
+                content.innerHTML = Object.keys(pageData.componentSets).map(setName => {
+                    const components = pageData.componentSets[setName];
+                    return `
+                        <div class="component-set">
+                            <div class="component-set-title">
+                                ${setName}
+                                <span class="component-set-count">${components.length} variants</span>
+                            </div>
+                            <div class="components-grid">
+                                ${components.map(component => `
+                                    <div class="component-card">
+                                        <img src="${component.thumbnail}" alt="${component.name}" class="component-thumbnail" onerror="this.style.display='none'">
+                                        <div class="component-name">${component.name}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            document.querySelectorAll('.nav-item[data-page]').forEach(item => {
+                const pageName = item.dataset.page.toLowerCase();
+                item.style.display = pageName.includes(searchTerm) ? 'flex' : 'none';
+            });
+        });
+
+        async function syncFromFigma() {
+            const btn = document.getElementById('refreshBtn');
+            btn.classList.add('spinning');
+            document.getElementById('syncStatus').textContent = 'Syncing...';
+
+            try {
+                const response = await fetch('/api/sync-figma', { method: 'POST' });
+                if (response.ok) {
+                    await loadData();
+                    document.getElementById('syncStatus').textContent = 'Synced successfully!';
+                }
+            } catch (error) {
+                console.error('Sync error:', error);
+                document.getElementById('syncStatus').textContent = 'Sync failed';
+            } finally {
+                btn.classList.remove('spinning');
+            }
+        }
+
+        document.getElementById('refreshBtn').addEventListener('click', syncFromFigma);
+
+        loadData();
+        setInterval(loadData, 60000);
+    </script>
+</body>
+</html>

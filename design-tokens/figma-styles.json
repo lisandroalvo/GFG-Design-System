@@ -1,0 +1,197 @@
+Fetching styles from file: OjFchNAdeHiNH5W4wYLSGS
+{
+  "error": false,
+  "status": 200,
+  "meta": {
+    "styles": [
+      {
+        "key": "3a7995c1a6bca635a169ef09c92e7891d1b4c31f",
+        "file_key": "OjFchNAdeHiNH5W4wYLSGS",
+        "node_id": "15607:6647",
+        "style_type": "TEXT",
+        "thumbnail_url": "https://s3-alpha.figma.com/checkpoints/jOc/g0L/UpzG3YgzZTpIHMnv/15607_6647.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQ4GOSFWC4EJV4ZNX%2F20260419%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260419T120000Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=3a6d3fabb0d9ef38744cfef2f95b99d7966c406d128c0ccd209c743e73d73a99",
+        "name": "GFG - Typography/Micro Text/Overline",
+        "description": "",
+        "created_at": "2026-03-23T09:54:06.404Z",
+        "updated_at": "2026-04-02T08:01:28.123Z",
+        "user": {
+          "id": "1260966249635203624",
+          "handle": "Lisandro Alvo",
+          "img_url": "https://s3-alpha.figma.com/profile/9a06c895-60df-42ff-82b4-8fb9a408de01"
+        },
+        "sort_position": "!k"
+      },
+      {
+        "key": "86dda7d6f9a33c74bd077bafb143dcadfc190fef",
+        "file_key": "OjFchNAdeHiNH5W4wYLSGS",
+        "node_id": "15715:11858",
+        "style_type": "EFFECT",
+        "thumbnail_url": "https://s3-alpha.figma.com/checkpoints/6YS/mZF/LOC7rrx6mkiMRim8/15715_11858.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQ4GOSFWC4EJV4ZNX%2F20260419%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260419T120000Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=98dae7fe0b789d2668feaa80812a9e1e6f16cec231c0d6770b6efb5b6157618d",
+        "name": "Elevation Cards",
+        "description": "",
+        "created_at": "2026-03-31T03:35:23.539Z",
+        "updated_at": "2026-03-31T03:35:23.539Z",
+        "user": {
+          "id": "1260966249635203624",
+          "handle": "Lisandro Alvo",
+          "img_url": "https://s3-alpha.figma.com/profile/9a06c895-60df-42ff-82b4-8fb9a408de01"
+        },
+        "sort_position": "!v_"
+      },
+      {
+        "key": "113d952bf9dcddfba9365459549532a034d555d6",
+        "file_key": "OjFchNAdeHiNH5W4wYLSGS",
+        "node_id": "15607:6641",
+        "style_type": "TEXT",
+        "thumbnail_url": "https://s3-alpha.figma.com/checkpoints/26w/UMM/U2XncWnHaUO34Bsh/15607_6641.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQ4GOSFWC4EJV4ZNX%2F20260419%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260419T120000Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=c4c35e48756bf9c609bfc4f6b46cff16fb4f99a1125cb27261de465e1d1395b9",
+        "name": "GFG - Typography/Supporting Text/Supporting Text",
+        "description": "",
+        "created_at": "2026-03-23T09:54:06.423Z",
+        "updated_at": "2026-03-26T05:31:39.442Z",
+        "user": {
+          "id": "1260966249635203624",
+          "handle": "Lisandro Alvo",
+          "img_url": "https://s3-alpha.figma.com/profile/9a06c895-60df-42ff-82b4-8fb9a408de01"
+        },
+        "sort_position": "!c}}}T"
+      },
+      {
+        "key": "5c3cac84bb7305bee806d6eb5f4b4de638a85e67",
+        "file_key": "OjFchNAdeHiNH5W4wYLSGS",
+        "node_id": "15607:6642",
+        "style_type": "TEXT",
+        "thumbnail_url": "https://s3-alpha.figma.com/checkpoints/k6z/GSl/U3llW9ieWYEWvNlR/15607_6642.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQ4GOSFWC4EJV4ZNX%2F20260419%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260419T120000Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=f2486776b6ff2ae91007f0bc389728c00dd3352fb5b3d9479039cafc77b3ee4f",
+        "name": "GFG - Typography/Body/body-1",
+        "description": "",
+        "created_at": "2026-03-23T09:54:06.105Z",
+        "updated_at": "2026-03-26T05:31:39.448Z",
+        "user": {
+          "id": "1260966249635203624",
+          "handle": "Lisandro Alvo",
+          "img_url": "https://s3-alpha.figma.com/profile/9a06c895-60df-42ff-82b4-8fb9a408de01"
+        },
+        "sort_position": "!c}}}U"
+      },
+      {
+        "key": "76898b08d2b7e828fdb4a3851e8a9c3a5907c4a8",
+        "file_key": "OjFchNAdeHiNH5W4wYLSGS",
+        "node_id": "15607:6636",
+        "style_type": "TEXT",
+        "thumbnail_url": "https://s3-alpha.figma.com/checkpoints/cge/d3g/mXl11GZX2fCehTp9/15607_6636.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQ4GOSFWC4EJV4ZNX%2F20260419%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260419T120000Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=0553334cf0fe752451d36ee6c391441da2e438e2c64e88675bda69f6340de858",
+        "name": "GFG - Typography/Heaeding/H2",
+        "description": "",
+        "created_at": "2026-03-23T09:54:06.115Z",
+        "updated_at": "2026-03-26T05:31:39.452Z",
+        "user": {
+          "id": "1260966249635203624",
+          "handle": "Lisandro Alvo",
+          "img_url": "https://s3-alpha.figma.com/profile/9a06c895-60df-42ff-82b4-8fb9a408de01"
+        },
+        "sort_position": "!c}}}P"
+      },
+      {
+        "key": "df87b3f26fde7d1be874e5729824eba020d484e3",
+        "file_key": "OjFchNAdeHiNH5W4wYLSGS",
+        "node_id": "15607:6643",
+        "style_type": "TEXT",
+        "thumbnail_url": "https://s3-alpha.figma.com/checkpoints/iBH/AYK/NiiyqQOtgg6dYnaY/15607_6643.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQ4GOSFWC4EJV4ZNX%2F20260419%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260419T120000Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=2ccabf5f65bdf2027ae57994df8a65ab31ea3de2a1c3f7a2d6ee80860f7be6ff",
+        "name": "GFG - Typography/Body/body-2",
+        "description": "",
+        "created_at": "2026-03-23T09:54:06.252Z",
+        "updated_at": "2026-03-26T05:31:39.456Z",
+        "user": {
+          "id": "1260966249635203624",
+          "handle": "Lisandro Alvo",
+          "img_url": "https://s3-alpha.figma.com/profile/9a06c895-60df-42ff-82b4-8fb9a408de01"
+        },
+        "sort_position": "!c}}}V"
+      },
+      {
+        "key": "ede5d3033cce716964a84d9de07073d663d822b8",
+        "file_key": "OjFchNAdeHiNH5W4wYLSGS",
+        "node_id": "15607:6637",
+        "style_type": "TEXT",
+        "thumbnail_url": "https://s3-alpha.figma.com/checkpoints/cJs/ThY/KQ6HWxMCPxDgzQye/15607_6637.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQ4GOSFWC4EJV4ZNX%2F20260419%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260419T120000Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=8cd83bf090681925c1e97a6f0494eabf02356d6186d358b2676f3b03c95ad7c2",
+        "name": "GFG - Typography/Heaeding/H3",
+        "description": "",
+        "created_at": "2026-03-23T09:54:06.121Z",
+        "updated_at": "2026-03-26T05:31:39.459Z",
+        "user": {
+          "id": "1260966249635203624",
+          "handle": "Lisandro Alvo",
+          "img_url": "https://s3-alpha.figma.com/profile/9a06c895-60df-42ff-82b4-8fb9a408de01"
+        },
+        "sort_position": "!c}}}R"
+      },
+      {
+        "key": "01aa14b85a82d72f95785cc3f7ac3f5acf32c960",
+        "file_key": "OjFchNAdeHiNH5W4wYLSGS",
+        "node_id": "15607:6640",
+        "style_type": "TEXT",
+        "thumbnail_url": "https://s3-alpha.figma.com/checkpoints/aYb/IFV/eYYQmvqmZpc8wWPW/15607_6640.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQ4GOSFWC4EJV4ZNX%2F20260419%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260419T120000Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=ce334fcc38a3061dabd191f0ac23b1baf572af31639d823e88e99c2e939895bc",
+        "name": "GFG - Typography/Heaeding/H4",
+        "description": "",
+        "created_at": "2026-03-23T09:54:06.126Z",
+        "updated_at": "2026-03-26T05:31:41.503Z",
+        "user": {
+          "id": "1260966249635203624",
+          "handle": "Lisandro Alvo",
+          "img_url": "https://s3-alpha.figma.com/profile/9a06c895-60df-42ff-82b4-8fb9a408de01"
+        },
+        "sort_position": "!c}}}S"
+      },
+      {
+        "key": "08e9251411071db1214018c8c16ee66dd9340a75",
+        "file_key": "OjFchNAdeHiNH5W4wYLSGS",
+        "node_id": "15607:6646",
+        "style_type": "TEXT",
+        "thumbnail_url": "https://s3-alpha.figma.com/checkpoints/KwS/BAF/eDXuCtXeKN5bwr3n/15607_6646.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQ4GOSFWC4EJV4ZNX%2F20260419%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260419T120000Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=c59e6783af9c73c2882a30615bdcd17116d4897ec840322568d790bff968b52a",
+        "name": "GFG - Typography/Micro Text/caption",
+        "description": "",
+        "created_at": "2026-03-23T09:54:06.400Z",
+        "updated_at": "2026-03-26T05:31:41.507Z",
+        "user": {
+          "id": "1260966249635203624",
+          "handle": "Lisandro Alvo",
+          "img_url": "https://s3-alpha.figma.com/profile/9a06c895-60df-42ff-82b4-8fb9a408de01"
+        },
+        "sort_position": "!j"
+      },
+      {
+        "key": "4994bcd2a41816b1fd94a1997d00316c3192e324",
+        "file_key": "OjFchNAdeHiNH5W4wYLSGS",
+        "node_id": "15607:6635",
+        "style_type": "TEXT",
+        "thumbnail_url": "https://s3-alpha.figma.com/checkpoints/HVD/niu/1r08vu0TnY8580wX/15607_6635.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQ4GOSFWC4EJV4ZNX%2F20260419%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260419T120000Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=7c319a4c3a84202ed9fa79b834c7c34f362423a150c65ce425eaaf3e6b62d79c",
+        "name": "GFG - Typography/Heaeding/H1",
+        "description": "",
+        "created_at": "2026-03-23T09:54:06.110Z",
+        "updated_at": "2026-03-26T05:31:41.510Z",
+        "user": {
+          "id": "1260966249635203624",
+          "handle": "Lisandro Alvo",
+          "img_url": "https://s3-alpha.figma.com/profile/9a06c895-60df-42ff-82b4-8fb9a408de01"
+        },
+        "sort_position": "!c}}}OO"
+      },
+      {
+        "key": "fa00ed01aa445ed493f129713423381360bd2b2d",
+        "file_key": "OjFchNAdeHiNH5W4wYLSGS",
+        "node_id": "15607:6648",
+        "style_type": "TEXT",
+        "thumbnail_url": "https://s3-alpha.figma.com/checkpoints/rei/LOt/MbN7t3iI4bbJzMXk/15607_6648.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQ4GOSFWC4EJV4ZNX%2F20260419%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260419T120000Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=f02c2378ffae2b199e4e39006ac6b635372ff01e13346eadb7790184c4827d4b",
+        "name": "GFG - Typography/Stat/Stat",
+        "description": "",
+        "created_at": "2026-03-23T09:54:06.410Z",
+        "updated_at": "2026-04-02T08:01:28.135Z",
+        "user": {
+          "id": "1260966249635203624",
+          "handle": "Lisandro Alvo",
+          "img_url": "https://s3-alpha.figma.com/profile/9a06c895-60df-42ff-82b4-8fb9a408de01"
+        },
+        "sort_position": "!l"
+      }
+    ]
+  },
+  "i18n": null
+}

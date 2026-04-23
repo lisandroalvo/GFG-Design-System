@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GFG Design System - Live from Figma</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #3B82F6;
+            --color-success: #10B981;
+            --color-gray-900: #111827;
+            --color-gray-700: #374151;
+            --color-gray-500: #6B7280;
+            --color-gray-200: #E5E7EB;
+            --color-gray-50: #F9FAFB;
+            --color-white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--color-gray-50);
+            color: var(--color-gray-900);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .sync-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .sync-status .material-icons-outlined {
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title .material-icons-outlined {
+            color: var(--color-primary);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            border: 1px solid var(--color-gray-200);
+            border-radius: 8px;
+            padding: 1.25rem;
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .card-thumbnail {
+            width: 100%;
+            height: 120px;
+            background: var(--color-gray-50);
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            object-fit: contain;
+            padding: 0.5rem;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-gray-900);
+        }
+
+        .card-meta {
+            font-size: 0.75rem;
+            color: var(--color-gray-500);
+            font-family: 'Monaco', monospace;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--color-primary);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--color-gray-500);
+            margin-top: 0.25rem;
+        }
+
+        .refresh-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .refresh-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5);
+        }
+
+        .refresh-btn.spinning {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .last-updated {
+            text-align: center;
+            color: var(--color-gray-500);
+            font-size: 0.875rem;
+            margin-top: 2rem;
+        }
+
+        .component-count {
+            background: var(--color-gray-100);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--color-gray-700);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--color-gray-500);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--color-gray-500);
+        }
+
+        .empty-state .material-icons-outlined {
+            font-size: 64px;
+            opacity: 0.3;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎨 GFG Design System</h1>
+        <p>Live design tokens synced from Figma</p>
+        <div class="sync-status">
+            <span class="material-icons-outlined">sync</span>
+            <span id="syncStatus">Connected to Figma</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="typographyCount">0</div>
+                <div class="stat-label">Typography Styles</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="effectsCount">0</div>
+                <div class="stat-label">Effect Styles</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="componentsCount">0</div>
+                <div class="stat-label">Components</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="colorsCount">0</div>
+                <div class="stat-label">Color Styles</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons-outlined">text_fields</span>
+                Typography Styles
+            </h2>
+            <div id="typographyGrid" class="grid"></div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons-outlined">layers</span>
+                Effect Styles
+            </h2>
+            <div id="effectsGrid" class="grid"></div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons-outlined">widgets</span>
+                Components
+                <span class="component-count" id="componentTotal">0 total</span>
+            </h2>
+            <div id="componentsGrid" class="grid"></div>
+        </div>
+
+        <div class="last-updated">
+            Last synced: <span id="lastUpdated">Never</span>
+        </div>
+    </div>
+
+    <button class="refresh-btn" id="refreshBtn" title="Sync from Figma">
+        <span class="material-icons-outlined">refresh</span>
+    </button>
+
+    <script>
+        let componentsData = [];
+        let currentPage = 1;
+        const COMPONENTS_PER_PAGE = 50;
+
+        async function loadDesignTokens() {
+            try {
+                const [stylesRes, componentsRes] = await Promise.all([
+                    fetch('design-tokens/styles.json'),
+                    fetch('design-tokens/components.json')
+                ]);
+
+                const styles = await stylesRes.json();
+                const components = await componentsRes.json();
+
+                componentsData = components.components || [];
+
+                renderTypography(styles.typography || []);
+                renderEffects(styles.effects || []);
+                renderComponents(componentsData.slice(0, COMPONENTS_PER_PAGE));
+
+                document.getElementById('typographyCount').textContent = styles.typography?.length || 0;
+                document.getElementById('effectsCount').textContent = styles.effects?.length || 0;
+                document.getElementById('componentsCount').textContent = componentsData.length;
+                document.getElementById('colorsCount').textContent = styles.colors?.length || 0;
+                document.getElementById('componentTotal').textContent = `${componentsData.length} total`;
+
+                const lastUpdated = styles.lastUpdated || components.lastUpdated;
+                if (lastUpdated) {
+                    document.getElementById('lastUpdated').textContent = new Date(lastUpdated).toLocaleString();
+                }
+
+                document.getElementById('syncStatus').textContent = 'Synced with Figma';
+            } catch (error) {
+                console.error('Error loading design tokens:', error);
+                document.getElementById('syncStatus').textContent = 'Error loading tokens';
+            }
+        }
+
+        function renderTypography(typography) {
+            const grid = document.getElementById('typographyGrid');
+            
+            if (typography.length === 0) {
+                grid.innerHTML = '<div class="empty-state"><span class="material-icons-outlined">text_fields</span><p>No typography styles found</p></div>';
+                return;
+            }
+
+            grid.innerHTML = typography.map(style => `
+                <div class="card">
+                    <img src="${style.thumbnail}" alt="${style.name}" class="card-thumbnail" onerror="this.style.display='none'">
+                    <div class="card-title">${style.name}</div>
+                    <div class="card-meta">${style.nodeId}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderEffects(effects) {
+            const grid = document.getElementById('effectsGrid');
+            
+            if (effects.length === 0) {
+                grid.innerHTML = '<div class="empty-state"><span class="material-icons-outlined">layers</span><p>No effect styles found</p></div>';
+                return;
+            }
+
+            grid.innerHTML = effects.map(style => `
+                <div class="card">
+                    <img src="${style.thumbnail}" alt="${style.name}" class="card-thumbnail" onerror="this.style.display='none'">
+                    <div class="card-title">${style.name}</div>
+                    <div class="card-meta">${style.nodeId}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderComponents(components) {
+            const grid = document.getElementById('componentsGrid');
+            
+            if (components.length === 0) {
+                grid.innerHTML = '<div class="empty-state"><span class="material-icons-outlined">widgets</span><p>No components found</p></div>';
+                return;
+            }
+
+            grid.innerHTML = components.map(component => `
+                <div class="card">
+                    <img src="${component.thumbnail}" alt="${component.name}" class="card-thumbnail" onerror="this.style.display='none'">
+                    <div class="card-title">${component.name}</div>
+                    ${component.containingFrame ? `<div class="card-meta">${component.containingFrame.name}</div>` : ''}
+                </div>
+            `).join('');
+        }
+
+        async function syncFromFigma() {
+            const btn = document.getElementById('refreshBtn');
+            const icon = btn.querySelector('.material-icons-outlined');
+            
+            btn.classList.add('spinning');
+            document.getElementById('syncStatus').textContent = 'Syncing...';
+
+            try {
+                const response = await fetch('/api/sync-figma', {
+                    method: 'POST'
+                });
+
+                if (response.ok) {
+                    await loadDesignTokens();
+                    document.getElementById('syncStatus').textContent = 'Synced successfully!';
+                    setTimeout(() => {
+                        document.getElementById('syncStatus').textContent = 'Connected to Figma';
+                    }, 3000);
+                } else {
+                    throw new Error('Sync failed');
+                }
+            } catch (error) {
+                console.error('Sync error:', error);
+                document.getElementById('syncStatus').textContent = 'Sync failed';
+            } finally {
+                btn.classList.remove('spinning');
+            }
+        }
+
+        document.getElementById('refreshBtn').addEventListener('click', syncFromFigma);
+
+        loadDesignTokens();
+
+        setInterval(loadDesignTokens, 60000);
+    </script>
+</body>
+</html>

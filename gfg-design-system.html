@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component Library - GFG Design System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* GFG Dust Tones */
+            --dust-dark: #AF9577;
+            --dust-rodeo: #C8B298;
+            --dust-light: #F4EFEA;
+            --dust-clear: #F8F9F7;
+            
+            /* Neutrals */
+            --rodeo-black: #333333;
+            --graphite: #606060;
+            --smoke: #C4C8C8;
+            --wax: #F3F3F5;
+            --card-border: #F8CECB;
+            --background: #F4F4FA;
+            
+            /* Semantic */
+            --success: #10B981;
+            --error: #EF4444;
+            --warning: #F59E0B;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--background);
+            color: var(--rodeo-black);
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            border-right: 1px solid #E8E8E8;
+            position: fixed;
+            height: 100vh;
+            width: 240px;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 24px 20px;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .sidebar-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--rodeo-black);
+            margin-bottom: 4px;
+            letter-spacing: -0.01em;
+        }
+
+        .sidebar-subtitle {
+            font-size: 11px;
+            color: var(--graphite);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .sidebar-nav {
+            padding: 16px 0;
+        }
+
+        .nav-section {
+            margin-bottom: 20px;
+        }
+
+        .nav-section-title {
+            padding: 8px 20px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--graphite);
+        }
+
+        .nav-item {
+            padding: 8px 20px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--rodeo-black);
+            border-left: 2px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: var(--dust-clear);
+            color: var(--dust-dark);
+        }
+
+        .nav-item.active {
+            background: var(--dust-light);
+            color: var(--dust-dark);
+            font-weight: 500;
+            border-left-color: var(--dust-dark);
+        }
+
+        .nav-item-count {
+            font-size: 10px;
+            color: var(--graphite);
+            background: var(--wax);
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+
+        .nav-item.active .nav-item-count {
+            background: white;
+            color: var(--dust-dark);
+        }
+
+        .search-box {
+            padding: 16px 20px;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #E8E8E8;
+            border-radius: 6px;
+            font-size: 13px;
+            font-family: inherit;
+            background: var(--wax);
+            transition: all 0.2s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--dust-dark);
+            background: white;
+        }
+
+        .search-input::placeholder {
+            color: var(--smoke);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 240px;
+            padding: 56px 64px;
+            max-width: 100%;
+            width: calc(100% - 240px);
+        }
+
+        .page-header {
+            margin-bottom: 48px;
+            max-width: 900px;
+        }
+
+        .page-title {
+            font-size: 48px;
+            font-weight: 600;
+            color: var(--rodeo-black);
+            margin-bottom: 12px;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        .page-description {
+            font-size: 15px;
+            color: var(--graphite);
+            line-height: 1.6;
+            max-width: 100%;
+            word-wrap: break-word;
+            white-space: normal;
+        }
+
+        /* Component Sections */
+        .component-section {
+            margin-bottom: 64px;
+        }
+
+        .section-header {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--rodeo-black);
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .section-subtitle {
+            font-size: 11px;
+            color: var(--graphite);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 500;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .component-card {
+            background: white;
+            border: 1px solid #E8E8E8;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .component-card:hover {
+            border-color: var(--dust-dark);
+            box-shadow: 0 4px 16px rgba(175, 149, 119, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .component-thumbnail {
+            width: 100%;
+            height: 160px;
+            background: #FAFAFA;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            object-fit: contain;
+            padding: 16px;
+            border: 1px solid #F0F0F0;
+        }
+
+        .component-name {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--rodeo-black);
+            line-height: 1.5;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(200px, 240px));
+            gap: 24px;
+            margin-bottom: 56px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #E8E8E8;
+            border-radius: 12px;
+            padding: 28px 24px;
+            text-align: left;
+        }
+
+        .stat-value {
+            font-size: 48px;
+            font-weight: 600;
+            color: var(--dust-dark);
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            color: var(--graphite);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 500;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--smoke);
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.3;
+        }
+
+        .empty-state-text {
+            font-size: 14px;
+            color: var(--graphite);
+        }
+
+        /* Sync Button */
+        .sync-button {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            background: var(--dust-dark);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 50%;
+            width: 52px;
+            height: 52px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(175, 149, 119, 0.3);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .sync-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(175, 149, 119, 0.4);
+        }
+
+        .sync-button.spinning {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .sync-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Scrollbar */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--smoke);
+            border-radius: 3px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: var(--graphite);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 24px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">Campaign Builder</div>
+                <div class="sidebar-subtitle">COMPONENT LIBRARY</div>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search components...">
+            </div>
+
+            <nav class="sidebar-nav" id="sidebarNav">
+                <div class="nav-section">
+                    <div class="nav-section-title">FOUNDATION</div>
+                    <div class="nav-item active" data-page="overview">
+                        <span>Colors</span>
+                        <span class="nav-item-count" id="totalCount">0</span>
+                    </div>
+                    <div class="nav-item" data-page="typography">
+                        <span>Typography</span>
+                    </div>
+                    <div class="nav-item" data-page="spacing">
+                        <span>Spacing & Radius</span>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">BUTTONS</div>
+                    <div id="buttonPages"></div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">FORM CONTROLS</div>
+                    <div id="formPages"></div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">LAYOUT</div>
+                    <div id="layoutPages"></div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">DATA DISPLAY</div>
+                    <div id="dataPages"></div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">OVERLAYS</div>
+                    <div id="overlayPages"></div>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h1 class="page-title" id="pageTitle">Component Library</h1>
+                <p class="page-description" id="pageDescription">Interactive reference of every UI component used in the Campaign Builder prototype. Each component is shown with its actual design tokens, all visual states, and implementation notes for the React + Tailwind + Material UI rebuild.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="pagesCount">0</div>
+                    <div class="stat-label">Pages</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="componentSetsCount">0</div>
+                    <div class="stat-label">Component Sets</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="componentsCount">0</div>
+                    <div class="stat-label">Components</div>
+                </div>
+            </div>
+
+            <div id="content"></div>
+        </main>
+    </div>
+
+    <button class="sync-button" id="syncBtn" title="Sync from Figma">
+        <svg class="sync-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+        </svg>
+    </button>
+
+    <script>
+        let organizedData = null;
+        let currentPage = 'overview';
+
+        const categoryMap = {
+            button: ['Button', 'Button Group', 'Floating Action Button', 'Toggle Button', 'Icon Button'],
+            form: ['Text Field', 'Autocomplete', 'Checkbox', 'Radio Group', 'Switch', 'Select', 'Slider', 'Rating', 'Transfer List', 'Color Picker', 'Format Toolbar'],
+            layout: ['Container', 'Stack', 'Grid', 'Paper', 'Accordion', 'Stepper', 'Tabs', 'Drawer'],
+            data: ['Avatar', 'Badge', 'Chip', 'Divider', 'List', 'Table', 'Timeline', 'Tree View (MUI X)', 'Image List', 'Skeleton'],
+            overlay: ['Dialog', 'Popover', 'Menu', 'Tooltip', 'Snackbar', 'Backdrop']
+        };
+
+        async function loadData() {
+            try {
+                const response = await fetch('design-tokens/organized-components.json');
+                organizedData = await response.json();
+                
+                renderSidebar();
+                renderStats();
+                renderPage(currentPage);
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }
+
+        function categorizePages() {
+            const pages = Object.keys(organizedData.byPage).sort();
+            const categorized = {
+                button: [],
+                form: [],
+                layout: [],
+                data: [],
+                overlay: [],
+                other: []
+            };
+
+            pages.forEach(page => {
+                let found = false;
+                for (const [category, keywords] of Object.entries(categoryMap)) {
+                    if (keywords.some(keyword => page.includes(keyword))) {
+                        categorized[category].push(page);
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    categorized.other.push(page);
+                }
+            });
+
+            return categorized;
+        }
+
+        function renderSidebar() {
+            const categorized = categorizePages();
+            
+            const buttonPages = document.getElementById('buttonPages');
+            const formPages = document.getElementById('formPages');
+            const layoutPages = document.getElementById('layoutPages');
+            const dataPages = document.getElementById('dataPages');
+            const overlayPages = document.getElementById('overlayPages');
+
+            buttonPages.innerHTML = categorized.button.map(page => createNavItem(page)).join('');
+            formPages.innerHTML = categorized.form.map(page => createNavItem(page)).join('');
+            layoutPages.innerHTML = categorized.layout.map(page => createNavItem(page)).join('');
+            dataPages.innerHTML = categorized.data.map(page => createNavItem(page)).join('');
+            overlayPages.innerHTML = categorized.overlay.map(page => createNavItem(page)).join('');
+
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    currentPage = item.dataset.page;
+                    renderPage(currentPage);
+                });
+            });
+
+            document.getElementById('totalCount').textContent = organizedData.stats.totalComponents;
+        }
+
+        function createNavItem(pageName) {
+            const count = organizedData.byPage[pageName].components.length;
+            return `
+                <div class="nav-item" data-page="${pageName}">
+                    <span>${pageName}</span>
+                    <span class="nav-item-count">${count}</span>
+                </div>
+            `;
+        }
+
+        function renderStats() {
+            document.getElementById('pagesCount').textContent = organizedData.stats.totalPages;
+            document.getElementById('componentSetsCount').textContent = organizedData.stats.totalComponentSets;
+            document.getElementById('componentsCount').textContent = organizedData.stats.totalComponents;
+        }
+
+        function renderPage(pageName) {
+            const content = document.getElementById('content');
+            
+            if (pageName === 'overview') {
+                document.getElementById('pageTitle').textContent = 'Component Library';
+                document.getElementById('pageDescription').textContent = 'Interactive reference of every UI component used in the Campaign Builder prototype. Each component is shown with its actual design tokens, all visual states, and implementation notes for the React + Tailwind + Material UI rebuild.';
+                
+                const allPages = Object.keys(organizedData.byPage).sort().slice(0, 10);
+                content.innerHTML = allPages.map(page => {
+                    const pageData = organizedData.byPage[page];
+                    return renderComponentSection(page, pageData.components.slice(0, 8));
+                }).join('');
+            } else {
+                const pageData = organizedData.byPage[pageName];
+                document.getElementById('pageTitle').textContent = pageName;
+                document.getElementById('pageDescription').textContent = `${pageData.components.length} components organized in ${Object.keys(pageData.componentSets).length} component sets`;
+                
+                content.innerHTML = Object.keys(pageData.componentSets).map(setName => {
+                    const components = pageData.componentSets[setName];
+                    return renderComponentSection(setName, components);
+                }).join('');
+            }
+        }
+
+        function renderComponentSection(title, components) {
+            if (components.length === 0) return '';
+            
+            return `
+                <div class="component-section">
+                    <div class="section-header">
+                        <div class="section-title">${title}</div>
+                        <div class="section-subtitle">${components.length} VARIANTS</div>
+                    </div>
+                    <div class="components-grid">
+                        ${components.map(component => `
+                            <div class="component-card">
+                                <img src="${component.thumbnail}" alt="${component.name}" class="component-thumbnail" onerror="this.style.display='none'">
+                                <div class="component-name">${component.name}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            document.querySelectorAll('.nav-item[data-page]').forEach(item => {
+                const pageName = item.dataset.page.toLowerCase();
+                item.style.display = pageName.includes(searchTerm) ? 'flex' : 'none';
+            });
+        });
+
+        async function syncFromFigma() {
+            const btn = document.getElementById('syncBtn');
+            btn.classList.add('spinning');
+
+            try {
+                const response = await fetch('/api/sync-figma', { method: 'POST' });
+                if (response.ok) {
+                    await loadData();
+                }
+            } catch (error) {
+                console.error('Sync error:', error);
+            } finally {
+                btn.classList.remove('spinning');
+            }
+        }
+
+        document.getElementById('syncBtn').addEventListener('click', syncFromFigma);
+
+        loadData();
+        setInterval(loadData, 60000);
+    </script>
+</body>
+</html>
