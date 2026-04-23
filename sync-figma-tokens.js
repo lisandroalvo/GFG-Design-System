@@ -2,6 +2,9 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
+// Load environment variables
+require('dotenv').config();
+
 // Figma API credentials
 const FIGMA_TOKEN = process.env.FIGMA_TOKEN || 'YOUR_FIGMA_TOKEN_HERE';
 const FILE_KEY = 'OjFchNAdeHiNH5W4wYLSGS';
