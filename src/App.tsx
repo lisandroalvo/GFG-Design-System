@@ -38,6 +38,9 @@ function ComponentViewer({ component }: { component: any }) {
 
   // Get component from registry for live rendering
   const ComponentToRender = componentRegistry[component.name]
+  
+  // Debug logging
+  console.log('Component:', component.name, 'Found in registry:', !!ComponentToRender)
 
   return (
     <div className="bg-white rounded-xl border-2 border-gray-200 overflow-hidden hover:border-[#AF9577] transition-all">
@@ -96,7 +99,13 @@ function ComponentViewer({ component }: { component: any }) {
                 <ComponentToRender {...selectedProps} />
               </div>
             ) : (
-              <div className="text-gray-400 text-sm">Component not in registry</div>
+              <div className="text-center">
+                <div className="text-gray-400 text-sm mb-2">⚠️ Component not in registry</div>
+                <div className="text-xs text-gray-500">Looking for: {component.name}</div>
+                <div className="text-xs text-gray-400 mt-2">
+                  Registry has {Object.keys(componentRegistry).length} components
+                </div>
+              </div>
             )}
           </div>
           {ComponentToRender && (
