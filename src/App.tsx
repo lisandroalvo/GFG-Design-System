@@ -7,7 +7,7 @@ function ComponentViewer({ component }: { component: any }) {
   const [showCode, setShowCode] = useState(false)
   const [code, setCode] = useState<string>('')
   const [loading, setLoading] = useState(false)
-  const [screenshotUrl, setScreenshotUrl] = useState<string>('')
+  const [selectedProps, setSelectedProps] = useState<Record<string, any>>({})
 
   const loadCode = async () => {
     if (code) return
@@ -89,14 +89,21 @@ function ComponentViewer({ component }: { component: any }) {
 
         {/* React Component Render */}
         <div className="bg-white rounded-lg p-4 border border-gray-200">
-          <div className="text-xs font-semibold text-gray-600 mb-3">⚛️ REACT COMPONENT</div>
-          <div className="flex items-center justify-center min-h-[150px] bg-white rounded-lg p-4 border border-dashed border-gray-300">
+          <div className="text-xs font-semibold text-gray-600 mb-3">⚛️ LIVE REACT COMPONENT</div>
+          <div className="flex items-center justify-center min-h-[150px] bg-gradient-to-br from-gray-50 to-white rounded-lg p-8 border border-dashed border-gray-300">
             {ComponentToRender ? (
-              <ComponentToRender />
+              <div className="transform scale-110">
+                <ComponentToRender {...selectedProps} />
+              </div>
             ) : (
               <div className="text-gray-400 text-sm">Component not in registry</div>
             )}
           </div>
+          {ComponentToRender && (
+            <div className="mt-3 text-xs text-gray-500 text-center">
+              ✨ Live rendering with React + Tailwind CSS
+            </div>
+          )}
         </div>
       </div>
 
