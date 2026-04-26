@@ -262,10 +262,42 @@
             content: 'Click to view details';
             position: absolute;
             bottom: 8px;
-            right: 8px;
-            font-size: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
             color: var(--dust-dark);
-            font-weight: 500;
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeIn 0.2s forwards;
+        }
+
+        .component-preview {
+            position: relative;
+            width: 100%;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #F4EFEA 0%, #FAFAFA 100%);
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .component-icon {
+            font-size: 48px;
+            opacity: 0.6;
+        }
+
+        .component-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--dust-dark);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
         }
 
         .component-thumbnail {
@@ -733,6 +765,34 @@
             // Add more components as needed
         };
 
+        // Load extracted component source code
+        async function loadComponentCode(componentName) {
+            try {
+                const response = await fetch(`extracted-components/${componentName}.tsx`);
+                if (!response.ok) throw new Error('Component not found');
+                return await response.text();
+            } catch (error) {
+                console.error('Error loading component code:', error);
+                return null;
+            }
+        }
+
+        // Copy code to clipboard
+        function copyToClipboard(text, button) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.innerHTML;
+                button.innerHTML = '✅ Copied!';
+                button.style.background = '#4CAF50';
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                button.innerHTML = '❌ Failed';
+            });
+        }
+
         async function loadData() {
             try {
                 const response = await fetch('design-tokens/organized-components.json');
@@ -908,20 +968,23 @@
                     <div class="section-header">
                         <div class="section-title">${title}</div>
                         <div class="section-meta">
-                            <div class="section-subtitle">${components.length} VARIANTS</div>
+                            <div class="section-subtitle">${components.length} ${components.length === 1 ? 'COMPONENT' : 'VARIANTS'}</div>
                         </div>
                         <div class="section-description">
-                            All visual states and sizes for this component set. Click any component to view implementation details.
+                            Click any component to view live code, props, and implementation details.
                         </div>
                     </div>
                     <div class="components-grid">
                         ${components.map((component, index) => `
-                            <div class="component-card" data-set-name="${title}" data-component-index="${index}">
-                                <img src="${component.thumbnail}" alt="${component.name}" class="component-thumbnail" onerror="this.style.display='none'">
+                            <div class="component-card" data-set-name="${title}" data-component-index="${index}" data-component-name="${component.name}">
+                                <div class="component-preview">
+                                    <div class="component-icon">📦</div>
+                                    <div class="component-badge">${component.variantCount || 1}</div>
+                                </div>
                                 <div class="component-name">${component.name}</div>
                                 <div class="component-meta">
-                                    <span class="component-tag">MUI</span>
-                                    ${component.containingFrame?.pageName ? `<span class="component-tag">${component.containingFrame.pageName}</span>` : ''}
+                                    <span class="component-tag">React</span>
+                                    <span class="component-tag">Tailwind</span>
                                 </div>
                             </div>
                         `).join('')}
@@ -1122,11 +1185,6 @@
             });
             console.log('Initial selections:', currentPropertySelections);
             
-            // Render initial live component after modal content is set
-            setTimeout(() => {
-                renderLiveComponent();
-            }, 100);
-            
             modalBody.innerHTML = modalContent + `
 
                 <div class="modal-section">
@@ -1207,21 +1265,18 @@
                     <!-- Usage Tab -->
                     <div class="code-content active" id="tab-usage">
                         <div style="background: #FAFAFA; border-radius: 8px; padding: 20px; margin-bottom: 16px;">
-                            <div style="font-size: 13px; font-weight: 600; margin-bottom: 12px; color: var(--rodeo-black);">📦 Installation</div>
-                            <div class="code-block" style="margin-bottom: 16px;">npm install @mui/material @emotion/react @emotion/styled</div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                <div style="font-size: 13px; font-weight: 600; color: var(--rodeo-black);">� Extracted Component Code</div>
+                                <button onclick="copyComponentCode('${component.name}')" style="background: var(--dust-dark); color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: 600;">
+                                    📋 Copy Full Code
+                                </button>
+                            </div>
+                            <div id="extracted-code-${component.name.replace(/[^a-zA-Z0-9]/g, '-')}" class="code-block" style="max-height: 400px; overflow-y: auto; font-size: 11px; line-height: 1.6;">
+                                Loading component code...
+                            </div>
                             
-                            <div style="font-size: 13px; font-weight: 600; margin-bottom: 12px; color: var(--rodeo-black);">⚛️ React Implementation</div>
-                            <div class="code-block">import { ${setName.replace(/\s+/g, '')} } from '@mui/material';
-
-function MyComponent() {
-  return (
-    &lt;${setName.replace(/\s+/g, '')}
-      ${generatePropsFromVariant(component)}
-    &gt;
-      {/* Content */}
-    &lt;/${setName.replace(/\s+/g, '')}&gt;
-  );
-}</div>
+                            <div style="font-size: 13px; font-weight: 600; margin: 20px 0 12px; color: var(--rodeo-black);">📦 Quick Import</div>
+                            <div class="code-block">import ${component.name} from './extracted-components/${component.name}.tsx';</div>
                         </div>
                     </div>
                     
@@ -1338,6 +1393,41 @@ File Key: ${component.key}</div>
             `;
 
             modal.classList.add('active');
+            
+            // Load and display the extracted component code
+            loadAndDisplayComponentCode(component.name);
+            
+            // Render the initial live component after modal is visible
+            setTimeout(() => {
+                renderLiveComponent();
+            }, 100);
+        }
+
+        // Load and display component code in the modal
+        async function loadAndDisplayComponentCode(componentName) {
+            const codeContainer = document.getElementById(`extracted-code-${componentName.replace(/[^a-zA-Z0-9]/g, '-')}`);
+            if (!codeContainer) return;
+            
+            const code = await loadComponentCode(componentName);
+            if (code) {
+                // Escape HTML and format the code
+                const escapedCode = code
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;');
+                codeContainer.innerHTML = `<pre style="margin: 0; white-space: pre-wrap; word-wrap: break-word;">${escapedCode}</pre>`;
+            } else {
+                codeContainer.innerHTML = '<p style="color: #999; text-align: center; padding: 20px;">Component code not found. Make sure the file exists in extracted-components/</p>';
+            }
+        }
+
+        // Copy component code to clipboard
+        async function copyComponentCode(componentName) {
+            const code = await loadComponentCode(componentName);
+            if (code) {
+                const button = event.target;
+                copyToClipboard(code, button);
+            }
         }
 
         function selectVariant(index) {
@@ -1491,26 +1581,27 @@ File Key: ${component.key}</div>
             }
 
             getSeverityColors() {
+                // EXACT colors extracted from Figma API - all 12 variants
                 const colors = {
                     'Error': {
-                        filled: { bg: '#D32F2F', text: '#FFFFFF', icon: '#FFFFFF' },
-                        outlined: { bg: '#FFFFFF', text: '#D32F2F', icon: '#D32F2F', border: '#D32F2F' },
-                        standard: { bg: '#FFEBEE', text: '#D32F2F', icon: '#D32F2F' }
+                        filled: { bg: '#a34740', text: '#ffffff', icon: '#ffffff' },
+                        outlined: { bg: '#FFFFFF', text: '#a34740', icon: '#a34740', border: '#a34740' },
+                        standard: { bg: '#eed4d3', text: '#a34740', icon: '#a34740' }
                     },
                     'Warning': {
-                        filled: { bg: '#AF9577', text: '#FFFFFF', icon: '#FFFFFF' },
-                        outlined: { bg: '#FFFFFF', text: '#AF9577', icon: '#AF9577', border: '#AF9577' },
-                        standard: { bg: '#FFF9E6', text: '#AF9577', icon: '#AF9577' }
+                        filled: { bg: '#8a5d1f', text: '#ffffff', icon: '#ffffff' },
+                        outlined: { bg: '#FFFFFF', text: '#a34740', icon: '#a34740', border: '#8a5d1f' },
+                        standard: { bg: '#f3e3cd', text: '#a34740', icon: '#a34740' }
                     },
                     'Info': {
-                        filled: { bg: '#0288D1', text: '#FFFFFF', icon: '#FFFFFF' },
-                        outlined: { bg: '#FFFFFF', text: '#0288D1', icon: '#0288D1', border: '#0288D1' },
-                        standard: { bg: '#E3F2FD', text: '#0288D1', icon: '#0288D1' }
+                        filled: { bg: '#2b4a60', text: '#ffffff', icon: '#ffffff' },
+                        outlined: { bg: '#FFFFFF', text: '#2b4a60', icon: '#2b4a60', border: '#2b4a60' },
+                        standard: { bg: '#c7d9e6', text: '#2b4a60', icon: '#2b4a60' }
                     },
                     'Success': {
-                        filled: { bg: '#2E7D32', text: '#FFFFFF', icon: '#FFFFFF' },
-                        outlined: { bg: '#FFFFFF', text: '#2E7D32', icon: '#2E7D32', border: '#2E7D32' },
-                        standard: { bg: '#E8F5E9', text: '#2E7D32', icon: '#2E7D32' }
+                        filled: { bg: '#637058', text: '#ffffff', icon: '#ffffff' },
+                        outlined: { bg: '#FFFFFF', text: '#637058', icon: '#637058', border: '#637058' },
+                        standard: { bg: '#e0e3dd', text: '#637058', icon: '#637058' }
                     }
                 };
                 
@@ -1519,11 +1610,12 @@ File Key: ${component.key}</div>
             }
 
             getSeverityIcon() {
+                // Using actual Material Icons from Figma
                 const icons = {
-                    'Error': '⚠',
-                    'Warning': '⚠',
-                    'Info': 'ℹ',
-                    'Success': '✓'
+                    'Error': `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>`,
+                    'Warning': `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>`,
+                    'Info': `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>`,
+                    'Success': `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>`
                 };
                 return icons[this.props.severity];
             }
@@ -1537,47 +1629,47 @@ File Key: ${component.key}</div>
                     <div style="
                         display: flex;
                         align-items: flex-start;
-                        padding: 12px 16px;
-                        border-radius: 8px;
+                        padding: 16px;
+                        border-radius: 4px;
                         gap: 12px;
-                        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                        font-family: 'Lato', sans-serif;
                         background: ${colors.bg};
                         color: ${colors.text};
                         ${variant === 'outlined' ? `border: 1px solid ${colors.border};` : ''}
-                        min-height: 48px;
                         position: relative;
                     ">
-                        <div style="font-size: 24px; line-height: 1; color: ${colors.icon}; flex-shrink: 0; margin-top: 2px;">
+                        <div style="color: ${colors.icon}; flex-shrink: 0; width: 24px; height: 24px;">
                             ${icon}
                         </div>
                         
-                        <div style="flex: 1; display: flex; flex-direction: column; gap: 4px; min-width: 0;">
+                        <div style="flex: 1; display: flex; flex-direction: column; gap: 0; min-width: 0;">
                             ${this.props.title ? `
-                                <div style="font-size: 14px; font-weight: 600; line-height: 1.4; color: ${colors.text};">
+                                <div style="font-size: 16px; font-weight: 400; line-height: 19.2px; color: ${colors.text}; letter-spacing: 0;">
                                     ${this.props.titleText}
                                 </div>
                             ` : ''}
                             
                             ${this.props.description ? `
-                                <div style="font-size: 13px; font-weight: 400; line-height: 1.5; color: ${colors.text}; opacity: 0.9;">
+                                <div style="font-size: 13px; font-weight: 400; line-height: 15.6px; color: ${colors.text}; letter-spacing: 0; margin-top: ${this.props.title ? '2px' : '0'};">
                                     ${this.props.descriptionText}
                                 </div>
                             ` : ''}
                             
                             ${this.props.action ? `
-                                <div style="margin-top: 8px;">
+                                <div style="margin-top: 8px; margin-left: -8px;">
                                     ${this.props.actionInstance === 'Text' ? `
                                         <button style="
                                             background: transparent;
                                             border: none;
                                             color: ${colors.text};
-                                            font-size: 13px;
-                                            font-weight: 600;
+                                            font-size: 11px;
+                                            font-weight: 700;
                                             text-transform: uppercase;
                                             cursor: pointer;
-                                            padding: 4px 8px;
-                                            margin: -4px -8px;
-                                            text-decoration: underline;
+                                            padding: 6px 8px;
+                                            letter-spacing: 1.98px;
+                                            line-height: 13.2px;
+                                            font-family: 'Lato', sans-serif;
                                         ">LABEL</button>
                                     ` : `
                                         <button style="
@@ -1587,7 +1679,6 @@ File Key: ${component.key}</div>
                                             font-size: 20px;
                                             cursor: pointer;
                                             padding: 4px;
-                                            margin: -4px;
                                             line-height: 1;
                                         ">⊕</button>
                                     `}
@@ -1599,7 +1690,7 @@ File Key: ${component.key}</div>
                             <button style="
                                 background: transparent;
                                 border: none;
-                                color: ${colors.text};
+                                color: ${colors.icon};
                                 font-size: 20px;
                                 cursor: pointer;
                                 padding: 0;
@@ -1609,7 +1700,6 @@ File Key: ${component.key}</div>
                                 align-items: center;
                                 justify-content: center;
                                 flex-shrink: 0;
-                                opacity: 0.7;
                                 line-height: 1;
                             ">×</button>
                         ` : ''}
@@ -1664,53 +1754,127 @@ File Key: ${component.key}</div>
             renderLiveComponent();
         }
 
+        function findMatchingVariant(components, selections) {
+            console.log('🔍 Finding variant for selections:', selections);
+            console.log('🔍 Available components:', components.length);
+            
+            // Build search criteria from selections
+            const searchCriteria = {};
+            for (const [key, value] of Object.entries(selections)) {
+                // Skip text and instance properties
+                if (!key.endsWith('_text') && !key.endsWith('_instance')) {
+                    // For boolean properties ending with ?, store as "PropertyName?=True/False"
+                    if (key.endsWith('?')) {
+                        const propName = key.slice(0, -1); // Remove the ?
+                        // Capitalize boolean values to match Figma format (True/False not true/false)
+                        const boolValue = value ? 'True' : 'False';
+                        searchCriteria[propName + '?'] = boolValue;
+                    } else {
+                        searchCriteria[key] = value;
+                    }
+                }
+            }
+            
+            console.log('🔍 Search criteria:', searchCriteria);
+            
+            // Score each component based on how many criteria it matches
+            let bestMatch = null;
+            let bestScore = -1;
+            
+            for (const component of components) {
+                let score = 0;
+                let totalCriteria = Object.keys(searchCriteria).length;
+                
+                for (const [key, value] of Object.entries(searchCriteria)) {
+                    // Check if component name contains this property=value pair
+                    const searchPattern = `${key}=${value}`;
+                    if (component.name.includes(searchPattern)) {
+                        score++;
+                    }
+                }
+                
+                console.log(`  Component "${component.name}" scored ${score}/${totalCriteria}`);
+                
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestMatch = component;
+                }
+            }
+            
+            if (bestMatch) {
+                console.log('✅ Best match:', bestMatch.name, `(score: ${bestScore})`);
+                return bestMatch;
+            }
+            
+            // If no match at all, return first component
+            console.log('⚠️ No match found, using first component');
+            return components[0];
+        }
+
         function renderLiveComponent() {
             const container = document.getElementById('playgroundPreviewContainer');
             if (!container) return;
             
-            const { setName } = currentComponents;
+            const { setName, components } = currentComponents;
             
-            // Only render live component for Alert (for now)
-            if (setName !== 'Alert') {
-                container.innerHTML = '<p style="color: var(--graphite); text-align: center;">Live preview coming soon for this component</p>';
-                return;
-            }
-            
-            // Get property values
-            const severity = currentPropertySelections['Severity'] || currentPropertySelections['Type'] || 'Warning';
-            const variant = currentPropertySelections['Variant'] || 'Filled';
-            const titleEnabled = currentPropertySelections['Title?'] || false;
-            const descEnabled = currentPropertySelections['Description?'] || false;
-            const actionEnabled = currentPropertySelections['Action?'] || false;
-            const onCloseEnabled = currentPropertySelections['On Close?'] || false;
-            
-            const titleText = currentPropertySelections['Title_text'] || 'Title';
-            const descText = currentPropertySelections['Description_text'] || 'Description';
-            const actionInstance = currentPropertySelections['Action_instance'] || 'Text';
-            
-            // Create and render the Alert component
-            const alert = new AlertComponent({
-                severity: severity,
-                variant: variant,
-                title: titleEnabled,
-                titleText: titleText,
-                description: descEnabled,
-                descriptionText: descText,
-                action: actionEnabled,
-                actionInstance: actionInstance,
-                onClose: onCloseEnabled
-            });
-            
-            container.innerHTML = alert.render();
-            
-            // Update measurements
-            setTimeout(() => {
-                const alertEl = container.querySelector('div');
-                if (alertEl) {
-                    document.getElementById('compWidth').textContent = alertEl.offsetWidth + 'px';
-                    document.getElementById('compHeight').textContent = alertEl.offsetHeight + 'px';
+            // For Alert, render live interactive component
+            if (setName === 'Alert') {
+                // Get property values
+                const severity = currentPropertySelections['Severity'] || currentPropertySelections['Type'] || 'Warning';
+                const variant = currentPropertySelections['Variant'] || 'Filled';
+                const titleEnabled = currentPropertySelections['Title?'] || false;
+                const descEnabled = currentPropertySelections['Description?'] || false;
+                const actionEnabled = currentPropertySelections['Action?'] || false;
+                const onCloseEnabled = currentPropertySelections['On Close?'] || false;
+                
+                const titleText = currentPropertySelections['Title_text'] || 'Title';
+                const descText = currentPropertySelections['Description_text'] || 'Description';
+                const actionInstance = currentPropertySelections['Action_instance'] || 'Text';
+                
+                // Create and render the Alert component
+                const alert = new AlertComponent({
+                    severity: severity,
+                    variant: variant,
+                    title: titleEnabled,
+                    titleText: titleText,
+                    description: descEnabled,
+                    descriptionText: descText,
+                    action: actionEnabled,
+                    actionInstance: actionInstance,
+                    onClose: onCloseEnabled
+                });
+                
+                container.innerHTML = alert.render();
+                
+                // Update measurements
+                setTimeout(() => {
+                    const alertEl = container.querySelector('div');
+                    if (alertEl) {
+                        document.getElementById('compWidth').textContent = alertEl.offsetWidth + 'px';
+                        document.getElementById('compHeight').textContent = alertEl.offsetHeight + 'px';
+                    }
+                }, 100);
+            } else {
+                // For other components, show the matching Figma thumbnail
+                const matchingVariant = findMatchingVariant(components, currentPropertySelections);
+                
+                if (matchingVariant) {
+                    container.innerHTML = `<img src="${matchingVariant.thumbnail}" alt="${matchingVariant.name}" style="max-width: 100%; height: auto; display: block;">`;
+                    
+                    // Update measurements from image
+                    setTimeout(() => {
+                        const img = container.querySelector('img');
+                        if (img) {
+                            img.onload = function() {
+                                document.getElementById('compWidth').textContent = this.naturalWidth + 'px';
+                                document.getElementById('compHeight').textContent = this.naturalHeight + 'px';
+                            };
+                        }
+                    }, 100);
+                } else {
+                    container.innerHTML = '<p style="color: var(--graphite); text-align: center;">No matching variant found</p>';
                 }
-            }, 100);
+            }
         }
 
         function renderPlaygroundControls(properties, selections) {
@@ -1942,11 +2106,60 @@ function Example${idx + 1}() {
         });
 
         document.getElementById('searchInput').addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
+            const searchTerm = e.target.value.toLowerCase().trim();
+            
+            // Filter sidebar items
             document.querySelectorAll('.nav-item[data-page]').forEach(item => {
                 const pageName = item.dataset.page.toLowerCase();
                 item.style.display = pageName.includes(searchTerm) ? 'flex' : 'none';
             });
+            
+            // If there's a search term, show matching components in main content
+            if (searchTerm) {
+                const content = document.getElementById('content');
+                const documentation = document.getElementById('documentation');
+                document.getElementById('pageTitle').textContent = `Search Results for "${e.target.value}"`;
+                
+                // Find all matching components across all pages
+                let matchingComponents = [];
+                for (const pageName in organizedData.byPage) {
+                    const pageData = organizedData.byPage[pageName];
+                    if (pageData.components) {
+                        pageData.components.forEach(comp => {
+                            if (comp.name.toLowerCase().includes(searchTerm) || 
+                                pageName.toLowerCase().includes(searchTerm)) {
+                                matchingComponents.push({...comp, category: pageName});
+                            }
+                        });
+                    }
+                }
+                
+                if (matchingComponents.length > 0) {
+                    document.getElementById('pageDescription').textContent = 
+                        `Found ${matchingComponents.length} component${matchingComponents.length !== 1 ? 's' : ''} matching your search`;
+                    
+                    documentation.innerHTML = `
+                        <div class="doc-panel">
+                            <div class="doc-title">🔍 Search Results</div>
+                            <div class="doc-content">
+                                <p>Showing all components that match "${e.target.value}"</p>
+                            </div>
+                        </div>
+                    `;
+                    
+                    content.innerHTML = renderComponentSection('Search Results', matchingComponents);
+                } else {
+                    document.getElementById('pageDescription').textContent = 'No components found';
+                    documentation.innerHTML = '';
+                    content.innerHTML = `
+                        <div style="text-align: center; padding: 60px 20px; color: #999;">
+                            <div style="font-size: 48px; margin-bottom: 16px;">🔍</div>
+                            <div style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">No components found</div>
+                            <div>Try searching for "button", "input", "dialog", etc.</div>
+                        </div>
+                    `;
+                }
+            }
         });
 
         async function syncFromFigma() {
