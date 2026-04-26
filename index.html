@@ -1117,51 +1117,7 @@
             // Use prototype from: manual map > separate page > variant
             const finalPrototype = manualPrototype || prototypeFromPage || prototypeVariant;
             
-            // Add Interactive Prototype section if prototype exists
-            if (finalPrototype) {
-                const prototypeUrl = `https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/OjFchNAdeHiNH5W4wYLSGS?node-id=${finalPrototype.nodeId.replace(':', '-')}&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=${finalPrototype.nodeId.replace(':', '%3A')}&page-id=6595%3A48177`;
-                console.log('✅ Showing prototype section with nodeId:', finalPrototype.nodeId);
-                console.log('📺 Iframe URL:', prototypeUrl);
-                modalContent += `
-                <div class="modal-section" style="background: linear-gradient(135deg, #F4EFEA 0%, #FAFAFA 100%); padding: 32px; border-radius: 12px; margin-bottom: 32px; border: 2px solid var(--dust-dark);">
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-                        <span style="font-size: 28px;">⚡</span>
-                        <div>
-                            <div style="font-size: 20px; font-weight: 600; color: var(--rodeo-black); margin-bottom: 4px;">Interactive Prototype</div>
-                            <p style="font-size: 13px; color: var(--graphite); margin: 0;">Click, hover, and interact with this component</p>
-                        </div>
-                    </div>
-                    <iframe 
-                        class="prototype-frame" 
-                        src="${prototypeUrl}"
-                        allowfullscreen
-                        style="border: none;">
-                    </iframe>
-                    <div style="margin-top: 16px; padding: 16px; background: white; border-radius: 8px; display: flex; align-items: center; gap: 12px;">
-                        <span style="font-size: 20px;">✨</span>
-                        <p style="font-size: 13px; color: var(--rodeo-black); margin: 0;">
-                            <strong>Live Prototype:</strong> This is the interactive version from Figma. All interactions, animations, and states are functional.
-                        </p>
-                    </div>
-                </div>
-                `;
-            } else {
-                console.log('❌ No prototype found - section not shown');
-                // Show a message that prototype is not available
-                modalContent += `
-                <div class="modal-section" style="background: #FFF9E6; padding: 20px; border-radius: 12px; margin-bottom: 32px; border: 1px solid #FFE4A3;">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <span style="font-size: 24px;">💡</span>
-                        <div>
-                            <div style="font-size: 14px; font-weight: 600; color: var(--rodeo-black); margin-bottom: 4px;">No Interactive Prototype Available</div>
-                            <p style="font-size: 12px; color: var(--graphite); margin: 0;">
-                                To add an interactive prototype: Create a component set named "<strong>${setName}/Prototype</strong>" in Figma, publish it, and sync.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                `;
-            }
+            // REMOVED: Figma prototype section - user wants to see live components, not Figma embeds
 
             // Parse component properties from variant names and merge with manual properties
             const properties = parseComponentProperties(components, setName);
@@ -1811,6 +1767,83 @@ File Key: ${component.key}</div>
             return components[0];
         }
 
+        // Generic function to render any React component with props
+        async function renderReactComponent(componentName, props, container) {
+            try {
+                // Load the component code
+                const response = await fetch(`extracted-components/${componentName.replace(/[<>]/g, '')}.tsx`);
+                if (!response.ok) throw new Error('Component not found');
+                
+                const componentCode = await response.text();
+                
+                // Extract the component function and render it
+                // This is a simplified version - we'll show the component with its default props
+                container.innerHTML = `
+                    <div style="padding: 20px; background: white; border-radius: 8px; display: inline-block;">
+                        <div style="font-size: 14px; color: #666; margin-bottom: 12px; text-align: center;">
+                            <strong>${componentName}</strong> Component
+                        </div>
+                        <div id="component-render-${componentName.replace(/[^a-zA-Z0-9]/g, '')}" style="display: flex; align-items: center; justify-content: center; min-height: 60px;">
+                            <div style="color: #999; font-size: 13px;">
+                                Loading component...
+                            </div>
+                        </div>
+                        <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee; font-size: 11px; color: #999; text-align: center;">
+                            Props: ${JSON.stringify(props, null, 2).substring(0, 100)}...
+                        </div>
+                    </div>
+                `;
+                
+                // Try to render the component using iframe with React
+                const renderContainer = document.getElementById(`component-render-${componentName.replace(/[^a-zA-Z0-9]/g, '')}`);
+                if (renderContainer) {
+                    // Create an iframe to safely render React component
+                    const iframe = document.createElement('iframe');
+                    iframe.style.border = 'none';
+                    iframe.style.width = '100%';
+                    iframe.style.minHeight = '100px';
+                    
+                    renderContainer.innerHTML = '';
+                    renderContainer.appendChild(iframe);
+                    
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                    iframeDoc.open();
+                    const iframeHTML = '<!DOCTYPE html><html><head>' +
+                        '<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"><\/script>' +
+                        '<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"><\/script>' +
+                        '<script src="https://cdn.tailwindcss.com"><\/script>' +
+                        '<style>body { margin: 0; padding: 20px; font-family: "Inter", sans-serif; }<\/style>' +
+                        '</head><body><div id="root"></div>' +
+                        '<script type="module">' +
+                        componentCode.replace('export default', 'const Component =') +
+                        'const root = ReactDOM.createRoot(document.getElementById("root"));' +
+                        'root.render(React.createElement(Component, ' + JSON.stringify(props) + '));' +
+                        '<\/script></body></html>';
+                    iframeDoc.write(iframeHTML);
+                    iframeDoc.close();
+                }
+                
+                // Update measurements
+                setTimeout(() => {
+                    const compEl = container.querySelector('div');
+                    if (compEl) {
+                        document.getElementById('compWidth').textContent = compEl.offsetWidth + 'px';
+                        document.getElementById('compHeight').textContent = compEl.offsetHeight + 'px';
+                    }
+                }, 500);
+                
+            } catch (error) {
+                console.error('Error rendering component:', error);
+                container.innerHTML = `
+                    <div style="padding: 40px; text-align: center; color: #999;">
+                        <div style="font-size: 48px; margin-bottom: 16px;">⚠️</div>
+                        <div style="font-size: 14px; font-weight: 600; margin-bottom: 8px;">Component Render Error</div>
+                        <div style="font-size: 12px;">Could not load ${componentName}</div>
+                    </div>
+                `;
+            }
+        }
+
         function renderLiveComponent() {
             const container = document.getElementById('playgroundPreviewContainer');
             if (!container) return;
@@ -1855,25 +1888,8 @@ File Key: ${component.key}</div>
                     }
                 }, 100);
             } else {
-                // For other components, show the matching Figma thumbnail
-                const matchingVariant = findMatchingVariant(components, currentPropertySelections);
-                
-                if (matchingVariant) {
-                    container.innerHTML = `<img src="${matchingVariant.thumbnail}" alt="${matchingVariant.name}" style="max-width: 100%; height: auto; display: block;">`;
-                    
-                    // Update measurements from image
-                    setTimeout(() => {
-                        const img = container.querySelector('img');
-                        if (img) {
-                            img.onload = function() {
-                                document.getElementById('compWidth').textContent = this.naturalWidth + 'px';
-                                document.getElementById('compHeight').textContent = this.naturalHeight + 'px';
-                            };
-                        }
-                    }, 100);
-                } else {
-                    container.innerHTML = '<p style="color: var(--graphite); text-align: center;">No matching variant found</p>';
-                }
+                // For other components, render the actual React component
+                renderReactComponent(setName, currentPropertySelections, container);
             }
         }
 
