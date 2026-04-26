@@ -1,14 +1,2187 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Design System Live - All 74 Components</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component Library - GFG Design System</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="./assets/index-XY3LOvX1.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BXvrdy7X.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dust-dark: #AF9577;
+            --dust-rodeo: #C8B298;
+            --dust-light: #F4EFEA;
+            --dust-clear: #F8F9F7;
+            --rodeo-black: #333333;
+            --graphite: #606060;
+            --smoke: #C4C8C8;
+            --wax: #F3F3F5;
+            --background: #F4F4FA;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--background);
+            color: var(--rodeo-black);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 240px;
+            background: white;
+            border-right: 1px solid #E8E8E8;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 24px 20px;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .sidebar-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--rodeo-black);
+            margin-bottom: 4px;
+        }
+
+        .sidebar-subtitle {
+            font-size: 11px;
+            color: var(--graphite);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .search-box {
+            padding: 16px 20px;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #E8E8E8;
+            border-radius: 6px;
+            font-size: 13px;
+            font-family: inherit;
+            background: var(--wax);
+            transition: all 0.2s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--dust-dark);
+            background: white;
+        }
+
+        .nav-section {
+            margin-bottom: 20px;
+        }
+
+        .nav-section-title {
+            padding: 8px 20px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--graphite);
+        }
+
+        .nav-item {
+            padding: 8px 20px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--rodeo-black);
+            border-left: 2px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: var(--dust-clear);
+            color: var(--dust-dark);
+        }
+
+        .nav-item.active {
+            background: var(--dust-light);
+            color: var(--dust-dark);
+            font-weight: 500;
+            border-left-color: var(--dust-dark);
+        }
+
+        .nav-item-count {
+            font-size: 10px;
+            color: var(--graphite);
+            background: var(--wax);
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 240px;
+            flex: 1;
+            padding: 48px 64px;
+        }
+
+        .page-header {
+            margin-bottom: 40px;
+        }
+
+        .page-title {
+            font-size: 48px;
+            font-weight: 600;
+            color: var(--rodeo-black);
+            margin-bottom: 16px;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        .page-description {
+            font-size: 15px;
+            color: var(--graphite);
+            line-height: 1.6;
+            max-width: 720px;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+            max-width: 720px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #E8E8E8;
+            border-radius: 12px;
+            padding: 28px 24px;
+        }
+
+        .stat-value {
+            font-size: 48px;
+            font-weight: 600;
+            color: var(--dust-dark);
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            color: var(--graphite);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 500;
+        }
+
+        /* Component Section */
+        .component-section {
+            margin-bottom: 64px;
+        }
+
+        .section-header {
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--rodeo-black);
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .section-meta {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .section-subtitle {
+            font-size: 11px;
+            color: var(--graphite);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 500;
+        }
+
+        .section-description {
+            font-size: 14px;
+            color: var(--graphite);
+            line-height: 1.6;
+            margin-top: 12px;
+            max-width: 720px;
+        }
+
+        /* Components Grid */
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .component-card {
+            background: white;
+            border: 1px solid #E8E8E8;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .component-card:hover {
+            border-color: var(--dust-dark);
+            box-shadow: 0 4px 16px rgba(175, 149, 119, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .component-card:hover::after {
+            content: 'Click to view details';
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            color: var(--dust-dark);
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeIn 0.2s forwards;
+        }
+
+        .component-preview {
+            position: relative;
+            width: 100%;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #F4EFEA 0%, #FAFAFA 100%);
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .component-icon {
+            font-size: 48px;
+            opacity: 0.6;
+        }
+
+        .component-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--dust-dark);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .component-thumbnail {
+            width: 100%;
+            height: 180px;
+            background: #FAFAFA;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            object-fit: contain;
+            padding: 16px;
+            border: 1px solid #F0F0F0;
+        }
+
+        .component-name {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--rodeo-black);
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .component-meta {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .component-tag {
+            font-size: 10px;
+            padding: 4px 8px;
+            background: var(--dust-light);
+            color: var(--dust-dark);
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Documentation Panel */
+        .doc-panel {
+            background: white;
+            border: 1px solid #E8E8E8;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        .doc-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--rodeo-black);
+            margin-bottom: 12px;
+        }
+
+        .doc-content {
+            font-size: 14px;
+            color: var(--graphite);
+            line-height: 1.7;
+        }
+
+        .doc-list {
+            list-style: none;
+            margin-top: 12px;
+        }
+
+        .doc-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #F0F0F0;
+        }
+
+        .doc-list li:last-child {
+            border-bottom: none;
+        }
+
+        .code-block {
+            background: #F9FAFB;
+            border: 1px solid #E8E8E8;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 12px;
+            font-family: 'Monaco', monospace;
+            font-size: 13px;
+            color: var(--rodeo-black);
+            overflow-x: auto;
+        }
+
+        /* Sync Button */
+        .sync-button {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            background: var(--dust-dark);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 50%;
+            width: 52px;
+            height: 52px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(175, 149, 119, 0.3);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .sync-button:hover {
+            transform: scale(1.05);
+        }
+
+        .sync-button.spinning {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Component Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 1200px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            padding: 32px;
+            border-bottom: 1px solid #E8E8E8;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
+        }
+
+        .modal-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--rodeo-black);
+            margin-bottom: 8px;
+        }
+
+        .modal-subtitle {
+            font-size: 14px;
+            color: var(--graphite);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: var(--wax);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            background: var(--dust-light);
+            color: var(--dust-dark);
+        }
+
+        .modal-body {
+            padding: 32px;
+        }
+
+        .modal-section {
+            margin-bottom: 40px;
+        }
+
+        .modal-section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--rodeo-black);
+            margin: 0;
+        }
+
+        .prototype-frame {
+            width: 100%;
+            height: 700px;
+            border: 1px solid #E8E8E8;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .variant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .variant-card {
+            background: #FAFAFA;
+            border: 1px solid #E8E8E8;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .variant-card:hover {
+            border-color: var(--dust-dark);
+            transform: scale(1.02);
+        }
+
+        .variant-card.active {
+            border: 2px solid var(--dust-dark);
+            background: white;
+        }
+
+        /* Toggle Switch Styles */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .3s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        .toggle-switch input:checked + .toggle-slider {
+            background-color: var(--dust-dark);
+        }
+
+        .toggle-switch input:checked + .toggle-slider:before {
+            transform: translateX(20px);
+        }
+
+        .variant-preview {
+            width: 100%;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 12px;
+        }
+
+        .variant-name {
+            font-size: 12px;
+            color: var(--rodeo-black);
+            font-weight: 500;
+        }
+
+        .code-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .code-tab {
+            padding: 8px 16px;
+            background: none;
+            border: none;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--graphite);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .code-tab.active {
+            color: var(--dust-dark);
+            border-bottom-color: var(--dust-dark);
+        }
+
+        .code-content {
+            display: none;
+        }
+
+        .code-content.active {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 24px 20px;
+            }
+            .modal-content {
+                width: 95%;
+                max-height: 95vh;
+            }
+            .modal-header {
+                padding: 20px;
+            }
+            .modal-body {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">Campaign Builder</div>
+                <div class="sidebar-subtitle">COMPONENT LIBRARY</div>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search components...">
+            </div>
+
+            <nav class="sidebar-nav" id="sidebarNav">
+                <div class="nav-section">
+                    <div class="nav-section-title">FOUNDATION</div>
+                    <div class="nav-item active" data-page="overview">
+                        <span>Overview</span>
+                    </div>
+                    <div class="nav-item" data-page="colors">
+                        <span>Colors</span>
+                    </div>
+                    <div class="nav-item" data-page="typography">
+                        <span>Typography</span>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">COMPONENTS</div>
+                    <div id="componentPages"></div>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h1 class="page-title" id="pageTitle">Component Library</h1>
+                <p class="page-description" id="pageDescription">Interactive reference of every UI component used in the Campaign Builder prototype. Each component is shown with its actual design tokens, all visual states, and implementation notes for the React + Tailwind + Material UI rebuild.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="pagesCount">0</div>
+                    <div class="stat-label">Pages</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="componentSetsCount">0</div>
+                    <div class="stat-label">Component Sets</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="componentsCount">0</div>
+                    <div class="stat-label">Components</div>
+                </div>
+            </div>
+
+            <div id="documentation"></div>
+            <div id="content"></div>
+        </main>
+    </div>
+
+    <button class="sync-button" id="syncBtn" title="Sync from Figma">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+        </svg>
+    </button>
+
+    <!-- Component Detail Modal -->
+    <div class="modal-overlay" id="componentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Component Name</h2>
+                <p class="modal-subtitle" id="modalSubtitle">Component details and variants</p>
+                <button class="modal-close" id="modalClose">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be dynamically inserted -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let organizedData = {};
+        let currentPage = '';
+        
+        // Manual mapping of components that have interactive prototypes
+        // Add the Figma node ID of the prototype frame here
+        const prototypeMap = {
+            'Alert': '15883:11857',  // Alert/Prototype starting point from Figma
+            '<Alert>': '15883:11857',  // Also support with brackets
+            // Add more as you create them:
+            // 'Button': 'nodeId',
+            // 'Card': 'nodeId',
+        };
+
+        // Manual component properties (for properties not in variant names)
+        const componentPropertiesMap = {
+            'Alert': [
+                { name: 'Title', type: 'boolean', default: true, hasText: true },
+                { name: 'Description', type: 'boolean', default: true, hasText: true },
+                { name: 'Action', type: 'boolean', default: false, hasInstance: true, instanceOptions: ['Text', 'Icon'] },
+                { name: 'On Close', type: 'boolean', default: false }
+            ],
+            '<Button>': [
+                { name: 'Start Icon', type: 'boolean', default: false },
+                { name: 'End Icon', type: 'boolean', default: false },
+                { name: 'Label', type: 'text', default: 'Label' },
+                { name: 'IconLeft', type: 'boolean', default: true },
+                { name: 'IconRight', type: 'boolean', default: true }
+            ],
+            // Add more components as needed
+        };
+
+        // Load extracted component source code
+        async function loadComponentCode(componentName) {
+            try {
+                const response = await fetch(`extracted-components/${componentName}.tsx`);
+                if (!response.ok) throw new Error('Component not found');
+                return await response.text();
+            } catch (error) {
+                console.error('Error loading component code:', error);
+                return null;
+            }
+        }
+
+        // Copy code to clipboard
+        function copyToClipboard(text, button) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.innerHTML;
+                button.innerHTML = '✅ Copied!';
+                button.style.background = '#4CAF50';
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                button.innerHTML = '❌ Failed';
+            });
+        }
+
+        async function loadData() {
+            try {
+                const response = await fetch('design-tokens/organized-components.json');
+                organizedData = await response.json();
+                
+                renderSidebar();
+                renderStats();
+                renderPage(currentPage);
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }
+
+        function renderSidebar() {
+            const pages = Object.keys(organizedData.byPage).sort();
+            const componentPages = document.getElementById('componentPages');
+            
+            componentPages.innerHTML = pages.slice(0, 20).map(page => {
+                const count = organizedData.byPage[page].components.length;
+                return `
+                    <div class="nav-item" data-page="${page}">
+                        <span>${page}</span>
+                        <span class="nav-item-count">${count}</span>
+                    </div>
+                `;
+            }).join('');
+
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    currentPage = item.dataset.page;
+                    renderPage(currentPage);
+                });
+            });
+        }
+
+        function renderStats() {
+            document.getElementById('pagesCount').textContent = organizedData.stats.totalPages;
+            document.getElementById('componentSetsCount').textContent = organizedData.stats.totalComponentSets;
+            document.getElementById('componentsCount').textContent = organizedData.stats.totalComponents;
+        }
+
+        function renderPage(pageName) {
+            const content = document.getElementById('content');
+            const documentation = document.getElementById('documentation');
+            
+            if (pageName === 'overview') {
+                document.getElementById('pageTitle').textContent = 'Component Library';
+                document.getElementById('pageDescription').textContent = 'Interactive reference of every UI component used in the Campaign Builder prototype. Each component is shown with its actual design tokens, all visual states, and implementation notes for the React + Tailwind + Material UI rebuild.';
+                
+                documentation.innerHTML = `
+                    <div class="doc-panel">
+                        <div class="doc-title">🚀 Getting Started</div>
+                        <div class="doc-content">
+                            <p>This design system is built with <strong>React + Tailwind CSS + Material UI</strong>. All components are synced live from Figma and update automatically.</p>
+                            <ul class="doc-list">
+                                <li><strong>Framework:</strong> React 18+</li>
+                                <li><strong>Styling:</strong> Tailwind CSS 3.x + Material UI 5.x</li>
+                                <li><strong>Icons:</strong> Material Icons</li>
+                                <li><strong>Auto-sync:</strong> Updates from Figma every 60 seconds</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="doc-panel">
+                        <div class="doc-title">📦 Installation</div>
+                        <div class="doc-content">
+                            <p>Install the required dependencies:</p>
+                            <div class="code-block">npm install @mui/material @emotion/react @emotion/styled<br>npm install -D tailwindcss postcss autoprefixer</div>
+                        </div>
+                    </div>
+
+                    <div class="doc-panel">
+                        <div class="doc-title">🎨 Design Tokens</div>
+                        <div class="doc-content">
+                            <p>All components use the GFG design tokens:</p>
+                            <ul class="doc-list">
+                                <li><strong>Colors:</strong> Dust Dark (#AF9577), Rodeo Dust (#C8B298), Neutrals</li>
+                                <li><strong>Typography:</strong> Inter font family, 10 text styles</li>
+                                <li><strong>Spacing:</strong> 8px base unit system</li>
+                                <li><strong>Effects:</strong> Elevation Cards shadow</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+                
+                const allPages = Object.keys(organizedData.byPage).sort().slice(0, 8);
+                content.innerHTML = allPages.map(page => {
+                    const pageData = organizedData.byPage[page];
+                    return renderComponentSection(page, pageData.components.slice(0, 6));
+                }).join('');
+                
+            } else if (pageName === 'colors') {
+                document.getElementById('pageTitle').textContent = 'Colors';
+                document.getElementById('pageDescription').textContent = 'Full token palette. Click any swatch to copy its hex value.';
+                
+                documentation.innerHTML = `
+                    <div class="doc-panel">
+                        <div class="doc-title">Color Palette</div>
+                        <div class="doc-content">
+                            <p><strong>Brand Palette (Dust Tones):</strong></p>
+                            <ul class="doc-list">
+                                <li>Dark Dust: #AF9577</li>
+                                <li>Rodeo Dust: #C8B298</li>
+                                <li>Light Dust: #F4EFEA</li>
+                                <li>Clear Dust: #F8F9F7</li>
+                            </ul>
+                            <p style="margin-top: 16px;"><strong>Neutrals:</strong></p>
+                            <ul class="doc-list">
+                                <li>Rodeo Black: #333333</li>
+                                <li>Graphite: #606060</li>
+                                <li>Smoke: #C4C8C8</li>
+                                <li>Wax: #F3F3F5</li>
+                                <li>Background: #F4F4FA</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+                content.innerHTML = '';
+                
+            } else if (pageName === 'typography') {
+                document.getElementById('pageTitle').textContent = 'Typography';
+                document.getElementById('pageDescription').textContent = 'Text styles and hierarchy for the design system.';
+                
+                documentation.innerHTML = `
+                    <div class="doc-panel">
+                        <div class="doc-title">Typography System</div>
+                        <div class="doc-content">
+                            <p><strong>Font Family:</strong> Inter</p>
+                            <p><strong>Text Styles:</strong></p>
+                            <ul class="doc-list">
+                                <li>H1, H2, H3, H4 - Headings</li>
+                                <li>Body 1, Body 2 - Body text</li>
+                                <li>Caption - Small text</li>
+                                <li>Overline - Labels</li>
+                                <li>Supporting Text - Helper text</li>
+                                <li>Stat - Large numbers</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+                content.innerHTML = '';
+                
+            } else {
+                const pageData = organizedData.byPage[pageName];
+                document.getElementById('pageTitle').textContent = pageName;
+                document.getElementById('pageDescription').textContent = `${pageData.components.length} components organized in ${Object.keys(pageData.componentSets).length} component sets. All variants shown with implementation details.`;
+                
+                documentation.innerHTML = `
+                    <div class="doc-panel">
+                        <div class="doc-title">📋 Implementation Notes</div>
+                        <div class="doc-content">
+                            <p>These components are built with Material UI and customized with Tailwind CSS.</p>
+                            <div class="code-block">import { ${pageName.replace(/\s+/g, '')} } from '@mui/material';</div>
+                            <p style="margin-top: 12px;">Each variant shows different states (default, hover, active, disabled) and sizes (small, medium, large).</p>
+                        </div>
+                    </div>
+                `;
+                
+                content.innerHTML = Object.keys(pageData.componentSets).map(setName => {
+                    const components = pageData.componentSets[setName];
+                    return renderComponentSection(setName, components);
+                }).join('');
+            }
+        }
+
+        function renderComponentSection(title, components) {
+            if (components.length === 0) return '';
+            
+            return `
+                <div class="component-section">
+                    <div class="section-header">
+                        <div class="section-title">${title}</div>
+                        <div class="section-meta">
+                            <div class="section-subtitle">${components.length} ${components.length === 1 ? 'COMPONENT' : 'VARIANTS'}</div>
+                        </div>
+                        <div class="section-description">
+                            Click any component to view live code, props, and implementation details.
+                        </div>
+                    </div>
+                    <div class="components-grid">
+                        ${components.map((component, index) => `
+                            <div class="component-card" data-set-name="${title}" data-component-index="${index}" data-component-name="${component.name}">
+                                <div class="component-preview">
+                                    <div class="component-icon">📦</div>
+                                    <div class="component-badge">${component.variantCount || 1}</div>
+                                </div>
+                                <div class="component-name">${component.name}</div>
+                                <div class="component-meta">
+                                    <span class="component-tag">React</span>
+                                    <span class="component-tag">Tailwind</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        let currentComponents = {};
+        let currentSetName = '';
+
+        function openComponentModal(setName, componentIndex) {
+            const modal = document.getElementById('componentModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalSubtitle = document.getElementById('modalSubtitle');
+            const modalBody = document.getElementById('modalBody');
+
+            // Store current set name for variant switching
+            currentSetName = setName;
+
+            // Get all components for this set from all pages
+            let components = [];
+            for (const page in organizedData.byPage) {
+                const pageData = organizedData.byPage[page];
+                if (pageData.componentSets[setName]) {
+                    components = pageData.componentSets[setName];
+                    break;
+                }
+            }
+
+            const component = components[componentIndex];
+            if (!component) return;
+
+            currentComponents = { setName, components, selectedIndex: componentIndex };
+
+            modalTitle.textContent = setName;
+            modalSubtitle.textContent = `${components.length} variants • ${component.containingFrame?.pageName || 'Component'}`;
+
+            // Debug: Log what we're searching for
+            console.log('🔍 Searching for prototype:', {
+                setName,
+                currentPage,
+                componentsCount: components.length
+            });
+
+            // Check if there's a Prototype variant - look for "/Prototype" in component set name or frame name
+            const prototypeVariant = components.find(c => {
+                const hasPrototype = c.name.toLowerCase().includes('prototype') || 
+                    c.containingFrame?.name?.toLowerCase().includes('prototype') ||
+                    c.containingFrame?.containingComponentSet?.name?.toLowerCase().includes('/prototype') ||
+                    (setName && setName.toLowerCase().includes('/prototype'));
+                
+                if (hasPrototype) {
+                    console.log('✅ Found prototype variant:', c.name);
+                }
+                return hasPrototype;
+            });
+            
+            // Also check if there's a separate page with "Prototype" suffix or component set with "/Prototype"
+            let prototypeFromPage = null;
+            
+            // Try: PageName/Prototype
+            const prototypePageName = currentPage.trim() + '/Prototype';
+            console.log('🔍 Looking for page:', prototypePageName);
+            if (organizedData.byPage[prototypePageName]) {
+                console.log('✅ Found prototype page!');
+                const prototypePage = organizedData.byPage[prototypePageName];
+                if (prototypePage.componentSets[setName]) {
+                    prototypeFromPage = prototypePage.componentSets[setName][0];
+                    console.log('✅ Found prototype component in page!');
+                }
+            }
+            
+            // Try: Look for component set named "ComponentName/Prototype" in the SAME page
+            if (!prototypeFromPage) {
+                // First check in the current page
+                const pageData = organizedData.byPage[currentPage];
+                if (pageData) {
+                    // Look for component sets that end with "/Prototype"
+                    for (const componentSetName in pageData.componentSets) {
+                        if (componentSetName.includes('/Prototype')) {
+                            // Check if it matches our component (e.g., "Alert/Prototype" for "Alert")
+                            const baseName = componentSetName.replace('/Prototype', '');
+                            if (baseName === setName || componentSetName.startsWith(setName)) {
+                                prototypeFromPage = pageData.componentSets[componentSetName][0];
+                                console.log('✅ Found prototype in same page:', componentSetName);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // Try: Look for component set named "ComponentName/Prototype" in ALL pages
+            if (!prototypeFromPage) {
+                const prototypeSetName = setName + '/Prototype';
+                console.log('🔍 Looking for component set:', prototypeSetName);
+                for (const page in organizedData.byPage) {
+                    const pageData = organizedData.byPage[page];
+                    if (pageData.componentSets[prototypeSetName]) {
+                        prototypeFromPage = pageData.componentSets[prototypeSetName][0];
+                        console.log('✅ Found prototype in component set!');
+                        break;
+                    }
+                }
+            }
+            
+            console.log('📊 Prototype detection result:', {
+                prototypeVariant: !!prototypeVariant,
+                prototypeFromPage: !!prototypeFromPage
+            });
+
+            // Build modal content
+            let modalContent = '';
+
+            // Check manual prototype map first
+            let manualPrototype = null;
+            console.log('🔍 Checking prototypeMap for:', setName);
+            console.log('🔍 Available in prototypeMap:', Object.keys(prototypeMap));
+            if (prototypeMap[setName]) {
+                manualPrototype = {
+                    nodeId: prototypeMap[setName],
+                    name: setName + '/Prototype (Manual)'
+                };
+                console.log('✅ Found manual prototype mapping:', setName, '→', prototypeMap[setName]);
+            } else {
+                console.log('❌ No manual prototype found for:', setName);
+            }
+            
+            // Use prototype from: manual map > separate page > variant
+            const finalPrototype = manualPrototype || prototypeFromPage || prototypeVariant;
+            
+            // Add Interactive Prototype section if prototype exists
+            if (finalPrototype) {
+                const prototypeUrl = `https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/OjFchNAdeHiNH5W4wYLSGS?node-id=${finalPrototype.nodeId.replace(':', '-')}&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=${finalPrototype.nodeId.replace(':', '%3A')}&page-id=6595%3A48177`;
+                console.log('✅ Showing prototype section with nodeId:', finalPrototype.nodeId);
+                console.log('📺 Iframe URL:', prototypeUrl);
+                modalContent += `
+                <div class="modal-section" style="background: linear-gradient(135deg, #F4EFEA 0%, #FAFAFA 100%); padding: 32px; border-radius: 12px; margin-bottom: 32px; border: 2px solid var(--dust-dark);">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                        <span style="font-size: 28px;">⚡</span>
+                        <div>
+                            <div style="font-size: 20px; font-weight: 600; color: var(--rodeo-black); margin-bottom: 4px;">Interactive Prototype</div>
+                            <p style="font-size: 13px; color: var(--graphite); margin: 0;">Click, hover, and interact with this component</p>
+                        </div>
+                    </div>
+                    <iframe 
+                        class="prototype-frame" 
+                        src="${prototypeUrl}"
+                        allowfullscreen
+                        style="border: none;">
+                    </iframe>
+                    <div style="margin-top: 16px; padding: 16px; background: white; border-radius: 8px; display: flex; align-items: center; gap: 12px;">
+                        <span style="font-size: 20px;">✨</span>
+                        <p style="font-size: 13px; color: var(--rodeo-black); margin: 0;">
+                            <strong>Live Prototype:</strong> This is the interactive version from Figma. All interactions, animations, and states are functional.
+                        </p>
+                    </div>
+                </div>
+                `;
+            } else {
+                console.log('❌ No prototype found - section not shown');
+                // Show a message that prototype is not available
+                modalContent += `
+                <div class="modal-section" style="background: #FFF9E6; padding: 20px; border-radius: 12px; margin-bottom: 32px; border: 1px solid #FFE4A3;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="font-size: 24px;">💡</span>
+                        <div>
+                            <div style="font-size: 14px; font-weight: 600; color: var(--rodeo-black); margin-bottom: 4px;">No Interactive Prototype Available</div>
+                            <p style="font-size: 12px; color: var(--graphite); margin: 0;">
+                                To add an interactive prototype: Create a component set named "<strong>${setName}/Prototype</strong>" in Figma, publish it, and sync.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }
+
+            // Parse component properties from variant names and merge with manual properties
+            const properties = parseComponentProperties(components, setName);
+            
+            // Initialize property selections from current component
+            currentPropertySelections = {};
+            properties.forEach(prop => {
+                if (prop.isBoolean) {
+                    const propKey = prop.name + '?';
+                    if (component.name.includes(`${prop.name}?=True`)) {
+                        currentPropertySelections[propKey] = true;
+                    } else if (component.name.includes(`${prop.name}?=False`)) {
+                        currentPropertySelections[propKey] = false;
+                    } else {
+                        currentPropertySelections[propKey] = prop.default || false;
+                    }
+                } else {
+                    const match = component.name.match(new RegExp(`${prop.name}=([^,]+)`));
+                    currentPropertySelections[prop.name] = match ? match[1] : prop.values[0];
+                }
+            });
+            console.log('Initial selections:', currentPropertySelections);
+            
+            modalBody.innerHTML = modalContent + `
+
+                <div class="modal-section">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                        <span style="font-size: 24px;">🎮</span>
+                        <div>
+                            <div class="modal-section-title" style="margin-bottom: 4px;">Interactive Playground</div>
+                            <p style="font-size: 12px; color: var(--graphite); margin: 0;">Customize properties and see the component update live</p>
+                        </div>
+                    </div>
+                    <div style="background: #FAFAFA; border-radius: 12px; padding: 24px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                            <div>
+                                <div style="font-size: 14px; font-weight: 600; margin-bottom: 16px; color: var(--rodeo-black);">Properties</div>
+                                <div id="playgroundControls" style="display: flex; flex-direction: column; gap: 16px;">
+                                    ${generatePropertyControls(properties, component)}
+                                </div>
+                            </div>
+                            <div>
+                                <div style="font-size: 14px; font-weight: 600; margin-bottom: 16px; color: var(--rodeo-black);">Live Preview</div>
+                                <div style="background: white; border: 1px solid #E8E8E8; border-radius: 8px; padding: 32px; min-height: 200px; display: flex; align-items: center; justify-content: center;">
+                                    <div id="playgroundPreviewContainer" style="width: 100%; max-width: 600px;">
+                                        <!-- Live component will be rendered here -->
+                                    </div>
+                                </div>
+                                <div style="margin-top: 12px; padding: 12px; background: white; border-radius: 8px; border: 1px solid #E8E8E8;">
+                                    <div style="font-size: 12px; font-weight: 600; color: var(--rodeo-black); margin-bottom: 8px;">📏 Measurements</div>
+                                    <div style="font-size: 11px; color: var(--graphite); display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                                        <div><strong>Width:</strong> <span id="compWidth">-</span></div>
+                                        <div><strong>Height:</strong> <span id="compHeight">-</span></div>
+                                        <div><strong>Node ID:</strong> ${component.nodeId}</div>
+                                        <div><strong>Variant:</strong> <span id="currentVariant">${component.name}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                        <span style="font-size: 24px;">🔄</span>
+                        <div>
+                            <div class="modal-section-title" style="margin-bottom: 4px;">All Variants</div>
+                            <p style="font-size: 12px; color: var(--graphite); margin: 0;">${components.length} variants • Click to switch</p>
+                        </div>
+                    </div>
+                    <div class="variant-grid">
+                        ${components.map((variant, idx) => {
+                            const isPrototype = variant.name.toLowerCase().includes('prototype');
+                            return `
+                            <div class="variant-card ${idx === componentIndex ? 'active' : ''}" data-variant-index="${idx}" style="cursor: pointer; ${idx === componentIndex ? 'border: 2px solid var(--dust-dark);' : ''}; ${isPrototype ? 'background: linear-gradient(135deg, #F4EFEA 0%, white 100%);' : ''}">
+                                ${isPrototype ? '<div style="position: absolute; top: 8px; right: 8px; background: var(--dust-dark); color: white; padding: 2px 6px; border-radius: 4px; font-size: 9px; font-weight: 600;">INTERACTIVE</div>' : ''}
+                                <img src="${variant.thumbnail}" alt="${variant.name}" class="variant-preview" onerror="this.style.display='none'">
+                                <div class="variant-name">${variant.name}</div>
+                            </div>
+                        `}).join('')}
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                        <span style="font-size: 24px;">�‍�</span>
+                        <div>
+                            <div class="modal-section-title" style="margin-bottom: 4px;">Developer Documentation</div>
+                            <p style="font-size: 12px; color: var(--graphite); margin: 0;">Complete implementation guide, code examples, and API reference</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Dev Mode Tabs -->
+                    <div class="code-tabs" style="margin-bottom: 20px;">
+                        <button class="code-tab active" data-tab="usage">Usage</button>
+                        <button class="code-tab" data-tab="props-api">Props API</button>
+                        <button class="code-tab" data-tab="examples">Examples</button>
+                        <button class="code-tab" data-tab="accessibility">Accessibility</button>
+                    </div>
+                    
+                    <!-- Usage Tab -->
+                    <div class="code-content active" id="tab-usage">
+                        <div style="background: #FAFAFA; border-radius: 8px; padding: 20px; margin-bottom: 16px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                <div style="font-size: 13px; font-weight: 600; color: var(--rodeo-black);">� Extracted Component Code</div>
+                                <button onclick="copyComponentCode('${component.name}')" style="background: var(--dust-dark); color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: 600;">
+                                    📋 Copy Full Code
+                                </button>
+                            </div>
+                            <div id="extracted-code-${component.name.replace(/[^a-zA-Z0-9]/g, '-')}" class="code-block" style="max-height: 400px; overflow-y: auto; font-size: 11px; line-height: 1.6;">
+                                Loading component code...
+                            </div>
+                            
+                            <div style="font-size: 13px; font-weight: 600; margin: 20px 0 12px; color: var(--rodeo-black);">📦 Quick Import</div>
+                            <div class="code-block">import ${component.name} from './extracted-components/${component.name}.tsx';</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Props API Tab -->
+                    <div class="code-content" id="tab-props-api">
+                        <div style="background: #FAFAFA; border-radius: 8px; padding: 20px;">
+                            <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+                                <thead>
+                                    <tr style="border-bottom: 2px solid #E8E8E8;">
+                                        <th style="text-align: left; padding: 8px; color: var(--rodeo-black);">Prop</th>
+                                        <th style="text-align: left; padding: 8px; color: var(--rodeo-black);">Type</th>
+                                        <th style="text-align: left; padding: 8px; color: var(--rodeo-black);">Default</th>
+                                        <th style="text-align: left; padding: 8px; color: var(--rodeo-black);">Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${generatePropsTable(properties)}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Examples Tab -->
+                    <div class="code-content" id="tab-examples">
+                        <div style="background: #FAFAFA; border-radius: 8px; padding: 20px;">
+                            ${generateCodeExamples(setName, properties, components)}
+                        </div>
+                    </div>
+                    
+                    <!-- Accessibility Tab -->
+                    <div class="code-content" id="tab-accessibility">
+                        <div style="background: #FAFAFA; border-radius: 8px; padding: 20px;">
+                            <div style="font-size: 13px; font-weight: 600; margin-bottom: 12px; color: var(--rodeo-black);">♿ Accessibility Guidelines</div>
+                            <ul style="font-size: 12px; color: var(--graphite); line-height: 1.8; margin: 0; padding-left: 20px;">
+                                <li>Ensure proper ARIA labels are provided</li>
+                                <li>Component supports keyboard navigation</li>
+                                <li>Color contrast meets WCAG AA standards</li>
+                                <li>Screen reader compatible</li>
+                                <li>Focus indicators are visible</li>
+                            </ul>
+                            
+                            <div style="font-size: 13px; font-weight: 600; margin: 16px 0 12px; color: var(--rodeo-black);">🎯 Best Practices</div>
+                            <div class="code-block">// Always provide meaningful content
+&lt;${setName.replace(/\s+/g, '')} 
+  role="alert"
+  aria-live="polite"
+&gt;
+  Important message here
+&lt;/${setName.replace(/\s+/g, '')}&gt;</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                        <span style="font-size: 24px;">💻</span>
+                        <div>
+                            <div class="modal-section-title" style="margin-bottom: 4px;">Quick Reference</div>
+                            <p style="font-size: 12px; color: var(--graphite); margin: 0;">Copy-paste code snippets</p>
+                        </div>
+                    </div>
+                    <div class="code-tabs">
+                        <button class="code-tab active" data-tab="react">React</button>
+                        <button class="code-tab" data-tab="html">HTML</button>
+                        <button class="code-tab" data-tab="props">Props</button>
+                    </div>
+                    <div class="code-content active" id="tab-react">
+                        <div class="code-block">import { ${setName.replace(/\s+/g, '')} } from '@mui/material';
+
+function MyComponent() {
+  return (
+    &lt;${setName.replace(/\s+/g, '')}
+      ${component.name.split(',').map(prop => {
+          const [key, value] = prop.split('=');
+          return key && value ? `${key.trim().toLowerCase()}={${value.trim()}}` : '';
+      }).filter(Boolean).join('\n      ')}
+    /&gt;
+  );
+}</div>
+                    </div>
+                    <div class="code-content" id="tab-html">
+                        <div class="code-block">&lt;!-- Material UI Component --&gt;
+&lt;div class="mui-${setName.toLowerCase().replace(/\s+/g, '-')}"&gt;
+  ${component.name}
+&lt;/div&gt;</div>
+                    </div>
+                    <div class="code-content" id="tab-props">
+                        <div class="code-block">Component Properties:
+${component.name.split(',').map(prop => `• ${prop.trim()}`).join('\n')}
+
+Node ID: ${component.nodeId}
+File Key: ${component.key}</div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                        <span style="font-size: 24px;">📋</span>
+                        <div>
+                            <div class="modal-section-title" style="margin-bottom: 4px;">Component Details</div>
+                            <p style="font-size: 12px; color: var(--graphite); margin: 0;">Figma metadata and links</p>
+                        </div>
+                    </div>
+                    <div class="doc-panel">
+                        <ul class="doc-list">
+                            <li><strong>Component Set:</strong> ${setName}</li>
+                            <li><strong>Page:</strong> ${component.containingFrame?.pageName || 'N/A'}</li>
+                            <li><strong>Frame:</strong> ${component.containingFrame?.name || 'N/A'}</li>
+                            <li><strong>Node ID:</strong> ${component.nodeId}</li>
+                            <li><strong>Figma Link:</strong> <a href="https://www.figma.com/file/OjFchNAdeHiNH5W4wYLSGS?node-id=${component.nodeId}" target="_blank">Open in Figma</a></li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.add('active');
+            
+            // Load and display the extracted component code
+            loadAndDisplayComponentCode(component.name);
+            
+            // Render the initial live component after modal is visible
+            setTimeout(() => {
+                renderLiveComponent();
+            }, 100);
+        }
+
+        // Load and display component code in the modal
+        async function loadAndDisplayComponentCode(componentName) {
+            const codeContainer = document.getElementById(`extracted-code-${componentName.replace(/[^a-zA-Z0-9]/g, '-')}`);
+            if (!codeContainer) return;
+            
+            const code = await loadComponentCode(componentName);
+            if (code) {
+                // Escape HTML and format the code
+                const escapedCode = code
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;');
+                codeContainer.innerHTML = `<pre style="margin: 0; white-space: pre-wrap; word-wrap: break-word;">${escapedCode}</pre>`;
+            } else {
+                codeContainer.innerHTML = '<p style="color: #999; text-align: center; padding: 20px;">Component code not found. Make sure the file exists in extracted-components/</p>';
+            }
+        }
+
+        // Copy component code to clipboard
+        async function copyComponentCode(componentName) {
+            const code = await loadComponentCode(componentName);
+            if (code) {
+                const button = event.target;
+                copyToClipboard(code, button);
+            }
+        }
+
+        function selectVariant(index) {
+            const { setName } = currentComponents;
+            openComponentModal(setName, index);
+        }
+
+        function parseComponentProperties(components, setName) {
+            const properties = {};
+            
+            console.log('🔍 Parsing properties from components:', components.length, 'for', setName);
+            
+            // First, parse properties from variant names
+            components.forEach(comp => {
+                console.log('Component name:', comp.name);
+                const parts = comp.name.split(',').map(p => p.trim());
+                console.log('Parts:', parts);
+                
+                parts.forEach(part => {
+                    // Match both "Property=Value" and "Property?=True/False"
+                    const match = part.match(/^(.+?)\??=(.+)$/);
+                    if (match) {
+                        const [, propName, propValue] = match;
+                        const isBoolean = part.includes('?=');
+                        const cleanPropName = propName.replace('?', '');
+                        
+                        console.log('Found property:', cleanPropName, 'isBoolean:', isBoolean, 'value:', propValue);
+                        
+                        if (!properties[cleanPropName]) {
+                            properties[cleanPropName] = {
+                                name: cleanPropName,
+                                values: new Set(),
+                                isBoolean: isBoolean
+                            };
+                        }
+                        properties[cleanPropName].values.add(propValue);
+                    }
+                });
+            });
+            
+            // Then, add manual component properties if they exist
+            if (componentPropertiesMap[setName]) {
+                console.log('📝 Adding manual properties for', setName);
+                componentPropertiesMap[setName].forEach(manualProp => {
+                    if (!properties[manualProp.name]) {
+                        properties[manualProp.name] = {
+                            name: manualProp.name,
+                            values: manualProp.type === 'boolean' ? new Set(['True', 'False']) : new Set([manualProp.default]),
+                            isBoolean: manualProp.type === 'boolean',
+                            type: manualProp.type,
+                            default: manualProp.default,
+                            hasText: manualProp.hasText,
+                            hasInstance: manualProp.hasInstance,
+                            instanceOptions: manualProp.instanceOptions
+                        };
+                        console.log('Added manual property:', manualProp.name);
+                    }
+                });
+            }
+            
+            const result = Object.values(properties).map(prop => ({
+                ...prop,
+                values: Array.from(prop.values)
+            }));
+            
+            console.log('📊 Final parsed properties:', result);
+            return result;
+        }
+
+        function generatePropertyControls(properties, currentComponent) {
+            console.log('🎨 Generating controls for properties:', properties);
+            console.log('Current component:', currentComponent.name);
+            
+            if (!properties || properties.length === 0) {
+                return '<p style="color: var(--graphite); font-size: 13px;">No customizable properties found</p>';
+            }
+            
+            let html = '';
+            
+            properties.forEach(prop => {
+                console.log('Processing prop:', prop);
+                
+                if (prop.isBoolean) {
+                    // Toggle switch for boolean properties
+                    // Check variant name first, otherwise use default
+                    let currentValue = currentComponent.name.includes(`${prop.name}?=True`);
+                    if (!currentComponent.name.includes(`${prop.name}?=`)) {
+                        // Property not in variant name, use default
+                        currentValue = prop.default !== undefined ? prop.default : false;
+                    }
+                    console.log(`Boolean prop ${prop.name}: currentValue =`, currentValue, 'default:', prop.default);
+                    
+                    html += `
+                        <div>
+                            <label style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--rodeo-black);">
+                                <span>${prop.name}?</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" data-prop="${prop.name}?" ${currentValue ? 'checked' : ''} onchange="updatePlaygroundProperty('${prop.name}?', this.checked)">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </label>
+                            ${currentValue ? `
+                            <div style="margin-top: 8px; margin-left: 16px;">
+                                <label style="display: block; font-size: 12px; color: var(--graphite); margin-bottom: 4px;">↳ ${prop.name}</label>
+                                <input type="text" 
+                                    data-text-prop="${prop.name}" 
+                                    placeholder="{${prop.name}}" 
+                                    value="{${prop.name}}"
+                                    style="width: 100%; padding: 6px 10px; border: 1px solid #E8E8E8; border-radius: 4px; font-size: 12px; font-family: monospace;">
+                            </div>
+                            ` : ''}
+                        </div>
+                    `;
+                } else {
+                    // Dropdown for enum properties
+                    const currentValue = currentComponent.name.match(new RegExp(`${prop.name}=([^,]+)`))?.[1] || prop.values[0];
+                    console.log(`Enum prop ${prop.name}: currentValue =`, currentValue, 'options:', prop.values);
+                    
+                    html += `
+                        <div>
+                            <label style="display: block; font-size: 13px; color: var(--rodeo-black); margin-bottom: 6px;">${prop.name}</label>
+                            <select data-prop="${prop.name}" onchange="updatePlaygroundProperty('${prop.name}', this.value)" style="width: 100%; padding: 8px 12px; border: 1px solid #E8E8E8; border-radius: 6px; font-size: 13px; background: white; cursor: pointer;">
+                                ${prop.values.map(val => `<option value="${val}" ${val === currentValue ? 'selected' : ''}>${val}</option>`).join('')}
+                            </select>
+                        </div>
+                    `;
+                }
+            });
+            
+            console.log('Generated HTML:', html);
+            return html;
+        }
+
+        // Store current property selections
+        let currentPropertySelections = {};
+
+        // Alert Component Class
+        class AlertComponent {
+            constructor(props) {
+                this.props = {
+                    severity: props.severity || 'Error',
+                    variant: props.variant || 'Filled',
+                    title: props.title || false,
+                    titleText: props.titleText || 'Title',
+                    description: props.description || false,
+                    descriptionText: props.descriptionText || 'Description',
+                    action: props.action || false,
+                    actionInstance: props.actionInstance || 'Text',
+                    onClose: props.onClose || false
+                };
+            }
+
+            getSeverityColors() {
+                // EXACT colors extracted from Figma API - all 12 variants
+                const colors = {
+                    'Error': {
+                        filled: { bg: '#a34740', text: '#ffffff', icon: '#ffffff' },
+                        outlined: { bg: '#FFFFFF', text: '#a34740', icon: '#a34740', border: '#a34740' },
+                        standard: { bg: '#eed4d3', text: '#a34740', icon: '#a34740' }
+                    },
+                    'Warning': {
+                        filled: { bg: '#8a5d1f', text: '#ffffff', icon: '#ffffff' },
+                        outlined: { bg: '#FFFFFF', text: '#a34740', icon: '#a34740', border: '#8a5d1f' },
+                        standard: { bg: '#f3e3cd', text: '#a34740', icon: '#a34740' }
+                    },
+                    'Info': {
+                        filled: { bg: '#2b4a60', text: '#ffffff', icon: '#ffffff' },
+                        outlined: { bg: '#FFFFFF', text: '#2b4a60', icon: '#2b4a60', border: '#2b4a60' },
+                        standard: { bg: '#c7d9e6', text: '#2b4a60', icon: '#2b4a60' }
+                    },
+                    'Success': {
+                        filled: { bg: '#637058', text: '#ffffff', icon: '#ffffff' },
+                        outlined: { bg: '#FFFFFF', text: '#637058', icon: '#637058', border: '#637058' },
+                        standard: { bg: '#e0e3dd', text: '#637058', icon: '#637058' }
+                    }
+                };
+                
+                const variant = this.props.variant.toLowerCase();
+                return colors[this.props.severity][variant];
+            }
+
+            getSeverityIcon() {
+                // Using actual Material Icons from Figma
+                const icons = {
+                    'Error': `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>`,
+                    'Warning': `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>`,
+                    'Info': `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>`,
+                    'Success': `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>`
+                };
+                return icons[this.props.severity];
+            }
+
+            render() {
+                const colors = this.getSeverityColors();
+                const icon = this.getSeverityIcon();
+                const variant = this.props.variant.toLowerCase();
+                
+                return `
+                    <div style="
+                        display: flex;
+                        align-items: flex-start;
+                        padding: 16px;
+                        border-radius: 4px;
+                        gap: 12px;
+                        font-family: 'Lato', sans-serif;
+                        background: ${colors.bg};
+                        color: ${colors.text};
+                        ${variant === 'outlined' ? `border: 1px solid ${colors.border};` : ''}
+                        position: relative;
+                    ">
+                        <div style="color: ${colors.icon}; flex-shrink: 0; width: 24px; height: 24px;">
+                            ${icon}
+                        </div>
+                        
+                        <div style="flex: 1; display: flex; flex-direction: column; gap: 0; min-width: 0;">
+                            ${this.props.title ? `
+                                <div style="font-size: 16px; font-weight: 400; line-height: 19.2px; color: ${colors.text}; letter-spacing: 0;">
+                                    ${this.props.titleText}
+                                </div>
+                            ` : ''}
+                            
+                            ${this.props.description ? `
+                                <div style="font-size: 13px; font-weight: 400; line-height: 15.6px; color: ${colors.text}; letter-spacing: 0; margin-top: ${this.props.title ? '2px' : '0'};">
+                                    ${this.props.descriptionText}
+                                </div>
+                            ` : ''}
+                            
+                            ${this.props.action ? `
+                                <div style="margin-top: 8px; margin-left: -8px;">
+                                    ${this.props.actionInstance === 'Text' ? `
+                                        <button style="
+                                            background: transparent;
+                                            border: none;
+                                            color: ${colors.text};
+                                            font-size: 11px;
+                                            font-weight: 700;
+                                            text-transform: uppercase;
+                                            cursor: pointer;
+                                            padding: 6px 8px;
+                                            letter-spacing: 1.98px;
+                                            line-height: 13.2px;
+                                            font-family: 'Lato', sans-serif;
+                                        ">LABEL</button>
+                                    ` : `
+                                        <button style="
+                                            background: transparent;
+                                            border: none;
+                                            color: ${colors.text};
+                                            font-size: 20px;
+                                            cursor: pointer;
+                                            padding: 4px;
+                                            line-height: 1;
+                                        ">⊕</button>
+                                    `}
+                                </div>
+                            ` : ''}
+                        </div>
+                        
+                        ${this.props.onClose ? `
+                            <button style="
+                                background: transparent;
+                                border: none;
+                                color: ${colors.icon};
+                                font-size: 20px;
+                                cursor: pointer;
+                                padding: 0;
+                                width: 24px;
+                                height: 24px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                flex-shrink: 0;
+                                line-height: 1;
+                            ">×</button>
+                        ` : ''}
+                    </div>
+                `;
+            }
+        }
+
+        function updatePlaygroundProperty(propName, value) {
+            console.log('🔄 Updating property:', propName, 'to', value);
+            
+            const { setName, components } = currentComponents;
+            
+            // Update the stored selections
+            currentPropertySelections[propName] = value;
+            console.log('Current selections:', currentPropertySelections);
+            
+            // Re-render the playground controls with current selections
+            const properties = parseComponentProperties(components, setName);
+            renderPlaygroundControls(properties, currentPropertySelections);
+            
+            // Find matching variant based on ONLY the variant properties (not boolean component properties)
+            const variantProps = Object.entries(currentPropertySelections).filter(([prop, val]) => {
+                return !prop.includes('?') && !prop.includes('_text') && !prop.includes('_instance');
+            });
+            
+            const matchingVariant = components.find(comp => {
+                return variantProps.every(([prop, val]) => {
+                    return comp.name.includes(`${prop}=${val}`);
+                });
+            });
+            
+            console.log('Matching variant:', matchingVariant);
+            
+            if (matchingVariant) {
+                // Update preview
+                const preview = document.getElementById('playgroundPreview');
+                const variantName = document.getElementById('currentVariant');
+                if (preview) {
+                    preview.src = matchingVariant.thumbnail;
+                    console.log('✅ Updated preview to:', matchingVariant.name);
+                }
+                if (variantName) variantName.textContent = matchingVariant.name;
+                
+                // Update measurements
+                updateMeasurements(matchingVariant);
+            } else {
+                console.log('❌ No matching variant found');
+            }
+            
+            // Render the live component
+            renderLiveComponent();
+        }
+
+        function findMatchingVariant(components, selections) {
+            console.log('🔍 Finding variant for selections:', selections);
+            console.log('🔍 Available components:', components.length);
+            
+            // Build search criteria from selections
+            const searchCriteria = {};
+            for (const [key, value] of Object.entries(selections)) {
+                // Skip text and instance properties
+                if (!key.endsWith('_text') && !key.endsWith('_instance')) {
+                    // For boolean properties ending with ?, store as "PropertyName?=True/False"
+                    if (key.endsWith('?')) {
+                        const propName = key.slice(0, -1); // Remove the ?
+                        // Capitalize boolean values to match Figma format (True/False not true/false)
+                        const boolValue = value ? 'True' : 'False';
+                        searchCriteria[propName + '?'] = boolValue;
+                    } else {
+                        searchCriteria[key] = value;
+                    }
+                }
+            }
+            
+            console.log('🔍 Search criteria:', searchCriteria);
+            
+            // Score each component based on how many criteria it matches
+            let bestMatch = null;
+            let bestScore = -1;
+            
+            for (const component of components) {
+                let score = 0;
+                let totalCriteria = Object.keys(searchCriteria).length;
+                
+                for (const [key, value] of Object.entries(searchCriteria)) {
+                    // Check if component name contains this property=value pair
+                    const searchPattern = `${key}=${value}`;
+                    if (component.name.includes(searchPattern)) {
+                        score++;
+                    }
+                }
+                
+                console.log(`  Component "${component.name}" scored ${score}/${totalCriteria}`);
+                
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestMatch = component;
+                }
+            }
+            
+            if (bestMatch) {
+                console.log('✅ Best match:', bestMatch.name, `(score: ${bestScore})`);
+                return bestMatch;
+            }
+            
+            // If no match at all, return first component
+            console.log('⚠️ No match found, using first component');
+            return components[0];
+        }
+
+        function renderLiveComponent() {
+            const container = document.getElementById('playgroundPreviewContainer');
+            if (!container) return;
+            
+            const { setName, components } = currentComponents;
+            
+            // For Alert, render live interactive component
+            if (setName === 'Alert') {
+                // Get property values
+                const severity = currentPropertySelections['Severity'] || currentPropertySelections['Type'] || 'Warning';
+                const variant = currentPropertySelections['Variant'] || 'Filled';
+                const titleEnabled = currentPropertySelections['Title?'] || false;
+                const descEnabled = currentPropertySelections['Description?'] || false;
+                const actionEnabled = currentPropertySelections['Action?'] || false;
+                const onCloseEnabled = currentPropertySelections['On Close?'] || false;
+                
+                const titleText = currentPropertySelections['Title_text'] || 'Title';
+                const descText = currentPropertySelections['Description_text'] || 'Description';
+                const actionInstance = currentPropertySelections['Action_instance'] || 'Text';
+                
+                // Create and render the Alert component
+                const alert = new AlertComponent({
+                    severity: severity,
+                    variant: variant,
+                    title: titleEnabled,
+                    titleText: titleText,
+                    description: descEnabled,
+                    descriptionText: descText,
+                    action: actionEnabled,
+                    actionInstance: actionInstance,
+                    onClose: onCloseEnabled
+                });
+                
+                container.innerHTML = alert.render();
+                
+                // Update measurements
+                setTimeout(() => {
+                    const alertEl = container.querySelector('div');
+                    if (alertEl) {
+                        document.getElementById('compWidth').textContent = alertEl.offsetWidth + 'px';
+                        document.getElementById('compHeight').textContent = alertEl.offsetHeight + 'px';
+                    }
+                }, 100);
+            } else {
+                // For other components, show the matching Figma thumbnail
+                const matchingVariant = findMatchingVariant(components, currentPropertySelections);
+                
+                if (matchingVariant) {
+                    container.innerHTML = `<img src="${matchingVariant.thumbnail}" alt="${matchingVariant.name}" style="max-width: 100%; height: auto; display: block;">`;
+                    
+                    // Update measurements from image
+                    setTimeout(() => {
+                        const img = container.querySelector('img');
+                        if (img) {
+                            img.onload = function() {
+                                document.getElementById('compWidth').textContent = this.naturalWidth + 'px';
+                                document.getElementById('compHeight').textContent = this.naturalHeight + 'px';
+                            };
+                        }
+                    }, 100);
+                } else {
+                    container.innerHTML = '<p style="color: var(--graphite); text-align: center;">No matching variant found</p>';
+                }
+            }
+        }
+
+        function renderPlaygroundControls(properties, selections) {
+            let html = '';
+            
+            properties.forEach(prop => {
+                if (prop.isBoolean) {
+                    const propKey = prop.name + '?';
+                    const currentValue = selections[propKey] !== undefined ? selections[propKey] : (prop.default || false);
+                    const textKey = prop.name + '_text';
+                    const instanceKey = prop.name + '_instance';
+                    const textValue = selections[textKey] || `{${prop.name}}`;
+                    const instanceValue = selections[instanceKey] || (prop.instanceOptions ? prop.instanceOptions[0] : '');
+                    
+                    html += `
+                        <div>
+                            <label style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--rodeo-black);">
+                                <span>${prop.name}?</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" data-prop="${propKey}" ${currentValue ? 'checked' : ''} onchange="updatePlaygroundProperty('${propKey}', this.checked)">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </label>
+                            ${currentValue && prop.hasText ? `
+                            <div style="margin-top: 8px; margin-left: 16px;">
+                                <label style="display: block; font-size: 12px; color: var(--graphite); margin-bottom: 4px;">↳ ${prop.name}</label>
+                                <input type="text" 
+                                    data-text-prop="${textKey}" 
+                                    placeholder="{${prop.name}}" 
+                                    value="${textValue}"
+                                    oninput="updatePlaygroundText('${textKey}', this.value)"
+                                    style="width: 100%; padding: 6px 10px; border: 1px solid #E8E8E8; border-radius: 4px; font-size: 12px; font-family: monospace;">
+                            </div>
+                            ` : ''}
+                            ${currentValue && prop.hasInstance ? `
+                            <div style="margin-top: 8px; margin-left: 16px;">
+                                <label style="display: block; font-size: 12px; color: var(--graphite); margin-bottom: 4px;">↳ Instance</label>
+                                <select data-instance-prop="${instanceKey}" onchange="updatePlaygroundProperty('${instanceKey}', this.value)" style="width: 100%; padding: 6px 10px; border: 1px solid #E8E8E8; border-radius: 4px; font-size: 12px; background: white; cursor: pointer;">
+                                    ${prop.instanceOptions.map(opt => `<option value="${opt}" ${opt === instanceValue ? 'selected' : ''}>${opt}</option>`).join('')}
+                                </select>
+                            </div>
+                            ` : ''}
+                        </div>
+                    `;
+                } else if (prop.type === 'text') {
+                    const textValue = selections[prop.name] || prop.default || '';
+                    html += `
+                        <div>
+                            <label style="display: block; font-size: 13px; color: var(--rodeo-black); margin-bottom: 6px;">${prop.name}</label>
+                            <input type="text" 
+                                data-text-prop="${prop.name}" 
+                                placeholder="${prop.default || ''}" 
+                                value="${textValue}"
+                                oninput="updatePlaygroundText('${prop.name}', this.value)"
+                                style="width: 100%; padding: 8px 12px; border: 1px solid #E8E8E8; border-radius: 6px; font-size: 13px;">
+                        </div>
+                    `;
+                } else {
+                    const currentValue = selections[prop.name] || prop.values[0];
+                    html += `
+                        <div>
+                            <label style="display: block; font-size: 13px; color: var(--rodeo-black); margin-bottom: 6px;">${prop.name}</label>
+                            <select data-prop="${prop.name}" onchange="updatePlaygroundProperty('${prop.name}', this.value)" style="width: 100%; padding: 8px 12px; border: 1px solid #E8E8E8; border-radius: 6px; font-size: 13px; background: white; cursor: pointer;">
+                                ${prop.values.map(val => `<option value="${val}" ${val === currentValue ? 'selected' : ''}>${val}</option>`).join('')}
+                            </select>
+                        </div>
+                    `;
+                }
+            });
+            
+            document.getElementById('playgroundControls').innerHTML = html;
+        }
+
+        function updatePlaygroundText(propName, value) {
+            console.log('📝 Updating text:', propName, 'to', value);
+            currentPropertySelections[propName] = value;
+            // Text changes don't affect variant selection, just store the value and re-render component
+            renderLiveComponent();
+        }
+
+        function updateMeasurements(variant) {
+            // Simulate measurements - in real implementation, fetch from Figma API
+            const img = new Image();
+            img.onload = function() {
+                document.getElementById('compWidth').textContent = `${this.width}px`;
+                document.getElementById('compHeight').textContent = `${this.height}px`;
+            };
+            img.src = variant.thumbnail;
+        }
+
+        function generatePropsFromVariant(component) {
+            const parts = component.name.split(',').map(p => p.trim());
+            return parts.map(part => {
+                const match = part.match(/^(.+?)\??=(.+)$/);
+                if (match) {
+                    const [, propName, propValue] = match;
+                    const isBoolean = part.includes('?=');
+                    if (isBoolean) {
+                        return propValue === 'True' ? `${propName.toLowerCase()}={true}` : '';
+                    } else {
+                        return `${propName.toLowerCase()}="${propValue}"`;
+                    }
+                }
+                return '';
+            }).filter(Boolean).join('\n      ');
+        }
+
+        function generatePropsTable(properties) {
+            if (!properties || properties.length === 0) {
+                return '<tr><td colspan="4" style="padding: 16px; text-align: center; color: var(--graphite);">No properties available</td></tr>';
+            }
+            
+            return properties.map(prop => {
+                const type = prop.isBoolean ? 'boolean' : `'${prop.values.join("' | '")}'`;
+                const defaultVal = prop.isBoolean ? 'false' : `'${prop.values[0]}'`;
+                const description = prop.isBoolean 
+                    ? `Whether to show ${prop.name.replace('?', '').toLowerCase()}`
+                    : `The ${prop.name.toLowerCase()} variant of the component`;
+                
+                return `
+                    <tr style="border-bottom: 1px solid #E8E8E8;">
+                        <td style="padding: 12px; font-family: monospace; color: var(--dust-dark);">${prop.name.toLowerCase().replace('?', '')}</td>
+                        <td style="padding: 12px; font-family: monospace; font-size: 11px; color: var(--graphite);">${type}</td>
+                        <td style="padding: 12px; font-family: monospace; font-size: 11px;">${defaultVal}</td>
+                        <td style="padding: 12px; color: var(--graphite);">${description}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function generateCodeExamples(setName, properties, components) {
+            const componentName = setName.replace(/\s+/g, '');
+            const examples = [];
+            
+            // Generate 3-4 different examples
+            const sampleVariants = components.slice(0, 4);
+            
+            sampleVariants.forEach((variant, idx) => {
+                const title = variant.name.split(',')[0] || `Example ${idx + 1}`;
+                examples.push(`
+                    <div style="margin-bottom: 20px;">
+                        <div style="font-size: 13px; font-weight: 600; margin-bottom: 8px; color: var(--rodeo-black);">Example ${idx + 1}: ${title}</div>
+                        <div class="code-block">import { ${componentName} } from '@mui/material';
+
+function Example${idx + 1}() {
+  return (
+    &lt;${componentName}
+      ${generatePropsFromVariant(variant)}
+    &gt;
+      Component content here
+    &lt;/${componentName}&gt;
+  );
+}</div>
+                    </div>
+                `);
+            });
+            
+            return examples.join('');
+        }
+
+        // Event delegation for variant cards
+        document.addEventListener('click', (e) => {
+            const variantCard = e.target.closest('.variant-card');
+            if (variantCard && variantCard.dataset.variantIndex) {
+                const index = parseInt(variantCard.dataset.variantIndex);
+                if (!isNaN(index)) {
+                    selectVariant(index);
+                }
+            }
+        });
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.code-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.code-content').forEach(content => content.classList.remove('active'));
+            
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+        }
+
+        // Event delegation for code tabs
+        document.addEventListener('click', (e) => {
+            const tab = e.target.closest('.code-tab');
+            if (tab && tab.dataset.tab) {
+                switchTab(tab.dataset.tab);
+            }
+        });
+
+        // Keyboard navigation for modal
+        document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('componentModal');
+            if (!modal.classList.contains('active')) return;
+
+            if (e.key === 'Escape') {
+                modal.classList.remove('active');
+            } else if (e.key === 'ArrowLeft') {
+                const { selectedIndex, components } = currentComponents;
+                if (selectedIndex > 0) {
+                    selectVariant(selectedIndex - 1);
+                }
+            } else if (e.key === 'ArrowRight') {
+                const { selectedIndex, components } = currentComponents;
+                if (selectedIndex < components.length - 1) {
+                    selectVariant(selectedIndex + 1);
+                }
+            }
+        });
+
+        // Modal controls
+        document.getElementById('modalClose').addEventListener('click', () => {
+            document.getElementById('componentModal').classList.remove('active');
+        });
+
+        document.getElementById('componentModal').addEventListener('click', (e) => {
+            if (e.target.id === 'componentModal') {
+                document.getElementById('componentModal').classList.remove('active');
+            }
+        });
+
+        // Event delegation for component cards
+        document.addEventListener('click', (e) => {
+            const card = e.target.closest('.component-card');
+            if (card) {
+                const setName = card.dataset.setName;
+                const index = parseInt(card.dataset.componentIndex);
+                if (setName && !isNaN(index)) {
+                    openComponentModal(setName, index);
+                }
+            }
+        });
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            
+            // Filter sidebar items
+            document.querySelectorAll('.nav-item[data-page]').forEach(item => {
+                const pageName = item.dataset.page.toLowerCase();
+                item.style.display = pageName.includes(searchTerm) ? 'flex' : 'none';
+            });
+            
+            // If there's a search term, show matching components in main content
+            if (searchTerm) {
+                const content = document.getElementById('content');
+                const documentation = document.getElementById('documentation');
+                document.getElementById('pageTitle').textContent = `Search Results for "${e.target.value}"`;
+                
+                // Find all matching components across all pages
+                let matchingComponents = [];
+                for (const pageName in organizedData.byPage) {
+                    const pageData = organizedData.byPage[pageName];
+                    if (pageData.components) {
+                        pageData.components.forEach(comp => {
+                            if (comp.name.toLowerCase().includes(searchTerm) || 
+                                pageName.toLowerCase().includes(searchTerm)) {
+                                matchingComponents.push({...comp, category: pageName});
+                            }
+                        });
+                    }
+                }
+                
+                if (matchingComponents.length > 0) {
+                    document.getElementById('pageDescription').textContent = 
+                        `Found ${matchingComponents.length} component${matchingComponents.length !== 1 ? 's' : ''} matching your search`;
+                    
+                    documentation.innerHTML = `
+                        <div class="doc-panel">
+                            <div class="doc-title">🔍 Search Results</div>
+                            <div class="doc-content">
+                                <p>Showing all components that match "${e.target.value}"</p>
+                            </div>
+                        </div>
+                    `;
+                    
+                    content.innerHTML = renderComponentSection('Search Results', matchingComponents);
+                } else {
+                    document.getElementById('pageDescription').textContent = 'No components found';
+                    documentation.innerHTML = '';
+                    content.innerHTML = `
+                        <div style="text-align: center; padding: 60px 20px; color: #999;">
+                            <div style="font-size: 48px; margin-bottom: 16px;">🔍</div>
+                            <div style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">No components found</div>
+                            <div>Try searching for "button", "input", "dialog", etc.</div>
+                        </div>
+                    `;
+                }
+            }
+        });
+
+        async function syncFromFigma() {
+            const btn = document.getElementById('syncBtn');
+            btn.classList.add('spinning');
+
+            try {
+                const response = await fetch('/api/sync-figma', { method: 'POST' });
+                if (response.ok) {
+                    await loadData();
+                }
+            } catch (error) {
+                console.error('Sync error:', error);
+            } finally {
+                btn.classList.remove('spinning');
+            }
+        }
+
+        document.getElementById('syncBtn').addEventListener('click', syncFromFigma);
+
+        loadData();
+        setInterval(loadData, 60000);
+    </script>
+</body>
 </html>
