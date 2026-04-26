@@ -1,0 +1,74 @@
+{
+  "Error-Filled": {
+    "bg": "#a34740",
+    "border": null,
+    "text": "#ffffff",
+    "icon": "#ffffff"
+  },
+  "Error-Outlined": {
+    "bg": "#FFFFFF",
+    "border": "#a34740",
+    "text": "#a34740",
+    "icon": "#a34740"
+  },
+  "Error-Standard": {
+    "bg": "#eed4d3",
+    "border": null,
+    "text": "#a34740",
+    "icon": "#a34740"
+  },
+  "Warning-Filled": {
+    "bg": "#8a5d1f",
+    "border": null,
+    "text": "#ffffff",
+    "icon": "#ffffff"
+  },
+  "Warning-Outlined": {
+    "bg": "#FFFFFF",
+    "border": "#8a5d1f",
+    "text": "#a34740",
+    "icon": "#a34740"
+  },
+  "Warning-Standard": {
+    "bg": "#f3e3cd",
+    "border": null,
+    "text": "#a34740",
+    "icon": "#a34740"
+  },
+  "Info-Filled": {
+    "bg": "#2b4a60",
+    "border": null,
+    "text": "#ffffff",
+    "icon": "#ffffff"
+  },
+  "Info-Outlined": {
+    "bg": "#FFFFFF",
+    "border": "#2b4a60",
+    "text": "#2b4a60",
+    "icon": "#2b4a60"
+  },
+  "Info-Standard": {
+    "bg": "#c7d9e6",
+    "border": null,
+    "text": "#2b4a60",
+    "icon": "#2b4a60"
+  },
+  "Success-Filled": {
+    "bg": "#637058",
+    "border": null,
+    "text": "#ffffff",
+    "icon": "#ffffff"
+  },
+  "Success-Outlined": {
+    "bg": "#FFFFFF",
+    "border": "#637058",
+    "text": "#637058",
+    "icon": "#637058"
+  },
+  "Success-Standard": {
+    "bg": "#e0e3dd",
+    "border": null,
+    "text": "#637058",
+    "icon": "#637058"
+  }
+}
