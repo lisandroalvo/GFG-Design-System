@@ -10572,25 +10572,8 @@ File Key: ${component.key}</div>
                     }
                 }, 100);
             } else {
-                // For other components, show the matching Figma thumbnail
-                const matchingVariant = findMatchingVariant(components, currentPropertySelections);
-                
-                if (matchingVariant) {
-                    container.innerHTML = `<img src="${matchingVariant.thumbnail}" alt="${matchingVariant.name}" style="max-width: 100%; height: auto; display: block;">`;
-                    
-                    // Update measurements from image
-                    setTimeout(() => {
-                        const img = container.querySelector('img');
-                        if (img) {
-                            img.onload = function() {
-                                document.getElementById('compWidth').textContent = this.naturalWidth + 'px';
-                                document.getElementById('compHeight').textContent = this.naturalHeight + 'px';
-                            };
-                        }
-                    }, 100);
-                } else {
-                    container.innerHTML = '<p style="color: var(--graphite); text-align: center;">No matching variant found</p>';
-                }
+                // For other components, render the actual React component
+                renderReactComponent(setName, currentPropertySelections, container);
             }
         }
 
