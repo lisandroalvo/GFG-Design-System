@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Component Library - GFG Design System</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="design-tokens/organized-components.js"></script>
     <style>
         * {
             margin: 0;
@@ -793,14 +794,17 @@
             });
         }
 
-        async function loadData() {
+        function loadData() {
             try {
-                const response = await fetch('design-tokens/organized-components.json');
-                organizedData = await response.json();
-                
-                renderSidebar();
-                renderStats();
-                renderPage(currentPage);
+                // Data is now loaded from organized-components.js
+                if (window.organizedComponentsData) {
+                    organizedData = window.organizedComponentsData;
+                    renderSidebar();
+                    renderStats();
+                    renderPage(currentPage);
+                } else {
+                    console.error('Component data not loaded. Make sure organized-components.js is included.');
+                }
             } catch (error) {
                 console.error('Error loading data:', error);
             }
