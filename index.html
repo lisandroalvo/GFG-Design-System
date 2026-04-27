@@ -9860,10 +9860,16 @@
             
             // Fallback: if no properties found from variant names, use component.props
             console.log('🔍 Properties after parsing:', properties);
+            console.log('🔍 Component:', component);
             console.log('🔍 Component.props:', component.props);
+            console.log('🔍 Components array:', components);
             
-            if (properties.length === 0 && component.props && component.props.length > 0) {
-                console.log('📋 Using component.props as fallback:', component.props);
+            // Try to get props from any component in the set
+            const componentWithProps = components.find(c => c.props && c.props.length > 0) || component;
+            console.log('🔍 Component with props:', componentWithProps);
+            
+            if (properties.length === 0 && componentWithProps.props && componentWithProps.props.length > 0) {
+                console.log('📋 Using component.props as fallback:', componentWithProps.props);
                 
                 // Manual property definitions for common components
                 const manualPropertyValues = {
@@ -9875,7 +9881,7 @@
                     'onClose': ['True', 'False']
                 };
                 
-                properties = component.props.map(prop => {
+                properties = componentWithProps.props.map(prop => {
                     const values = manualPropertyValues[prop.name] || [prop.default];
                     return {
                         name: prop.name,
