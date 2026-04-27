@@ -9824,7 +9824,32 @@
             // modalContent is intentionally empty - playground section will be added below
 
             // Parse component properties from variant names and merge with manual properties
-            const properties = parseComponentProperties(components, setName);
+            let properties = parseComponentProperties(components, setName);
+            
+            // Fallback: if no properties found from variant names, use component.props
+            if (properties.length === 0 && component.props && component.props.length > 0) {
+                console.log('📋 Using component.props as fallback:', component.props);
+                
+                // Manual property definitions for common components
+                const manualPropertyValues = {
+                    'severity': ['Error', 'Warning', 'Info', 'Success'],
+                    'variant': ['Standard', 'Filled', 'Outlined'],
+                    'color': ['Primary', 'Secondary', 'Success', 'Error', 'Info', 'Warning'],
+                    'action': ['True', 'False'],
+                    'icon': ['True', 'False'],
+                    'onClose': ['True', 'False']
+                };
+                
+                properties = component.props.map(prop => {
+                    const values = manualPropertyValues[prop.name] || [prop.default];
+                    return {
+                        name: prop.name,
+                        values: values,
+                        default: prop.default,
+                        isBoolean: prop.type === 'boolean' || values.length === 2 && values.includes('True') && values.includes('False')
+                    };
+                });
+            }
             
             // Initialize property selections from current component
             currentPropertySelections = {};
