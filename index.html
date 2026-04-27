@@ -9727,7 +9727,12 @@
             currentComponents = { setName, components, selectedIndex: componentIndex };
 
             modalTitle.textContent = setName;
-            modalSubtitle.textContent = `${components.length} variants • ${component.containingFrame?.pageName || 'Component'}`;
+            // For Alert, show custom subtitle since it only has 1 variant in JSON
+            if (setName === '<Alert>' || setName === 'Alert') {
+                modalSubtitle.textContent = `Interactive Component • Feedback`;
+            } else {
+                modalSubtitle.textContent = `${components.length} variants • ${component.containingFrame?.pageName || 'Component'}`;
+            }
 
             // Debug: Log what we're searching for
             console.log('🔍 Searching for prototype:', {
@@ -9959,6 +9964,7 @@
                     </div>
                 </div>
 
+                ${(setName !== '<Alert>' && setName !== 'Alert' && components.length > 1) ? `
                 <div class="modal-section">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
                         <span style="font-size: 24px;">🔄</span>
@@ -9979,6 +9985,7 @@
                         `}).join('')}
                     </div>
                 </div>
+                ` : ''}
 
                 <div class="modal-section">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
