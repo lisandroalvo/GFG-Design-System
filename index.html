@@ -9820,8 +9820,40 @@
                 console.log('❌ No manual prototype found for:', setName);
             }
             
-            // REMOVED: Figma prototype section - user wants live component rendering only
-            // modalContent is intentionally empty - playground section will be added below
+            // Use prototype from: manual map > separate page > variant
+            const finalPrototype = manualPrototype || prototypeFromPage || prototypeVariant;
+            
+            // Add Interactive Prototype section if prototype exists
+            if (finalPrototype) {
+                const prototypeUrl = `https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/OjFchNAdeHiNH5W4wYLSGS?node-id=${finalPrototype.nodeId.replace(':', '-')}&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=${finalPrototype.nodeId.replace(':', '%3A')}&page-id=6595%3A48177`;
+                console.log('✅ Showing prototype section with nodeId:', finalPrototype.nodeId);
+                console.log('📺 Iframe URL:', prototypeUrl);
+                modalContent += `
+                <div class="modal-section" style="background: linear-gradient(135deg, #F4EFEA 0%, #FAFAFA 100%); padding: 32px; border-radius: 12px; margin-bottom: 32px; border: 2px solid var(--dust-dark);">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                        <span style="font-size: 28px;">⚡</span>
+                        <div>
+                            <div style="font-size: 20px; font-weight: 600; color: var(--rodeo-black); margin-bottom: 4px;">Interactive Prototype</div>
+                            <p style="font-size: 13px; color: var(--graphite); margin: 0;">Click, hover, and interact with this component</p>
+                        </div>
+                    </div>
+                    <iframe 
+                        class="prototype-frame" 
+                        src="${prototypeUrl}"
+                        allowfullscreen
+                        style="border: none;">
+                    </iframe>
+                    <div style="margin-top: 16px; padding: 16px; background: white; border-radius: 8px; display: flex; align-items: center; gap: 12px;">
+                        <span style="font-size: 20px;">✨</span>
+                        <p style="font-size: 13px; color: var(--rodeo-black); margin: 0;">
+                            <strong>Live Prototype:</strong> This is the interactive version from Figma. All interactions, animations, and states are functional.
+                        </p>
+                    </div>
+                </div>
+                `;
+            } else {
+                console.log('❌ No prototype found - section not shown');
+            }
 
             // Parse component properties from variant names and merge with manual properties
             let properties = parseComponentProperties(components, setName);
