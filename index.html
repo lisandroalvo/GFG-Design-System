@@ -10853,7 +10853,26 @@ function Example${idx + 1}() {
                         </div>
                     `;
                     
-                    content.innerHTML = renderComponentSection('Search Results', matchingComponents);
+                    // Render search results with proper component data
+                    content.innerHTML = `
+                        <div class="components-grid">
+                            ${matchingComponents.map((component, index) => `
+                                <div class="component-card" data-set-name="${component.setName}" data-component-index="0" data-component-name="${component.name}">
+                                    <div class="component-preview">
+                                        <div class="component-icon">📦</div>
+                                        <div class="component-badge">${component.variantCount || 1}</div>
+                                    </div>
+                                    <div class="component-info">
+                                        <div class="component-name">${component.name}</div>
+                                        <div class="component-tags">
+                                            <span class="tag">React</span>
+                                            <span class="tag">Tailwind</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
                 } else {
                     document.getElementById('pageDescription').textContent = 'No components found';
                     documentation.innerHTML = '';
