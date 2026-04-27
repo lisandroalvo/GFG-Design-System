@@ -10552,14 +10552,14 @@ File Key: ${component.key}</div>
             const { setName, components } = currentComponents;
             
             // For Alert, render live interactive component
-            if (setName === 'Alert') {
+            if (setName === 'Alert' || setName === '<Alert>') {
                 // Get property values
-                const severity = currentPropertySelections['Severity'] || currentPropertySelections['Type'] || 'Warning';
-                const variant = currentPropertySelections['Variant'] || 'Filled';
-                const titleEnabled = currentPropertySelections['Title?'] || false;
-                const descEnabled = currentPropertySelections['Description?'] || false;
-                const actionEnabled = currentPropertySelections['Action?'] || false;
-                const onCloseEnabled = currentPropertySelections['On Close?'] || false;
+                const severity = currentPropertySelections['severity'] || 'Success';
+                const variant = currentPropertySelections['variant'] || 'Standard';
+                const color = currentPropertySelections['color'] || 'Success';
+                const actionEnabled = currentPropertySelections['action?'] || false;
+                const iconEnabled = currentPropertySelections['icon?'] !== false; // default true
+                const onCloseEnabled = currentPropertySelections['onClose?'] || false;
                 
                 const titleText = currentPropertySelections['Title_text'] || 'Title';
                 const descText = currentPropertySelections['Description_text'] || 'Description';
@@ -10569,12 +10569,12 @@ File Key: ${component.key}</div>
                 const alert = new AlertComponent({
                     severity: severity,
                     variant: variant,
-                    title: titleEnabled,
-                    titleText: titleText,
-                    description: descEnabled,
-                    descriptionText: descText,
+                    title: false,
+                    titleText: 'Alert Title',
+                    description: false,
+                    descriptionText: 'This is an alert message',
                     action: actionEnabled,
-                    actionInstance: actionInstance,
+                    actionInstance: 'Text',
                     onClose: onCloseEnabled
                 });
                 
