@@ -10234,9 +10234,11 @@ File Key: ${component.key}</div>
 
         function generatePropertyControls(properties, currentComponent) {
             console.log('🎨 Generating controls for properties:', properties);
-            console.log('Current component:', currentComponent.name);
+            console.log('🎨 Properties length:', properties ? properties.length : 'NULL');
+            console.log('Current component:', currentComponent ? currentComponent.name : 'NULL');
             
             if (!properties || properties.length === 0) {
+                console.log('❌ NO PROPERTIES - returning empty message');
                 return '<p style="color: var(--graphite); font-size: 13px;">No customizable properties found</p>';
             }
             
