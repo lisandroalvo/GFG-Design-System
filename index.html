@@ -10577,8 +10577,20 @@ File Key: ${component.key}</div>
                     }
                 }, 100);
             } else {
-                // For other components, render the actual React component
-                renderReactComponent(setName, currentPropertySelections, container);
+                // For other components, show component info
+                const matchingVariant = findMatchingVariant(components, currentPropertySelections);
+                
+                if (matchingVariant && matchingVariant.filePath) {
+                    container.innerHTML = `
+                        <div style="padding: 20px; text-align: center; color: var(--graphite);">
+                            <p style="font-size: 14px; margin-bottom: 12px;">Component: <strong>${setName}</strong></p>
+                            <p style="font-size: 12px;">File: ${matchingVariant.filePath}</p>
+                            <p style="font-size: 11px; margin-top: 16px; color: var(--dust-dark);">Live rendering coming soon...</p>
+                        </div>
+                    `;
+                } else {
+                    container.innerHTML = '<p style="color: var(--graphite); text-align: center;">Component preview not available</p>';
+                }
             }
         }
 
