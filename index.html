@@ -9859,6 +9859,9 @@
             let properties = parseComponentProperties(components, setName);
             
             // Fallback: if no properties found from variant names, use component.props
+            console.log('🔍 Properties after parsing:', properties);
+            console.log('🔍 Component.props:', component.props);
+            
             if (properties.length === 0 && component.props && component.props.length > 0) {
                 console.log('📋 Using component.props as fallback:', component.props);
                 
@@ -9878,9 +9881,11 @@
                         name: prop.name,
                         values: values,
                         default: prop.default,
-                        isBoolean: prop.type === 'boolean' || values.length === 2 && values.includes('True') && values.includes('False')
+                        isBoolean: prop.type === 'boolean' || (values.length === 2 && values.includes('True') && values.includes('False'))
                     };
                 });
+                
+                console.log('✅ Generated properties from component.props:', properties);
             }
             
             // Initialize property selections from current component
