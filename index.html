@@ -9858,40 +9858,46 @@
             // Parse component properties from variant names and merge with manual properties
             let properties = parseComponentProperties(components, setName);
             
-            // Fallback: if no properties found from variant names, use component.props
-            console.log('🔍 Properties after parsing:', properties);
-            console.log('🔍 Component:', component);
-            console.log('🔍 Component.props:', component.props);
-            console.log('🔍 Components array:', components);
-            
-            // Try to get props from any component in the set
-            const componentWithProps = components.find(c => c.props && c.props.length > 0) || component;
-            console.log('🔍 Component with props:', componentWithProps);
-            
-            if (properties.length === 0 && componentWithProps.props && componentWithProps.props.length > 0) {
-                console.log('📋 Using component.props as fallback:', componentWithProps.props);
-                
-                // Manual property definitions for common components
-                const manualPropertyValues = {
-                    'severity': ['Error', 'Warning', 'Info', 'Success'],
-                    'variant': ['Standard', 'Filled', 'Outlined'],
-                    'color': ['Primary', 'Secondary', 'Success', 'Error', 'Info', 'Warning'],
-                    'action': ['True', 'False'],
-                    'icon': ['True', 'False'],
-                    'onClose': ['True', 'False']
-                };
-                
-                properties = componentWithProps.props.map(prop => {
-                    const values = manualPropertyValues[prop.name] || [prop.default];
-                    return {
-                        name: prop.name,
-                        values: values,
-                        default: prop.default,
-                        isBoolean: prop.type === 'boolean' || (values.length === 2 && values.includes('True') && values.includes('False'))
-                    };
-                });
-                
-                console.log('✅ Generated properties from component.props:', properties);
+            // HARDCODED FIX: For Alert, manually define properties
+            if (setName === '<Alert>' || setName === 'Alert') {
+                properties = [
+                    {
+                        name: 'severity',
+                        values: ['Error', 'Warning', 'Info', 'Success'],
+                        default: 'Success',
+                        isBoolean: false
+                    },
+                    {
+                        name: 'variant',
+                        values: ['Standard', 'Filled', 'Outlined'],
+                        default: 'Standard',
+                        isBoolean: false
+                    },
+                    {
+                        name: 'color',
+                        values: ['Success', 'Error', 'Info', 'Warning'],
+                        default: 'Success',
+                        isBoolean: false
+                    },
+                    {
+                        name: 'action?',
+                        values: ['True', 'False'],
+                        default: 'False',
+                        isBoolean: true
+                    },
+                    {
+                        name: 'icon?',
+                        values: ['True', 'False'],
+                        default: 'True',
+                        isBoolean: true
+                    },
+                    {
+                        name: 'onClose?',
+                        values: ['True', 'False'],
+                        default: 'False',
+                        isBoolean: true
+                    }
+                ];
             }
             
             // Initialize property selections from current component
