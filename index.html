@@ -9861,50 +9861,8 @@
                 console.log('❌ No prototype found - section not shown');
             }
 
-            // Parse component properties from variant names and merge with manual properties
-            let properties = parseComponentProperties(components, setName);
-            
-            // HARDCODED FIX: For Alert, manually define properties
-            if (setName === '<Alert>' || setName === 'Alert') {
-                properties = [
-                    {
-                        name: 'severity',
-                        values: ['Error', 'Warning', 'Info', 'Success'],
-                        default: 'Success',
-                        isBoolean: false
-                    },
-                    {
-                        name: 'variant',
-                        values: ['Standard', 'Filled', 'Outlined'],
-                        default: 'Standard',
-                        isBoolean: false
-                    },
-                    {
-                        name: 'color',
-                        values: ['Success', 'Error', 'Info', 'Warning'],
-                        default: 'Success',
-                        isBoolean: false
-                    },
-                    {
-                        name: 'action?',
-                        values: ['True', 'False'],
-                        default: 'False',
-                        isBoolean: true
-                    },
-                    {
-                        name: 'icon?',
-                        values: ['True', 'False'],
-                        default: 'True',
-                        isBoolean: true
-                    },
-                    {
-                        name: 'onClose?',
-                        values: ['True', 'False'],
-                        default: 'False',
-                        isBoolean: true
-                    }
-                ];
-            }
+            // Parse component properties (uses hardcoded overrides where needed)
+            let properties = getPropertiesForComponent(components, setName);
             
             // Initialize property selections from current component
             currentPropertySelections = {};
@@ -9920,7 +9878,7 @@
                     }
                 } else {
                     const match = component.name.match(new RegExp(`${prop.name}=([^,]+)`));
-                    currentPropertySelections[prop.name] = match ? match[1] : prop.values[0];
+                    currentPropertySelections[prop.name] = match ? match[1] : (prop.default || prop.values[0]);
                 }
             });
             console.log('Initial selections:', currentPropertySelections);
@@ -10240,6 +10198,24 @@ File Key: ${component.key}</div>
             return result;
         }
 
+        // Single source of truth for component properties.
+        // Wraps parseComponentProperties and applies hardcoded overrides where Figma
+        // data is incomplete (e.g. Alert only has 1 variant in the JSON).
+        function getPropertiesForComponent(components, setName) {
+            const isAlert = setName === '<Alert>' || setName === 'Alert';
+            if (isAlert) {
+                return [
+                    { name: 'severity',  values: ['Error', 'Warning', 'Info', 'Success'], default: 'Success',  isBoolean: false },
+                    { name: 'variant',   values: ['Standard', 'Filled', 'Outlined'],      default: 'Standard', isBoolean: false },
+                    { name: 'color',     values: ['Success', 'Error', 'Info', 'Warning'], default: 'Success',  isBoolean: false },
+                    { name: 'action',    values: ['True', 'False'], default: false,  isBoolean: true },
+                    { name: 'icon',      values: ['True', 'False'], default: true,   isBoolean: true },
+                    { name: 'onClose',   values: ['True', 'False'], default: false,  isBoolean: true },
+                ];
+            }
+            return parseComponentProperties(components, setName);
+        }
+
         function generatePropertyControls(properties, currentComponent) {
             console.log('🎨 Generating controls for properties:', properties);
             console.log('🎨 Properties length:', properties ? properties.length : 'NULL');
@@ -10463,7 +10439,7 @@ File Key: ${component.key}</div>
             console.log('Current selections:', currentPropertySelections);
             
             // Re-render the playground controls with current selections
-            const properties = parseComponentProperties(components, setName);
+            const properties = getPropertiesForComponent(components, setName);
             renderPlaygroundControls(properties, currentPropertySelections);
             
             // Find matching variant based on ONLY the variant properties (not boolean component properties)
