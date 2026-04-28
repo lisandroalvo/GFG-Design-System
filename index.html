@@ -9831,7 +9831,9 @@
             
             // Add Interactive Prototype section if prototype exists
             if (finalPrototype) {
-                const prototypeUrl = `https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/OjFchNAdeHiNH5W4wYLSGS?node-id=${finalPrototype.nodeId.replace(':', '-')}&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=${finalPrototype.nodeId.replace(':', '%3A')}&page-id=6595%3A48177`;
+                const nodeIdDash = finalPrototype.nodeId.replace(':', '-');
+                const innerUrl = `https://www.figma.com/proto/OjFchNAdeHiNH5W4wYLSGS?node-id=${nodeIdDash}&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=${nodeIdDash}&page-id=6595:48177&hide-ui=1`;
+                const prototypeUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(innerUrl)}`;
                 console.log('✅ Showing prototype section with nodeId:', finalPrototype.nodeId);
                 console.log('📺 Iframe URL:', prototypeUrl);
                 modalContent += `
@@ -9923,7 +9925,30 @@
                     </div>
                 </div>
 
-                ${(setName !== '<Alert>' && setName !== 'Alert' && components.length > 1) ? `
+                ${(setName === '<Alert>' || setName === 'Alert') ? `
+                <div class="modal-section">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                        <span style="font-size: 24px;">🔄</span>
+                        <div>
+                            <div class="modal-section-title" style="margin-bottom: 4px;">All Variants</div>
+                            <p style="font-size: 12px; color: var(--graphite); margin: 0;">12 variants • 4 severities × 3 display styles</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 32px;">
+                        ${['Filled', 'Outlined', 'Standard'].map(variantType => `
+                            <div>
+                                <div style="font-size: 13px; font-weight: 700; color: var(--rodeo-black); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px;">${variantType}</div>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    ${['Error', 'Warning', 'Info', 'Success'].map(severity => {
+                                        const alert = new AlertComponent({ severity, variant: variantType, description: true, descriptionText: `This is a ${severity.toLowerCase()} alert — check it out!` });
+                                        return `<div>${alert.render()}</div>`;
+                                    }).join('')}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                ` : (components.length > 1 ? `
                 <div class="modal-section">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
                         <span style="font-size: 24px;">🔄</span>
@@ -9944,7 +9969,7 @@
                         `}).join('')}
                     </div>
                 </div>
-                ` : ''}
+                ` : '')}
 
                 <div class="modal-section">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
