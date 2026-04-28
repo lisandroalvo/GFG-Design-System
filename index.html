@@ -10230,12 +10230,14 @@ File Key: ${component.key}</div>
             const isAlert = setName === '<Alert>' || setName === 'Alert';
             if (isAlert) {
                 return [
-                    { name: 'severity',  values: ['Error', 'Warning', 'Info', 'Success'], default: 'Success',  isBoolean: false },
-                    { name: 'variant',   values: ['Standard', 'Filled', 'Outlined'],      default: 'Standard', isBoolean: false },
-                    { name: 'color',     values: ['Success', 'Error', 'Info', 'Warning'], default: 'Success',  isBoolean: false },
-                    { name: 'action',    values: ['True', 'False'], default: false,  isBoolean: true },
-                    { name: 'icon',      values: ['True', 'False'], default: true,   isBoolean: true },
-                    { name: 'onClose',   values: ['True', 'False'], default: false,  isBoolean: true },
+                    { name: 'severity',     values: ['Error', 'Warning', 'Info', 'Success'], default: 'Success',  isBoolean: false },
+                    { name: 'variant',      values: ['Standard', 'Filled', 'Outlined'],      default: 'Standard', isBoolean: false },
+                    { name: 'color',        values: ['Success', 'Error', 'Info', 'Warning'], default: 'Success',  isBoolean: false },
+                    { name: 'title',        values: ['True', 'False'], default: false, isBoolean: true, hasText: true },
+                    { name: 'description',  values: ['True', 'False'], default: true,  isBoolean: true, hasText: true },
+                    { name: 'action',       values: ['True', 'False'], default: false, isBoolean: true },
+                    { name: 'icon',         values: ['True', 'False'], default: true,  isBoolean: true },
+                    { name: 'onClose',      values: ['True', 'False'], default: false, isBoolean: true },
                 ];
             }
             return parseComponentProperties(components, setName);
@@ -10577,14 +10579,19 @@ File Key: ${component.key}</div>
                 const descText = currentPropertySelections['Description_text'] || 'Description';
                 const actionInstance = currentPropertySelections['Action_instance'] || 'Text';
                 
+                const titleEnabled = currentPropertySelections['title?'] || false;
+                const descEnabled  = currentPropertySelections['description?'] !== undefined ? currentPropertySelections['description?'] : true;
+                const titleText    = currentPropertySelections['title_text']       || 'Alert Title';
+                const descText     = currentPropertySelections['description_text'] || 'This is an alert message.';
+
                 // Create and render the Alert component
                 const alert = new AlertComponent({
                     severity: severity,
                     variant: variant,
-                    title: false,
-                    titleText: 'Alert Title',
-                    description: false,
-                    descriptionText: 'This is an alert message',
+                    title: titleEnabled,
+                    titleText: titleText,
+                    description: descEnabled,
+                    descriptionText: descText,
                     action: actionEnabled,
                     actionInstance: 'Text',
                     onClose: onCloseEnabled
