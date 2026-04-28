@@ -9832,7 +9832,8 @@
             // Add Interactive Prototype section if prototype exists
             if (finalPrototype) {
                 const nodeIdDash = finalPrototype.nodeId.replace(':', '-');
-                const innerUrl = `https://www.figma.com/proto/OjFchNAdeHiNH5W4wYLSGS?node-id=${nodeIdDash}&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=${nodeIdDash}&page-id=6595:48177&hide-ui=1`;
+                const nodeIdColon = finalPrototype.nodeId;
+                const innerUrl = `https://www.figma.com/proto/OjFchNAdeHiNH5W4wYLSGS/GFG---Design-System-2026?node-id=${nodeIdDash}&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=${nodeIdColon}&page-id=6595:48177&hide-ui=1`;
                 const prototypeUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(innerUrl)}`;
                 console.log('✅ Showing prototype section with nodeId:', finalPrototype.nodeId);
                 console.log('📺 Iframe URL:', prototypeUrl);
