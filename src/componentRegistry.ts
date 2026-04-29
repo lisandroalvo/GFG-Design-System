@@ -23,6 +23,9 @@ import Chip from '../extracted-components/Chip.tsx'
 import CircularProgress from '../extracted-components/CircularProgress.tsx'
 import Collapse from '../extracted-components/Collapse.tsx'
 import Container from '../extracted-components/Container.tsx'
+import DataGridTable from '../extracted-components/DataGridTable.tsx'
+import DateField from '../extracted-components/DateField.tsx'
+import DateTimeField from '../extracted-components/DateTimeField.tsx'
 import Dialog from '../extracted-components/Dialog.tsx'
 import DialogActions from '../extracted-components/DialogActions.tsx'
 import DialogContent from '../extracted-components/DialogContent.tsx'
@@ -34,8 +37,10 @@ import FormGroupCheckbox from '../extracted-components/FormGroupCheckbox.tsx'
 import FormGroupSwitch from '../extracted-components/FormGroupSwitch.tsx'
 import FormHelperText from '../extracted-components/FormHelperText.tsx'
 import FormLabel from '../extracted-components/FormLabel.tsx'
+import GridToolbarQuickFilter from '../extracted-components/GridToolbarQuickFilter.tsx'
 import Grow from '../extracted-components/Grow.tsx'
 import Icon from '../extracted-components/Icon.tsx'
+import ImageListItemBar from '../extracted-components/ImageListItemBar.tsx'
 import InputLabel from '../extracted-components/InputLabel.tsx'
 import LinearProgress from '../extracted-components/LinearProgress.tsx'
 import Link from '../extracted-components/Link.tsx'
@@ -100,6 +105,9 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   CircularProgress,
   Collapse,
   Container,
+  DataGridTable,
+  DateField,
+  DateTimeField,
   Dialog,
   DialogActions,
   DialogContent,
@@ -111,8 +119,10 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   FormGroupSwitch,
   FormHelperText,
   FormLabel,
+  GridToolbarQuickFilter,
   Grow,
   Icon,
+  ImageListItemBar,
   InputLabel,
   LinearProgress,
   Link,
