@@ -289,6 +289,14 @@
             opacity: 0.6;
         }
 
+        .component-thumb-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
         .component-badge {
             position: absolute;
             top: 8px;
@@ -9682,10 +9690,18 @@
                         </div>
                     </div>
                     <div class="components-grid">
-                        ${components.map((component, index) => `
+                        ${components.map((component, index) => {
+                            const thumbPath = `/component-thumbs/${component.name}.png`;
+                            return `
                             <div class="component-card" data-set-name="${title}" data-component-index="${index}" data-component-name="${component.name}">
                                 <div class="component-preview">
-                                    <div class="component-icon">📦</div>
+                                    <img
+                                        src="${thumbPath}"
+                                        alt="${component.name}"
+                                        class="component-thumb-img"
+                                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                                    />
+                                    <div class="component-icon" style="display:none;">📦</div>
                                     <div class="component-badge">${component.variantCount || 1}</div>
                                 </div>
                                 <div class="component-name">${component.name}</div>
@@ -9694,7 +9710,7 @@
                                     <span class="component-tag">Tailwind</span>
                                 </div>
                             </div>
-                        `).join('')}
+                        `}).join('')}
                     </div>
                 </div>
             `;
@@ -10894,10 +10910,18 @@ function Example${idx + 1}() {
                     // Render search results with proper component data
                     content.innerHTML = `
                         <div class="components-grid">
-                            ${matchingComponents.map((component, index) => `
+                            ${matchingComponents.map((component, index) => {
+                                const thumbPath = `/component-thumbs/${component.name}.png`;
+                                return `
                                 <div class="component-card" data-set-name="${component.setName}" data-component-index="0" data-component-name="${component.name}">
                                     <div class="component-preview">
-                                        <div class="component-icon">📦</div>
+                                        <img
+                                            src="${thumbPath}"
+                                            alt="${component.name}"
+                                            class="component-thumb-img"
+                                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                                        />
+                                        <div class="component-icon" style="display:none;">📦</div>
                                         <div class="component-badge">${component.variantCount || 1}</div>
                                     </div>
                                     <div class="component-info">
@@ -10908,7 +10932,7 @@ function Example${idx + 1}() {
                                         </div>
                                     </div>
                                 </div>
-                            `).join('')}
+                            `}).join('')}
                         </div>
                     `;
                 } else {
