@@ -10241,23 +10241,301 @@ File Key: ${component.key}</div>
             return result;
         }
 
-        // Single source of truth for component properties.
-        // Wraps parseComponentProperties and applies hardcoded overrides where Figma
-        // data is incomplete (e.g. Alert only has 1 variant in the JSON).
+        // Full property definitions for every component — same pattern as Alert.
+        // These drive both the playground controls and the live HTML renderer.
+        const COMPONENT_PROPS = {
+            'Alert': [
+                { name: 'severity',    values: ['Error','Warning','Info','Success'],                      default: 'Success',  isBoolean: false },
+                { name: 'variant',     values: ['Standard','Filled','Outlined'],                          default: 'Standard', isBoolean: false },
+                { name: 'title',       values: ['True','False'], default: false, isBoolean: true, hasText: true },
+                { name: 'description', values: ['True','False'], default: true,  isBoolean: true, hasText: true },
+                { name: 'action',      values: ['True','False'], default: false, isBoolean: true },
+                { name: 'icon',        values: ['True','False'], default: true,  isBoolean: true },
+                { name: 'onClose',     values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Button': [
+                { name: 'variant',  values: ['Contained','Outlined','Text'],                                          default: 'Contained', isBoolean: false },
+                { name: 'color',    values: ['Primary','Secondary','Success','Error','Warning','Info','Inherit'],      default: 'Primary',   isBoolean: false },
+                { name: 'size',     values: ['Small','Medium','Large'],                                               default: 'Medium',    isBoolean: false },
+                { name: 'label',    type: 'text', default: 'Button' },
+                { name: 'disabled', values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'ButtonGroup': [
+                { name: 'variant',      values: ['Contained','Outlined','Text'],                                    default: 'Outlined',    isBoolean: false },
+                { name: 'color',        values: ['Primary','Secondary','Success','Error','Warning','Info'],          default: 'Primary',     isBoolean: false },
+                { name: 'orientation',  values: ['Horizontal','Vertical'],                                          default: 'Horizontal',  isBoolean: false },
+                { name: 'disabled',     values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Chip': [
+                { name: 'variant',   values: ['Filled','Outlined'],                                                                  default: 'Filled',   isBoolean: false },
+                { name: 'color',     values: ['Default','Primary','Secondary','Success','Error','Warning','Info'],                    default: 'Default',  isBoolean: false },
+                { name: 'size',      values: ['Small','Medium'],                                                                      default: 'Medium',   isBoolean: false },
+                { name: 'label',     type: 'text', default: 'Chip' },
+                { name: 'onDelete',  values: ['True','False'], default: false, isBoolean: true },
+                { name: 'disabled',  values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Badge': [
+                { name: 'variant',      values: ['Standard','Dot'],                                                                      default: 'Standard', isBoolean: false },
+                { name: 'color',        values: ['Primary','Secondary','Error','Warning','Info','Success','Default'],                     default: 'Error',    isBoolean: false },
+                { name: 'badgeContent', type: 'text', default: '4' },
+                { name: 'max',          values: ['9','99','999'],                                                                         default: '99',       isBoolean: false },
+                { name: 'showZero',     values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Avatar': [
+                { name: 'variant',  values: ['Circular','Rounded','Square'],  default: 'Circular', isBoolean: false },
+                { name: 'size',     values: ['Small','Medium','Large'],        default: 'Medium',   isBoolean: false },
+                { name: 'children', type: 'text', default: 'U' },
+            ],
+            'AvatarGroup': [
+                { name: 'max',      values: ['3','4','5','6'],   default: '4', isBoolean: false },
+                { name: 'spacing',  values: ['Small','Medium'],  default: 'Medium', isBoolean: false },
+            ],
+            'Checkbox': [
+                { name: 'checked',       values: ['True','False'], default: true,  isBoolean: true },
+                { name: 'indeterminate', values: ['True','False'], default: false, isBoolean: true },
+                { name: 'disabled',      values: ['True','False'], default: false, isBoolean: true },
+                { name: 'color',  values: ['Primary','Secondary','Success','Error','Warning','Info','Default'], default: 'Primary', isBoolean: false },
+            ],
+            'Radio': [
+                { name: 'checked',  values: ['True','False'], default: true,  isBoolean: true },
+                { name: 'disabled', values: ['True','False'], default: false, isBoolean: true },
+                { name: 'color',    values: ['Primary','Secondary','Success','Error','Warning','Info'], default: 'Primary', isBoolean: false },
+            ],
+            'RadioGroup': [
+                { name: 'color', values: ['Primary','Secondary','Success','Error','Warning','Info'], default: 'Primary', isBoolean: false },
+                { name: 'row',   values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Switch': [
+                { name: 'checked',  values: ['True','False'], default: true,  isBoolean: true },
+                { name: 'disabled', values: ['True','False'], default: false, isBoolean: true },
+                { name: 'color',    values: ['Primary','Secondary','Success','Error','Warning','Info','Default'], default: 'Primary', isBoolean: false },
+                { name: 'size',     values: ['Small','Medium'],  default: 'Medium', isBoolean: false },
+            ],
+            'TextField': [
+                { name: 'variant',    values: ['Outlined','Filled','Standard'],  default: 'Outlined', isBoolean: false },
+                { name: 'size',       values: ['Small','Medium'],                default: 'Medium',   isBoolean: false },
+                { name: 'label',      type: 'text', default: 'Label' },
+                { name: 'helperText', type: 'text', default: '' },
+                { name: 'error',      values: ['True','False'], default: false, isBoolean: true },
+                { name: 'disabled',   values: ['True','False'], default: false, isBoolean: true },
+                { name: 'multiline',  values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Select': [
+                { name: 'variant',   values: ['Outlined','Filled','Standard'],  default: 'Outlined', isBoolean: false },
+                { name: 'label',     type: 'text', default: 'Age' },
+                { name: 'disabled',  values: ['True','False'], default: false, isBoolean: true },
+                { name: 'multiple',  values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Autocomplete': [
+                { name: 'variant',   values: ['Outlined','Filled','Standard'], default: 'Outlined', isBoolean: false },
+                { name: 'label',     type: 'text', default: 'Search' },
+                { name: 'disabled',  values: ['True','False'], default: false, isBoolean: true },
+                { name: 'multiple',  values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Slider': [
+                { name: 'color',       values: ['Primary','Secondary','Success','Error','Warning','Info'], default: 'Primary',    isBoolean: false },
+                { name: 'size',        values: ['Small','Medium'],        default: 'Medium',     isBoolean: false },
+                { name: 'orientation', values: ['Horizontal','Vertical'], default: 'Horizontal', isBoolean: false },
+                { name: 'value',       values: ['10','25','50','75','90'], default: '30',         isBoolean: false },
+                { name: 'marks',       values: ['True','False'], default: false, isBoolean: true },
+                { name: 'disabled',    values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Rating': [
+                { name: 'value',     values: ['1','2','3','4','5'], default: '3',  isBoolean: false },
+                { name: 'max',       values: ['5','10'],            default: '5',  isBoolean: false },
+                { name: 'size',      values: ['Small','Medium','Large'], default: 'Medium', isBoolean: false },
+                { name: 'precision', values: ['1','0.5'],           default: '1',  isBoolean: false },
+                { name: 'readOnly',  values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'CircularProgress': [
+                { name: 'variant',  values: ['Indeterminate','Determinate'],                                      default: 'Indeterminate', isBoolean: false },
+                { name: 'color',    values: ['Primary','Secondary','Success','Error','Warning','Info','Inherit'],  default: 'Primary',       isBoolean: false },
+                { name: 'size',     values: ['24','40','60','80'],                                                default: '40',            isBoolean: false },
+                { name: 'value',    values: ['25','50','70','90'],                                                default: '70',            isBoolean: false },
+            ],
+            'LinearProgress': [
+                { name: 'variant',  values: ['Indeterminate','Determinate','Buffer','Query'],                     default: 'Indeterminate', isBoolean: false },
+                { name: 'color',    values: ['Primary','Secondary','Success','Error','Warning','Info','Inherit'],  default: 'Primary',       isBoolean: false },
+                { name: 'value',    values: ['25','50','70','90'],                                                default: '70',            isBoolean: false },
+            ],
+            'Skeleton': [
+                { name: 'variant',   values: ['Text','Circular','Rectangular','Rounded'], default: 'Text',  isBoolean: false },
+                { name: 'animation', values: ['Pulse','Wave','False'],                    default: 'Pulse', isBoolean: false },
+            ],
+            'Accordion': [
+                { name: 'expanded', values: ['True','False'], default: true,  isBoolean: true },
+                { name: 'disabled', values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Card':        [{ name: 'elevation', values: ['0','1','2','4','8'], default: '2', isBoolean: false }, { name: 'variant', values: ['Elevation','Outlined'], default: 'Elevation', isBoolean: false }],
+            'CardContent': [{ name: 'elevation', values: ['0','1','2','4','8'], default: '2', isBoolean: false }],
+            'CardHeader':  [{ name: 'elevation', values: ['0','1','2','4','8'], default: '2', isBoolean: false }],
+            'CardActions': [{ name: 'elevation', values: ['0','1','2','4','8'], default: '2', isBoolean: false }],
+            'CardMedia':   [{ name: 'elevation', values: ['0','1','2','4','8'], default: '2', isBoolean: false }],
+            'Paper': [
+                { name: 'elevation', values: ['0','1','2','4','8','16'], default: '1',         isBoolean: false },
+                { name: 'variant',   values: ['Elevation','Outlined'],   default: 'Elevation', isBoolean: false },
+                { name: 'square',    values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Tabs': [
+                { name: 'color',    values: ['Primary','Secondary'],              default: 'Primary',  isBoolean: false },
+                { name: 'variant',  values: ['Standard','Scrollable','FullWidth'],default: 'Standard', isBoolean: false },
+                { name: 'value',    values: ['0','1','2'],                        default: '0',        isBoolean: false },
+                { name: 'centered', values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Tab': [
+                { name: 'color',    values: ['Primary','Secondary'], default: 'Primary', isBoolean: false },
+                { name: 'disabled', values: ['True','False'], default: false, isBoolean: true },
+                { name: 'wrapped',  values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Breadcrumbs': [
+                { name: 'maxItems',  values: ['3','4','5','6'], default: '3',   isBoolean: false },
+                { name: 'separator', values: ['/','›','|','>'], default: '/',   isBoolean: false },
+            ],
+            'Pagination': [
+                { name: 'count',   values: ['5','10','20','50'],                     default: '10',      isBoolean: false },
+                { name: 'page',    values: ['1','2','3','5'],                        default: '1',       isBoolean: false },
+                { name: 'color',   values: ['Standard','Primary','Secondary'],       default: 'Standard',isBoolean: false },
+                { name: 'shape',   values: ['Circular','Rounded'],                   default: 'Circular',isBoolean: false },
+                { name: 'variant', values: ['Text','Outlined'],                      default: 'Text',    isBoolean: false },
+            ],
+            'PaginationItem': [
+                { name: 'color',   values: ['Standard','Primary','Secondary'],  default: 'Standard', isBoolean: false },
+                { name: 'shape',   values: ['Circular','Rounded'],              default: 'Circular', isBoolean: false },
+                { name: 'variant', values: ['Text','Outlined'],                 default: 'Text',     isBoolean: false },
+            ],
+            'Divider': [
+                { name: 'orientation', values: ['Horizontal','Vertical'],        default: 'Horizontal', isBoolean: false },
+                { name: 'variant',     values: ['Fullbleed','Inset','Middle'],   default: 'Fullbleed',  isBoolean: false },
+                { name: 'textAlign',   values: ['Center','Left','Right'],        default: 'Center',     isBoolean: false },
+                { name: 'children',    type: 'text', default: '' },
+            ],
+            'Fab': [
+                { name: 'variant', values: ['Circular','Extended'],                                     default: 'Circular', isBoolean: false },
+                { name: 'color',   values: ['Primary','Secondary','Default','Inherit'],                  default: 'Primary',  isBoolean: false },
+                { name: 'size',    values: ['Small','Medium','Large'],                                   default: 'Large',    isBoolean: false },
+                { name: 'disabled',values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Snackbar': [
+                { name: 'message',     type: 'text', default: 'Message sent successfully' },
+                { name: 'vertical',    values: ['Top','Bottom'],        default: 'Bottom', isBoolean: false },
+                { name: 'horizontal',  values: ['Left','Center','Right'],default: 'Center',isBoolean: false },
+                { name: 'action',      values: ['True','False'], default: true, isBoolean: true },
+            ],
+            'Tooltip': [
+                { name: 'title',     type: 'text', default: 'Tooltip text' },
+                { name: 'placement', values: ['Top','Bottom','Left','Right','Top-Start','Top-End','Bottom-Start','Bottom-End'], default: 'Bottom', isBoolean: false },
+                { name: 'arrow',     values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Dialog': [
+                { name: 'maxWidth',    values: ['XS','SM','MD','LG','XL'],  default: 'SM',   isBoolean: false },
+                { name: 'fullWidth',   values: ['True','False'], default: false, isBoolean: true },
+                { name: 'fullScreen',  values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'DialogTitle':   [{ name: 'dividers', values: ['True','False'], default: false, isBoolean: true }],
+            'DialogContent': [{ name: 'dividers', values: ['True','False'], default: false, isBoolean: true }],
+            'DialogActions': [{ name: 'disableSpacing', values: ['True','False'], default: false, isBoolean: true }],
+            'List': [
+                { name: 'dense',          values: ['True','False'], default: false, isBoolean: true },
+                { name: 'disablePadding', values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'ListItem': [
+                { name: 'dense',     values: ['True','False'], default: false, isBoolean: true },
+                { name: 'disabled',  values: ['True','False'], default: false, isBoolean: true },
+                { name: 'selected',  values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'ToggleButton': [
+                { name: 'color',       values: ['Standard','Primary','Secondary','Success','Error','Warning','Info'], default: 'Primary',    isBoolean: false },
+                { name: 'selected',    values: ['True','False'], default: true,  isBoolean: true },
+                { name: 'disabled',    values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'ToggleButtonGroup': [
+                { name: 'color',       values: ['Standard','Primary','Secondary','Success','Error','Warning','Info'], default: 'Primary',    isBoolean: false },
+                { name: 'orientation', values: ['Horizontal','Vertical'],         default: 'Horizontal', isBoolean: false },
+                { name: 'exclusive',   values: ['True','False'], default: true,  isBoolean: true },
+                { name: 'value',       values: ['Left','Center','Right'],         default: 'Left',       isBoolean: false },
+            ],
+            'Stepper': [
+                { name: 'orientation',      values: ['Horizontal','Vertical'], default: 'Horizontal', isBoolean: false },
+                { name: 'activeStep',       values: ['0','1','2','3'],         default: '1',          isBoolean: false },
+                { name: 'alternativeLabel', values: ['True','False'], default: false, isBoolean: true },
+                { name: 'nonLinear',        values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'MobileStepper': [
+                { name: 'activeStep', values: ['0','1','2','3','4'], default: '1', isBoolean: false },
+                { name: 'steps',      values: ['4','5','6'],         default: '5', isBoolean: false },
+                { name: 'variant',    values: ['Text','Dots','Progress'], default: 'Dots', isBoolean: false },
+            ],
+            'AppBar': [
+                { name: 'color',    values: ['Default','Primary','Secondary','Transparent','Inherit'], default: 'Primary', isBoolean: false },
+                { name: 'position', values: ['Fixed','Absolute','Sticky','Static','Relative'],         default: 'Static',  isBoolean: false },
+            ],
+            'Typography': [
+                { name: 'variant', values: ['H1','H2','H3','H4','H5','H6','Subtitle1','Subtitle2','Body1','Body2','Caption','Overline','Button'], default: 'Body1', isBoolean: false },
+                { name: 'color',   values: ['TextPrimary','TextSecondary','Primary','Secondary','Error','Inherit'], default: 'TextPrimary', isBoolean: false },
+            ],
+            'Link': [
+                { name: 'variant',    values: ['Body1','Body2','Caption'],    default: 'Body1',  isBoolean: false },
+                { name: 'underline',  values: ['Always','Hover','None'],      default: 'Always', isBoolean: false },
+                { name: 'color',      values: ['Primary','Secondary','Inherit'],default: 'Primary',isBoolean: false },
+            ],
+            'Toolbar': [
+                { name: 'variant', values: ['Regular','Dense'], default: 'Regular', isBoolean: false },
+            ],
+            'Stack': [
+                { name: 'direction', values: ['Column','Row','Column-Reverse','Row-Reverse'], default: 'Row',    isBoolean: false },
+                { name: 'spacing',   values: ['1','2','3','4','6','8'],                       default: '2',      isBoolean: false },
+                { name: 'alignItems',values: ['Flex-Start','Center','Flex-End','Stretch'],    default: 'Center', isBoolean: false },
+            ],
+            'Container': [
+                { name: 'maxWidth', values: ['XS','SM','MD','LG','XL','False'], default: 'SM', isBoolean: false },
+            ],
+            'SpeedDial': [
+                { name: 'direction', values: ['Up','Down','Left','Right'], default: 'Up',  isBoolean: false },
+                { name: 'open',      values: ['True','False'], default: true, isBoolean: true },
+            ],
+            'Timeline': [
+                { name: 'position', values: ['Alternate','Alternate-Reverse','Right','Left'], default: 'Alternate', isBoolean: false },
+            ],
+            'Backdrop': [
+                { name: 'open',      values: ['True','False'], default: true,  isBoolean: true },
+                { name: 'invisible', values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Collapse': [{ name: 'in', values: ['True','False'], default: true, isBoolean: true }],
+            'Fade':     [{ name: 'in', values: ['True','False'], default: true, isBoolean: true }],
+            'Grow':     [{ name: 'in', values: ['True','False'], default: true, isBoolean: true }],
+            'Slide':    [
+                { name: 'in',        values: ['True','False'],              default: true,  isBoolean: true },
+                { name: 'direction', values: ['Up','Down','Left','Right'],  default: 'Up',  isBoolean: false },
+            ],
+            'Zoom':     [{ name: 'in', values: ['True','False'], default: true, isBoolean: true }],
+            'BottomNavigation': [
+                { name: 'showLabels', values: ['True','False'], default: true, isBoolean: true },
+                { name: 'value',      values: ['0','1','2','3'],              default: '0',  isBoolean: false },
+            ],
+            'BottomNavigationAction': [
+                { name: 'showLabel', values: ['True','False'], default: true,  isBoolean: true },
+                { name: 'disabled',  values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Table':        [],
+            'DataGridTable':[],
+            'Menu':         [],
+            'MenuItem':     [],
+            'MenuList':     [],
+            'TransferList': [],
+            'TreeItem':     [],
+            'Icon':         [],
+            'Popover':      [],
+            'FormLabel':    [],
+            'FormHelperText':[],
+            'InputLabel':   [],
+        };
+
         function getPropertiesForComponent(components, setName) {
-            const isAlert = setName === '<Alert>' || setName === 'Alert';
-            if (isAlert) {
-                return [
-                    { name: 'severity',     values: ['Error', 'Warning', 'Info', 'Success'], default: 'Success',  isBoolean: false },
-                    { name: 'variant',      values: ['Standard', 'Filled', 'Outlined'],      default: 'Standard', isBoolean: false },
-                    { name: 'color',        values: ['Success', 'Error', 'Info', 'Warning'], default: 'Success',  isBoolean: false },
-                    { name: 'title',        values: ['True', 'False'], default: false, isBoolean: true, hasText: true },
-                    { name: 'description',  values: ['True', 'False'], default: true,  isBoolean: true, hasText: true },
-                    { name: 'action',       values: ['True', 'False'], default: false, isBoolean: true },
-                    { name: 'icon',         values: ['True', 'False'], default: true,  isBoolean: true },
-                    { name: 'onClose',      values: ['True', 'False'], default: false, isBoolean: true },
-                ];
-            }
+            const clean = setName.replace(/[<>]/g, '').trim();
+            // Use hardcoded definitions if available
+            if (COMPONENT_PROPS[clean] !== undefined) return COMPONENT_PROPS[clean];
+            if (COMPONENT_PROPS[setName] !== undefined) return COMPONENT_PROPS[setName];
+            // Fall back to parsing Figma variant names
             return parseComponentProperties(components, setName);
         }
 
@@ -10581,13 +10859,21 @@ File Key: ${component.key}</div>
         function getComponentHTMLPreview(setName, props) {
             const name = setName.replace(/[<>]/g, '').trim();
 
-            // Helper: get prop value case-insensitively, with default
+            // Helper: get prop value case-insensitively, with default.
+            // Boolean props are stored as 'name?': true/false — also try that form.
             function p(key, def) {
+                const lo = key.toLowerCase();
                 for (const [k, v] of Object.entries(props)) {
-                    if (k.toLowerCase() === key.toLowerCase()) return v;
+                    if (k.toLowerCase() === lo) return v;
+                }
+                // Try boolean form: key? => return 'True'/'False'
+                for (const [k, v] of Object.entries(props)) {
+                    if (k.toLowerCase() === lo + '?') return v ? 'True' : 'False';
                 }
                 return def;
             }
+            // Shorthand: is a boolean prop truthy?
+            function b(key) { return p(key, 'False') === 'True' || p(key, false) === true; }
 
             const MUI = {
                 primary:   { bg:'#1976d2', text:'#fff', light:'#e3f2fd' },
@@ -10609,34 +10895,37 @@ File Key: ${component.key}</div>
                     const variant  = p('variant','Contained').toLowerCase();
                     const c        = muiColor(p('color','Primary'));
                     const size     = p('size','Medium').toLowerCase();
-                    const disabled = p('disabled','False') === 'True' || p('disabled',false) === true;
+                    const disabled = b('disabled');
                     const label    = p('label','Button');
                     const pad      = {small:'5px 10px',medium:'8px 22px',large:'11px 30px'}[size]||'8px 22px';
                     const fs       = {small:'12px',medium:'14px',large:'15px'}[size]||'14px';
                     let bg='transparent', border=c.bg, color=c.bg;
                     if (variant==='contained') { bg=c.bg; color=c.text; }
+                    if (variant==='text') border='transparent';
                     return wrap(`<button style="background:${bg};color:${color};border:1px solid ${border};padding:${pad};border-radius:4px;font-size:${fs};font-weight:600;cursor:${disabled?'not-allowed':'pointer'};opacity:${disabled?.5:1};font-family:inherit;letter-spacing:.05em;text-transform:uppercase;">${label}</button>`);
                 }
 
                 // ── ButtonGroup ──────────────────────────────────────────────
                 case 'ButtonGroup': {
-                    const variant = p('variant','Outlined').toLowerCase();
-                    const c = muiColor(p('color','Primary'));
-                    const btns = ['One','Two','Three'];
-                    const bstyle = `background:${variant==='contained'?c.bg:'transparent'};color:${variant==='contained'?c.text:c.bg};border:1px solid ${c.bg};padding:6px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;text-transform:uppercase;`;
-                    return wrap(btns.map((b,i)=>`<button style="${bstyle}border-radius:${i===0?'4px 0 0 4px':i===2?'0 4px 4px 0':'0'};border-left-width:${i>0?'0':'1px'};">${b}</button>`).join(''));
+                    const variant  = p('variant','Outlined').toLowerCase();
+                    const c        = muiColor(p('color','Primary'));
+                    const disabled = b('disabled');
+                    const btns     = ['One','Two','Three'];
+                    const bstyle   = `background:${variant==='contained'?c.bg:'transparent'};color:${variant==='contained'?c.text:c.bg};border:1px solid ${c.bg};padding:6px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;text-transform:uppercase;opacity:${disabled?.5:1};`;
+                    return wrap(btns.map((lbl,i)=>`<button style="${bstyle}border-radius:${i===0?'4px 0 0 4px':i===2?'0 4px 4px 0':'0'};border-left-width:${i>0?'0':'1px'};">${lbl}</button>`).join(''));
                 }
 
                 // ── Chip ─────────────────────────────────────────────────────
                 case 'Chip': {
-                    const variant  = p('variant','Filled').toLowerCase();
-                    const c        = muiColor(p('color','Default'));
-                    const label    = p('label','Chip');
-                    const deletable = p('onDelete?',false)||p('deletable','False')==='True';
+                    const variant   = p('variant','Filled').toLowerCase();
+                    const c         = muiColor(p('color','Default'));
+                    const label     = p('label','Chip');
+                    const deletable = b('onDelete');
+                    const disabled  = b('disabled');
                     const bg    = variant==='outlined'?'transparent':c.bg;
                     const color = variant==='outlined'?c.bg:c.text;
                     const border = variant==='outlined'?`1px solid ${c.bg}`:'none';
-                    return wrap(`<span style="display:inline-flex;align-items:center;gap:4px;background:${bg};color:${color};border:${border};border-radius:16px;padding:4px 12px;font-size:13px;font-weight:400;font-family:inherit;">${label}${deletable?`<span style="cursor:pointer;font-size:16px;line-height:1;" onclick="this.parentElement.remove()">×</span>`:''}</span>`);
+                    return wrap(`<span style="display:inline-flex;align-items:center;gap:4px;background:${bg};color:${color};border:${border};border-radius:16px;padding:4px 12px;font-size:13px;font-weight:400;font-family:inherit;opacity:${disabled?.5:1};">${label}${deletable?`<span style="cursor:pointer;font-size:16px;line-height:1;" onclick="this.parentElement.remove()">×</span>`:''}</span>`);
                 }
 
                 // ── Badge ─────────────────────────────────────────────────────
@@ -10671,56 +10960,68 @@ File Key: ${component.key}</div>
 
                 // ── Checkbox ──────────────────────────────────────────────────
                 case 'Checkbox': {
-                    const checked = p('checked','True')==='True'||p('checked',true)===true;
-                    const disabled = p('disabled','False')==='True';
-                    const c = muiColor(p('color','Primary'));
-                    const indeterminate = p('indeterminate','False')==='True';
+                    const checked       = b('checked');
+                    const disabled      = b('disabled');
+                    const indeterminate = b('indeterminate');
+                    const c    = muiColor(p('color','Primary'));
                     const icon = indeterminate ? '▬' : checked ? '✓' : '';
-                    const bg = (checked||indeterminate) ? c.bg : 'transparent';
+                    const bg     = (checked||indeterminate) ? c.bg : 'transparent';
                     const border = (checked||indeterminate) ? c.bg : '#757575';
                     return wrap(`<span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:18px;height:18px;border-radius:2px;border:2px solid ${border};background:${bg};color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;opacity:${disabled?.5:1};">${icon}</span><span style="font-size:14px;color:${disabled?'#bdbdbd':'#212121'};">Label</span></span>`);
                 }
 
                 // ── Radio ─────────────────────────────────────────────────────
                 case 'Radio': {
-                    const checked = p('checked','True')==='True'||p('checked',true)===true;
+                    const checked  = b('checked');
+                    const disabled = b('disabled');
                     const c = muiColor(p('color','Primary'));
-                    return wrap(`<span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:18px;height:18px;border-radius:50%;border:2px solid ${checked?c.bg:'#757575'};display:flex;align-items:center;justify-content:center;">${checked?`<span style="width:10px;height:10px;border-radius:50%;background:${c.bg};"></span>`:''}</span><span style="font-size:14px;">Label</span></span>`);
+                    return wrap(`<span style="display:inline-flex;align-items:center;gap:8px;opacity:${disabled?.5:1};"><span style="width:18px;height:18px;border-radius:50%;border:2px solid ${checked?c.bg:'#757575'};display:flex;align-items:center;justify-content:center;">${checked?`<span style="width:10px;height:10px;border-radius:50%;background:${c.bg};"></span>`:''}</span><span style="font-size:14px;">Label</span></span>`);
                 }
 
                 // ── RadioGroup ────────────────────────────────────────────────
                 case 'RadioGroup': {
-                    const c = muiColor(p('color','Primary'));
-                    return wrap(['Option A','Option B','Option C'].map((opt,i)=>`<span style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><span style="width:18px;height:18px;border-radius:50%;border:2px solid ${i===0?c.bg:'#757575'};display:flex;align-items:center;justify-content:center;">${i===0?`<span style="width:10px;height:10px;border-radius:50%;background:${c.bg};"></span>`:''}</span><span style="font-size:14px;">${opt}</span></span>`).join(''), false);
+                    const c   = muiColor(p('color','Primary'));
+                    const row = b('row');
+                    return wrap(`<div style="display:flex;flex-direction:${row?'row':'column'};gap:${row?'16px':'8px'};">${['Option A','Option B','Option C'].map((opt,i)=>`<span style="display:flex;align-items:center;gap:8px;"><span style="width:18px;height:18px;border-radius:50%;border:2px solid ${i===0?c.bg:'#757575'};display:flex;align-items:center;justify-content:center;">${i===0?`<span style="width:10px;height:10px;border-radius:50%;background:${c.bg};"></span>`:''}</span><span style="font-size:14px;">${opt}</span></span>`).join('')}</div>`, false);
                 }
 
                 // ── Switch ────────────────────────────────────────────────────
                 case 'Switch': {
-                    const checked = p('checked','True')==='True'||p('checked',true)===true;
-                    const c = muiColor(p('color','Primary'));
-                    return wrap(`<span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:44px;height:24px;border-radius:12px;background:${checked?c.bg:'#bdbdbd'};position:relative;cursor:pointer;transition:background .2s;"><span style="position:absolute;top:2px;left:${checked?'22px':'2px'};width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.3);transition:left .2s;"></span></span><span style="font-size:14px;">${checked?'On':'Off'}</span></span>`);
+                    const checked  = b('checked');
+                    const disabled = b('disabled');
+                    const size     = p('size','Medium').toLowerCase();
+                    const c        = muiColor(p('color','Primary'));
+                    const w = size==='small'?'34px':'44px', h = size==='small'?'18px':'24px';
+                    const tw = size==='small'?'14px':'20px', tOff='2px', tOn=size==='small'?'18px':'22px';
+                    return wrap(`<span style="display:inline-flex;align-items:center;gap:8px;opacity:${disabled?.5:1};"><span style="width:${w};height:${h};border-radius:${h};background:${checked?c.bg:'#bdbdbd'};position:relative;cursor:pointer;"><span style="position:absolute;top:2px;left:${checked?tOn:tOff};width:${tw};height:${tw};border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.3);transition:left .2s;"></span></span><span style="font-size:14px;">${checked?'On':'Off'}</span></span>`);
                 }
 
                 // ── TextField ─────────────────────────────────────────────────
                 case 'TextField': {
-                    const variant = p('variant','Outlined').toLowerCase();
-                    const label   = p('label','Label');
-                    const error   = p('error','False')==='True';
-                    const disabled= p('disabled','False')==='True';
-                    const value   = p('value','');
-                    const helper  = p('helperText','');
-                    const borderC = error?'#d32f2f':disabled?'#bdbdbd':'#c4c4c4';
-                    const border  = variant==='standard'?`border-bottom:1px solid ${borderC};border-radius:0;`:variant==='filled'?`border-bottom:1px solid ${borderC};border-radius:4px 4px 0 0;background:#f5f5f5;`:(`border:1px solid ${borderC};border-radius:4px;`);
-                    return wrap(`<div style="display:flex;flex-direction:column;gap:4px;"><label style="font-size:12px;color:${error?'#d32f2f':disabled?'#bdbdbd':'#757575'};">${label}</label><div style="padding:8px 12px;${border}min-width:200px;font-size:14px;color:${disabled?'#bdbdbd':'#212121'};opacity:${disabled?.5:1};">${value||'​'}</div>${helper?`<span style="font-size:11px;color:${error?'#d32f2f':'#757575'};">${helper}</span>`:''}</div>`);
+                    const variant    = p('variant','Outlined').toLowerCase();
+                    const label      = p('label','Label');
+                    const error      = b('error');
+                    const disabled   = b('disabled');
+                    const multiline  = b('multiline');
+                    const helper     = p('helperText','');
+                    const borderC    = error?'#d32f2f':disabled?'#bdbdbd':'#c4c4c4';
+                    const labelColor = error?'#d32f2f':disabled?'#bdbdbd':'#757575';
+                    const fieldStyle = variant==='standard'
+                        ? `border-bottom:2px solid ${borderC};padding:4px 0;`
+                        : variant==='filled'
+                        ? `border-bottom:2px solid ${borderC};border-radius:4px 4px 0 0;background:#f5f5f5;padding:8px 12px;`
+                        : `border:1px solid ${borderC};border-radius:4px;padding:8px 12px;`;
+                    return wrap(`<div style="display:flex;flex-direction:column;gap:4px;min-width:220px;"><label style="font-size:12px;color:${labelColor};">${label}</label><div style="${fieldStyle}min-height:${multiline?'72px':'36px'};font-size:14px;color:${disabled?'#bdbdbd':'#212121'};opacity:${disabled?.5:1};">&nbsp;</div>${helper?`<span style="font-size:11px;color:${error?'#d32f2f':'#757575'};">${helper}</span>`:''}</div>`);
                 }
 
                 // ── Select ────────────────────────────────────────────────────
                 case 'Select': {
-                    const variant = p('variant','Outlined').toLowerCase();
-                    const label   = p('label','Age');
-                    const disabled= p('disabled','False')==='True';
-                    const border  = variant==='outlined'?'border:1px solid #c4c4c4;border-radius:4px;':'border-bottom:1px solid #c4c4c4;';
-                    return wrap(`<div style="display:inline-flex;flex-direction:column;gap:4px;"><label style="font-size:12px;color:#757575;">${label}</label><div style="display:flex;align-items:center;padding:8px 36px 8px 12px;${border}min-width:160px;font-size:14px;position:relative;cursor:pointer;opacity:${disabled?.5:1};">10 <span style="position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:18px;color:#757575;">▾</span></div></div>`);
+                    const variant   = p('variant','Outlined').toLowerCase();
+                    const label     = p('label','Age');
+                    const disabled  = b('disabled');
+                    const multiple  = b('multiple');
+                    const border    = variant==='outlined'?`border:1px solid #c4c4c4;border-radius:4px;`:variant==='filled'?`border-bottom:1px solid #c4c4c4;border-radius:4px 4px 0 0;background:#f5f5f5;`:`border-bottom:1px solid #c4c4c4;`;
+                    return wrap(`<div style="display:inline-flex;flex-direction:column;gap:4px;"><label style="font-size:12px;color:#757575;">${label}</label><div style="display:flex;align-items:center;padding:8px 36px 8px 12px;${border}min-width:160px;font-size:14px;position:relative;cursor:pointer;opacity:${disabled?.5:1};">${multiple?'Option A, B':'10'}<span style="position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:18px;color:#757575;">▾</span></div></div>`);
                 }
 
                 // ── Autocomplete ──────────────────────────────────────────────
@@ -10785,8 +11086,9 @@ File Key: ${component.key}</div>
 
                 // ── Accordion ─────────────────────────────────────────────────
                 case 'Accordion': {
-                    const expanded = p('expanded','True')==='True'||p('expanded',true)===true;
-                    return wrap(`<div style="width:280px;border:1px solid #e0e0e0;border-radius:4px;font-family:inherit;"><div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;cursor:pointer;background:#fafafa;"><span style="font-size:14px;font-weight:500;">Accordion Summary</span><span style="font-size:20px;transition:transform .3s;transform:rotate(${expanded?'180':'0'}deg);">▾</span></div>${expanded?`<div style="padding:16px;font-size:14px;color:#757575;border-top:1px solid #e0e0e0;">Accordion content goes here. You can put any content inside.</div>`:''}</div>`, false);
+                    const expanded = b('expanded');
+                    const disabled = b('disabled');
+                    return wrap(`<div style="width:280px;border:1px solid #e0e0e0;border-radius:4px;font-family:inherit;opacity:${disabled?.5:1};"><div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;cursor:${disabled?'not-allowed':'pointer'};background:#fafafa;"><span style="font-size:14px;font-weight:500;">Accordion Summary</span><span style="font-size:20px;transform:rotate(${expanded?'180':'0'}deg);display:inline-block;">▾</span></div>${expanded?`<div style="padding:16px;font-size:14px;color:#757575;border-top:1px solid #e0e0e0;">Accordion content goes here. You can put any content inside.</div>`:''}</div>`, false);
                 }
 
                 // ── Card ──────────────────────────────────────────────────────
@@ -10855,7 +11157,7 @@ File Key: ${component.key}</div>
                 // ── Snackbar ──────────────────────────────────────────────────
                 case 'Snackbar': {
                     const message = p('message','Message sent successfully');
-                    const action  = p('action?',true);
+                    const action  = b('action');
                     return wrap(`<div style="display:flex;align-items:center;gap:8px;background:#323232;color:#fff;padding:12px 16px;border-radius:4px;min-width:240px;box-shadow:0 4px 8px rgba(0,0,0,.3);font-size:14px;"><span style="flex:1;">${message}</span>${action?`<button style="background:transparent;border:none;color:#90caf9;font-weight:600;font-size:13px;cursor:pointer;text-transform:uppercase;">Undo</button>`:''}<span style="cursor:pointer;color:#fff;font-size:18px;">×</span></div>`);
                 }
 
@@ -10958,7 +11260,7 @@ File Key: ${component.key}</div>
                 // ── SpeedDial ─────────────────────────────────────────────────
                 case 'SpeedDial': {
                     const c = muiColor(p('color','Primary'));
-                    const open = p('open','True')==='True';
+                    const open = b('open');
                     const actions = ['✏️','📎','❤️'];
                     return wrap(`<div style="display:flex;flex-direction:column-reverse;align-items:center;gap:12px;">${open?actions.map(a=>`<div style="width:40px;height:40px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;">${a}</div>`).join('')+`<div style="width:56px;height:56px;border-radius:50%;background:${c.bg};color:${c.text};display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,.3);">✕</div>`:`<div style="width:56px;height:56px;border-radius:50%;background:${c.bg};color:${c.text};display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,.3);">+</div>`}</div>`);
                 }
@@ -11012,8 +11314,8 @@ File Key: ${component.key}</div>
                 case 'Grow':
                 case 'Slide':
                 case 'Zoom': {
-                    const inProp = p('in','True')==='True';
-                    return wrap(`<div style="padding:16px;background:#f5f5f5;border-radius:4px;opacity:${inProp?1:.3};transform:scale(${inProp?1:.8});transition:all .4s;font-size:13px;color:#757575;">${name} transition — in: ${inProp?'true':'false'}</div>`);
+                    const inProp = b('in');
+                    return wrap(`<div style="padding:16px;background:#f5f5f5;border-radius:4px;opacity:${inProp?1:.2};transform:scale(${inProp?1:.7});transition:opacity .4s,transform .4s;font-size:13px;color:#757575;min-width:160px;text-align:center;"><strong>${name}</strong><br>in = ${inProp?'true':'false'}</div>`);
                 }
 
                 // ── Timeline ──────────────────────────────────────────────────
