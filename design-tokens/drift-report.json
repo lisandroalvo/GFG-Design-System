@@ -1,0 +1,52 @@
+{
+  "timestamp": "2026-04-30T05:54:44.203Z",
+  "summary": {
+    "figmaComponentSets": 60,
+    "reactComponents": 79,
+    "connectedComponents": 65,
+    "issueCount": 2,
+    "errorCount": 0,
+    "warningCount": 1
+  },
+  "issues": [
+    {
+      "type": "MISSING_FIGMA_NODE_ID",
+      "severity": "warning",
+      "message": "10 components have no Figma node ID (no design reference)",
+      "components": [
+        "Typography",
+        "CardActions",
+        "CardContent",
+        "CardMedia",
+        "Popover",
+        "Collapse",
+        "Fade",
+        "Grow",
+        "Slide",
+        "Zoom"
+      ]
+    },
+    {
+      "type": "MISSING_CODE_CONNECT",
+      "severity": "info",
+      "message": "14 components have no Code Connect file",
+      "components": [
+        "Backdrop",
+        "CardActions",
+        "CardContent",
+        "CardMedia",
+        "Collapse",
+        "DialogTitle",
+        "Divider",
+        "Fade",
+        "Grow",
+        "Popover",
+        "Slide",
+        "Snackbar",
+        "Typography",
+        "Zoom"
+      ]
+    }
+  ],
+  "healthy": []
+}
