@@ -9892,11 +9892,13 @@
                     } else if (component.name.includes(`${prop.name}?=False`)) {
                         currentPropertySelections[propKey] = false;
                     } else {
-                        currentPropertySelections[propKey] = prop.default || false;
+                        currentPropertySelections[propKey] = prop.default !== undefined ? prop.default : false;
                     }
+                } else if (prop.type === 'text') {
+                    currentPropertySelections[prop.name] = prop.default || '';
                 } else {
                     const match = component.name.match(new RegExp(`${prop.name}=([^,]+)`));
-                    currentPropertySelections[prop.name] = match ? match[1] : (prop.default || prop.values[0]);
+                    currentPropertySelections[prop.name] = match ? match[1] : (prop.default || (prop.values && prop.values[0]) || '');
                 }
             });
             console.log('Initial selections:', currentPropertySelections);
@@ -10585,11 +10587,19 @@ File Key: ${component.key}</div>
                             ` : ''}
                         </div>
                     `;
-                } else {
+                } else if (prop.type === 'text') {
+                    const textValue = currentPropertySelections[prop.name] || prop.default || '';
+                    html += `
+                        <div>
+                            <label style="display: block; font-size: 13px; color: var(--rodeo-black); margin-bottom: 6px;">${prop.name}</label>
+                            <input type="text" placeholder="${prop.default || ''}" value="${textValue}"
+                                oninput="updatePlaygroundText('${prop.name}', this.value)"
+                                style="width: 100%; padding: 8px 12px; border: 1px solid #E8E8E8; border-radius: 6px; font-size: 13px; box-sizing: border-box;">
+                        </div>
+                    `;
+                } else if (prop.values && prop.values.length) {
                     // Dropdown for enum properties
-                    const currentValue = currentComponent.name.match(new RegExp(`${prop.name}=([^,]+)`))?.[1] || prop.values[0];
-                    console.log(`Enum prop ${prop.name}: currentValue =`, currentValue, 'options:', prop.values);
-                    
+                    const currentValue = currentComponent.name.match(new RegExp(`${prop.name}=([^,]+)`))?.[1] || prop.default || prop.values[0];
                     html += `
                         <div>
                             <label style="display: block; font-size: 13px; color: var(--rodeo-black); margin-bottom: 6px;">${prop.name}</label>
@@ -10600,7 +10610,7 @@ File Key: ${component.key}</div>
                     `;
                 }
             });
-            
+
             console.log('Generated HTML:', html);
             return html;
         }
@@ -11437,8 +11447,8 @@ File Key: ${component.key}</div>
                                 style="width: 100%; padding: 8px 12px; border: 1px solid #E8E8E8; border-radius: 6px; font-size: 13px;">
                         </div>
                     `;
-                } else {
-                    const currentValue = selections[prop.name] || prop.values[0];
+                } else if (prop.values && prop.values.length) {
+                    const currentValue = selections[prop.name] || prop.default || prop.values[0];
                     html += `
                         <div>
                             <label style="display: block; font-size: 13px; color: var(--rodeo-black); margin-bottom: 6px;">${prop.name}</label>
@@ -11493,8 +11503,8 @@ File Key: ${component.key}</div>
             }
             
             return properties.map(prop => {
-                const type = prop.isBoolean ? 'boolean' : `'${prop.values.join("' | '")}'`;
-                const defaultVal = prop.isBoolean ? 'false' : `'${prop.values[0]}'`;
+                const type = prop.isBoolean ? 'boolean' : prop.type === 'text' ? 'string' : (prop.values ? `'${prop.values.join("' | '")}'` : 'string');
+                const defaultVal = prop.isBoolean ? 'false' : prop.type === 'text' ? `'${prop.default || ''}'` : (prop.values ? `'${prop.default || prop.values[0]}'` : "''");
                 const description = prop.isBoolean 
                     ? `Whether to show ${prop.name.replace('?', '').toLowerCase()}`
                     : `The ${prop.name.toLowerCase()} variant of the component`;
