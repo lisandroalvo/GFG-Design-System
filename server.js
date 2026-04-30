@@ -52,9 +52,13 @@ const server = http.createServer(async (req, res) => {
         return;
     }
 
-    let filePath = '.' + req.url;
+    let filePath = '.' + req.url.split('?')[0];
     if (filePath === './') {
-        filePath = './design-system-final.html';
+        filePath = './index.html';
+    }
+    // Map /component-thumbs/ → ./public/component-thumbs/ (Vite public dir)
+    if (filePath.startsWith('./component-thumbs/')) {
+        filePath = './public' + filePath.slice(1);
     }
 
     const extname = String(path.extname(filePath)).toLowerCase();
