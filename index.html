@@ -10256,11 +10256,13 @@ File Key: ${component.key}</div>
                 { name: 'onClose',     values: ['True','False'], default: false, isBoolean: true },
             ],
             'Button': [
-                { name: 'variant',  values: ['Contained','Outlined','Text'],                                          default: 'Contained', isBoolean: false },
-                { name: 'color',    values: ['Primary','Secondary','Success','Error','Warning','Info','Inherit'],      default: 'Primary',   isBoolean: false },
-                { name: 'size',     values: ['Small','Medium','Large'],                                               default: 'Medium',    isBoolean: false },
-                { name: 'label',    type: 'text', default: 'Button' },
-                { name: 'disabled', values: ['True','False'], default: false, isBoolean: true },
+                { name: 'variant',    values: ['Contained','Outlined','Text'],                                        default: 'Contained', isBoolean: false },
+                { name: 'color',      values: ['Primary','Secondary','Success','Error','Warning','Info','Inherit'],    default: 'Primary',   isBoolean: false },
+                { name: 'size',       values: ['Small','Medium','Large'],                                             default: 'Medium',    isBoolean: false },
+                { name: 'state',      values: ['Enabled','Hovered','Focused','Pressed','Disabled'],                   default: 'Enabled',   isBoolean: false },
+                { name: 'startIcon',  values: ['True','False'], default: false, isBoolean: true },
+                { name: 'endIcon',    values: ['True','False'], default: false, isBoolean: true },
+                { name: 'label',      type: 'text', default: 'Button' },
             ],
             'ButtonGroup': [
                 { name: 'variant',      values: ['Contained','Outlined','Text'],                                    default: 'Outlined',    isBoolean: false },
@@ -10902,17 +10904,31 @@ File Key: ${component.key}</div>
             switch (name) {
                 // ── Button ──────────────────────────────────────────────────
                 case 'Button': {
-                    const variant  = p('variant','Contained').toLowerCase();
-                    const c        = muiColor(p('color','Primary'));
-                    const size     = p('size','Medium').toLowerCase();
-                    const disabled = b('disabled');
-                    const label    = p('label','Button');
-                    const pad      = {small:'5px 10px',medium:'8px 22px',large:'11px 30px'}[size]||'8px 22px';
-                    const fs       = {small:'12px',medium:'14px',large:'15px'}[size]||'14px';
+                    const variant   = p('variant','Contained').toLowerCase();
+                    const c         = muiColor(p('color','Primary'));
+                    const size      = p('size','Medium').toLowerCase();
+                    const state     = p('state','Enabled').toLowerCase();
+                    const disabled  = state === 'disabled';
+                    const hovered   = state === 'hovered';
+                    const focused   = state === 'focused';
+                    const pressed   = state === 'pressed';
+                    const hasStart  = b('startIcon');
+                    const hasEnd    = b('endIcon');
+                    const label     = p('label','Button');
+                    const pad       = {small:'5px 10px',medium:'8px 22px',large:'11px 30px'}[size]||'8px 22px';
+                    const fs        = {small:'12px',medium:'14px',large:'15px'}[size]||'14px';
+                    const iconSvg   = `<svg style="width:${size==='small'?'16px':'18px'};height:${size==='small'?'16px':'18px'};fill:currentColor;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5l-4-4 1.41-1.41L10 13.67l6.59-6.59L18 8.5l-8 8z"/></svg>`;
                     let bg='transparent', border=c.bg, color=c.bg;
                     if (variant==='contained') { bg=c.bg; color=c.text; }
                     if (variant==='text') border='transparent';
-                    return wrap(`<button style="background:${bg};color:${color};border:1px solid ${border};padding:${pad};border-radius:4px;font-size:${fs};font-weight:600;cursor:${disabled?'not-allowed':'pointer'};opacity:${disabled?.5:1};font-family:inherit;letter-spacing:.05em;text-transform:uppercase;">${label}</button>`);
+                    // State visual overrides
+                    let extraStyle = '';
+                    if (disabled)     extraStyle = 'opacity:.38;cursor:not-allowed;';
+                    else if (pressed) extraStyle = `filter:brightness(.85);transform:scale(.97);`;
+                    else if (hovered) extraStyle = variant==='contained' ? `filter:brightness(1.1);box-shadow:0 2px 6px rgba(0,0,0,.25);` : `background:${c.bg}18;`;
+                    else if (focused) extraStyle = `outline:2px solid ${c.bg};outline-offset:2px;`;
+                    const content = `${hasStart?`<span style="display:inline-flex;align-items:center;margin-right:6px;">${iconSvg}</span>`:''}${label}${hasEnd?`<span style="display:inline-flex;align-items:center;margin-left:6px;">${iconSvg}</span>`:''}`;
+                    return wrap(`<button style="display:inline-flex;align-items:center;justify-content:center;background:${bg};color:${color};border:1px solid ${border};padding:${pad};border-radius:4px;font-size:${fs};font-weight:600;cursor:${disabled?'not-allowed':'pointer'};font-family:inherit;letter-spacing:.05em;text-transform:uppercase;${extraStyle}">${content}</button>`);
                 }
 
                 // ── ButtonGroup ──────────────────────────────────────────────
