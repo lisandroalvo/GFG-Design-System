@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Design System Live - Interactive Component Playground</title>
-    <!-- v20260427-1653 -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- v20260430-gfg-tokens -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -26,7 +26,7 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--background);
             color: var(--rodeo-black);
             font-size: 16px;
@@ -10886,13 +10886,13 @@ File Key: ${component.key}</div>
             function b(key) { return p(key, 'False') === 'True' || p(key, false) === true; }
 
             const MUI = {
-                primary:   { bg:'#1976d2', text:'#fff', light:'#e3f2fd' },
-                secondary: { bg:'#9c27b0', text:'#fff', light:'#f3e5f5' },
-                success:   { bg:'#2e7d32', text:'#fff', light:'#e8f5e9' },
-                error:     { bg:'#d32f2f', text:'#fff', light:'#ffebee' },
-                warning:   { bg:'#ed6c02', text:'#fff', light:'#fff3e0' },
-                info:      { bg:'#0288d1', text:'#fff', light:'#e1f5fe' },
-                default:   { bg:'#e0e0e0', text:'#212121', light:'#f5f5f5' },
+                primary:   { bg:'#AF9577', text:'#fff', light:'#F4EFEA' },
+                secondary: { bg:'#2b4a60', text:'#fff', light:'#c7d9e6' },
+                success:   { bg:'#637058', text:'#fff', light:'#e0e3dd' },
+                error:     { bg:'#a34740', text:'#fff', light:'#eed4d3' },
+                warning:   { bg:'#8a5d1f', text:'#fff', light:'#f3e3cd' },
+                info:      { bg:'#2b4a60', text:'#fff', light:'#c7d9e6' },
+                default:   { bg:'#C8B298', text:'#333333', light:'#F4EFEA' },
             };
             function muiColor(c) { return MUI[(c||'primary').toLowerCase()] || MUI.primary; }
 
@@ -10958,12 +10958,12 @@ File Key: ${component.key}</div>
                     const variant = p('variant','Circular').toLowerCase();
                     const radius  = variant==='circular'?'50%':variant==='rounded'?'8px':'0';
                     const letters = p('children','U');
-                    return wrap(`<div style="width:${dim};height:${dim};border-radius:${radius};background:#1976d2;color:#fff;display:flex;align-items:center;justify-content:center;font-size:${fs};font-weight:500;font-family:inherit;">${letters}</div>`);
+                    return wrap(`<div style="width:${dim};height:${dim};border-radius:${radius};background:#AF9577;color:#fff;display:flex;align-items:center;justify-content:center;font-size:${fs};font-weight:500;font-family:inherit;">${letters}</div>`);
                 }
 
                 // ── AvatarGroup ───────────────────────────────────────────────
                 case 'AvatarGroup': {
-                    const colors = ['#1976d2','#9c27b0','#2e7d32','#d32f2f'];
+                    const colors = ['#AF9577','#2b4a60','#637058','#a34740'];
                     const letters = ['A','B','C','+2'];
                     return wrap(letters.map((l,i)=>`<div style="width:40px;height:40px;border-radius:50%;background:${colors[i]};color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:500;border:2px solid #fff;margin-left:${i>0?'-10px':'0'};">${l}</div>`).join(''));
                 }
@@ -11014,14 +11014,14 @@ File Key: ${component.key}</div>
                     const disabled   = b('disabled');
                     const multiline  = b('multiline');
                     const helper     = p('helperText','');
-                    const borderC    = error?'#d32f2f':disabled?'#bdbdbd':'#c4c4c4';
-                    const labelColor = error?'#d32f2f':disabled?'#bdbdbd':'#757575';
+                    const borderC    = error?'#a34740':disabled?'#bdbdbd':'#c4c4c4';
+                    const labelColor = error?'#a34740':disabled?'#bdbdbd':'#757575';
                     const fieldStyle = variant==='standard'
                         ? `border-bottom:2px solid ${borderC};padding:4px 0;`
                         : variant==='filled'
                         ? `border-bottom:2px solid ${borderC};border-radius:4px 4px 0 0;background:#f5f5f5;padding:8px 12px;`
                         : `border:1px solid ${borderC};border-radius:4px;padding:8px 12px;`;
-                    return wrap(`<div style="display:flex;flex-direction:column;gap:4px;min-width:220px;"><label style="font-size:12px;color:${labelColor};">${label}</label><div style="${fieldStyle}min-height:${multiline?'72px':'36px'};font-size:14px;color:${disabled?'#bdbdbd':'#212121'};opacity:${disabled?.5:1};">&nbsp;</div>${helper?`<span style="font-size:11px;color:${error?'#d32f2f':'#757575'};">${helper}</span>`:''}</div>`);
+                    return wrap(`<div style="display:flex;flex-direction:column;gap:4px;min-width:220px;"><label style="font-size:12px;color:${labelColor};">${label}</label><div style="${fieldStyle}min-height:${multiline?'72px':'36px'};font-size:14px;color:${disabled?'#bdbdbd':'#212121'};opacity:${disabled?.5:1};">&nbsp;</div>${helper?`<span style="font-size:11px;color:${error?'#a34740':'#757575'};">${helper}</span>`:''}</div>`);
                 }
 
                 // ── Select ────────────────────────────────────────────────────
@@ -11051,7 +11051,7 @@ File Key: ${component.key}</div>
                     const val = parseFloat(p('value','3'))||3;
                     const max = parseInt(p('max','5'))||5;
                     const c   = muiColor(p('color','Warning'));
-                    return wrap(Array.from({length:max},(_,i)=>`<span style="font-size:24px;color:${i<val?'#ed6c02':'#e0e0e0'};cursor:pointer;">★</span>`).join(''));
+                    return wrap(Array.from({length:max},(_,i)=>`<span style="font-size:24px;color:${i<val?'#8a5d1f':'#e0e0e0'};cursor:pointer;">★</span>`).join(''));
                 }
 
                 // ── CircularProgress ──────────────────────────────────────────
@@ -11107,7 +11107,7 @@ File Key: ${component.key}</div>
                 case 'CardHeader':
                 case 'CardActions':
                 case 'CardMedia': {
-                    return wrap(`<div style="width:280px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.15);overflow:hidden;font-family:inherit;"><div style="height:140px;background:linear-gradient(135deg,#1976d2,#42a5f5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;">🖼</div><div style="padding:16px;"><div style="font-size:16px;font-weight:600;margin-bottom:8px;">Card Title</div><div style="font-size:13px;color:#757575;">Card description text goes here. This is a sample content for the card component.</div></div><div style="padding:8px 16px;display:flex;gap:8px;border-top:1px solid #f5f5f5;"><button style="background:transparent;border:none;color:#1976d2;font-weight:600;font-size:13px;cursor:pointer;text-transform:uppercase;padding:4px 0;">Action</button><button style="background:transparent;border:none;color:#757575;font-weight:600;font-size:13px;cursor:pointer;text-transform:uppercase;padding:4px 0;">Share</button></div></div>`, false);
+                    return wrap(`<div style="width:280px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.15);overflow:hidden;font-family:inherit;"><div style="height:140px;background:linear-gradient(135deg,#AF9577,#C8B298);display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;">🖼</div><div style="padding:16px;"><div style="font-size:16px;font-weight:600;margin-bottom:8px;">Card Title</div><div style="font-size:13px;color:#757575;">Card description text goes here. This is a sample content for the card component.</div></div><div style="padding:8px 16px;display:flex;gap:8px;border-top:1px solid #f5f5f5;"><button style="background:transparent;border:none;color:#AF9577;font-weight:600;font-size:13px;cursor:pointer;text-transform:uppercase;padding:4px 0;">Action</button><button style="background:transparent;border:none;color:#757575;font-weight:600;font-size:13px;cursor:pointer;text-transform:uppercase;padding:4px 0;">Share</button></div></div>`, false);
                 }
 
                 // ── Paper ─────────────────────────────────────────────────────
@@ -11130,7 +11130,7 @@ File Key: ${component.key}</div>
                 // ── Breadcrumbs ───────────────────────────────────────────────
                 case 'Breadcrumbs': {
                     const items = ['Home','Category','Current Page'];
-                    return wrap(items.map((item,i)=>i<items.length-1?`<a style="color:#1976d2;font-size:14px;text-decoration:none;cursor:pointer;">${item}</a><span style="color:#757575;margin:0 8px;">/</span>`:`<span style="font-size:14px;color:#757575;">${item}</span>`).join(''));
+                    return wrap(items.map((item,i)=>i<items.length-1?`<a style="color:#AF9577;font-size:14px;text-decoration:none;cursor:pointer;">${item}</a><span style="color:#757575;margin:0 8px;">/</span>`:`<span style="font-size:14px;color:#757575;">${item}</span>`).join(''));
                 }
 
                 // ── Pagination ────────────────────────────────────────────────
@@ -11175,7 +11175,7 @@ File Key: ${component.key}</div>
                 case 'Tooltip': {
                     const title = p('title','Tooltip text');
                     const placement = p('placement','Bottom').toLowerCase();
-                    return wrap(`<div style="position:relative;display:inline-flex;flex-direction:column;align-items:center;gap:8px;"><button style="background:#1976d2;color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;">Hover me</button><div style="background:rgba(50,50,50,.9);color:#fff;padding:4px 8px;border-radius:4px;font-size:12px;white-space:nowrap;">${title}</div></div>`);
+                    return wrap(`<div style="position:relative;display:inline-flex;flex-direction:column;align-items:center;gap:8px;"><button style="background:#AF9577;color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;">Hover me</button><div style="background:rgba(50,50,50,.9);color:#fff;padding:4px 8px;border-radius:4px;font-size:12px;white-space:nowrap;">${title}</div></div>`);
                 }
 
                 // ── Typography ────────────────────────────────────────────────
@@ -11198,14 +11198,14 @@ File Key: ${component.key}</div>
                 case 'Link': {
                     const variant = p('variant','Body1');
                     const underline = p('underline','Always').toLowerCase();
-                    return wrap(`<a style="color:#1976d2;font-size:16px;cursor:pointer;text-decoration:${underline==='none'?'none':underline==='hover'?'none':'underline'};">Link example</a>`);
+                    return wrap(`<a style="color:#AF9577;font-size:16px;cursor:pointer;text-decoration:${underline==='none'?'none':underline==='hover'?'none':'underline'};">Link example</a>`);
                 }
 
                 // ── List / ListItem ───────────────────────────────────────────
                 case 'List':
                 case 'ListItem': {
                     const items = ['Inbox','Starred','Send email','Drafts'];
-                    return wrap(`<div style="width:240px;background:#fff;border-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,.1);overflow:hidden;">${items.map((item,i)=>`<div style="display:flex;align-items:center;gap:16px;padding:12px 16px;font-size:14px;cursor:pointer;background:${i===0?'rgba(25,118,210,.08)':'transparent'};color:${i===0?'#1976d2':'#212121'};">📌 ${item}</div>`).join('')}</div>`, false);
+                    return wrap(`<div style="width:240px;background:#fff;border-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,.1);overflow:hidden;">${items.map((item,i)=>`<div style="display:flex;align-items:center;gap:16px;padding:12px 16px;font-size:14px;cursor:pointer;background:${i===0?'rgba(175,149,119,.12)':'transparent'};color:${i===0?'#AF9577':'#212121'};">📌 ${item}</div>`).join('')}</div>`, false);
                 }
 
                 // ── Menu / MenuItem / MenuList ─────────────────────────────────
@@ -11235,12 +11235,12 @@ File Key: ${component.key}</div>
                     const steps = ['Step 1','Step 2','Step 3'];
                     return wrap(`<div style="display:flex;align-items:center;width:300px;">${steps.map((s,i)=>{
                         const done=i<active, cur=i===active;
-                        const color = done||cur?'#1976d2':'#bdbdbd';
+                        const color = done||cur?'#AF9577':'#bdbdbd';
                         return `<div style="display:flex;align-items:center;flex:${i<steps.length-1?1:'0'};">`+
                             `<div style="display:flex;flex-direction:column;align-items:center;gap:4px;">`+
                             `<div style="width:28px;height:28px;border-radius:50%;background:${color};color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;">${done?'✓':i+1}</div>`+
                             `<span style="font-size:11px;color:${color};white-space:nowrap;">${s}</span></div>`+
-                            (i<steps.length-1?`<div style="flex:1;height:1px;background:${done?'#1976d2':'#e0e0e0'};margin:0 4px;margin-bottom:16px;"></div>`:'')+
+                            (i<steps.length-1?`<div style="flex:1;height:1px;background:${done?'#AF9577':'#e0e0e0'};margin:0 4px;margin-bottom:16px;"></div>`:'')+
                             `</div>`;
                     }).join('')}</div>`, false);
                 }
@@ -11257,7 +11257,7 @@ File Key: ${component.key}</div>
                 case 'DialogTitle':
                 case 'DialogContent':
                 case 'DialogActions': {
-                    return wrap(`<div style="width:280px;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,.3);background:#fff;overflow:hidden;"><div style="padding:20px 24px;font-size:18px;font-weight:600;">Dialog Title</div><div style="padding:0 24px 20px;font-size:14px;color:#757575;">Dialog content goes here. You can place any description or form content.</div><div style="padding:12px 16px;display:flex;justify-content:flex-end;gap:8px;border-top:1px solid #f5f5f5;"><button style="background:transparent;border:none;color:#1976d2;font-weight:600;font-size:13px;cursor:pointer;text-transform:uppercase;padding:6px 8px;">Cancel</button><button style="background:#1976d2;border:none;color:#fff;font-weight:600;font-size:13px;cursor:pointer;text-transform:uppercase;padding:6px 16px;border-radius:4px;">Confirm</button></div></div>`, false);
+                    return wrap(`<div style="width:280px;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,.3);background:#fff;overflow:hidden;"><div style="padding:20px 24px;font-size:18px;font-weight:600;">Dialog Title</div><div style="padding:0 24px 20px;font-size:14px;color:#757575;">Dialog content goes here. You can place any description or form content.</div><div style="padding:12px 16px;display:flex;justify-content:flex-end;gap:8px;border-top:1px solid #f5f5f5;"><button style="background:transparent;border:none;color:#AF9577;font-weight:600;font-size:13px;cursor:pointer;text-transform:uppercase;padding:6px 8px;">Cancel</button><button style="background:#AF9577;border:none;color:#fff;font-weight:600;font-size:13px;cursor:pointer;text-transform:uppercase;padding:6px 16px;border-radius:4px;">Confirm</button></div></div>`, false);
                 }
 
                 // ── Table ─────────────────────────────────────────────────────
@@ -11277,7 +11277,7 @@ File Key: ${component.key}</div>
 
                 // ── Popover ───────────────────────────────────────────────────
                 case 'Popover': {
-                    return wrap(`<div style="display:flex;flex-direction:column;align-items:flex-start;gap:8px;"><button style="background:#1976d2;color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;">Open Popover</button><div style="background:#fff;border-radius:4px;box-shadow:0 4px 16px rgba(0,0,0,.2);padding:16px;font-size:14px;min-width:160px;">Popover content here</div></div>`, false);
+                    return wrap(`<div style="display:flex;flex-direction:column;align-items:flex-start;gap:8px;"><button style="background:#AF9577;color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;">Open Popover</button><div style="background:#fff;border-radius:4px;box-shadow:0 4px 16px rgba(0,0,0,.2);padding:16px;font-size:14px;min-width:160px;">Popover content here</div></div>`, false);
                 }
 
                 // ── BottomNavigation ──────────────────────────────────────────
@@ -11285,7 +11285,7 @@ File Key: ${component.key}</div>
                 case 'BottomNavigationAction': {
                     const items = [['🏠','Home'],['🔍','Search'],['❤️','Favorites'],['👤','Profile']];
                     const active = parseInt(p('value','0'))||0;
-                    return wrap(`<div style="display:flex;width:300px;background:#fff;box-shadow:0 -2px 8px rgba(0,0,0,.1);border-radius:4px;">${items.map(([icon,label],i)=>`<div style="flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 0;cursor:pointer;color:${i===active?'#1976d2':'#757575'};"><span style="font-size:22px;">${icon}</span><span style="font-size:11px;font-weight:${i===active?600:400};">${label}</span></div>`).join('')}</div>`, false);
+                    return wrap(`<div style="display:flex;width:300px;background:#fff;box-shadow:0 -2px 8px rgba(0,0,0,.1);border-radius:4px;">${items.map(([icon,label],i)=>`<div style="flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 0;cursor:pointer;color:${i===active?'#AF9577':'#757575'};"><span style="font-size:22px;">${icon}</span><span style="font-size:11px;font-weight:${i===active?600:400};">${label}</span></div>`).join('')}</div>`, false);
                 }
 
                 // ── Backdrop ──────────────────────────────────────────────────
@@ -11310,7 +11310,7 @@ File Key: ${component.key}</div>
                     const spacing = parseInt(p('spacing','2'))||2;
                     const gap = spacing*8+'px';
                     const isRow = dir.includes('row');
-                    return wrap(`<div style="display:flex;flex-direction:${isRow?'row':'column'};gap:${gap};">${[1,2,3].map(n=>`<div style="padding:12px 24px;background:#e3f2fd;border-radius:4px;font-size:13px;font-weight:500;color:#1976d2;">Item ${n}</div>`).join('')}</div>`, false);
+                    return wrap(`<div style="display:flex;flex-direction:${isRow?'row':'column'};gap:${gap};">${[1,2,3].map(n=>`<div style="padding:12px 24px;background:#F4EFEA;border-radius:4px;font-size:13px;font-weight:500;color:#AF9577;">Item ${n}</div>`).join('')}</div>`, false);
                 }
 
                 // ── Container ─────────────────────────────────────────────────
@@ -11333,7 +11333,7 @@ File Key: ${component.key}</div>
                     const items = [['Eat','9:00 am'],['Code','10:00 am'],['Sleep','11:00 pm']];
                     return wrap(`<div style="display:flex;flex-direction:column;gap:0;padding-left:24px;">${items.map(([label,time],i)=>`<div style="display:flex;align-items:flex-start;gap:12px;position:relative;">`+
                         `<div style="display:flex;flex-direction:column;align-items:center;">`+
-                        `<div style="width:12px;height:12px;border-radius:50%;background:${['#1976d2','#9c27b0','#2e7d32'][i]};flex-shrink:0;margin-top:4px;"></div>`+
+                        `<div style="width:12px;height:12px;border-radius:50%;background:${['#AF9577','#2b4a60','#637058'][i]};flex-shrink:0;margin-top:4px;"></div>`+
                         (i<items.length-1?`<div style="width:2px;flex:1;min-height:32px;background:#e0e0e0;margin:4px 0;"></div>`:'') + `</div>`+
                         `<div style="padding-bottom:16px;"><div style="font-size:14px;font-weight:500;">${label}</div><div style="font-size:12px;color:#757575;">${time}</div></div></div>`).join('')}</div>`, false);
                 }
