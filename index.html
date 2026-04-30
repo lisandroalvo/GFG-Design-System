@@ -10009,7 +10009,7 @@
                         <div style="background: #FAFAFA; border-radius: 8px; padding: 20px; margin-bottom: 16px;">
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                                 <div style="font-size: 13px; font-weight: 600; color: var(--rodeo-black);">� Extracted Component Code</div>
-                                <button onclick="copyComponentCode('${component.name}')" style="background: var(--dust-dark); color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: 600;">
+                                <button onclick="copyComponentCode('${component.name}', this)" style="background: var(--dust-dark); color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: 600;">
                                     📋 Copy Full Code
                                 </button>
                             </div>
@@ -10164,11 +10164,13 @@ File Key: ${component.key}</div>
         }
 
         // Copy component code to clipboard
-        async function copyComponentCode(componentName) {
+        async function copyComponentCode(componentName, button) {
             const code = await loadComponentCode(componentName);
             if (code) {
-                const button = event.target;
                 copyToClipboard(code, button);
+            } else {
+                button.innerHTML = '❌ Not found';
+                setTimeout(() => { button.innerHTML = '📋 Copy Full Code'; }, 2000);
             }
         }
 
@@ -10575,66 +10577,507 @@ File Key: ${component.key}</div>
             return components[0];
         }
 
+        // ─── Live HTML renderers for all components ───────────────────────────
+        function getComponentHTMLPreview(setName, props) {
+            const name = setName.replace(/[<>]/g, '').trim();
+
+            // Helper: get prop value case-insensitively, with default
+            function p(key, def) {
+                for (const [k, v] of Object.entries(props)) {
+                    if (k.toLowerCase() === key.toLowerCase()) return v;
+                }
+                return def;
+            }
+
+            const MUI = {
+                primary:   { bg:'#1976d2', text:'#fff', light:'#e3f2fd' },
+                secondary: { bg:'#9c27b0', text:'#fff', light:'#f3e5f5' },
+                success:   { bg:'#2e7d32', text:'#fff', light:'#e8f5e9' },
+                error:     { bg:'#d32f2f', text:'#fff', light:'#ffebee' },
+                warning:   { bg:'#ed6c02', text:'#fff', light:'#fff3e0' },
+                info:      { bg:'#0288d1', text:'#fff', light:'#e1f5fe' },
+                default:   { bg:'#e0e0e0', text:'#212121', light:'#f5f5f5' },
+            };
+            function muiColor(c) { return MUI[(c||'primary').toLowerCase()] || MUI.primary; }
+
+            const wrap = (html, center=true) =>
+                `<div style="display:flex;align-items:center;justify-content:${center?'center':'flex-start'};padding:24px;min-height:80px;">${html}</div>`;
+
+            switch (name) {
+                // ── Button ──────────────────────────────────────────────────
+                case 'Button': {
+                    const variant  = p('variant','Contained').toLowerCase();
+                    const c        = muiColor(p('color','Primary'));
+                    const size     = p('size','Medium').toLowerCase();
+                    const disabled = p('disabled','False') === 'True' || p('disabled',false) === true;
+                    const label    = p('label','Button');
+                    const pad      = {small:'5px 10px',medium:'8px 22px',large:'11px 30px'}[size]||'8px 22px';
+                    const fs       = {small:'12px',medium:'14px',large:'15px'}[size]||'14px';
+                    let bg='transparent', border=c.bg, color=c.bg;
+                    if (variant==='contained') { bg=c.bg; color=c.text; }
+                    return wrap(`<button style="background:${bg};color:${color};border:1px solid ${border};padding:${pad};border-radius:4px;font-size:${fs};font-weight:600;cursor:${disabled?'not-allowed':'pointer'};opacity:${disabled?.5:1};font-family:inherit;letter-spacing:.05em;text-transform:uppercase;">${label}</button>`);
+                }
+
+                // ── ButtonGroup ──────────────────────────────────────────────
+                case 'ButtonGroup': {
+                    const variant = p('variant','Outlined').toLowerCase();
+                    const c = muiColor(p('color','Primary'));
+                    const btns = ['One','Two','Three'];
+                    const bstyle = `background:${variant==='contained'?c.bg:'transparent'};color:${variant==='contained'?c.text:c.bg};border:1px solid ${c.bg};padding:6px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;text-transform:uppercase;`;
+                    return wrap(btns.map((b,i)=>`<button style="${bstyle}border-radius:${i===0?'4px 0 0 4px':i===2?'0 4px 4px 0':'0'};border-left-width:${i>0?'0':'1px'};">${b}</button>`).join(''));
+                }
+
+                // ── Chip ─────────────────────────────────────────────────────
+                case 'Chip': {
+                    const variant  = p('variant','Filled').toLowerCase();
+                    const c        = muiColor(p('color','Default'));
+                    const label    = p('label','Chip');
+                    const deletable = p('onDelete?',false)||p('deletable','False')==='True';
+                    const bg    = variant==='outlined'?'transparent':c.bg;
+                    const color = variant==='outlined'?c.bg:c.text;
+                    const border = variant==='outlined'?`1px solid ${c.bg}`:'none';
+                    return wrap(`<span style="display:inline-flex;align-items:center;gap:4px;background:${bg};color:${color};border:${border};border-radius:16px;padding:4px 12px;font-size:13px;font-weight:400;font-family:inherit;">${label}${deletable?`<span style="cursor:pointer;font-size:16px;line-height:1;" onclick="this.parentElement.remove()">×</span>`:''}</span>`);
+                }
+
+                // ── Badge ─────────────────────────────────────────────────────
+                case 'Badge': {
+                    const c       = muiColor(p('color','Error'));
+                    const content = p('badgeContent','4');
+                    const variant = p('variant','Standard').toLowerCase();
+                    const dot     = variant==='dot';
+                    const badge   = dot
+                        ? `<span style="position:absolute;top:-2px;right:-2px;width:8px;height:8px;border-radius:50%;background:${c.bg};"></span>`
+                        : `<span style="position:absolute;top:-8px;right:-8px;min-width:18px;height:18px;border-radius:9px;background:${c.bg};color:${c.text};font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px;">${content}</span>`;
+                    return wrap(`<span style="position:relative;display:inline-flex;"><span style="width:36px;height:36px;border-radius:50%;background:#e0e0e0;display:flex;align-items:center;justify-content:center;font-size:18px;">📬</span>${badge}</span>`);
+                }
+
+                // ── Avatar ────────────────────────────────────────────────────
+                case 'Avatar': {
+                    const size    = p('size','Medium').toLowerCase();
+                    const dim     = {small:'32px',medium:'40px',large:'56px'}[size]||'40px';
+                    const fs      = {small:'14px',medium:'18px',large:'24px'}[size]||'18px';
+                    const variant = p('variant','Circular').toLowerCase();
+                    const radius  = variant==='circular'?'50%':variant==='rounded'?'8px':'0';
+                    const letters = p('children','U');
+                    return wrap(`<div style="width:${dim};height:${dim};border-radius:${radius};background:#1976d2;color:#fff;display:flex;align-items:center;justify-content:center;font-size:${fs};font-weight:500;font-family:inherit;">${letters}</div>`);
+                }
+
+                // ── AvatarGroup ───────────────────────────────────────────────
+                case 'AvatarGroup': {
+                    const colors = ['#1976d2','#9c27b0','#2e7d32','#d32f2f'];
+                    const letters = ['A','B','C','+2'];
+                    return wrap(letters.map((l,i)=>`<div style="width:40px;height:40px;border-radius:50%;background:${colors[i]};color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:500;border:2px solid #fff;margin-left:${i>0?'-10px':'0'};">${l}</div>`).join(''));
+                }
+
+                // ── Checkbox ──────────────────────────────────────────────────
+                case 'Checkbox': {
+                    const checked = p('checked','True')==='True'||p('checked',true)===true;
+                    const disabled = p('disabled','False')==='True';
+                    const c = muiColor(p('color','Primary'));
+                    const indeterminate = p('indeterminate','False')==='True';
+                    const icon = indeterminate ? '▬' : checked ? '✓' : '';
+                    const bg = (checked||indeterminate) ? c.bg : 'transparent';
+                    const border = (checked||indeterminate) ? c.bg : '#757575';
+                    return wrap(`<span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:18px;height:18px;border-radius:2px;border:2px solid ${border};background:${bg};color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;opacity:${disabled?.5:1};">${icon}</span><span style="font-size:14px;color:${disabled?'#bdbdbd':'#212121'};">Label</span></span>`);
+                }
+
+                // ── Radio ─────────────────────────────────────────────────────
+                case 'Radio': {
+                    const checked = p('checked','True')==='True'||p('checked',true)===true;
+                    const c = muiColor(p('color','Primary'));
+                    return wrap(`<span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:18px;height:18px;border-radius:50%;border:2px solid ${checked?c.bg:'#757575'};display:flex;align-items:center;justify-content:center;">${checked?`<span style="width:10px;height:10px;border-radius:50%;background:${c.bg};"></span>`:''}</span><span style="font-size:14px;">Label</span></span>`);
+                }
+
+                // ── RadioGroup ────────────────────────────────────────────────
+                case 'RadioGroup': {
+                    const c = muiColor(p('color','Primary'));
+                    return wrap(['Option A','Option B','Option C'].map((opt,i)=>`<span style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><span style="width:18px;height:18px;border-radius:50%;border:2px solid ${i===0?c.bg:'#757575'};display:flex;align-items:center;justify-content:center;">${i===0?`<span style="width:10px;height:10px;border-radius:50%;background:${c.bg};"></span>`:''}</span><span style="font-size:14px;">${opt}</span></span>`).join(''), false);
+                }
+
+                // ── Switch ────────────────────────────────────────────────────
+                case 'Switch': {
+                    const checked = p('checked','True')==='True'||p('checked',true)===true;
+                    const c = muiColor(p('color','Primary'));
+                    return wrap(`<span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:44px;height:24px;border-radius:12px;background:${checked?c.bg:'#bdbdbd'};position:relative;cursor:pointer;transition:background .2s;"><span style="position:absolute;top:2px;left:${checked?'22px':'2px'};width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.3);transition:left .2s;"></span></span><span style="font-size:14px;">${checked?'On':'Off'}</span></span>`);
+                }
+
+                // ── TextField ─────────────────────────────────────────────────
+                case 'TextField': {
+                    const variant = p('variant','Outlined').toLowerCase();
+                    const label   = p('label','Label');
+                    const error   = p('error','False')==='True';
+                    const disabled= p('disabled','False')==='True';
+                    const value   = p('value','');
+                    const helper  = p('helperText','');
+                    const borderC = error?'#d32f2f':disabled?'#bdbdbd':'#c4c4c4';
+                    const border  = variant==='standard'?`border-bottom:1px solid ${borderC};border-radius:0;`:variant==='filled'?`border-bottom:1px solid ${borderC};border-radius:4px 4px 0 0;background:#f5f5f5;`:(`border:1px solid ${borderC};border-radius:4px;`);
+                    return wrap(`<div style="display:flex;flex-direction:column;gap:4px;"><label style="font-size:12px;color:${error?'#d32f2f':disabled?'#bdbdbd':'#757575'};">${label}</label><div style="padding:8px 12px;${border}min-width:200px;font-size:14px;color:${disabled?'#bdbdbd':'#212121'};opacity:${disabled?.5:1};">${value||'​'}</div>${helper?`<span style="font-size:11px;color:${error?'#d32f2f':'#757575'};">${helper}</span>`:''}</div>`);
+                }
+
+                // ── Select ────────────────────────────────────────────────────
+                case 'Select': {
+                    const variant = p('variant','Outlined').toLowerCase();
+                    const label   = p('label','Age');
+                    const disabled= p('disabled','False')==='True';
+                    const border  = variant==='outlined'?'border:1px solid #c4c4c4;border-radius:4px;':'border-bottom:1px solid #c4c4c4;';
+                    return wrap(`<div style="display:inline-flex;flex-direction:column;gap:4px;"><label style="font-size:12px;color:#757575;">${label}</label><div style="display:flex;align-items:center;padding:8px 36px 8px 12px;${border}min-width:160px;font-size:14px;position:relative;cursor:pointer;opacity:${disabled?.5:1};">10 <span style="position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:18px;color:#757575;">▾</span></div></div>`);
+                }
+
+                // ── Autocomplete ──────────────────────────────────────────────
+                case 'Autocomplete': {
+                    return wrap(`<div style="display:inline-flex;flex-direction:column;gap:4px;"><label style="font-size:12px;color:#757575;">Search</label><div style="display:flex;align-items:center;padding:8px 12px;border:1px solid #c4c4c4;border-radius:4px;min-width:200px;font-size:14px;cursor:text;"><input style="border:none;outline:none;font-size:14px;width:100%;font-family:inherit;" placeholder="Search options..." /><span style="color:#757575;font-size:18px;">▾</span></div></div>`);
+                }
+
+                // ── Slider ────────────────────────────────────────────────────
+                case 'Slider': {
+                    const c = muiColor(p('color','Primary'));
+                    const val = parseInt(p('value','30'))||30;
+                    return wrap(`<div style="width:220px;padding:8px 0;"><div style="position:relative;height:4px;border-radius:2px;background:#e0e0e0;"><div style="position:absolute;left:0;top:0;height:4px;border-radius:2px;background:${c.bg};width:${val}%;"></div><div style="position:absolute;top:50%;left:${val}%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:${c.bg};box-shadow:0 0 0 3px ${c.light};cursor:pointer;"></div></div></div>`);
+                }
+
+                // ── Rating ────────────────────────────────────────────────────
+                case 'Rating': {
+                    const val = parseFloat(p('value','3'))||3;
+                    const max = parseInt(p('max','5'))||5;
+                    const c   = muiColor(p('color','Warning'));
+                    return wrap(Array.from({length:max},(_,i)=>`<span style="font-size:24px;color:${i<val?'#ed6c02':'#e0e0e0'};cursor:pointer;">★</span>`).join(''));
+                }
+
+                // ── CircularProgress ──────────────────────────────────────────
+                case 'CircularProgress': {
+                    const c = muiColor(p('color','Primary'));
+                    const size = p('size','40');
+                    const dim = parseInt(size)||40;
+                    const variant = p('variant','Indeterminate').toLowerCase();
+                    const value = parseInt(p('value','70'))||70;
+                    const stroke = Math.max(2, dim/10);
+                    const r = (dim-stroke*2)/2;
+                    const circ = 2*Math.PI*r;
+                    const dash = variant==='determinate' ? circ*(1-value/100) : circ*0.75;
+                    const anim = variant==='indeterminate' ? `@keyframes spin{to{transform:rotate(360deg)}}` : '';
+                    return wrap(`<style>${anim}</style><svg width="${dim}" height="${dim}" style="${variant==='indeterminate'?'animation:spin 1.4s linear infinite':''}"><circle cx="${dim/2}" cy="${dim/2}" r="${r}" fill="none" stroke="#e0e0e0" stroke-width="${stroke}"/><circle cx="${dim/2}" cy="${dim/2}" r="${r}" fill="none" stroke="${c.bg}" stroke-width="${stroke}" stroke-dasharray="${circ}" stroke-dashoffset="${dash}" stroke-linecap="round" transform="rotate(-90 ${dim/2} ${dim/2})"/></svg>`);
+                }
+
+                // ── LinearProgress ────────────────────────────────────────────
+                case 'LinearProgress': {
+                    const c = muiColor(p('color','Primary'));
+                    const variant = p('variant','Indeterminate').toLowerCase();
+                    const value = parseInt(p('value','70'))||70;
+                    const anim = variant==='indeterminate'?`@keyframes lp{0%{left:-35%;right:100%}60%{left:100%;right:-90%}100%{left:100%;right:-90%}}`:'' ;
+                    const inner = variant==='determinate'
+                        ? `<div style="position:absolute;left:0;top:0;bottom:0;background:${c.bg};width:${value}%;transition:width .4s;"></div>`
+                        : `<div style="position:absolute;top:0;bottom:0;background:${c.bg};animation:lp 2.1s ease-in-out infinite;width:35%;"></div>`;
+                    return wrap(`<style>${anim}</style><div style="position:relative;width:240px;height:4px;border-radius:2px;background:${c.light};overflow:hidden;">${inner}</div>`);
+                }
+
+                // ── Skeleton ──────────────────────────────────────────────────
+                case 'Skeleton': {
+                    const variant = p('variant','Text').toLowerCase();
+                    const anim = `@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}`;
+                    const shimmer = `background:linear-gradient(90deg,#e0e0e0 25%,#f5f5f5 50%,#e0e0e0 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;`;
+                    if (variant==='circular')
+                        return wrap(`<style>${anim}</style><div style="width:48px;height:48px;border-radius:50%;${shimmer}"></div>`);
+                    if (variant==='rectangular')
+                        return wrap(`<style>${anim}</style><div style="width:200px;height:80px;border-radius:4px;${shimmer}"></div>`);
+                    // text (default)
+                    return wrap(`<style>${anim}</style><div style="display:flex;flex-direction:column;gap:8px;width:220px;">${[90,80,60].map(w=>`<div style="height:14px;border-radius:4px;width:${w}%;${shimmer}"></div>`).join('')}</div>`, false);
+                }
+
+                // ── Accordion ─────────────────────────────────────────────────
+                case 'Accordion': {
+                    const expanded = p('expanded','True')==='True'||p('expanded',true)===true;
+                    return wrap(`<div style="width:280px;border:1px solid #e0e0e0;border-radius:4px;font-family:inherit;"><div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;cursor:pointer;background:#fafafa;"><span style="font-size:14px;font-weight:500;">Accordion Summary</span><span style="font-size:20px;transition:transform .3s;transform:rotate(${expanded?'180':'0'}deg);">▾</span></div>${expanded?`<div style="padding:16px;font-size:14px;color:#757575;border-top:1px solid #e0e0e0;">Accordion content goes here. You can put any content inside.</div>`:''}</div>`, false);
+                }
+
+                // ── Card ──────────────────────────────────────────────────────
+                case 'Card':
+                case 'CardContent':
+                case 'CardHeader':
+                case 'CardActions':
+                case 'CardMedia': {
+                    return wrap(`<div style="width:280px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.15);overflow:hidden;font-family:inherit;"><div style="height:140px;background:linear-gradient(135deg,#1976d2,#42a5f5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;">🖼</div><div style="padding:16px;"><div style="font-size:16px;font-weight:600;margin-bottom:8px;">Card Title</div><div style="font-size:13px;color:#757575;">Card description text goes here. This is a sample content for the card component.</div></div><div style="padding:8px 16px;display:flex;gap:8px;border-top:1px solid #f5f5f5;"><button style="background:transparent;border:none;color:#1976d2;font-weight:600;font-size:13px;cursor:pointer;text-transform:uppercase;padding:4px 0;">Action</button><button style="background:transparent;border:none;color:#757575;font-weight:600;font-size:13px;cursor:pointer;text-transform:uppercase;padding:4px 0;">Share</button></div></div>`, false);
+                }
+
+                // ── Paper ─────────────────────────────────────────────────────
+                case 'Paper': {
+                    const elevation = parseInt(p('elevation','1'))||1;
+                    const shadow = ['none','0 1px 3px rgba(0,0,0,.2)','0 2px 6px rgba(0,0,0,.2)','0 4px 12px rgba(0,0,0,.2)'][Math.min(elevation,3)];
+                    const variant = p('variant','Elevation').toLowerCase();
+                    const border = variant==='outlined'?'border:1px solid #e0e0e0;':'';
+                    return wrap(`<div style="width:200px;height:100px;border-radius:4px;box-shadow:${shadow};${border}display:flex;align-items:center;justify-content:center;font-size:13px;color:#757575;">Paper elevation ${elevation}</div>`);
+                }
+
+                // ── Tabs / Tab ────────────────────────────────────────────────
+                case 'Tabs':
+                case 'Tab': {
+                    const c = muiColor(p('color','Primary'));
+                    const selected = parseInt(p('value','0'))||0;
+                    return wrap(`<div style="border-bottom:1px solid #e0e0e0;width:300px;"><div style="display:flex;">${['Tab One','Tab Two','Tab Three'].map((t,i)=>`<div style="padding:12px 16px;font-size:14px;font-weight:${i===selected?600:400};color:${i===selected?c.bg:'#757575'};cursor:pointer;border-bottom:${i===selected?`2px solid ${c.bg}`:'2px solid transparent'};margin-bottom:-1px;">${t}</div>`).join('')}</div></div>`, false);
+                }
+
+                // ── Breadcrumbs ───────────────────────────────────────────────
+                case 'Breadcrumbs': {
+                    const items = ['Home','Category','Current Page'];
+                    return wrap(items.map((item,i)=>i<items.length-1?`<a style="color:#1976d2;font-size:14px;text-decoration:none;cursor:pointer;">${item}</a><span style="color:#757575;margin:0 8px;">/</span>`:`<span style="font-size:14px;color:#757575;">${item}</span>`).join(''));
+                }
+
+                // ── Pagination ────────────────────────────────────────────────
+                case 'Pagination':
+                case 'PaginationItem': {
+                    const c = muiColor(p('color','Primary'));
+                    const count = parseInt(p('count','10'))||10;
+                    const page  = parseInt(p('page','1'))||1;
+                    const pages = [1,2,3,'...',count];
+                    return wrap(`<div style="display:flex;align-items:center;gap:4px;">${pages.map(pg=>`<div style="min-width:32px;height:32px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;background:${pg===page?c.bg:'transparent'};color:${pg===page?c.text:'#212121'};cursor:pointer;border:${pg===page?'none':'1px solid transparent'};">${pg}</div>`).join('')}</div>`);
+                }
+
+                // ── Divider ───────────────────────────────────────────────────
+                case 'Divider': {
+                    const orientation = p('orientation','Horizontal').toLowerCase();
+                    const text = p('children','');
+                    if (orientation==='vertical')
+                        return wrap(`<div style="display:flex;align-items:center;gap:16px;padding:0 24px;"><span>Left</span><div style="width:1px;height:40px;background:#e0e0e0;"></div><span>Right</span></div>`);
+                    return wrap(text
+                        ? `<div style="display:flex;align-items:center;gap:8px;width:280px;"><div style="flex:1;height:1px;background:#e0e0e0;"></div><span style="font-size:12px;color:#757575;">${text}</span><div style="flex:1;height:1px;background:#e0e0e0;"></div></div>`
+                        : `<div style="width:280px;height:1px;background:#e0e0e0;"></div>`);
+                }
+
+                // ── Fab ───────────────────────────────────────────────────────
+                case 'Fab': {
+                    const c = muiColor(p('color','Primary'));
+                    const size = p('size','Large').toLowerCase();
+                    const variant = p('variant','Circular').toLowerCase();
+                    const dim = {small:'40px',medium:'48px',large:'56px'}[size]||'56px';
+                    const extended = variant==='extended';
+                    return wrap(`<button style="background:${c.bg};color:${c.text};border:none;border-radius:${extended?'28px':'50%'};width:${extended?'auto':dim};height:${dim};padding:${extended?'0 16px':'0'};display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,.3);gap:8px;">${extended?`<span style="font-size:20px;">+</span><span style="font-size:14px;font-weight:600;text-transform:uppercase;">Add</span>`:'+'}</button>`);
+                }
+
+                // ── Snackbar ──────────────────────────────────────────────────
+                case 'Snackbar': {
+                    const message = p('message','Message sent successfully');
+                    const action  = p('action?',true);
+                    return wrap(`<div style="display:flex;align-items:center;gap:8px;background:#323232;color:#fff;padding:12px 16px;border-radius:4px;min-width:240px;box-shadow:0 4px 8px rgba(0,0,0,.3);font-size:14px;"><span style="flex:1;">${message}</span>${action?`<button style="background:transparent;border:none;color:#90caf9;font-weight:600;font-size:13px;cursor:pointer;text-transform:uppercase;">Undo</button>`:''}<span style="cursor:pointer;color:#fff;font-size:18px;">×</span></div>`);
+                }
+
+                // ── Tooltip ───────────────────────────────────────────────────
+                case 'Tooltip': {
+                    const title = p('title','Tooltip text');
+                    const placement = p('placement','Bottom').toLowerCase();
+                    return wrap(`<div style="position:relative;display:inline-flex;flex-direction:column;align-items:center;gap:8px;"><button style="background:#1976d2;color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;">Hover me</button><div style="background:rgba(50,50,50,.9);color:#fff;padding:4px 8px;border-radius:4px;font-size:12px;white-space:nowrap;">${title}</div></div>`);
+                }
+
+                // ── Typography ────────────────────────────────────────────────
+                case 'Typography': {
+                    const variant = p('variant','Body1').toLowerCase().replace(/\s/g,'');
+                    const styles = {
+                        h1:'font-size:36px;font-weight:300;', h2:'font-size:28px;font-weight:300;',
+                        h3:'font-size:24px;font-weight:400;', h4:'font-size:20px;font-weight:400;',
+                        h5:'font-size:18px;font-weight:400;', h6:'font-size:16px;font-weight:500;',
+                        subtitle1:'font-size:16px;', subtitle2:'font-size:14px;font-weight:500;',
+                        body1:'font-size:16px;', body2:'font-size:14px;',
+                        caption:'font-size:12px;', overline:'font-size:11px;text-transform:uppercase;letter-spacing:.1em;',
+                        button:'font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;',
+                    };
+                    const s = styles[variant]||styles.body1;
+                    return wrap(`<p style="${s}color:#212121;margin:0;font-family:inherit;">${variant.toUpperCase()} — The quick brown fox jumps over the lazy dog.</p>`, false);
+                }
+
+                // ── Link ──────────────────────────────────────────────────────
+                case 'Link': {
+                    const variant = p('variant','Body1');
+                    const underline = p('underline','Always').toLowerCase();
+                    return wrap(`<a style="color:#1976d2;font-size:16px;cursor:pointer;text-decoration:${underline==='none'?'none':underline==='hover'?'none':'underline'};">Link example</a>`);
+                }
+
+                // ── List / ListItem ───────────────────────────────────────────
+                case 'List':
+                case 'ListItem': {
+                    const items = ['Inbox','Starred','Send email','Drafts'];
+                    return wrap(`<div style="width:240px;background:#fff;border-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,.1);overflow:hidden;">${items.map((item,i)=>`<div style="display:flex;align-items:center;gap:16px;padding:12px 16px;font-size:14px;cursor:pointer;background:${i===0?'rgba(25,118,210,.08)':'transparent'};color:${i===0?'#1976d2':'#212121'};">📌 ${item}</div>`).join('')}</div>`, false);
+                }
+
+                // ── Menu / MenuItem / MenuList ─────────────────────────────────
+                case 'Menu':
+                case 'MenuItem':
+                case 'MenuList': {
+                    const items = ['Profile','My account','Logout'];
+                    return wrap(`<div style="background:#fff;border-radius:4px;box-shadow:0 4px 16px rgba(0,0,0,.2);min-width:160px;padding:8px 0;">${items.map(item=>`<div style="padding:8px 16px;font-size:14px;cursor:pointer;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background=''">${item}</div>`).join('')}</div>`, false);
+                }
+
+                // ── ToggleButton / ToggleButtonGroup ──────────────────────────
+                case 'ToggleButton':
+                case 'ToggleButtonGroup': {
+                    const c = muiColor(p('color','Primary'));
+                    const options = ['Left','Center','Right'];
+                    const selected = p('value','Left');
+                    return wrap(options.map((opt,i)=>{
+                        const sel = opt===selected;
+                        return `<button style="padding:7px 16px;border:1px solid ${c.bg};border-radius:${i===0?'4px 0 0 4px':i===2?'0 4px 4px 0':'0'};border-left-width:${i>0?'0':'1px'};background:${sel?c.light:'transparent'};color:${sel?c.bg:'#757575'};font-size:13px;font-weight:600;cursor:pointer;">${opt}</button>`;
+                    }).join(''));
+                }
+
+                // ── Stepper ───────────────────────────────────────────────────
+                case 'Stepper':
+                case 'MobileStepper': {
+                    const active = parseInt(p('activeStep','1'))||1;
+                    const steps = ['Step 1','Step 2','Step 3'];
+                    return wrap(`<div style="display:flex;align-items:center;width:300px;">${steps.map((s,i)=>{
+                        const done=i<active, cur=i===active;
+                        const color = done||cur?'#1976d2':'#bdbdbd';
+                        return `<div style="display:flex;align-items:center;flex:${i<steps.length-1?1:'0'};">`+
+                            `<div style="display:flex;flex-direction:column;align-items:center;gap:4px;">`+
+                            `<div style="width:28px;height:28px;border-radius:50%;background:${color};color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;">${done?'✓':i+1}</div>`+
+                            `<span style="font-size:11px;color:${color};white-space:nowrap;">${s}</span></div>`+
+                            (i<steps.length-1?`<div style="flex:1;height:1px;background:${done?'#1976d2':'#e0e0e0'};margin:0 4px;margin-bottom:16px;"></div>`:'')+
+                            `</div>`;
+                    }).join('')}</div>`, false);
+                }
+
+                // ── Appbar ────────────────────────────────────────────────────
+                case 'AppBar': {
+                    const c = muiColor(p('color','Primary'));
+                    const pos = p('position','Fixed');
+                    return wrap(`<div style="width:300px;background:${c.bg};color:${c.text};padding:12px 16px;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.3);display:flex;align-items:center;gap:16px;"><span style="font-size:20px;">☰</span><span style="font-size:18px;font-weight:500;flex:1;">App Title</span><span style="font-size:20px;">🔍</span></div>`, false);
+                }
+
+                // ── Dialog ────────────────────────────────────────────────────
+                case 'Dialog':
+                case 'DialogTitle':
+                case 'DialogContent':
+                case 'DialogActions': {
+                    return wrap(`<div style="width:280px;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,.3);background:#fff;overflow:hidden;"><div style="padding:20px 24px;font-size:18px;font-weight:600;">Dialog Title</div><div style="padding:0 24px 20px;font-size:14px;color:#757575;">Dialog content goes here. You can place any description or form content.</div><div style="padding:12px 16px;display:flex;justify-content:flex-end;gap:8px;border-top:1px solid #f5f5f5;"><button style="background:transparent;border:none;color:#1976d2;font-weight:600;font-size:13px;cursor:pointer;text-transform:uppercase;padding:6px 8px;">Cancel</button><button style="background:#1976d2;border:none;color:#fff;font-weight:600;font-size:13px;cursor:pointer;text-transform:uppercase;padding:6px 16px;border-radius:4px;">Confirm</button></div></div>`, false);
+                }
+
+                // ── Table ─────────────────────────────────────────────────────
+                case 'Table':
+                case 'DataGridTable': {
+                    const rows = [['Alice','28','Engineer'],['Bob','34','Designer'],['Carol','25','Manager']];
+                    return wrap(`<table style="border-collapse:collapse;font-size:13px;width:300px;"><thead><tr style="background:#f5f5f5;">${['Name','Age','Role'].map(h=>`<th style="padding:10px 12px;text-align:left;font-weight:600;border-bottom:2px solid #e0e0e0;">${h}</th>`).join('')}</tr></thead><tbody>${rows.map((r,ri)=>`<tr style="background:${ri%2===0?'#fff':'#fafafa'};">${r.map(c=>`<td style="padding:10px 12px;border-bottom:1px solid #f0f0f0;">${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`, false);
+                }
+
+                // ── SpeedDial ─────────────────────────────────────────────────
+                case 'SpeedDial': {
+                    const c = muiColor(p('color','Primary'));
+                    const open = p('open','True')==='True';
+                    const actions = ['✏️','📎','❤️'];
+                    return wrap(`<div style="display:flex;flex-direction:column-reverse;align-items:center;gap:12px;">${open?actions.map(a=>`<div style="width:40px;height:40px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;">${a}</div>`).join('')+`<div style="width:56px;height:56px;border-radius:50%;background:${c.bg};color:${c.text};display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,.3);">✕</div>`:`<div style="width:56px;height:56px;border-radius:50%;background:${c.bg};color:${c.text};display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,.3);">+</div>`}</div>`);
+                }
+
+                // ── Popover ───────────────────────────────────────────────────
+                case 'Popover': {
+                    return wrap(`<div style="display:flex;flex-direction:column;align-items:flex-start;gap:8px;"><button style="background:#1976d2;color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;">Open Popover</button><div style="background:#fff;border-radius:4px;box-shadow:0 4px 16px rgba(0,0,0,.2);padding:16px;font-size:14px;min-width:160px;">Popover content here</div></div>`, false);
+                }
+
+                // ── BottomNavigation ──────────────────────────────────────────
+                case 'BottomNavigation':
+                case 'BottomNavigationAction': {
+                    const items = [['🏠','Home'],['🔍','Search'],['❤️','Favorites'],['👤','Profile']];
+                    const active = parseInt(p('value','0'))||0;
+                    return wrap(`<div style="display:flex;width:300px;background:#fff;box-shadow:0 -2px 8px rgba(0,0,0,.1);border-radius:4px;">${items.map(([icon,label],i)=>`<div style="flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 0;cursor:pointer;color:${i===active?'#1976d2':'#757575'};"><span style="font-size:22px;">${icon}</span><span style="font-size:11px;font-weight:${i===active?600:400};">${label}</span></div>`).join('')}</div>`, false);
+                }
+
+                // ── Backdrop ──────────────────────────────────────────────────
+                case 'Backdrop': {
+                    return wrap(`<div style="width:280px;height:120px;position:relative;border-radius:8px;overflow:hidden;"><div style="position:absolute;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;border:3px solid rgba(255,255,255,.6);border-top-color:#fff;border-radius:50%;animation:spin 1s linear infinite;"></div></div><div style="padding:16px;font-size:13px;">Page content behind backdrop</div></div>`);
+                }
+
+                // ── Icon ──────────────────────────────────────────────────────
+                case 'Icon': {
+                    const c = muiColor(p('color','Action'));
+                    return wrap(`<div style="display:flex;gap:16px;align-items:center;">${['🏠','⭐','❤️','🔔','⚙️'].map(ic=>`<span style="font-size:28px;cursor:pointer;">${ic}</span>`).join('')}</div>`);
+                }
+
+                // ── Toolbar ───────────────────────────────────────────────────
+                case 'Toolbar': {
+                    return wrap(`<div style="display:flex;align-items:center;gap:16px;background:#f5f5f5;padding:8px 16px;border-radius:4px;width:280px;box-shadow:0 1px 4px rgba(0,0,0,.1);"><span style="font-size:20px;cursor:pointer;">☰</span><span style="font-size:16px;font-weight:500;flex:1;">Title</span><span style="font-size:18px;cursor:pointer;">🔍</span><span style="font-size:18px;cursor:pointer;">⋮</span></div>`, false);
+                }
+
+                // ── Stack ─────────────────────────────────────────────────────
+                case 'Stack': {
+                    const dir = p('direction','Column').toLowerCase();
+                    const spacing = parseInt(p('spacing','2'))||2;
+                    const gap = spacing*8+'px';
+                    const isRow = dir.includes('row');
+                    return wrap(`<div style="display:flex;flex-direction:${isRow?'row':'column'};gap:${gap};">${[1,2,3].map(n=>`<div style="padding:12px 24px;background:#e3f2fd;border-radius:4px;font-size:13px;font-weight:500;color:#1976d2;">Item ${n}</div>`).join('')}</div>`, false);
+                }
+
+                // ── Container ─────────────────────────────────────────────────
+                case 'Container': {
+                    return wrap(`<div style="max-width:280px;border:2px dashed #c4c4c4;padding:16px;border-radius:4px;font-size:13px;color:#757575;text-align:center;">Container (max-width: sm)<br>Content goes here</div>`, false);
+                }
+
+                // ── Collapse / Fade / Grow / Slide / Zoom ─────────────────────
+                case 'Collapse':
+                case 'Fade':
+                case 'Grow':
+                case 'Slide':
+                case 'Zoom': {
+                    const inProp = p('in','True')==='True';
+                    return wrap(`<div style="padding:16px;background:#f5f5f5;border-radius:4px;opacity:${inProp?1:.3};transform:scale(${inProp?1:.8});transition:all .4s;font-size:13px;color:#757575;">${name} transition — in: ${inProp?'true':'false'}</div>`);
+                }
+
+                // ── Timeline ──────────────────────────────────────────────────
+                case 'Timeline': {
+                    const items = [['Eat','9:00 am'],['Code','10:00 am'],['Sleep','11:00 pm']];
+                    return wrap(`<div style="display:flex;flex-direction:column;gap:0;padding-left:24px;">${items.map(([label,time],i)=>`<div style="display:flex;align-items:flex-start;gap:12px;position:relative;">`+
+                        `<div style="display:flex;flex-direction:column;align-items:center;">`+
+                        `<div style="width:12px;height:12px;border-radius:50%;background:${['#1976d2','#9c27b0','#2e7d32'][i]};flex-shrink:0;margin-top:4px;"></div>`+
+                        (i<items.length-1?`<div style="width:2px;flex:1;min-height:32px;background:#e0e0e0;margin:4px 0;"></div>`:'') + `</div>`+
+                        `<div style="padding-bottom:16px;"><div style="font-size:14px;font-weight:500;">${label}</div><div style="font-size:12px;color:#757575;">${time}</div></div></div>`).join('')}</div>`, false);
+                }
+
+                // ── TransferList ──────────────────────────────────────────────
+                case 'TransferList': {
+                    return wrap(`<div style="display:flex;align-items:center;gap:8px;"><div style="border:1px solid #e0e0e0;border-radius:4px;width:110px;"><div style="padding:8px;font-size:12px;font-weight:600;border-bottom:1px solid #e0e0e0;">Choices</div>${['Item A','Item B','Item C'].map(i=>`<div style="padding:6px 10px;font-size:13px;cursor:pointer;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background=''">${i}</div>`).join('')}</div><div style="display:flex;flex-direction:column;gap:4px;"><button style="padding:4px 8px;font-size:18px;cursor:pointer;border:1px solid #e0e0e0;border-radius:4px;background:#fff;">›</button><button style="padding:4px 8px;font-size:18px;cursor:pointer;border:1px solid #e0e0e0;border-radius:4px;background:#fff;">‹</button></div><div style="border:1px solid #e0e0e0;border-radius:4px;width:110px;"><div style="padding:8px;font-size:12px;font-weight:600;border-bottom:1px solid #e0e0e0;">Chosen</div><div style="padding:6px 10px;font-size:13px;">Item D</div></div></div>`, false);
+                }
+
+                // ── TreeItem ──────────────────────────────────────────────────
+                case 'TreeItem': {
+                    return wrap(`<div style="font-family:inherit;font-size:14px;"><div style="display:flex;align-items:center;gap:4px;cursor:pointer;padding:4px 8px;">▾ <span>Parent Node</span></div><div style="padding-left:24px;">${['Child 1','Child 2','Child 3'].map(c=>`<div style="display:flex;align-items:center;gap:4px;padding:4px 8px;cursor:pointer;color:#757575;">• <span>${c}</span></div>`).join('')}</div></div>`, false);
+                }
+
+                // ── Popover / Backdrop fallbacks ──────────────────────────────
+                default: {
+                    // Show thumbnail + component name as fallback
+                    const thumb = `component-thumbs/${name}.png`;
+                    return `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;gap:16px;">
+                        <img src="${thumb}" alt="${name}" style="max-width:100%;max-height:200px;object-fit:contain;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);" onerror="this.style.display='none'"/>
+                        <div style="font-size:13px;color:#757575;">${name} — preview from Figma design</div>
+                    </div>`;
+                }
+            }
+        }
+
         function renderLiveComponent() {
             const container = document.getElementById('playgroundPreviewContainer');
             if (!container) return;
-            
+
             const { setName, components } = currentComponents;
-            
-            // For Alert, render live interactive component
+
+            // Alert has its own class-based renderer
             if (setName === 'Alert' || setName === '<Alert>') {
-                // Get property values
                 const severity = currentPropertySelections['severity'] || 'Success';
                 const variant = currentPropertySelections['variant'] || 'Standard';
-                const color = currentPropertySelections['color'] || 'Success';
                 const actionEnabled = currentPropertySelections['action?'] || false;
-                const iconEnabled = currentPropertySelections['icon?'] !== false; // default true
                 const onCloseEnabled = currentPropertySelections['onClose?'] || false;
-                
                 const titleEnabled = currentPropertySelections['title?'] || false;
                 const descEnabled  = currentPropertySelections['description?'] !== undefined ? currentPropertySelections['description?'] : true;
                 const titleText    = currentPropertySelections['title_text']       || 'Alert Title';
                 const descText     = currentPropertySelections['description_text'] || 'This is an alert message.';
-
-                // Create and render the Alert component
-                const alert = new AlertComponent({
-                    severity: severity,
-                    variant: variant,
-                    title: titleEnabled,
-                    titleText: titleText,
-                    description: descEnabled,
-                    descriptionText: descText,
-                    action: actionEnabled,
-                    actionInstance: 'Text',
-                    onClose: onCloseEnabled
-                });
-                
+                const alert = new AlertComponent({ severity, variant, title: titleEnabled, titleText, description: descEnabled, descriptionText: descText, action: actionEnabled, actionInstance: 'Text', onClose: onCloseEnabled });
                 container.innerHTML = alert.render();
-                
-                // Update measurements
-                setTimeout(() => {
-                    const alertEl = container.querySelector('div');
-                    if (alertEl) {
-                        document.getElementById('compWidth').textContent = alertEl.offsetWidth + 'px';
-                        document.getElementById('compHeight').textContent = alertEl.offsetHeight + 'px';
-                    }
-                }, 100);
             } else {
-                // For other components, show component info
-                const matchingVariant = findMatchingVariant(components, currentPropertySelections);
-                
-                if (matchingVariant && matchingVariant.filePath) {
-                    container.innerHTML = `
-                        <div style="padding: 20px; text-align: center; color: var(--graphite);">
-                            <p style="font-size: 14px; margin-bottom: 12px;">Component: <strong>${setName}</strong></p>
-                            <p style="font-size: 12px;">File: ${matchingVariant.filePath}</p>
-                            <p style="font-size: 11px; margin-top: 16px; color: var(--dust-dark);">Live rendering coming soon...</p>
-                        </div>
-                    `;
-                } else {
-                    container.innerHTML = '<p style="color: var(--graphite); text-align: center;">Component preview not available</p>';
-                }
+                container.innerHTML = getComponentHTMLPreview(setName, currentPropertySelections);
             }
+
+            // Update measurements
+            setTimeout(() => {
+                const el = container.firstElementChild;
+                if (el) {
+                    document.getElementById('compWidth').textContent = el.offsetWidth + 'px';
+                    document.getElementById('compHeight').textContent = el.offsetHeight + 'px';
+                }
+            }, 100);
         }
 
         function renderPlaygroundControls(properties, selections) {
