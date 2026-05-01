@@ -9583,9 +9583,10 @@
                             <span class="nav-item-count">${count}</span>
                         </div>
                         <div class="nav-sublist" hidden>
-                            ${setNames.map(setName => `
-                                <div class="nav-subitem" data-page="${page}" data-set-name="${setName}" title="${setName}">${setName}</div>
-                            `).join('')}
+                            ${setNames.map(setName => {
+                                const display = setName.replace(/[<>]/g, '');
+                                return `<div class="nav-subitem" data-page="${page}" data-set-name="${setName.replace(/"/g,'&quot;')}" title="${display}">${display}</div>`;
+                            }).join('')}
                         </div>
                     </div>
                 `;
