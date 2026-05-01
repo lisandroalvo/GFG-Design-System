@@ -10246,292 +10246,387 @@ File Key: ${component.key}</div>
         // Full property definitions for every component — same pattern as Alert.
         // These drive both the playground controls and the live HTML renderer.
         const COMPONENT_PROPS = {
+            // ── Feedback ────────────────────────────────────────────────────
             'Alert': [
-                { name: 'severity',    values: ['Error','Warning','Info','Success'],                      default: 'Success',  isBoolean: false },
-                { name: 'variant',     values: ['Standard','Filled','Outlined'],                          default: 'Standard', isBoolean: false },
+                { name: 'severity',    values: ['Error','Warning','Info','Success'],  default: 'Success',  isBoolean: false },
+                { name: 'variant',     values: ['Standard','Filled','Outlined'],       default: 'Standard', isBoolean: false },
                 { name: 'title',       values: ['True','False'], default: false, isBoolean: true, hasText: true },
                 { name: 'description', values: ['True','False'], default: true,  isBoolean: true, hasText: true },
                 { name: 'action',      values: ['True','False'], default: false, isBoolean: true },
                 { name: 'icon',        values: ['True','False'], default: true,  isBoolean: true },
                 { name: 'onClose',     values: ['True','False'], default: false, isBoolean: true },
             ],
-            'Button': [
-                { name: 'variant',    values: ['Contained','Outlined','Text'],                                        default: 'Contained', isBoolean: false },
-                { name: 'color',      values: ['Primary','Secondary','Success','Error','Warning','Info','Inherit'],    default: 'Primary',   isBoolean: false },
-                { name: 'size',       values: ['Small','Medium','Large'],                                             default: 'Medium',    isBoolean: false },
-                { name: 'state',      values: ['Enabled','Hovered','Focused','Pressed','Disabled'],                   default: 'Enabled',   isBoolean: false },
-                { name: 'startIcon',  values: ['True','False'], default: false, isBoolean: true },
-                { name: 'endIcon',    values: ['True','False'], default: false, isBoolean: true },
-                { name: 'label',      type: 'text', default: 'Button' },
-            ],
-            'ButtonGroup': [
-                { name: 'variant',      values: ['Contained','Outlined','Text'],                                    default: 'Outlined',    isBoolean: false },
-                { name: 'color',        values: ['Primary','Secondary','Success','Error','Warning','Info'],          default: 'Primary',     isBoolean: false },
-                { name: 'orientation',  values: ['Horizontal','Vertical'],                                          default: 'Horizontal',  isBoolean: false },
-                { name: 'disabled',     values: ['True','False'], default: false, isBoolean: true },
-            ],
-            'Chip': [
-                { name: 'variant',   values: ['Filled','Outlined'],                                                                  default: 'Filled',   isBoolean: false },
-                { name: 'color',     values: ['Default','Primary','Secondary','Success','Error','Warning','Info'],                    default: 'Default',  isBoolean: false },
-                { name: 'size',      values: ['Small','Medium'],                                                                      default: 'Medium',   isBoolean: false },
-                { name: 'label',     type: 'text', default: 'Chip' },
-                { name: 'onDelete',  values: ['True','False'], default: false, isBoolean: true },
-                { name: 'disabled',  values: ['True','False'], default: false, isBoolean: true },
-            ],
-            'Badge': [
-                { name: 'variant',      values: ['Standard','Dot'],                                                                      default: 'Standard', isBoolean: false },
-                { name: 'color',        values: ['Primary','Secondary','Error','Warning','Info','Success','Default'],                     default: 'Error',    isBoolean: false },
-                { name: 'badgeContent', type: 'text', default: '4' },
-                { name: 'max',          values: ['9','99','999'],                                                                         default: '99',       isBoolean: false },
-                { name: 'showZero',     values: ['True','False'], default: false, isBoolean: true },
-            ],
-            'Avatar': [
-                { name: 'variant',  values: ['Circular','Rounded','Square'],  default: 'Circular', isBoolean: false },
-                { name: 'size',     values: ['Small','Medium','Large'],        default: 'Medium',   isBoolean: false },
-                { name: 'children', type: 'text', default: 'U' },
-            ],
-            'AvatarGroup': [
-                { name: 'max',      values: ['3','4','5','6'],   default: '4', isBoolean: false },
-                { name: 'spacing',  values: ['Small','Medium'],  default: 'Medium', isBoolean: false },
-            ],
-            'Checkbox': [
-                { name: 'checked',       values: ['True','False'], default: true,  isBoolean: true },
-                { name: 'indeterminate', values: ['True','False'], default: false, isBoolean: true },
-                { name: 'disabled',      values: ['True','False'], default: false, isBoolean: true },
-                { name: 'color',  values: ['Primary','Secondary','Success','Error','Warning','Info','Default'], default: 'Primary', isBoolean: false },
-            ],
-            'Radio': [
-                { name: 'checked',  values: ['True','False'], default: true,  isBoolean: true },
-                { name: 'disabled', values: ['True','False'], default: false, isBoolean: true },
-                { name: 'color',    values: ['Primary','Secondary','Success','Error','Warning','Info'], default: 'Primary', isBoolean: false },
-            ],
-            'RadioGroup': [
-                { name: 'color', values: ['Primary','Secondary','Success','Error','Warning','Info'], default: 'Primary', isBoolean: false },
-                { name: 'row',   values: ['True','False'], default: false, isBoolean: true },
-            ],
-            'Switch': [
-                { name: 'checked',  values: ['True','False'], default: true,  isBoolean: true },
-                { name: 'disabled', values: ['True','False'], default: false, isBoolean: true },
-                { name: 'color',    values: ['Primary','Secondary','Success','Error','Warning','Info','Default'], default: 'Primary', isBoolean: false },
-                { name: 'size',     values: ['Small','Medium'],  default: 'Medium', isBoolean: false },
-            ],
-            'TextField': [
-                { name: 'variant',    values: ['Outlined','Filled','Standard'],  default: 'Outlined', isBoolean: false },
-                { name: 'size',       values: ['Small','Medium'],                default: 'Medium',   isBoolean: false },
-                { name: 'label',      type: 'text', default: 'Label' },
-                { name: 'helperText', type: 'text', default: '' },
-                { name: 'error',      values: ['True','False'], default: false, isBoolean: true },
-                { name: 'disabled',   values: ['True','False'], default: false, isBoolean: true },
-                { name: 'multiline',  values: ['True','False'], default: false, isBoolean: true },
-            ],
-            'Select': [
-                { name: 'variant',   values: ['Outlined','Filled','Standard'],  default: 'Outlined', isBoolean: false },
-                { name: 'label',     type: 'text', default: 'Age' },
-                { name: 'disabled',  values: ['True','False'], default: false, isBoolean: true },
-                { name: 'multiple',  values: ['True','False'], default: false, isBoolean: true },
-            ],
-            'Autocomplete': [
-                { name: 'variant',   values: ['Outlined','Filled','Standard'], default: 'Outlined', isBoolean: false },
-                { name: 'label',     type: 'text', default: 'Search' },
-                { name: 'disabled',  values: ['True','False'], default: false, isBoolean: true },
-                { name: 'multiple',  values: ['True','False'], default: false, isBoolean: true },
-            ],
-            'Slider': [
-                { name: 'color',       values: ['Primary','Secondary','Success','Error','Warning','Info'], default: 'Primary',    isBoolean: false },
-                { name: 'size',        values: ['Small','Medium'],        default: 'Medium',     isBoolean: false },
-                { name: 'orientation', values: ['Horizontal','Vertical'], default: 'Horizontal', isBoolean: false },
-                { name: 'value',       values: ['10','25','50','75','90'], default: '30',         isBoolean: false },
-                { name: 'marks',       values: ['True','False'], default: false, isBoolean: true },
-                { name: 'disabled',    values: ['True','False'], default: false, isBoolean: true },
-            ],
-            'Rating': [
-                { name: 'value',     values: ['1','2','3','4','5'], default: '3',  isBoolean: false },
-                { name: 'max',       values: ['5','10'],            default: '5',  isBoolean: false },
-                { name: 'size',      values: ['Small','Medium','Large'], default: 'Medium', isBoolean: false },
-                { name: 'precision', values: ['1','0.5'],           default: '1',  isBoolean: false },
-                { name: 'readOnly',  values: ['True','False'], default: false, isBoolean: true },
+        const COMPONENT_PROPS = {
+            // ── Feedback ────────────────────────────────────────────────────
+            'Backdrop': [
+                { name: 'open',      values: ['True','False'], default: true,  isBoolean: true },
+                { name: 'invisible', values: ['True','False'], default: false, isBoolean: true },
             ],
             'CircularProgress': [
-                { name: 'variant',  values: ['Indeterminate','Determinate'],                                      default: 'Indeterminate', isBoolean: false },
-                { name: 'color',    values: ['Primary','Secondary','Success','Error','Warning','Info','Inherit'],  default: 'Primary',       isBoolean: false },
-                { name: 'size',     values: ['24','40','60','80'],                                                default: '40',            isBoolean: false },
-                { name: 'value',    values: ['25','50','70','90'],                                                default: '70',            isBoolean: false },
+                { name: 'variant', values: ['Indeterminate','Determinate'],                                      default: 'Indeterminate', isBoolean: false },
+                { name: 'color',   values: ['Primary','Secondary','Success','Error','Warning','Info','Inherit'],  default: 'Primary',       isBoolean: false },
+                { name: 'size',    values: ['24','40','60','80'],                                                default: '40',            isBoolean: false },
+                { name: 'value',   values: ['25','50','70','90'],                                                default: '70',            isBoolean: false },
             ],
+            'Dialog': [
+                { name: 'maxWidth',   values: ['Extra Small','Small','Medium','Large','Extra Large'], default: 'Small', isBoolean: false },
+                { name: 'scroll',     values: ['Paper','Body'],                                       default: 'Paper', isBoolean: false },
+                { name: 'fullWidth',  values: ['True','False'], default: false, isBoolean: true },
+                { name: 'fullScreen', values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'DialogTitle':   [],
+            'DialogContent': [{ name: 'dividers', values: ['True','False'], default: true, isBoolean: true }],
+            'DialogActions': [{ name: 'actions',  values: ['1','2','3'],    default: '2',  isBoolean: false }],
             'LinearProgress': [
-                { name: 'variant',  values: ['Indeterminate','Determinate','Buffer','Query'],                     default: 'Indeterminate', isBoolean: false },
-                { name: 'color',    values: ['Primary','Secondary','Success','Error','Warning','Info','Inherit'],  default: 'Primary',       isBoolean: false },
-                { name: 'value',    values: ['25','50','70','90'],                                                default: '70',            isBoolean: false },
+                { name: 'variant', values: ['Indeterminate','Determinate','Buffer','Query'],                     default: 'Indeterminate', isBoolean: false },
+                { name: 'color',   values: ['Primary','Secondary','Success','Error','Warning','Info','Inherit'],  default: 'Primary',       isBoolean: false },
+                { name: 'value',   values: ['25','50','70','90'],                                                default: '70',            isBoolean: false },
             ],
             'Skeleton': [
                 { name: 'variant',   values: ['Text','Circular','Rectangular','Rounded'], default: 'Text',  isBoolean: false },
                 { name: 'animation', values: ['Pulse','Wave','False'],                    default: 'Pulse', isBoolean: false },
             ],
-            'Accordion': [
-                { name: 'expanded', values: ['True','False'], default: true,  isBoolean: true },
-                { name: 'disabled', values: ['True','False'], default: false, isBoolean: true },
-            ],
-            'Card':        [{ name: 'elevation', values: ['0','1','2','4','8'], default: '2', isBoolean: false }, { name: 'variant', values: ['Elevation','Outlined'], default: 'Elevation', isBoolean: false }],
-            'CardContent': [{ name: 'elevation', values: ['0','1','2','4','8'], default: '2', isBoolean: false }],
-            'CardHeader':  [{ name: 'elevation', values: ['0','1','2','4','8'], default: '2', isBoolean: false }],
-            'CardActions': [{ name: 'elevation', values: ['0','1','2','4','8'], default: '2', isBoolean: false }],
-            'CardMedia':   [{ name: 'elevation', values: ['0','1','2','4','8'], default: '2', isBoolean: false }],
-            'Paper': [
-                { name: 'elevation', values: ['0','1','2','4','8','16'], default: '1',         isBoolean: false },
-                { name: 'variant',   values: ['Elevation','Outlined'],   default: 'Elevation', isBoolean: false },
-                { name: 'square',    values: ['True','False'], default: false, isBoolean: true },
-            ],
-            'Tabs': [
-                { name: 'color',    values: ['Primary','Secondary'],              default: 'Primary',  isBoolean: false },
-                { name: 'variant',  values: ['Standard','Scrollable','FullWidth'],default: 'Standard', isBoolean: false },
-                { name: 'value',    values: ['0','1','2'],                        default: '0',        isBoolean: false },
-                { name: 'centered', values: ['True','False'], default: false, isBoolean: true },
-            ],
-            'Tab': [
-                { name: 'color',    values: ['Primary','Secondary'], default: 'Primary', isBoolean: false },
-                { name: 'disabled', values: ['True','False'], default: false, isBoolean: true },
-                { name: 'wrapped',  values: ['True','False'], default: false, isBoolean: true },
-            ],
-            'Breadcrumbs': [
-                { name: 'maxItems',  values: ['3','4','5','6'], default: '3',   isBoolean: false },
-                { name: 'separator', values: ['/','›','|','>'], default: '/',   isBoolean: false },
-            ],
-            'Pagination': [
-                { name: 'count',   values: ['5','10','20','50'],                     default: '10',      isBoolean: false },
-                { name: 'page',    values: ['1','2','3','5'],                        default: '1',       isBoolean: false },
-                { name: 'color',   values: ['Standard','Primary','Secondary'],       default: 'Standard',isBoolean: false },
-                { name: 'shape',   values: ['Circular','Rounded'],                   default: 'Circular',isBoolean: false },
-                { name: 'variant', values: ['Text','Outlined'],                      default: 'Text',    isBoolean: false },
-            ],
-            'PaginationItem': [
-                { name: 'color',   values: ['Standard','Primary','Secondary'],  default: 'Standard', isBoolean: false },
-                { name: 'shape',   values: ['Circular','Rounded'],              default: 'Circular', isBoolean: false },
-                { name: 'variant', values: ['Text','Outlined'],                 default: 'Text',     isBoolean: false },
-            ],
-            'Divider': [
-                { name: 'orientation', values: ['Horizontal','Vertical'],        default: 'Horizontal', isBoolean: false },
-                { name: 'variant',     values: ['Fullbleed','Inset','Middle'],   default: 'Fullbleed',  isBoolean: false },
-                { name: 'textAlign',   values: ['Center','Left','Right'],        default: 'Center',     isBoolean: false },
-                { name: 'children',    type: 'text', default: '' },
-            ],
-            'Fab': [
-                { name: 'variant', values: ['Circular','Extended'],                                     default: 'Circular', isBoolean: false },
-                { name: 'color',   values: ['Primary','Secondary','Default','Inherit'],                  default: 'Primary',  isBoolean: false },
-                { name: 'size',    values: ['Small','Medium','Large'],                                   default: 'Large',    isBoolean: false },
-                { name: 'disabled',values: ['True','False'], default: false, isBoolean: true },
-            ],
             'Snackbar': [
-                { name: 'message',     type: 'text', default: 'Message sent successfully' },
-                { name: 'vertical',    values: ['Top','Bottom'],        default: 'Bottom', isBoolean: false },
-                { name: 'horizontal',  values: ['Left','Center','Right'],default: 'Center',isBoolean: false },
-                { name: 'action',      values: ['True','False'], default: true, isBoolean: true },
+                { name: 'message',    type: 'text', default: 'Message sent successfully' },
+                { name: 'vertical',   values: ['Top','Bottom'],          default: 'Bottom', isBoolean: false },
+                { name: 'horizontal', values: ['Left','Center','Right'], default: 'Center', isBoolean: false },
+                { name: 'action',     values: ['True','False'], default: true, isBoolean: true },
+            ],
+
+            // ── Inputs ──────────────────────────────────────────────────────
+            'Autocomplete': [
+                { name: 'size',          values: ['Small','Medium'],   default: 'Medium', isBoolean: false },
+                { name: 'disabled',      values: ['True','False'], default: false, isBoolean: true },
+                { name: 'multiple',      values: ['True','False'], default: false, isBoolean: true },
+                { name: 'freeSolo',      values: ['True','False'], default: false, isBoolean: true },
+                { name: 'disablePortal', values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Button': [
+                { name: 'variant',   values: ['Contained','Outlined','Text'],                                        default: 'Contained', isBoolean: false },
+                { name: 'color',     values: ['Primary','Secondary','Success','Error','Warning','Info','Inherit'],    default: 'Primary',   isBoolean: false },
+                { name: 'size',      values: ['Small','Medium','Large'],                                             default: 'Medium',    isBoolean: false },
+                { name: 'state',     values: ['Enabled','Hovered','Focused','Pressed','Disabled'],                   default: 'Enabled',   isBoolean: false },
+                { name: 'startIcon', values: ['True','False'], default: false, isBoolean: true },
+                { name: 'endIcon',   values: ['True','False'], default: false, isBoolean: true },
+                { name: 'label',     type: 'text', default: 'Button' },
+            ],
+            'ButtonGroup': [
+                { name: 'variant',     values: ['Contained','Outlined','Text'],                                       default: 'Outlined',   isBoolean: false },
+                { name: 'color',       values: ['Primary','Secondary','Success','Error','Warning','Info','Inherit'],   default: 'Primary',    isBoolean: false },
+                { name: 'size',        values: ['Small','Medium','Large'],                                            default: 'Medium',     isBoolean: false },
+                { name: 'orientation', values: ['Horizontal','Vertical'],                                             default: 'Horizontal', isBoolean: false },
+                { name: 'disabled',    values: ['True','False'], default: false, isBoolean: true },
+                { name: 'fullWidth',   values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Checkbox': [
+                { name: 'color',         values: ['Primary','Secondary','Success','Error','Warning','Info','Default'], default: 'Primary', isBoolean: false },
+                { name: 'size',          values: ['Small','Medium'],                                                   default: 'Medium',  isBoolean: false },
+                { name: 'state',         values: ['Enabled','Hovered','Focused','Pressed','Disabled'],                 default: 'Enabled', isBoolean: false },
+                { name: 'checked',       values: ['True','False'], default: true,  isBoolean: true },
+                { name: 'indeterminate', values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'DateField':     [{ name: 'clearable', values: ['True','False'], default: false, isBoolean: true }],
+            'DateTimeField': [{ name: 'clearable', values: ['True','False'], default: false, isBoolean: true }],
+            'Fab': [
+                { name: 'variant',  values: ['Circular','Extended'],                                                  default: 'Circular', isBoolean: false },
+                { name: 'color',    values: ['Primary','Secondary','Success','Error','Warning','Info','Default'],      default: 'Primary',  isBoolean: false },
+                { name: 'size',     values: ['Small','Medium','Large'],                                               default: 'Large',    isBoolean: false },
+                { name: 'disabled', values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Radio': [
+                { name: 'color',   values: ['Primary','Secondary','Success','Error','Warning','Info','Default'], default: 'Primary', isBoolean: false },
+                { name: 'size',    values: ['Small','Medium'],                                                   default: 'Medium',  isBoolean: false },
+                { name: 'state',   values: ['Enabled','Hovered','Focused','Pressed','Disabled'],                 default: 'Enabled', isBoolean: false },
+                { name: 'checked', values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'RadioGroup': [
+                { name: 'color', values: ['Primary','Secondary','Success','Error','Warning','Info'], default: 'Primary', isBoolean: false },
+                { name: 'size',  values: ['Small','Medium'],                                         default: 'Medium',  isBoolean: false },
+                { name: 'state', values: ['Enabled','Disabled','Error'],                             default: 'Enabled', isBoolean: false },
+                { name: 'row',   values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Rating': [
+                { name: 'value',     values: ['1','2','3','4','5'], default: '3',     isBoolean: false },
+                { name: 'size',      values: ['Small','Medium','Large'],               default: 'Medium', isBoolean: false },
+                { name: 'precision', values: ['1','0.5'],                             default: '1',      isBoolean: false },
+                { name: 'readOnly',  values: ['True','False'], default: false, isBoolean: true },
+                { name: 'disabled',  values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Select': [
+                { name: 'size',   values: ['Small','Medium','Large'],                        default: 'Medium',  isBoolean: false },
+                { name: 'status', values: ['Default','Active','Focused','Disabled','Error'], default: 'Default', isBoolean: false },
+                { name: 'type',   values: ['Default','SVG Icon','Font Icon'],                default: 'Default', isBoolean: false },
+                { name: 'label',  type: 'text', default: 'Select' },
+            ],
+            'Slider': [
+                { name: 'color',       values: ['Primary','Secondary'],           default: 'Primary',    isBoolean: false },
+                { name: 'size',        values: ['Small','Medium'],                 default: 'Medium',     isBoolean: false },
+                { name: 'orientation', values: ['Horizontal','Vertical'],          default: 'Horizontal', isBoolean: false },
+                { name: 'track',       values: ['Normal','Inverted','False'],      default: 'Normal',     isBoolean: false },
+                { name: 'value',       values: ['10','25','50','75','90'],         default: '30',         isBoolean: false },
+                { name: 'marks',       values: ['True','False'], default: false, isBoolean: true },
+                { name: 'disabled',    values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Switch': [
+                { name: 'color',   values: ['Primary','Secondary','Success','Error','Warning','Info','Default'], default: 'Primary', isBoolean: false },
+                { name: 'size',    values: ['Small','Medium'],                                                   default: 'Medium',  isBoolean: false },
+                { name: 'state',   values: ['Enabled','Disabled'],                                               default: 'Enabled', isBoolean: false },
+                { name: 'checked', values: ['True','False'], default: true, isBoolean: true },
+            ],
+            'TextField': [
+                { name: 'variant',    values: ['Outlined','Filled','Standard'],                   default: 'Outlined', isBoolean: false },
+                { name: 'size',       values: ['Small','Medium'],                                 default: 'Medium',   isBoolean: false },
+                { name: 'state',      values: ['Enabled','Hovered','Focused','Disabled','Error'], default: 'Enabled',  isBoolean: false },
+                { name: 'hasValue',   values: ['True','False'], default: false, isBoolean: true },
+                { name: 'label',      type: 'text', default: 'Label' },
+                { name: 'helperText', type: 'text', default: 'Helper text' },
+            ],
+            'ToggleButton': [
+                { name: 'color',     values: ['Primary','Secondary','Success','Error','Warning','Info'], default: 'Primary', isBoolean: false },
+                { name: 'size',      values: ['Small','Medium','Large'],                                 default: 'Medium',  isBoolean: false },
+                { name: 'selected',  values: ['True','False'], default: true,  isBoolean: true },
+                { name: 'disabled',  values: ['True','False'], default: false, isBoolean: true },
+                { name: 'fullWidth', values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'ToggleButtonGroup': [
+                { name: 'color',       values: ['Primary','Secondary','Success','Error','Warning','Info'], default: 'Primary',    isBoolean: false },
+                { name: 'orientation', values: ['Horizontal','Vertical'],                                  default: 'Horizontal', isBoolean: false },
+                { name: 'size',        values: ['Small','Medium','Large'],                                 default: 'Medium',     isBoolean: false },
+                { name: 'buttons',     values: ['2','3','4'],                                              default: '3',          isBoolean: false },
+            ],
+
+            // ── Data Display ─────────────────────────────────────────────────
+            'Avatar': [
+                { name: 'variant',  values: ['Circular','Rounded','Square'], default: 'Circular', isBoolean: false },
+                { name: 'size',     values: ['24px','32px','40px'],          default: '40px',     isBoolean: false },
+                { name: 'content',  values: ['Text','Image','Icon'],         default: 'Text',     isBoolean: false },
+                { name: 'children', type: 'text', default: 'U' },
+            ],
+            'AvatarGroup': [
+                { name: 'size',    values: ['24px','32px','40px'], default: '40px',   isBoolean: false },
+                { name: 'max',     values: ['2','3','4','5'],       default: '4',      isBoolean: false },
+                { name: 'spacing', values: ['Medium','Small'],      default: 'Medium', isBoolean: false },
+            ],
+            'Badge': [
+                { name: 'variant',      values: ['Standard','Dot'],                                                         default: 'Standard', isBoolean: false },
+                { name: 'color',        values: ['Primary','Secondary','Error','Warning','Info','Success','Default'],        default: 'Error',    isBoolean: false },
+                { name: 'badgeContent', type: 'text', default: '4' },
+            ],
+            'Chip': [
+                { name: 'variant',  values: ['Filled','Outlined'],                                                          default: 'Filled',  isBoolean: false },
+                { name: 'color',    values: ['Primary','Secondary','Success','Error','Warning','Info','Default'],            default: 'Primary', isBoolean: false },
+                { name: 'size',     values: ['Small','Medium'],                                                             default: 'Medium',  isBoolean: false },
+                { name: 'state',    values: ['Enabled','Hovered','Focused','Pressed','Disabled'],                           default: 'Enabled', isBoolean: false },
+                { name: 'label',    type: 'text', default: 'Chip' },
+                { name: 'onDelete', values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'DataGridTable': [
+                { name: 'density',   values: ['Standard','Comfortable','Compact'], default: 'Standard', isBoolean: false },
+                { name: 'rows',      values: ['5','10'],                           default: '5',        isBoolean: false },
+                { name: 'checkbox',  values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Icon': [
+                { name: 'color',    values: ['Inherit','Primary','Secondary','Error','Warning','Info','Success','Disabled'], default: 'Inherit', isBoolean: false },
+                { name: 'fontSize', values: ['Small','Medium','Large','Inherit'],                                           default: 'Medium',  isBoolean: false },
+            ],
+            'List': [
+                { name: 'dense',          values: ['True','False'], default: false, isBoolean: true },
+                { name: 'disablePadding', values: ['True','False'], default: false, isBoolean: true },
+                { name: 'subheader',      values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'ListItem': [
+                { name: 'selected',        values: ['True','False'], default: false, isBoolean: true },
+                { name: 'disabled',        values: ['True','False'], default: false, isBoolean: true },
+                { name: 'dense',           values: ['True','False'], default: false, isBoolean: true },
+                { name: 'divider',         values: ['True','False'], default: false, isBoolean: true },
+                { name: 'secondaryAction', values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Table': [
+                { name: 'size',         values: ['Small','Medium'],           default: 'Medium', isBoolean: false },
+                { name: 'padding',      values: ['Normal','Checkbox','None'], default: 'Normal', isBoolean: false },
+                { name: 'stickyHeader', values: ['True','False'], default: false, isBoolean: true },
             ],
             'Tooltip': [
                 { name: 'title',     type: 'text', default: 'Tooltip text' },
                 { name: 'placement', values: ['Top','Bottom','Left','Right','Top-Start','Top-End','Bottom-Start','Bottom-End'], default: 'Bottom', isBoolean: false },
                 { name: 'arrow',     values: ['True','False'], default: false, isBoolean: true },
             ],
-            'Dialog': [
-                { name: 'maxWidth',    values: ['XS','SM','MD','LG','XL'],  default: 'SM',   isBoolean: false },
-                { name: 'fullWidth',   values: ['True','False'], default: false, isBoolean: true },
-                { name: 'fullScreen',  values: ['True','False'], default: false, isBoolean: true },
+            'Typography': [
+                { name: 'variant',      values: ['H1','H2','H3','H4','H5','H6','Subtitle1','Subtitle2','Body1','Body2','Caption','Overline','Button'], default: 'Body1',   isBoolean: false },
+                { name: 'align',        values: ['Inherit','Left','Center','Right','Justify'],                                                         default: 'Inherit', isBoolean: false },
+                { name: 'gutterBottom', values: ['True','False'], default: false, isBoolean: true },
+                { name: 'noWrap',       values: ['True','False'], default: false, isBoolean: true },
             ],
-            'DialogTitle':   [{ name: 'dividers', values: ['True','False'], default: false, isBoolean: true }],
-            'DialogContent': [{ name: 'dividers', values: ['True','False'], default: false, isBoolean: true }],
-            'DialogActions': [{ name: 'disableSpacing', values: ['True','False'], default: false, isBoolean: true }],
-            'List': [
-                { name: 'dense',          values: ['True','False'], default: false, isBoolean: true },
-                { name: 'disablePadding', values: ['True','False'], default: false, isBoolean: true },
+
+            // ── Surfaces ─────────────────────────────────────────────────────
+            'Accordion': [
+                { name: 'expanded', values: ['True','False'], default: true,  isBoolean: true },
+                { name: 'disabled', values: ['True','False'], default: false, isBoolean: true },
+                { name: 'square',   values: ['True','False'], default: false, isBoolean: true },
             ],
-            'ListItem': [
-                { name: 'dense',     values: ['True','False'], default: false, isBoolean: true },
-                { name: 'disabled',  values: ['True','False'], default: false, isBoolean: true },
-                { name: 'selected',  values: ['True','False'], default: false, isBoolean: true },
+            'Card': [
+                { name: 'elevation', values: ['0','1','2','4','8'], default: '2',         isBoolean: false },
+                { name: 'variant',   values: ['Elevation','Outlined'], default: 'Elevation', isBoolean: false },
             ],
-            'ToggleButton': [
-                { name: 'color',       values: ['Standard','Primary','Secondary','Success','Error','Warning','Info'], default: 'Primary',    isBoolean: false },
-                { name: 'selected',    values: ['True','False'], default: true,  isBoolean: true },
-                { name: 'disabled',    values: ['True','False'], default: false, isBoolean: true },
+            'CardContent':  [],
+            'CardHeader': [
+                { name: 'action',    values: ['True','False'], default: false, isBoolean: true },
+                { name: 'avatar',    values: ['True','False'], default: false, isBoolean: true },
+                { name: 'subheader', values: ['True','False'], default: false, isBoolean: true },
             ],
-            'ToggleButtonGroup': [
-                { name: 'color',       values: ['Standard','Primary','Secondary','Success','Error','Warning','Info'], default: 'Primary',    isBoolean: false },
-                { name: 'orientation', values: ['Horizontal','Vertical'],         default: 'Horizontal', isBoolean: false },
-                { name: 'exclusive',   values: ['True','False'], default: true,  isBoolean: true },
-                { name: 'value',       values: ['Left','Center','Right'],         default: 'Left',       isBoolean: false },
+            'CardActions': [{ name: 'disableSpacing', values: ['True','False'], default: false, isBoolean: true }],
+            'CardMedia':   [{ name: 'component', values: ['Img','Video'], default: 'Img', isBoolean: false }],
+            'Paper': [
+                { name: 'elevation', values: ['0','1','2','4','8','16'], default: '1',         isBoolean: false },
+                { name: 'variant',   values: ['Elevation','Outlined'],   default: 'Elevation', isBoolean: false },
+                { name: 'square',    values: ['True','False'], default: false, isBoolean: true },
             ],
-            'Stepper': [
-                { name: 'orientation',      values: ['Horizontal','Vertical'], default: 'Horizontal', isBoolean: false },
-                { name: 'activeStep',       values: ['0','1','2','3'],         default: '1',          isBoolean: false },
-                { name: 'alternativeLabel', values: ['True','False'], default: false, isBoolean: true },
-                { name: 'nonLinear',        values: ['True','False'], default: false, isBoolean: true },
-            ],
-            'MobileStepper': [
-                { name: 'activeStep', values: ['0','1','2','3','4'], default: '1', isBoolean: false },
-                { name: 'steps',      values: ['4','5','6'],         default: '5', isBoolean: false },
-                { name: 'variant',    values: ['Text','Dots','Progress'], default: 'Dots', isBoolean: false },
-            ],
+
+            // ── Navigation ───────────────────────────────────────────────────
             'AppBar': [
                 { name: 'color',    values: ['Default','Primary','Secondary','Transparent','Inherit'], default: 'Primary', isBoolean: false },
                 { name: 'position', values: ['Fixed','Absolute','Sticky','Static','Relative'],         default: 'Static',  isBoolean: false },
             ],
-            'Typography': [
-                { name: 'variant', values: ['H1','H2','H3','H4','H5','H6','Subtitle1','Subtitle2','Body1','Body2','Caption','Overline','Button'], default: 'Body1', isBoolean: false },
-                { name: 'color',   values: ['TextPrimary','TextSecondary','Primary','Secondary','Error','Inherit'], default: 'TextPrimary', isBoolean: false },
+            'BottomNavigation': [
+                { name: 'showLabels', values: ['True','False'], default: true, isBoolean: true },
+            ],
+            'BottomNavigationAction': [
+                { name: 'state',  values: ['Enabled','Focused','Pressed','Disabled'], default: 'Enabled', isBoolean: false },
+                { name: 'active', values: ['True','False'], default: false, isBoolean: true },
+                { name: 'label',  values: ['True','False'], default: true,  isBoolean: true },
+            ],
+            'Breadcrumbs': [
+                { name: 'maxItems',  values: ['3','4','5','6'], default: '3', isBoolean: false },
+                { name: 'separator', values: ['/','›','|','>'], default: '/', isBoolean: false },
             ],
             'Link': [
-                { name: 'variant',    values: ['Body1','Body2','Caption'],    default: 'Body1',  isBoolean: false },
-                { name: 'underline',  values: ['Always','Hover','None'],      default: 'Always', isBoolean: false },
-                { name: 'color',      values: ['Primary','Secondary','Inherit'],default: 'Primary',isBoolean: false },
+                { name: 'variant',   values: ['Body1','Body2','Caption'],      default: 'Body1',   isBoolean: false },
+                { name: 'underline', values: ['Always','Hover','None'],         default: 'Always',  isBoolean: false },
+                { name: 'color',     values: ['Primary','Secondary','Inherit'], default: 'Primary', isBoolean: false },
             ],
-            'Toolbar': [
-                { name: 'variant', values: ['Regular','Dense'], default: 'Regular', isBoolean: false },
+            'Menu':     [{ name: 'dense', values: ['True','False'], default: false, isBoolean: true }],
+            'MenuItem': [
+                { name: 'selected',       values: ['True','False'], default: false, isBoolean: true },
+                { name: 'disabled',       values: ['True','False'], default: false, isBoolean: true },
+                { name: 'dense',          values: ['True','False'], default: false, isBoolean: true },
+                { name: 'disableGutters', values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'MenuList': [
+                { name: 'dense',     values: ['True','False'], default: false, isBoolean: true },
+                { name: 'autoWidth', values: ['True','False'], default: true,  isBoolean: true },
+            ],
+            'MobileStepper': [
+                { name: 'activeStep', values: ['0','1','2','3','4'],      default: '1',    isBoolean: false },
+                { name: 'steps',      values: ['4','5','6'],               default: '5',    isBoolean: false },
+                { name: 'variant',    values: ['Text','Dots','Progress'],  default: 'Dots', isBoolean: false },
+            ],
+            'Pagination': [
+                { name: 'variant',  values: ['Text','Outlined'],               default: 'Text',    isBoolean: false },
+                { name: 'color',    values: ['Primary','Secondary','Standard'], default: 'Primary', isBoolean: false },
+                { name: 'size',     values: ['Small','Medium','Large'],         default: 'Medium',  isBoolean: false },
+                { name: 'shape',    values: ['Rounded','Circular'],             default: 'Rounded', isBoolean: false },
+                { name: 'count',    type: 'text', default: '10' },
+                { name: 'disabled', values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'PaginationItem': [
+                { name: 'color',    values: ['Standard','Primary','Secondary'], default: 'Standard', isBoolean: false },
+                { name: 'shape',    values: ['Circular','Rounded'],             default: 'Circular', isBoolean: false },
+                { name: 'variant',  values: ['Text','Outlined'],                default: 'Text',     isBoolean: false },
+                { name: 'size',     values: ['Small','Medium','Large'],         default: 'Medium',   isBoolean: false },
+                { name: 'active',   values: ['True','False'], default: false, isBoolean: true },
+                { name: 'disabled', values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Stepper': [
+                { name: 'orientation',      values: ['Horizontal','Vertical'], default: 'Horizontal', isBoolean: false },
+                { name: 'activeStep',       values: ['0','1','2','3'],          default: '1',          isBoolean: false },
+                { name: 'alternativeLabel', values: ['True','False'], default: false, isBoolean: true },
+                { name: 'nonLinear',        values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Tab': [
+                { name: 'iconPosition', values: ['Top','Start','End','Bottom'], default: 'Top',    isBoolean: false },
+                { name: 'selected',     values: ['True','False'], default: false, isBoolean: true },
+                { name: 'disabled',     values: ['True','False'], default: false, isBoolean: true },
+                { name: 'icon',         values: ['True','False'], default: false, isBoolean: true },
+                { name: 'wrapped',      values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Tabs': [
+                { name: 'variant',       values: ['Standard','Scrollable','FullWidth'], default: 'Standard', isBoolean: false },
+                { name: 'tabs',          values: ['2','3','4','5'],                     default: '3',        isBoolean: false },
+                { name: 'centered',      values: ['True','False'], default: false, isBoolean: true },
+                { name: 'scrollButtons', values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Toolbar': [{ name: 'variant', values: ['Regular','Dense'], default: 'Regular', isBoolean: false }],
+
+            // ── Layout ───────────────────────────────────────────────────────
+            'Container': [
+                { name: 'maxWidth',       values: ['Extra Small','Small','Medium','Large','Extra Large'], default: 'Small', isBoolean: false },
+                { name: 'disableGutters', values: ['True','False'], default: false, isBoolean: true },
+            ],
+            'Divider': [
+                { name: 'orientation', values: ['Horizontal','Vertical'],     default: 'Horizontal', isBoolean: false },
+                { name: 'variant',     values: ['Fullwidth','Inset','Middle'], default: 'Fullwidth',  isBoolean: false },
+                { name: 'textAlign',   values: ['Center','Left','Right'],      default: 'Center',     isBoolean: false },
+                { name: 'flexItem',    values: ['True','False'], default: false, isBoolean: true },
             ],
             'Stack': [
-                { name: 'direction', values: ['Column','Row','Column-Reverse','Row-Reverse'], default: 'Row',    isBoolean: false },
-                { name: 'spacing',   values: ['1','2','3','4','6','8'],                       default: '2',      isBoolean: false },
-                { name: 'alignItems',values: ['Flex-Start','Center','Flex-End','Stretch'],    default: 'Center', isBoolean: false },
+                { name: 'direction', values: ['Row','Column','Row-Reverse','Column-Reverse'], default: 'Row', isBoolean: false },
+                { name: 'spacing',   values: ['1','2','3','4','6','8'],                       default: '2',   isBoolean: false },
+                { name: 'dividers',  values: ['True','False'], default: false, isBoolean: true },
             ],
-            'Container': [
-                { name: 'maxWidth', values: ['XS','SM','MD','LG','XL','False'], default: 'SM', isBoolean: false },
+
+            // ── Utils / Transitions ───────────────────────────────────────────
+            'Collapse': [
+                { name: 'in',          values: ['True','False'],          default: true,       isBoolean: true },
+                { name: 'orientation', values: ['Vertical','Horizontal'], default: 'Vertical', isBoolean: false },
+            ],
+            'Fade':  [{ name: 'in', values: ['True','False'], default: true, isBoolean: true }],
+            'Grow':  [{ name: 'in', values: ['True','False'], default: true, isBoolean: true }],
+            'Slide': [
+                { name: 'in',        values: ['True','False'],             default: true, isBoolean: true },
+                { name: 'direction', values: ['Up','Down','Left','Right'], default: 'Up', isBoolean: false },
+            ],
+            'Zoom': [{ name: 'in', values: ['True','False'], default: true, isBoolean: true }],
+
+            // ── Advanced ─────────────────────────────────────────────────────
+            'Popover': [
+                { name: 'anchorOrigin',    values: ['Top Left','Top Center','Top Right','Bottom Left','Bottom Center','Bottom Right'], default: 'Bottom Left', isBoolean: false },
+                { name: 'transformOrigin', values: ['Top Left','Top Center','Top Right','Bottom Left','Bottom Center','Bottom Right'], default: 'Top Left',    isBoolean: false },
             ],
             'SpeedDial': [
                 { name: 'direction', values: ['Up','Down','Left','Right'], default: 'Up',  isBoolean: false },
-                { name: 'open',      values: ['True','False'], default: true, isBoolean: true },
+                { name: 'open',      values: ['True','False'], default: false, isBoolean: true },
             ],
             'Timeline': [
-                { name: 'position', values: ['Alternate','Alternate-Reverse','Right','Left'], default: 'Alternate', isBoolean: false },
+                { name: 'position', values: ['Right','Left','Alternate','Alternate-Reverse'], default: 'Right', isBoolean: false },
+                { name: 'items',    values: ['2','3','4','5'],                                default: '3',     isBoolean: false },
             ],
-            'Backdrop': [
-                { name: 'open',      values: ['True','False'], default: true,  isBoolean: true },
-                { name: 'invisible', values: ['True','False'], default: false, isBoolean: true },
+            'TransferList': [
+                { name: 'orientation', values: ['Horizontal','Vertical'], default: 'Horizontal', isBoolean: false },
             ],
-            'Collapse': [{ name: 'in', values: ['True','False'], default: true, isBoolean: true }],
-            'Fade':     [{ name: 'in', values: ['True','False'], default: true, isBoolean: true }],
-            'Grow':     [{ name: 'in', values: ['True','False'], default: true, isBoolean: true }],
-            'Slide':    [
-                { name: 'in',        values: ['True','False'],              default: true,  isBoolean: true },
-                { name: 'direction', values: ['Up','Down','Left','Right'],  default: 'Up',  isBoolean: false },
+            'TreeItem': [
+                { name: 'expanded',     values: ['True','False'], default: false, isBoolean: true },
+                { name: 'selected',     values: ['True','False'], default: false, isBoolean: true },
+                { name: 'hasChildren',  values: ['True','False'], default: true,  isBoolean: true },
             ],
-            'Zoom':     [{ name: 'in', values: ['True','False'], default: true, isBoolean: true }],
-            'BottomNavigation': [
-                { name: 'showLabels', values: ['True','False'], default: true, isBoolean: true },
-                { name: 'value',      values: ['0','1','2','3'],              default: '0',  isBoolean: false },
+
+            // ── Form ─────────────────────────────────────────────────────────
+            'FormLabel': [
+                { name: 'color', values: ['Primary','Secondary','Success','Error','Warning','Info'], default: 'Primary', isBoolean: false },
+                { name: 'state', values: ['Enabled','Disabled','Error'],                             default: 'Enabled', isBoolean: false },
             ],
-            'BottomNavigationAction': [
-                { name: 'showLabel', values: ['True','False'], default: true,  isBoolean: true },
-                { name: 'disabled',  values: ['True','False'], default: false, isBoolean: true },
+            'FormHelperText': [
+                { name: 'state', values: ['Enabled','Disabled','Error'], default: 'Enabled', isBoolean: false },
             ],
-            'Table':        [],
-            'DataGridTable':[],
-            'Menu':         [],
-            'MenuItem':     [],
-            'MenuList':     [],
-            'TransferList': [],
-            'TreeItem':     [],
-            'Icon':         [],
-            'Popover':      [],
-            'FormLabel':    [],
-            'FormHelperText':[],
-            'InputLabel':   [],
+            'FormGroupCheckbox': [{ name: 'row', values: ['True','False'], default: false, isBoolean: true }],
+            'FormGroupSwitch':   [{ name: 'row', values: ['True','False'], default: false, isBoolean: true }],
+            'InputLabel': [
+                { name: 'variant',  values: ['Outlined','Filled','Standard'], default: 'Outlined', isBoolean: false },
+                { name: 'size',     values: ['Small','Medium'],               default: 'Medium',   isBoolean: false },
+                { name: 'disabled', values: ['True','False'], default: false, isBoolean: true },
+                { name: 'error',    values: ['True','False'], default: false, isBoolean: true },
+                { name: 'required', values: ['True','False'], default: false, isBoolean: true },
+                { name: 'shrink',   values: ['True','False'], default: true,  isBoolean: true },
+            ],
         };
 
         function getPropertiesForComponent(components, setName) {
