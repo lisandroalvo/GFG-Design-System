@@ -9501,14 +9501,23 @@
         let organizedData = {};
         let currentPage = '';
         
-        // Manual mapping of components that have interactive prototypes
-        // Add the Figma node ID of the prototype frame here
+        // Manual mapping of components → live Figma embed.
+        //   mode 'proto'  → interactive prototype (requires a flow starting point in the file)
+        //   mode 'design' → live design view of the frame/section (pan, zoom, click)
+        // Verified via Figma REST API on 2026-04-30.
         const prototypeMap = {
-            'Alert': '15883:11857',  // Alert/Prototype starting point from Figma
-            '<Alert>': '15883:11857',  // Also support with brackets
-            // Add more as you create them:
-            // 'Button': 'nodeId',
-            // 'Card': 'nodeId',
+            // No flow → use design embed pointing to the Alert/Prototype section with both variants
+            'Alert':   { nodeId: '15883:11893', mode: 'design' },
+            '<Alert>': { nodeId: '15883:11893', mode: 'design' },
+
+            // Flow starting points discovered in the Figma file
+            'Button':  { nodeId: '10162:137111', mode: 'proto'  },  // IconButton: account menu
+            'Dialog':  { nodeId: '10149:134486', mode: 'proto'  },  // Dialog open
+            'Tooltip': { nodeId: '10259:133074', mode: 'proto'  },  // Tooltip: open on hover
+            'Drawer':  { nodeId: '10162:135026', mode: 'proto'  },  // Drawer overlay
+            'Link':    { nodeId: '10162:137303', mode: 'proto'  },  // Inline link
+            'Menu':    { nodeId: '10173:131200', mode: 'proto'  },  // Menu: open on click
+            'Rating':  { nodeId: '10181:132186', mode: 'proto'  },  // Rating: products
         };
 
         // Manual component properties (for properties not in variant names)
@@ -10076,51 +10085,54 @@
             // Build modal content
             let modalContent = '';
 
-            // Check manual prototype map first
+            // Check manual prototype map first (supports new {nodeId, mode} or legacy string)
             let manualPrototype = null;
-            console.log('🔍 Checking prototypeMap for:', setName);
-            console.log('🔍 Available in prototypeMap:', Object.keys(prototypeMap));
-            if (prototypeMap[setName]) {
-                manualPrototype = {
-                    nodeId: prototypeMap[setName],
-                    name: setName + '/Prototype (Manual)'
-                };
-                console.log('✅ Found manual prototype mapping:', setName, '→', prototypeMap[setName]);
-            } else {
-                console.log('❌ No manual prototype found for:', setName);
+            const rawEntry = prototypeMap[setName] || prototypeMap[setName.replace(/[<>]/g, '')];
+            if (rawEntry) {
+                const entry = (typeof rawEntry === 'string') ? { nodeId: rawEntry, mode: 'proto' } : rawEntry;
+                manualPrototype = { nodeId: entry.nodeId, mode: entry.mode || 'proto', name: setName + '/Manual' };
+                console.log('✅ Found manual prototype mapping:', setName, '→', entry);
             }
-            
+
             // Use prototype from: manual map > separate page > variant
             const finalPrototype = manualPrototype || prototypeFromPage || prototypeVariant;
-            
+
             // Add Interactive Prototype section if prototype exists
             if (finalPrototype) {
-                const nodeIdDash = finalPrototype.nodeId.replace(':', '-');
+                const nodeIdDash    = finalPrototype.nodeId.replace(':', '-');
                 const nodeIdEncoded = finalPrototype.nodeId.replace(':', '%3A');
-                const prototypeUrl = `https://embed.figma.com/proto/OjFchNAdeHiNH5W4wYLSGS/GFG---Design-System-2026?node-id=${nodeIdDash}&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=${nodeIdEncoded}&page-id=6595%3A48177&embed-host=share`;
-                console.log('✅ Showing prototype section with nodeId:', finalPrototype.nodeId);
-                console.log('📺 Iframe URL:', prototypeUrl);
+                const mode = finalPrototype.mode || 'proto';
+                const fileKey = 'OjFchNAdeHiNH5W4wYLSGS';
+                const fileSlug = 'GFG---Design-System-2026';
+
+                // proto mode → /proto/ embed (needs a flow starting point in Figma)
+                // design mode → /file/ embed (live design view, pan/zoom/click)
+                const prototypeUrl = (mode === 'design')
+                    ? `https://embed.figma.com/file/${fileKey}/${fileSlug}?node-id=${nodeIdDash}&embed-host=share&hide-ui=1&viewport=center`
+                    : `https://embed.figma.com/proto/${fileKey}/${fileSlug}?node-id=${nodeIdDash}&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=${nodeIdEncoded}&embed-host=share`;
+
+                const heading = (mode === 'design') ? 'Live Figma Preview' : 'Interactive Prototype';
+                const subhead = (mode === 'design')
+                    ? 'Live design view from Figma — pan, zoom and inspect every variant.'
+                    : 'Click, hover and interact with this component.';
+
+                console.log('✅ Showing prototype section:', { nodeId: finalPrototype.nodeId, mode, prototypeUrl });
                 modalContent += `
                 <div class="modal-section" style="background: linear-gradient(135deg, #F4EFEA 0%, #FAFAFA 100%); padding: 32px; border-radius: 12px; margin-bottom: 32px; border: 2px solid var(--dust-dark);">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-                        <span style="font-size: 28px;">⚡</span>
+                        <span style="font-size: 28px;">${mode === 'design' ? '🎨' : '⚡'}</span>
                         <div>
-                            <div style="font-size: 20px; font-weight: 600; color: var(--rodeo-black); margin-bottom: 4px;">Interactive Prototype</div>
-                            <p style="font-size: 13px; color: var(--graphite); margin: 0;">Click, hover, and interact with this component</p>
+                            <div style="font-size: 20px; font-weight: 600; color: var(--rodeo-black); margin-bottom: 4px;">${heading}</div>
+                            <p style="font-size: 13px; color: var(--graphite); margin: 0;">${subhead}</p>
                         </div>
                     </div>
-                    <iframe 
-                        class="prototype-frame" 
+                    <iframe
+                        class="prototype-frame"
                         src="${prototypeUrl}"
                         allowfullscreen
+                        allow="fullscreen"
                         style="border: none;">
                     </iframe>
-                    <div style="margin-top: 16px; padding: 16px; background: white; border-radius: 8px; display: flex; align-items: center; gap: 12px;">
-                        <span style="font-size: 20px;">✨</span>
-                        <p style="font-size: 13px; color: var(--rodeo-black); margin: 0;">
-                            <strong>Live Prototype:</strong> This is the interactive version from Figma. All interactions, animations, and states are functional.
-                        </p>
-                    </div>
                 </div>
                 `;
             } else {
