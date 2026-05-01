@@ -239,8 +239,8 @@
         /* Components Grid */
         .components-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
         }
 
         .component-card {
@@ -9668,52 +9668,51 @@
                     </div>
                 `;
                 
-                content.innerHTML = Object.keys(pageData.componentSets).map(setName => {
+                // Flatten ALL component sets in this category into ONE grid
+                const allCards = Object.keys(pageData.componentSets).flatMap(setName => {
                     const components = pageData.componentSets[setName];
-                    return renderComponentSection(setName, components);
-                }).join('');
+                    return components.map((component, index) => ({
+                        component, setName, index
+                    }));
+                });
+                content.innerHTML = renderComponentGrid(allCards);
             }
         }
 
-        function renderComponentSection(title, components) {
-            if (components.length === 0) return '';
-            
+        function renderComponentGrid(cards) {
+            if (!cards || cards.length === 0) return '';
             return `
-                <div class="component-section">
-                    <div class="section-header">
-                        <div class="section-title">${title}</div>
-                        <div class="section-meta">
-                            <div class="section-subtitle">${components.length} ${components.length === 1 ? 'COMPONENT' : 'VARIANTS'}</div>
-                        </div>
-                        <div class="section-description">
-                            Click any component to view live code, props, and implementation details.
-                        </div>
-                    </div>
-                    <div class="components-grid">
-                        ${components.map((component, index) => {
-                            const thumbPath = `component-thumbs/${component.name}.png`;
-                            return `
-                            <div class="component-card" data-set-name="${title}" data-component-index="${index}" data-component-name="${component.name}">
-                                <div class="component-preview">
-                                    <img
-                                        src="${thumbPath}"
-                                        alt="${component.name}"
-                                        class="component-thumb-img"
-                                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
-                                    />
-                                    <div class="component-icon" style="display:none;">📦</div>
-                                    <div class="component-badge">${component.variantCount || 1}</div>
-                                </div>
-                                <div class="component-name">${component.name}</div>
-                                <div class="component-meta">
-                                    <span class="component-tag">React</span>
-                                    <span class="component-tag">Tailwind</span>
-                                </div>
+                <div class="components-grid">
+                    ${cards.map(({component, setName, index}) => {
+                        const thumbPath = `component-thumbs/${component.name}.png`;
+                        return `
+                        <div class="component-card" data-set-name="${setName}" data-component-index="${index}" data-component-name="${component.name}">
+                            <div class="component-preview">
+                                <img
+                                    src="${thumbPath}"
+                                    alt="${component.name}"
+                                    class="component-thumb-img"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                                />
+                                <div class="component-icon" style="display:none;">📦</div>
+                                <div class="component-badge">${component.variantCount || 1}</div>
                             </div>
-                        `}).join('')}
-                    </div>
+                            <div class="component-name">${component.name}</div>
+                            <div class="component-meta">
+                                <span class="component-tag">React</span>
+                                <span class="component-tag">Tailwind</span>
+                            </div>
+                        </div>`;
+                    }).join('')}
                 </div>
             `;
+        }
+
+        // Backwards compat: in case any older code still calls this
+        function renderComponentSection(title, components) {
+            return renderComponentGrid((components || []).map((component, index) => ({
+                component, setName: title, index
+            })));
         }
 
         let currentComponents = {};
