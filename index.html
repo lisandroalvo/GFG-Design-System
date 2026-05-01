@@ -10095,7 +10095,28 @@
             }
 
             // Use prototype from: manual map > separate page > variant
-            const finalPrototype = manualPrototype || prototypeFromPage || prototypeVariant;
+            // Fallback: every component gets a Live Figma Preview pointing to its set / first variant.
+            let designFallback = null;
+            if (!manualPrototype && !prototypeFromPage && !prototypeVariant) {
+                // 1) Try the parent component-set node from componentSets
+                let setNodeId = null;
+                for (const page in organizedData.byPage) {
+                    const pageData = organizedData.byPage[page];
+                    const setEntry = pageData.componentSets && pageData.componentSets[setName];
+                    if (setEntry && setEntry[0] && setEntry[0].nodeId) {
+                        setNodeId = setEntry[0].nodeId;
+                        break;
+                    }
+                }
+                // 2) Otherwise use the first variant's nodeId
+                if (!setNodeId && components[0] && components[0].nodeId) {
+                    setNodeId = components[0].nodeId;
+                }
+                if (setNodeId) {
+                    designFallback = { nodeId: setNodeId, mode: 'design', name: setName + ' (Design)' };
+                }
+            }
+            const finalPrototype = manualPrototype || prototypeFromPage || prototypeVariant || designFallback;
 
             // Add Interactive Prototype section if prototype exists
             if (finalPrototype) {
