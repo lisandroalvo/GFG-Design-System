@@ -136,6 +136,50 @@
             font-weight: 500;
         }
 
+        .nav-item-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            min-width: 0;
+        }
+
+        .nav-caret {
+            font-size: 9px;
+            color: var(--graphite);
+            display: inline-block;
+            width: 10px;
+            text-align: center;
+            transition: transform 0.15s ease;
+        }
+
+        .nav-sublist {
+            padding: 2px 0 6px;
+        }
+
+        .nav-subitem {
+            padding: 5px 20px 5px 38px;
+            cursor: pointer;
+            font-size: 12px;
+            color: var(--graphite);
+            transition: all 0.12s ease;
+            border-left: 2px solid transparent;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nav-subitem:hover {
+            background: var(--dust-clear);
+            color: var(--dust-dark);
+        }
+
+        .nav-subitem.active {
+            background: var(--dust-light);
+            color: var(--dust-dark);
+            font-weight: 500;
+            border-left-color: var(--dust-dark);
+        }
+
         /* Main Content */
         .main-content {
             margin-left: 240px;
@@ -9524,23 +9568,76 @@
         function renderSidebar() {
             const pages = Object.keys(organizedData.byPage).sort();
             const componentPages = document.getElementById('componentPages');
-            
+
             componentPages.innerHTML = pages.slice(0, 20).map(page => {
-                const count = organizedData.byPage[page].components.length;
+                const pageData = organizedData.byPage[page];
+                const setNames = Object.keys(pageData.componentSets || {}).sort();
+                const count = setNames.length;
                 return `
-                    <div class="nav-item" data-page="${page}">
-                        <span>${page}</span>
-                        <span class="nav-item-count">${count}</span>
+                    <div class="nav-group" data-page="${page}">
+                        <div class="nav-item nav-item-toggle" data-page="${page}">
+                            <span class="nav-item-label">
+                                <span class="nav-caret">▸</span>
+                                <span>${page}</span>
+                            </span>
+                            <span class="nav-item-count">${count}</span>
+                        </div>
+                        <div class="nav-sublist" hidden>
+                            ${setNames.map(setName => `
+                                <div class="nav-subitem" data-page="${page}" data-set-name="${setName}" title="${setName}">${setName}</div>
+                            `).join('')}
+                        </div>
                     </div>
                 `;
             }).join('');
 
-            document.querySelectorAll('.nav-item').forEach(item => {
+            // Foundation top-level items (Overview/Colors/Typography) keep simple click behaviour
+            document.querySelectorAll('.nav-item[data-page]:not(.nav-item-toggle)').forEach(item => {
                 item.addEventListener('click', () => {
-                    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                    document.querySelectorAll('.nav-item, .nav-subitem').forEach(i => i.classList.remove('active'));
                     item.classList.add('active');
                     currentPage = item.dataset.page;
                     renderPage(currentPage);
+                });
+            });
+
+            // Component category headers: toggle expand + render the page
+            document.querySelectorAll('.nav-item-toggle').forEach(item => {
+                item.addEventListener('click', () => {
+                    const group = item.closest('.nav-group');
+                    const sublist = group.querySelector('.nav-sublist');
+                    const caret = item.querySelector('.nav-caret');
+                    const wasOpen = !sublist.hidden;
+
+                    document.querySelectorAll('.nav-item, .nav-subitem').forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    currentPage = item.dataset.page;
+                    renderPage(currentPage);
+
+                    sublist.hidden = wasOpen;
+                    caret.textContent = wasOpen ? '▸' : '▾';
+                });
+            });
+
+            // Sub-items: open the specific component modal directly
+            document.querySelectorAll('.nav-subitem').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const pageName = item.dataset.page;
+                    const setName  = item.dataset.setName;
+
+                    if (currentPage !== pageName) {
+                        currentPage = pageName;
+                        renderPage(currentPage);
+                        // Mark parent toggle active too
+                        const toggle = document.querySelector(`.nav-item-toggle[data-page="${pageName}"]`);
+                        if (toggle) toggle.classList.add('active');
+                    }
+
+                    document.querySelectorAll('.nav-subitem').forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+
+                    openComponentModal(setName, 0);
                 });
             });
         }
@@ -11730,11 +11827,38 @@ function Example${idx + 1}() {
 
         document.getElementById('searchInput').addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase().trim();
-            
-            // Filter sidebar items
-            document.querySelectorAll('.nav-item[data-page]').forEach(item => {
-                const pageName = item.dataset.page.toLowerCase();
-                item.style.display = pageName.includes(searchTerm) ? 'flex' : 'none';
+
+            // Filter sidebar: keep a group visible if the category OR any sub-item matches
+            document.querySelectorAll('.nav-group').forEach(group => {
+                const pageName = (group.dataset.page || '').toLowerCase();
+                const subitems = group.querySelectorAll('.nav-subitem');
+                let anyMatch = !searchTerm || pageName.includes(searchTerm);
+
+                subitems.forEach(sub => {
+                    const setName = (sub.dataset.setName || '').toLowerCase();
+                    const matches = !searchTerm || pageName.includes(searchTerm) || setName.includes(searchTerm);
+                    sub.style.display = matches ? 'block' : 'none';
+                    if (matches) anyMatch = true;
+                });
+
+                group.style.display = anyMatch ? 'block' : 'none';
+
+                // Auto-expand groups during a search so matches are visible
+                const sublist = group.querySelector('.nav-sublist');
+                const caret   = group.querySelector('.nav-caret');
+                if (searchTerm && anyMatch) {
+                    sublist.hidden = false;
+                    if (caret) caret.textContent = '▾';
+                } else if (!searchTerm) {
+                    sublist.hidden = true;
+                    if (caret) caret.textContent = '▸';
+                }
+            });
+
+            // Foundation top-level items (Overview/Colors/Typography) stay filterable too
+            document.querySelectorAll('.nav-item[data-page]:not(.nav-item-toggle)').forEach(item => {
+                const pageName = (item.dataset.page || '').toLowerCase();
+                item.style.display = (!searchTerm || pageName.includes(searchTerm)) ? 'flex' : 'none';
             });
             
             // If there's a search term, show matching components in main content
