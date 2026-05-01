@@ -1,0 +1,5580 @@
+{
+  "_source": "Synced from Figma file OjFchNAdeHiNH5W4wYLSGS",
+  "_generatedAt": "2026-05-01T12:01:31.458Z",
+  "_totalSets": 128,
+  "_strategy": "Prefer componentPropertyDefinitions; fall back to variant-name parse",
+  "components": {
+    "Icon": {
+      "nodeId": "6594:47648",
+      "rawSetName": "<Icon>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 8,
+      "props": [
+        {
+          "name": "Size",
+          "values": [
+            "Medium",
+            "Large",
+            "Small",
+            "Inherit"
+          ],
+          "default": "Medium",
+          "isBoolean": false
+        },
+        {
+          "name": "Type",
+          "values": [
+            "SVG Icon",
+            "Font Icon"
+          ],
+          "default": "SVG Icon",
+          "isBoolean": false
+        },
+        {
+          "name": "Icon Instance",
+          "type": "instance",
+          "default": "7475:49603",
+          "instanceOptions": []
+        }
+      ]
+    },
+    "Link": {
+      "nodeId": "6574:50682",
+      "rawSetName": "<Link>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 14,
+      "props": [
+        {
+          "name": "Color",
+          "values": [
+            "Primary",
+            "Inherit"
+          ],
+          "default": "Primary",
+          "isBoolean": false
+        },
+        {
+          "name": "Underline",
+          "values": [
+            "Always",
+            "Hover",
+            "None"
+          ],
+          "default": "Always",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Hovered",
+            "Focused"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Typography": {
+      "nodeId": "11609:174872",
+      "rawSetName": "<Typography>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 9,
+      "props": [
+        {
+          "name": "Variant",
+          "values": [
+            "body1",
+            "body2",
+            "subtitle1",
+            "subtitle2",
+            "overline",
+            "caption",
+            "h6",
+            "h5",
+            "h4",
+            "h3",
+            "h2",
+            "h1",
+            "custom"
+          ],
+          "default": "body1",
+          "isBoolean": false
+        },
+        {
+          "name": "Gutter Bottom",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Content",
+          "type": "text",
+          "default": "Typography"
+        }
+      ]
+    },
+    "Autocomplete": {
+      "nodeId": "6570:49856",
+      "rawSetName": "<Autocomplete>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 4,
+      "props": [
+        {
+          "name": "Multiple Value",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Open",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "True",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Chip": {
+      "nodeId": "6588:47683",
+      "rawSetName": "<Chip>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 8,
+      "variantCount": 210,
+      "props": [
+        {
+          "name": "Size",
+          "values": [
+            "Medium",
+            "Small",
+            "XS"
+          ],
+          "default": "Medium",
+          "isBoolean": false
+        },
+        {
+          "name": "Color",
+          "values": [
+            "Default",
+            "Primary",
+            "Secondary",
+            "Error",
+            "Warning",
+            "Info",
+            "Success"
+          ],
+          "default": "Default",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Hovered",
+            "Focused",
+            "Disabled",
+            "Pressed"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        },
+        {
+          "name": "Variant",
+          "values": [
+            "Filled",
+            "Outlined"
+          ],
+          "default": "Filled",
+          "isBoolean": false
+        },
+        {
+          "name": "Thumbnail",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Right Icon",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "LeftIcon",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Label",
+          "type": "text",
+          "default": "Chip"
+        }
+      ]
+    },
+    "Avatar": {
+      "nodeId": "6587:47403",
+      "rawSetName": "<Avatar>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 5,
+      "variantCount": 36,
+      "props": [
+        {
+          "name": "Size",
+          "values": [
+            "40px",
+            "32px",
+            "24px",
+            "18px"
+          ],
+          "default": "40px",
+          "isBoolean": false
+        },
+        {
+          "name": "Variant",
+          "values": [
+            "Circular",
+            "Rounded",
+            "Square"
+          ],
+          "default": "Circular",
+          "isBoolean": false
+        },
+        {
+          "name": "Content",
+          "values": [
+            "Text",
+            "Icon",
+            "Image"
+          ],
+          "default": "Text",
+          "isBoolean": false
+        },
+        {
+          "name": "Badge",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Initials",
+          "type": "text",
+          "default": "OP"
+        }
+      ]
+    },
+    "Badge": {
+      "nodeId": "6587:47500",
+      "rawSetName": "<Badge>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 13,
+      "props": [
+        {
+          "name": "Variant",
+          "values": [
+            "Standard",
+            "Dot"
+          ],
+          "default": "Standard",
+          "isBoolean": false
+        },
+        {
+          "name": "Color",
+          "values": [
+            "Default",
+            "Primary",
+            "Secondary",
+            "Error",
+            "Warning",
+            "Info",
+            "Success"
+          ],
+          "default": "Default",
+          "isBoolean": false
+        },
+        {
+          "name": "Content",
+          "type": "text",
+          "default": "1"
+        }
+      ]
+    },
+    "FormHelperText": {
+      "nodeId": "11140:154883",
+      "rawSetName": "<FormHelperText>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 3,
+      "props": [
+        {
+          "name": "Disabled",
+          "values": [
+            "Error",
+            "Disabled",
+            "Enabled"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        },
+        {
+          "name": "Value",
+          "type": "text",
+          "default": "Helper text"
+        }
+      ]
+    },
+    "Menu": {
+      "nodeId": "11402:158079",
+      "rawSetName": "<Menu>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 4,
+      "props": [
+        {
+          "name": "Auto Width",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Max Height",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Paper": {
+      "nodeId": "6584:46711",
+      "rawSetName": "<Paper>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 5,
+      "variantCount": 52,
+      "props": [
+        {
+          "name": "Variant",
+          "values": [
+            "Elevation",
+            "Outlined"
+          ],
+          "default": "Elevation",
+          "isBoolean": false
+        },
+        {
+          "name": "Elevation",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24"
+          ],
+          "default": "1",
+          "isBoolean": false
+        },
+        {
+          "name": "Square",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Instance Slot",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "↳ Instance",
+          "type": "instance",
+          "default": "10020:110248",
+          "instanceOptions": []
+        }
+      ]
+    },
+    "MenuList": {
+      "nodeId": "11404:174321",
+      "rawSetName": "<MenuList>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 4,
+      "variantCount": 12,
+      "props": [
+        {
+          "name": "Auto Width",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Dense",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Small Screen",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Dis. Gutters",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        }
+      ]
+    },
+    "MenuItem": {
+      "nodeId": "6576:50735",
+      "rawSetName": "<MenuItem>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 10,
+      "variantCount": 24,
+      "props": [
+        {
+          "name": "Small Screen",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Dense",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Dis. Gutters",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Hovered",
+            "Selected",
+            "Disabled"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        },
+        {
+          "name": "Left Slot",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Right Slot",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Divider",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Value",
+          "type": "text",
+          "default": "Menu Item"
+        },
+        {
+          "name": "Right Instance",
+          "type": "instance",
+          "default": "11626:152457",
+          "instanceOptions": []
+        },
+        {
+          "name": "Left Instance",
+          "type": "instance",
+          "default": "6594:47653",
+          "instanceOptions": [
+            {
+              "type": "COMPONENT_SET",
+              "key": "6defadc327f7ce17a4bc8b409bab31c4d6e38685"
+            }
+          ]
+        }
+      ]
+    },
+    "Button": {
+      "nodeId": "6543:36744",
+      "rawSetName": "<Button>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 11,
+      "variantCount": 270,
+      "props": [
+        {
+          "name": "Size",
+          "values": [
+            "Large",
+            "Medium",
+            "Small"
+          ],
+          "default": "Large",
+          "isBoolean": false
+        },
+        {
+          "name": "Color",
+          "values": [
+            "Primary",
+            "Secondary",
+            "Error",
+            "Warning",
+            "Info",
+            "Success"
+          ],
+          "default": "Primary",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Hovered",
+            "Focused",
+            "Pressed",
+            "Disabled"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        },
+        {
+          "name": "Variant",
+          "values": [
+            "Contained",
+            "Outlined",
+            "Text"
+          ],
+          "default": "Contained",
+          "isBoolean": false
+        },
+        {
+          "name": "Start Icon",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "End Icon",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "IconLeft",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "IconRight",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Label",
+          "type": "text",
+          "default": "Label"
+        },
+        {
+          "name": "↳ Start Icon",
+          "type": "instance",
+          "default": "7475:54235",
+          "instanceOptions": []
+        },
+        {
+          "name": "↳ End Icon",
+          "type": "instance",
+          "default": "7475:54246",
+          "instanceOptions": []
+        }
+      ]
+    },
+    "ButtonGroup": {
+      "nodeId": "6543:39843",
+      "rawSetName": "<ButtonGroup>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 42,
+      "props": [
+        {
+          "name": "Orientation",
+          "values": [
+            "Horizontal",
+            "Vertical"
+          ],
+          "default": "Horizontal",
+          "isBoolean": false
+        },
+        {
+          "name": "Variant",
+          "values": [
+            "Contained",
+            "Text",
+            "Outlined"
+          ],
+          "default": "Contained",
+          "isBoolean": false
+        },
+        {
+          "name": "Color",
+          "values": [
+            "Primary",
+            "Secondary",
+            "Error",
+            "Warning",
+            "Info",
+            "Success",
+            "Inherit"
+          ],
+          "default": "Primary",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Checkbox": {
+      "nodeId": "6543:43052",
+      "rawSetName": "<Checkbox>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 5,
+      "variantCount": 246,
+      "props": [
+        {
+          "name": "Checked",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Indeterminate",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Size",
+          "values": [
+            "Medium",
+            "Small",
+            "Large"
+          ],
+          "default": "Medium",
+          "isBoolean": false
+        },
+        {
+          "name": "Color",
+          "values": [
+            "Default",
+            "Primary",
+            "Secondary",
+            "Error",
+            "Warning",
+            "Info",
+            "Success"
+          ],
+          "default": "Primary",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Hovered",
+            "Focused",
+            "Pressed",
+            "Disabled"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Radio": {
+      "nodeId": "6558:39273",
+      "rawSetName": "<Radio>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 4,
+      "variantCount": 174,
+      "props": [
+        {
+          "name": "Checked",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Size",
+          "values": [
+            "Medium",
+            "Small",
+            "Large"
+          ],
+          "default": "Medium",
+          "isBoolean": false
+        },
+        {
+          "name": "Color",
+          "values": [
+            "Primary",
+            "Default",
+            "Secondary",
+            "Error",
+            "Warning",
+            "Info",
+            "Success"
+          ],
+          "default": "Primary",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Hovered",
+            "Focused",
+            "Disabled",
+            "Pressed"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Fab": {
+      "nodeId": "6556:38264",
+      "rawSetName": "<Fab>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 7,
+      "variantCount": 150,
+      "props": [
+        {
+          "name": "Variant",
+          "values": [
+            "Extended",
+            "Round"
+          ],
+          "default": "Extended",
+          "isBoolean": false
+        },
+        {
+          "name": "Size",
+          "values": [
+            "Large",
+            "Medium",
+            "Small"
+          ],
+          "default": "Large",
+          "isBoolean": false
+        },
+        {
+          "name": "Color",
+          "values": [
+            "Default",
+            "Primary",
+            "Secondary",
+            "Inherit",
+            "Inherit (white)"
+          ],
+          "default": "Default",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Hovered",
+            "Focused",
+            "Pressed",
+            "Disabled"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        },
+        {
+          "name": "Icon",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Label",
+          "type": "text",
+          "default": "Fab"
+        },
+        {
+          "name": "↳ Icon",
+          "type": "instance",
+          "default": "7475:65638",
+          "instanceOptions": []
+        }
+      ]
+    },
+    "Rating": {
+      "nodeId": "6562:39624",
+      "rawSetName": "<Rating>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 6,
+      "props": [
+        {
+          "name": "Size",
+          "values": [
+            "Large",
+            "Medium*",
+            "Small"
+          ],
+          "default": "Medium*",
+          "isBoolean": false
+        },
+        {
+          "name": "Disabled",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Star": {
+      "nodeId": "6562:39569",
+      "rawSetName": "Star",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 15,
+      "props": [
+        {
+          "name": "Size",
+          "values": [
+            "Large",
+            "Medium*",
+            "Small"
+          ],
+          "default": "Large",
+          "isBoolean": false
+        },
+        {
+          "name": "Active",
+          "values": [
+            "False",
+            "Half",
+            "Full"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Hovered",
+          "values": [
+            "false",
+            "true"
+          ],
+          "default": "false",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Slider": {
+      "nodeId": "6562:39045",
+      "rawSetName": "<Slider>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 7,
+      "variantCount": 66,
+      "props": [
+        {
+          "name": "Size",
+          "values": [
+            "Small",
+            "Medium"
+          ],
+          "default": "Medium",
+          "isBoolean": false
+        },
+        {
+          "name": "Variant",
+          "values": [
+            "Continuous",
+            "Marks",
+            "Range"
+          ],
+          "default": "Continuous",
+          "isBoolean": false
+        },
+        {
+          "name": "Color",
+          "values": [
+            "Primary",
+            "Secondary"
+          ],
+          "default": "Primary",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Hover",
+            "Disabled"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        },
+        {
+          "name": "Orientation",
+          "values": [
+            "Horizontal",
+            "Vertical"
+          ],
+          "default": "Horizontal",
+          "isBoolean": false
+        },
+        {
+          "name": "Values",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Label",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        }
+      ]
+    },
+    "FormControlLabel | Switch": {
+      "nodeId": "642:114423",
+      "rawSetName": "<FormControlLabel> | Switch",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 8,
+      "props": [
+        {
+          "name": "Label Placement",
+          "values": [
+            "End",
+            "Bottom",
+            "Start",
+            "Top"
+          ],
+          "default": "End",
+          "isBoolean": false
+        },
+        {
+          "name": "Disabled",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Switch": {
+      "nodeId": "6564:39128",
+      "rawSetName": "<Switch>",
+      "source": "variant-name parse",
+      "figmaPropCount": 0,
+      "variantCount": 117,
+      "props": [
+        {
+          "name": "Checked",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Size",
+          "values": [
+            "Medium",
+            "Small"
+          ],
+          "default": "Medium",
+          "isBoolean": false
+        },
+        {
+          "name": "Color",
+          "values": [
+            "Primary",
+            "Default",
+            "Error",
+            "Warning",
+            "Info",
+            "Success",
+            "Secondary"
+          ],
+          "default": "Primary",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Hovered",
+            "Focused",
+            "Pressed"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        }
+      ]
+    },
+    "FormLabel": {
+      "nodeId": "11436:165380",
+      "rawSetName": "<FormLabel>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 9,
+      "props": [
+        {
+          "name": "Color",
+          "values": [
+            "-",
+            "Primary",
+            "Secondary",
+            "Error",
+            "Warning",
+            "Info",
+            "Success"
+          ],
+          "default": "-",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Error"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        },
+        {
+          "name": "Value",
+          "type": "text",
+          "default": "Label"
+        }
+      ]
+    },
+    "TextField": {
+      "nodeId": "6570:48313",
+      "rawSetName": "<TextField>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 15,
+      "variantCount": 60,
+      "props": [
+        {
+          "name": "Variant",
+          "values": [
+            "Standard",
+            "Filled",
+            "Outlined"
+          ],
+          "default": "Standard",
+          "isBoolean": false
+        },
+        {
+          "name": "Size",
+          "values": [
+            "Medium",
+            "Small"
+          ],
+          "default": "Medium",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Hovered",
+            "Focused",
+            "Disabled",
+            "Error"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        },
+        {
+          "name": "Has Value",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "True",
+          "isBoolean": false
+        },
+        {
+          "name": "Type: number",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Helper",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Adorn. Start",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Adorn. End",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Value",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Placeholder",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "↳ Value",
+          "type": "text",
+          "default": "Value"
+        },
+        {
+          "name": "Label",
+          "type": "text",
+          "default": "Label"
+        },
+        {
+          "name": "↳ Placeholder",
+          "type": "text",
+          "default": "Placeholder"
+        },
+        {
+          "name": "↳ Start Instance",
+          "type": "instance",
+          "default": "6594:47651",
+          "instanceOptions": [
+            {
+              "type": "COMPONENT",
+              "key": "f4177b5aa47e1d9f94c0f4dd6892e0e51ca79f94"
+            },
+            {
+              "type": "COMPONENT_SET",
+              "key": "69cc5a63fe7180226b09e0bc53c1388548856226"
+            },
+            {
+              "type": "COMPONENT_SET",
+              "key": "038d03a79f15855ef4ebfb501089184ffbd77e12"
+            },
+            {
+              "type": "COMPONENT_SET",
+              "key": "69ea88137c32ac85a6b0a9a3621411ac1eaa47a0"
+            }
+          ]
+        },
+        {
+          "name": "↳ End Instance",
+          "type": "instance",
+          "default": "6594:47651",
+          "instanceOptions": [
+            {
+              "type": "COMPONENT_SET",
+              "key": "038d03a79f15855ef4ebfb501089184ffbd77e12"
+            },
+            {
+              "type": "COMPONENT_SET",
+              "key": "69ea88137c32ac85a6b0a9a3621411ac1eaa47a0"
+            }
+          ]
+        }
+      ]
+    },
+    "TextField | Multiline": {
+      "nodeId": "7551:51690",
+      "rawSetName": "<TextField> | Multiline",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 4,
+      "variantCount": 21,
+      "props": [
+        {
+          "name": "Variant",
+          "values": [
+            "Standard",
+            "Outlined",
+            "Filled"
+          ],
+          "default": "Standard",
+          "isBoolean": false
+        },
+        {
+          "name": "Min Rows",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Max Rows",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Rows",
+          "values": [
+            "Flexible",
+            "4",
+            "6",
+            "8"
+          ],
+          "default": "Flexible",
+          "isBoolean": false
+        }
+      ]
+    },
+    "TransferList": {
+      "nodeId": "6562:38660",
+      "rawSetName": "<TransferList>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Variant",
+          "values": [
+            "Enhanced",
+            "Simpled"
+          ],
+          "default": "Simpled",
+          "isBoolean": false
+        }
+      ]
+    },
+    "ListItem": {
+      "nodeId": "6591:48882",
+      "rawSetName": "<ListItem>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 10,
+      "variantCount": 24,
+      "props": [
+        {
+          "name": "Dense",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Disabled Gutters",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Hovered",
+            "Selected",
+            "Focused",
+            "Pressed",
+            "Disabled"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        },
+        {
+          "name": "Second. Text",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Divider",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Left Slot",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Right Slot",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Label",
+          "type": "text",
+          "default": "List item"
+        },
+        {
+          "name": "Left Slot",
+          "type": "instance",
+          "default": "6594:47651",
+          "instanceOptions": []
+        },
+        {
+          "name": "Right Slot",
+          "type": "instance",
+          "default": "7497:50687",
+          "instanceOptions": []
+        }
+      ]
+    },
+    "IconButton": {
+      "nodeId": "6557:38545",
+      "rawSetName": "<IconButton>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 12,
+      "props": [
+        {
+          "name": "Size",
+          "values": [
+            "Medium",
+            "Small",
+            "Large"
+          ],
+          "default": "Medium",
+          "isBoolean": false
+        },
+        {
+          "name": "Color",
+          "values": [
+            "Default",
+            "Primary",
+            "Secondary",
+            "Error",
+            "Warning",
+            "Info",
+            "Success",
+            "Inherit",
+            "Inherit (white)"
+          ],
+          "default": "Default",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Hovered",
+            "Focused",
+            "Pressed",
+            "Disabled"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        }
+      ]
+    },
+    "ToggleButtonGroup": {
+      "nodeId": "6601:51012",
+      "rawSetName": "<ToggleButtonGroup>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 9,
+      "props": [
+        {
+          "name": "Orientation",
+          "values": [
+            "Horizontal",
+            "Vertical"
+          ],
+          "default": "Horizontal",
+          "isBoolean": false
+        },
+        {
+          "name": "Size",
+          "values": [
+            "Medium",
+            "Small",
+            "Large"
+          ],
+          "default": "Medium",
+          "isBoolean": false
+        },
+        {
+          "name": "Single",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        }
+      ]
+    },
+    "ToggleButton": {
+      "nodeId": "6601:50975",
+      "rawSetName": "<ToggleButton>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 6,
+      "variantCount": 30,
+      "props": [
+        {
+          "name": "Size",
+          "values": [
+            "Large",
+            "Medium",
+            "Small"
+          ],
+          "default": "Large",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Hovered",
+            "Disabled",
+            "Focused",
+            "Pressed"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        },
+        {
+          "name": "Selected",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Text",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Icon",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Icon",
+          "type": "instance",
+          "default": "7475:62358",
+          "instanceOptions": []
+        }
+      ]
+    },
+    "AvatarGroup": {
+      "nodeId": "7432:52415",
+      "rawSetName": "<AvatarGroup>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 36,
+      "props": [
+        {
+          "name": "Spacing",
+          "values": [
+            "Medium",
+            "Small",
+            "Number"
+          ],
+          "default": "Medium",
+          "isBoolean": false
+        },
+        {
+          "name": "Max",
+          "values": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "default": "2",
+          "isBoolean": false
+        },
+        {
+          "name": "Size",
+          "values": [
+            "40px",
+            "32px",
+            "24px"
+          ],
+          "default": "40px",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Badge | With Instance": {
+      "nodeId": "6587:47527",
+      "rawSetName": "<Badge> | With Instance ",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 13,
+      "props": [
+        {
+          "name": "Variant",
+          "values": [
+            "Standard",
+            "Dot"
+          ],
+          "default": "Standard",
+          "isBoolean": false
+        },
+        {
+          "name": "Color",
+          "values": [
+            "Default",
+            "Primary",
+            "Secondary",
+            "Error",
+            "Warning",
+            "Info",
+            "Success"
+          ],
+          "default": "Default",
+          "isBoolean": false
+        },
+        {
+          "name": "Component",
+          "type": "instance",
+          "default": "7497:50687",
+          "instanceOptions": []
+        }
+      ]
+    },
+    "MobileDateTimePicker": {
+      "nodeId": "7494:50237",
+      "rawSetName": "<MobileDateTimePicker>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Tab",
+          "values": [
+            "Date",
+            "Time"
+          ],
+          "default": "Date",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Tab": {
+      "nodeId": "6579:45104",
+      "rawSetName": "<Tab>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 8,
+      "variantCount": 51,
+      "props": [
+        {
+          "name": "Active",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Active Color",
+          "values": [
+            "None",
+            "Primary",
+            "Secondary"
+          ],
+          "default": "None",
+          "isBoolean": false
+        },
+        {
+          "name": "Orientation",
+          "values": [
+            "Horizontal",
+            "Vertical"
+          ],
+          "default": "Horizontal",
+          "isBoolean": false
+        },
+        {
+          "name": "Icon Position",
+          "values": [
+            "Up",
+            "Left",
+            "Right"
+          ],
+          "default": "Left",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Focused",
+            "Pressed"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        },
+        {
+          "name": "Icon",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Text",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Tab Content",
+          "type": "text",
+          "default": "Tab"
+        }
+      ]
+    },
+    "Table": {
+      "nodeId": "6594:46634",
+      "rawSetName": "<Table>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 5,
+      "variantCount": 16,
+      "props": [
+        {
+          "name": "Small",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Checkbox",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Small Screen",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Rows",
+          "values": [
+            "5",
+            "10"
+          ],
+          "default": "5",
+          "isBoolean": false
+        },
+        {
+          "name": "TableFooter",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        }
+      ]
+    },
+    "TableHeadRow": {
+      "nodeId": "6686:36863",
+      "rawSetName": "<TableHeadRow>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 4,
+      "variantCount": 36,
+      "props": [
+        {
+          "name": "Small",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Checkbox",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Selected",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Columns",
+          "values": [
+            "3",
+            "4",
+            "5",
+            "6",
+            "8",
+            "10"
+          ],
+          "default": "3",
+          "isBoolean": false
+        }
+      ]
+    },
+    "TableHead": {
+      "nodeId": "6594:46364",
+      "rawSetName": "<TableHead>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 5,
+      "variantCount": 4,
+      "props": [
+        {
+          "name": "Small",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Checkbox",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Left Sort",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Right Sort",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Label",
+          "type": "text",
+          "default": "Head"
+        }
+      ]
+    },
+    "TableCellRow": {
+      "nodeId": "6594:46473",
+      "rawSetName": "<TableCellRow>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 6,
+      "variantCount": 144,
+      "props": [
+        {
+          "name": "Small",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Checkbox",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Hover",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Selected",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Columns",
+          "values": [
+            "3",
+            "4",
+            "5",
+            "6",
+            "8",
+            "10"
+          ],
+          "default": "3",
+          "isBoolean": false
+        },
+        {
+          "name": "Divider",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": "True",
+          "isBoolean": false
+        }
+      ]
+    },
+    "TableCell": {
+      "nodeId": "6594:46413",
+      "rawSetName": "<TableCell>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 5,
+      "variantCount": 4,
+      "props": [
+        {
+          "name": "Small",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Checkbox",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "2nd Instance",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Instance",
+          "type": "instance",
+          "default": "6605:52866",
+          "instanceOptions": []
+        },
+        {
+          "name": "↳ 2nd Instance",
+          "type": "instance",
+          "default": "6605:52866",
+          "instanceOptions": []
+        }
+      ]
+    },
+    "Tooltip": {
+      "nodeId": "6590:48770",
+      "rawSetName": "<Tooltip>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 5,
+      "props": [
+        {
+          "name": "Direction",
+          "values": [
+            "None",
+            "Down",
+            "Up",
+            "Left",
+            "Right"
+          ],
+          "default": "None",
+          "isBoolean": false
+        },
+        {
+          "name": "Text",
+          "type": "text",
+          "default": "Placeholder"
+        }
+      ]
+    },
+    "Alert": {
+      "nodeId": "6595:48211",
+      "rawSetName": "Alert",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 9,
+      "variantCount": 12,
+      "props": [
+        {
+          "name": "Type",
+          "values": [
+            "Error",
+            "Warning",
+            "Info",
+            "Success"
+          ],
+          "default": "Error",
+          "isBoolean": false
+        },
+        {
+          "name": "Variant",
+          "values": [
+            "Filled",
+            "Outlined",
+            "Standard"
+          ],
+          "default": "Filled",
+          "isBoolean": false
+        },
+        {
+          "name": "On Close",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Action",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Description",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Title",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "↳ Title",
+          "type": "text",
+          "default": "{Title}"
+        },
+        {
+          "name": "↳ Description",
+          "type": "text",
+          "default": "{Description}"
+        },
+        {
+          "name": "↳Instance",
+          "type": "instance",
+          "default": "7426:48547",
+          "instanceOptions": []
+        }
+      ]
+    },
+    "Dialog": {
+      "nodeId": "6586:47183",
+      "rawSetName": "<Dialog>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 5,
+      "props": [
+        {
+          "name": "Max Width",
+          "values": [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl"
+          ],
+          "default": "xs",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Dialog Elements": {
+      "nodeId": "127:59653",
+      "rawSetName": "Dialog Elements",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "DialogTitle?",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": "True",
+          "isBoolean": false
+        },
+        {
+          "name": "DialogActions",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "DialogContent",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        }
+      ]
+    },
+    "DialogContent": {
+      "nodeId": "127:59928",
+      "rawSetName": "<DialogContent>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Dividers?",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "↳ Instance",
+          "type": "instance",
+          "default": "10020:110248",
+          "instanceOptions": []
+        }
+      ]
+    },
+    "DialogActions": {
+      "nodeId": "170:161662",
+      "rawSetName": "<DialogActions>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 3,
+      "props": [
+        {
+          "name": "Actions",
+          "values": [
+            "1",
+            "2",
+            "3"
+          ],
+          "default": "1",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Progress | Linear": {
+      "nodeId": "6586:46855",
+      "rawSetName": "<Progress> | Linear",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 9,
+      "props": [
+        {
+          "name": "Type",
+          "values": [
+            "Determinate",
+            "Buffer",
+            "Indeterminate"
+          ],
+          "default": "Determinate",
+          "isBoolean": false
+        },
+        {
+          "name": "Color",
+          "values": [
+            "Inherit",
+            "Primary",
+            "Secondary"
+          ],
+          "default": "Primary",
+          "isBoolean": false
+        },
+        {
+          "name": "Label",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        }
+      ]
+    },
+    "Progress | Circular": {
+      "nodeId": "6586:47016",
+      "rawSetName": "<Progress> | Circular",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 6,
+      "props": [
+        {
+          "name": "Color",
+          "values": [
+            "Primary",
+            "Secondary",
+            "Inherit"
+          ],
+          "default": "Primary",
+          "isBoolean": false
+        },
+        {
+          "name": "Size",
+          "values": [
+            "32px",
+            "16px"
+          ],
+          "default": "32px",
+          "isBoolean": false
+        },
+        {
+          "name": "Label",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        }
+      ]
+    },
+    "Skeleton": {
+      "nodeId": "6596:49017",
+      "rawSetName": "<Skeleton>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 3,
+      "props": [
+        {
+          "name": "Shape",
+          "values": [
+            "Text",
+            "Circle",
+            "Rectangle"
+          ],
+          "default": "Text",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Stack": {
+      "nodeId": "11114:137757",
+      "rawSetName": "<Stack>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 8,
+      "variantCount": 75,
+      "props": [
+        {
+          "name": "Instances",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5+"
+          ],
+          "default": "2",
+          "isBoolean": false
+        },
+        {
+          "name": "Direction",
+          "values": [
+            "Column",
+            "Row"
+          ],
+          "default": "Row",
+          "isBoolean": false
+        },
+        {
+          "name": "Spacing",
+          "values": [
+            "1",
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "default": "1",
+          "isBoolean": false
+        },
+        {
+          "name": "Instance",
+          "type": "instance",
+          "default": "10020:110248",
+          "instanceOptions": []
+        },
+        {
+          "name": "Instance",
+          "type": "instance",
+          "default": "10020:110248",
+          "instanceOptions": []
+        },
+        {
+          "name": "Instance",
+          "type": "instance",
+          "default": "10020:110248",
+          "instanceOptions": []
+        },
+        {
+          "name": "Instance",
+          "type": "instance",
+          "default": "10020:110248",
+          "instanceOptions": [
+            {
+              "type": "COMPONENT",
+              "key": "0307f29ba260e85f2468d94d71a3e44fbe527f53"
+            }
+          ]
+        },
+        {
+          "name": "Instance",
+          "type": "instance",
+          "default": "10020:110248",
+          "instanceOptions": []
+        }
+      ]
+    },
+    "Accordion": {
+      "nodeId": "6583:46084",
+      "rawSetName": "<Accordion>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 5,
+      "variantCount": 9,
+      "props": [
+        {
+          "name": "Disabled",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "First-of-type",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Last-of-type",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Expanded?",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "↳ Instance",
+          "type": "instance",
+          "default": "10020:110248",
+          "instanceOptions": []
+        }
+      ]
+    },
+    "AppBar": {
+      "nodeId": "11545:171494",
+      "rawSetName": "<AppBar>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 5,
+      "props": [
+        {
+          "name": "Color",
+          "values": [
+            "Default",
+            "Primary",
+            "Secondary",
+            "Inherit White",
+            "Transparent"
+          ],
+          "default": "Primary",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Toolbar": {
+      "nodeId": "6583:46318",
+      "rawSetName": "<Toolbar>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 3,
+      "props": [
+        {
+          "name": "Variant",
+          "values": [
+            "Regular",
+            "Dense"
+          ],
+          "default": "Regular",
+          "isBoolean": false
+        },
+        {
+          "name": "Small Screen",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Menu",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        }
+      ]
+    },
+    "Card": {
+      "nodeId": "11479:243797",
+      "rawSetName": "<Card>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 1,
+      "props": [
+        {
+          "name": "Small Screen",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Blank",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        }
+      ]
+    },
+    "CardMedia": {
+      "nodeId": "11480:169332",
+      "rawSetName": "<CardMedia>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Ratio",
+          "values": [
+            "4x3",
+            "1:9"
+          ],
+          "default": "4x3",
+          "isBoolean": false
+        },
+        {
+          "name": "↳ Instance",
+          "type": "instance",
+          "default": "9447:95707",
+          "instanceOptions": [
+            {
+              "type": "COMPONENT",
+              "key": "e027a92c5c6f46b3496ef20e25d9f335ab257adc"
+            }
+          ]
+        }
+      ]
+    },
+    "Avatars": {
+      "nodeId": "15700:10446",
+      "rawSetName": "Avatars",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 5,
+      "props": [
+        {
+          "name": "Property 1",
+          "values": [
+            "Default",
+            "5",
+            "2",
+            "3",
+            "4"
+          ],
+          "default": "Default",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Icon Button": {
+      "nodeId": "15687:1425",
+      "rawSetName": "<Icon Button>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 12,
+      "variantCount": 270,
+      "props": [
+        {
+          "name": "Size",
+          "values": [
+            "Large",
+            "Medium",
+            "Small"
+          ],
+          "default": "Large",
+          "isBoolean": false
+        },
+        {
+          "name": "Color",
+          "values": [
+            "Primary",
+            "Secondary",
+            "Error",
+            "Warning",
+            "Info",
+            "Success"
+          ],
+          "default": "Primary",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Hovered",
+            "Focused",
+            "Pressed",
+            "Disabled"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        },
+        {
+          "name": "Variant",
+          "values": [
+            "Contained",
+            "Outlined",
+            "Text"
+          ],
+          "default": "Contained",
+          "isBoolean": false
+        },
+        {
+          "name": "Start Icon",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "End Icon",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "IconLeft",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "IconRight",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "notification",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Label",
+          "type": "text",
+          "default": "Label"
+        },
+        {
+          "name": "↳ Start Icon",
+          "type": "instance",
+          "default": "7475:54235",
+          "instanceOptions": []
+        },
+        {
+          "name": "↳ End Icon",
+          "type": "instance",
+          "default": "7475:54246",
+          "instanceOptions": []
+        }
+      ]
+    },
+    "BottomNavigation": {
+      "nodeId": "6572:50307",
+      "rawSetName": "<BottomNavigation>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 4,
+      "props": [
+        {
+          "name": "Icon Only",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Items",
+          "values": [
+            "Three",
+            "Four"
+          ],
+          "default": "Three",
+          "isBoolean": false
+        }
+      ]
+    },
+    "BottomNavigationAction": {
+      "nodeId": "6572:50288",
+      "rawSetName": "<BottomNavigationAction>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 4,
+      "variantCount": 14,
+      "props": [
+        {
+          "name": "Active",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Label",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": "True",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Focused",
+            "Disabled",
+            "Pressed"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        },
+        {
+          "name": "Label Content",
+          "type": "text",
+          "default": "Label"
+        }
+      ]
+    },
+    "Breadcrumbs": {
+      "nodeId": "6572:50436",
+      "rawSetName": "<Breadcrumbs>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 4,
+      "variantCount": 4,
+      "props": [
+        {
+          "name": "Separator",
+          "values": [
+            "Text*",
+            "Icon"
+          ],
+          "default": "Text*",
+          "isBoolean": false
+        },
+        {
+          "name": "Collapsed",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Icon",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Separator Icon",
+          "type": "instance",
+          "default": "7475:54246",
+          "instanceOptions": []
+        }
+      ]
+    },
+    "Tabs": {
+      "nodeId": "6579:45197",
+      "rawSetName": "<Tabs>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 4,
+      "variantCount": 9,
+      "props": [
+        {
+          "name": "Orientation",
+          "values": [
+            "Horizontal",
+            "Vertical"
+          ],
+          "default": "Horizontal",
+          "isBoolean": false
+        },
+        {
+          "name": "Small Screen",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Variant",
+          "values": [
+            "Standard",
+            "Scrollable",
+            "Full Width"
+          ],
+          "default": "Standard",
+          "isBoolean": false
+        },
+        {
+          "name": "Scroll Visible",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        }
+      ]
+    },
+    "List": {
+      "nodeId": "11566:157133",
+      "rawSetName": "<List>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 4,
+      "props": [
+        {
+          "name": "Dis. Padding",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Dense",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        }
+      ]
+    },
+    "SpeedDial": {
+      "nodeId": "6599:50822",
+      "rawSetName": "<SpeedDial>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 4,
+      "props": [
+        {
+          "name": "Direction",
+          "values": [
+            "Up",
+            "Left",
+            "Right",
+            "Down"
+          ],
+          "default": "Up",
+          "isBoolean": false
+        },
+        {
+          "name": "Instance",
+          "type": "instance",
+          "default": "7618:74537",
+          "instanceOptions": []
+        }
+      ]
+    },
+    "Pagination": {
+      "nodeId": "6598:49376",
+      "rawSetName": "<Pagination>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 9,
+      "variantCount": 48,
+      "props": [
+        {
+          "name": "Size",
+          "values": [
+            "Medium",
+            "Large",
+            "Small"
+          ],
+          "default": "Large",
+          "isBoolean": false
+        },
+        {
+          "name": "Color",
+          "values": [
+            "Standard",
+            "Primary",
+            "Secondary"
+          ],
+          "default": "Standard",
+          "isBoolean": false
+        },
+        {
+          "name": "Variant",
+          "values": [
+            "Text",
+            "Outlined"
+          ],
+          "default": "Text",
+          "isBoolean": false
+        },
+        {
+          "name": "Shape",
+          "values": [
+            "Circular",
+            "Rounded"
+          ],
+          "default": "Circular",
+          "isBoolean": false
+        },
+        {
+          "name": "Disabled",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Hide Next Button",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Hide Prev Button",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Show First Button",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Show Last Button",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        }
+      ]
+    },
+    "PaginationItem": {
+      "nodeId": "6598:49207",
+      "rawSetName": "<PaginationItem>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 8,
+      "variantCount": 84,
+      "props": [
+        {
+          "name": "Active",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Icon",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Size",
+          "values": [
+            "Large",
+            "Medium",
+            "Small"
+          ],
+          "default": "Large",
+          "isBoolean": false
+        },
+        {
+          "name": "Variant",
+          "values": [
+            "Text",
+            "Outlined"
+          ],
+          "default": "Text",
+          "isBoolean": false
+        },
+        {
+          "name": "Shape",
+          "values": [
+            "Circular",
+            "Rounded"
+          ],
+          "default": "Circular",
+          "isBoolean": false
+        },
+        {
+          "name": "Color",
+          "values": [
+            "Standard*",
+            "Primary",
+            "Secondary"
+          ],
+          "default": "Standard*",
+          "isBoolean": false
+        },
+        {
+          "name": "Disabled",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Instance",
+          "type": "instance",
+          "default": "7475:54246",
+          "instanceOptions": [
+            {
+              "type": "COMPONENT",
+              "key": "ea54992de16e4353c56e4265566bd3acd6f5f217"
+            }
+          ]
+        }
+      ]
+    },
+    "Stepper": {
+      "nodeId": "6576:51106",
+      "rawSetName": "<Stepper>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 9,
+      "variantCount": 13,
+      "props": [
+        {
+          "name": "Small Screen",
+          "values": [
+            "false",
+            "true"
+          ],
+          "default": "false",
+          "isBoolean": false
+        },
+        {
+          "name": "Optional",
+          "values": [
+            "false",
+            "true"
+          ],
+          "default": "false",
+          "isBoolean": false
+        },
+        {
+          "name": "Text",
+          "values": [
+            "Center",
+            "Left"
+          ],
+          "default": "Left",
+          "isBoolean": false
+        },
+        {
+          "name": "Alignment",
+          "values": [
+            "Horizontal*",
+            "Vertical"
+          ],
+          "default": "Horizontal*",
+          "isBoolean": false
+        },
+        {
+          "name": "1 step",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "2 Step",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Step 3",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Step 4",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Step 5",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        }
+      ]
+    },
+    "Step Icon": {
+      "nodeId": "6576:51232",
+      "rawSetName": "Step Icon",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "State",
+          "values": [
+            "Default",
+            "Done"
+          ],
+          "default": "Default",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Timeline": {
+      "nodeId": "6602:51689",
+      "rawSetName": "<Timeline>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 12,
+      "props": [
+        {
+          "name": "Opposing",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Variant",
+          "values": [
+            "Filled",
+            "Outlined"
+          ],
+          "default": "Filled",
+          "isBoolean": false
+        },
+        {
+          "name": "Position",
+          "values": [
+            "Right",
+            "Left",
+            "Alternating"
+          ],
+          "default": "Left",
+          "isBoolean": false
+        }
+      ]
+    },
+    "TimelineItem": {
+      "nodeId": "6602:51383",
+      "rawSetName": "<TimelineItem>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 4,
+      "props": [
+        {
+          "name": "Position",
+          "values": [
+            "Right",
+            "Left"
+          ],
+          "default": "Right",
+          "isBoolean": false
+        },
+        {
+          "name": "Variant",
+          "values": [
+            "Filled",
+            "Outlined"
+          ],
+          "default": "Filled",
+          "isBoolean": false
+        },
+        {
+          "name": "Opposing",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        }
+      ]
+    },
+    "TimelineDot": {
+      "nodeId": "6602:51786",
+      "rawSetName": "<TimelineDot>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Variant",
+          "values": [
+            "Filled*",
+            "Outlined"
+          ],
+          "default": "Filled*",
+          "isBoolean": false
+        }
+      ]
+    },
+    "TreeItem": {
+      "nodeId": "6601:51139",
+      "rawSetName": "<TreeItem>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 4,
+      "variantCount": 9,
+      "props": [
+        {
+          "name": "Selected",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Disabled",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Default",
+            "Expandable",
+            "Expanded"
+          ],
+          "default": "Default",
+          "isBoolean": false
+        },
+        {
+          "name": "Spacing",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        }
+      ]
+    },
+    "Spacing | Horizontal": {
+      "nodeId": "8991:87925",
+      "rawSetName": "Spacing | Horizontal",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 16,
+      "props": [
+        {
+          "name": "Spacing",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "default": "1",
+          "isBoolean": false
+        },
+        {
+          "name": "Visibility",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "True",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Spacing | Vertical": {
+      "nodeId": "9402:94892",
+      "rawSetName": "Spacing | Vertical",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 16,
+      "props": [
+        {
+          "name": "Spacing",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "default": "1",
+          "isBoolean": false
+        },
+        {
+          "name": "Visibility",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": "True",
+          "isBoolean": false
+        }
+      ]
+    },
+    "LoadingButton": {
+      "nodeId": "1634:70207",
+      "rawSetName": "<LoadingButton>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 5,
+      "variantCount": 1,
+      "props": [
+        {
+          "name": "Size",
+          "values": [
+            "Large",
+            "Medium",
+            "Small"
+          ],
+          "default": "Large",
+          "isBoolean": false
+        },
+        {
+          "name": "Variant",
+          "values": [
+            "Contained",
+            "Outlined",
+            "Text"
+          ],
+          "default": "Contained",
+          "isBoolean": false
+        },
+        {
+          "name": "Loading Start",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Loading End",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Label",
+          "type": "text",
+          "default": "Loading"
+        }
+      ]
+    },
+    "FormControlLabel | Checkbox": {
+      "nodeId": "642:114394",
+      "rawSetName": "<FormControlLabel> | Checkbox",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 8,
+      "props": [
+        {
+          "name": "Label Placement",
+          "values": [
+            "End",
+            "Start",
+            "Top",
+            "Bottom"
+          ],
+          "default": "End",
+          "isBoolean": false
+        },
+        {
+          "name": "Disabled",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        }
+      ]
+    },
+    "FormGroup | Checkbox": {
+      "nodeId": "6543:43147",
+      "rawSetName": "<FormGroup> | <Checkbox>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 4,
+      "variantCount": 6,
+      "props": [
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Error"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        },
+        {
+          "name": "Checkboxes",
+          "values": [
+            "3",
+            "5"
+          ],
+          "default": "3",
+          "isBoolean": false
+        },
+        {
+          "name": "<FormLabel>",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "<FormHelperText>",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        }
+      ]
+    },
+    "FormControlLabel | Radio": {
+      "nodeId": "634:100262",
+      "rawSetName": "<FormControlLabel> | Radio",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 8,
+      "props": [
+        {
+          "name": "Label Placement",
+          "values": [
+            "End",
+            "Start",
+            "Top",
+            "Bottom"
+          ],
+          "default": "End",
+          "isBoolean": false
+        },
+        {
+          "name": "Disabled",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        }
+      ]
+    },
+    "RadioGroup": {
+      "nodeId": "6558:39344",
+      "rawSetName": "<RadioGroup>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 8,
+      "props": [
+        {
+          "name": "Radios",
+          "values": [
+            "3",
+            "5"
+          ],
+          "default": "3",
+          "isBoolean": false
+        },
+        {
+          "name": "Disabled",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Row",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        }
+      ]
+    },
+    "FormGroup | RadioGroup": {
+      "nodeId": "1479:32615",
+      "rawSetName": "<FormGroup> | <RadioGroup>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 4,
+      "variantCount": 3,
+      "props": [
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Error"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        },
+        {
+          "name": "Checkboxes",
+          "values": [
+            "3"
+          ],
+          "default": "3",
+          "isBoolean": false
+        },
+        {
+          "name": "<FormLabel>",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "<FormHelperText>",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        }
+      ]
+    },
+    "InputLabel": {
+      "nodeId": "11140:154655",
+      "rawSetName": "<InputLabel>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 9,
+      "props": [
+        {
+          "name": "Color",
+          "values": [
+            "-",
+            "Primary",
+            "Secondary",
+            "Error",
+            "Warning",
+            "Info",
+            "Success"
+          ],
+          "default": "-",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Error"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        },
+        {
+          "name": "Value",
+          "type": "text",
+          "default": "Label"
+        }
+      ]
+    },
+    "Input Field": {
+      "nodeId": "6570:41424",
+      "rawSetName": "Input Field",
+      "source": "variant-name parse",
+      "figmaPropCount": 0,
+      "variantCount": 60,
+      "props": [
+        {
+          "name": "Status",
+          "values": [
+            "Values",
+            "Read Only",
+            "Placeholder",
+            "Loading",
+            "Disabled",
+            "Hover",
+            "Default",
+            "Disable",
+            "Loadin",
+            "Active"
+          ],
+          "default": "Values",
+          "isBoolean": false
+        },
+        {
+          "name": "Size",
+          "values": [
+            "S",
+            "MD",
+            "LG"
+          ],
+          "default": "S",
+          "isBoolean": false
+        },
+        {
+          "name": "Type",
+          "values": [
+            "Default",
+            "Helper Text",
+            "Error",
+            "Warning",
+            "Search",
+            "Success"
+          ],
+          "default": "Default",
+          "isBoolean": false
+        }
+      ]
+    },
+    "DropDown": {
+      "nodeId": "15662:1418",
+      "rawSetName": "DropDown",
+      "source": "variant-name parse",
+      "figmaPropCount": 0,
+      "variantCount": 45,
+      "props": [
+        {
+          "name": "Status",
+          "values": [
+            "Values",
+            "Placeholder",
+            "Loading",
+            "Disabled",
+            "Default",
+            "Active Dropdown List",
+            "Loading List",
+            "Active"
+          ],
+          "default": "Values",
+          "isBoolean": false
+        },
+        {
+          "name": "Size",
+          "values": [
+            "S",
+            "MD",
+            "LG"
+          ],
+          "default": "S",
+          "isBoolean": false
+        },
+        {
+          "name": "Type",
+          "values": [
+            "Default",
+            "Helper Text",
+            "Error",
+            "Warning",
+            "Success"
+          ],
+          "default": "Default",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Command Base / Title": {
+      "nodeId": "15662:3069",
+      "rawSetName": "Command Base / Title",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 1,
+      "props": [
+        {
+          "name": "Title",
+          "values": [
+            "Dropdown",
+            "CMDK"
+          ],
+          "default": "CMDK",
+          "isBoolean": false
+        },
+        {
+          "name": "Level 01 / 02",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": "True",
+          "isBoolean": false
+        },
+        {
+          "name": "↳ Label",
+          "type": "text",
+          "default": "Menu Item"
+        }
+      ]
+    },
+    "FormGroup | Switch": {
+      "nodeId": "642:108242",
+      "rawSetName": "<FormGroup> | <Switch>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 4,
+      "variantCount": 6,
+      "props": [
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Error"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        },
+        {
+          "name": "Switches",
+          "values": [
+            "3",
+            "5"
+          ],
+          "default": "3",
+          "isBoolean": false
+        },
+        {
+          "name": "<FormLabel>",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "<FormHelperText>",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        }
+      ]
+    },
+    "Drag and Drop": {
+      "nodeId": "16073:5506",
+      "rawSetName": "Drag and Drop ",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 5,
+      "props": [
+        {
+          "name": "Property 1",
+          "values": [
+            "Default",
+            "Hover"
+          ],
+          "default": "Default",
+          "isBoolean": false
+        }
+      ]
+    },
+    "CardHeader": {
+      "nodeId": "15704:10477",
+      "rawSetName": "<CardHeader>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 15,
+      "variantCount": 56,
+      "props": [
+        {
+          "name": "Status",
+          "values": [
+            "Default",
+            "Hover",
+            "Active",
+            "Focus",
+            "Selected",
+            "Disabled",
+            "Error",
+            "Success",
+            "Warning",
+            "Info",
+            "Loading",
+            "Defaul",
+            "Disable",
+            "Erro",
+            "Succes",
+            "Hove",
+            "Focu",
+            "Selecte",
+            "warning"
+          ],
+          "default": "Default",
+          "isBoolean": false
+        },
+        {
+          "name": "Size",
+          "values": [
+            "XL",
+            "LG",
+            "MD",
+            "SM",
+            "Responsive"
+          ],
+          "default": "XL",
+          "isBoolean": false
+        },
+        {
+          "name": "Type",
+          "values": [
+            "Default",
+            "Flexible"
+          ],
+          "default": "Default",
+          "isBoolean": false
+        },
+        {
+          "name": "Right Icon",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Sub header",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Slot Below",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Avatar",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Slot Above",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Left Button",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Right Button",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Icon Button",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Tittle",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        }
+      ]
+    },
+    "Rich Text Editor": {
+      "nodeId": "16069:8321",
+      "rawSetName": "Rich Text Editor",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Property 1",
+          "values": [
+            "Default",
+            "Hover"
+          ],
+          "default": "Default",
+          "isBoolean": false
+        }
+      ]
+    },
+    "check_circle": {
+      "nodeId": "15898:29680",
+      "rawSetName": "check_circle",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 1,
+      "props": [
+        {
+          "name": "Property 1",
+          "values": [
+            "Filled",
+            "Defalut"
+          ],
+          "default": "Filled",
+          "isBoolean": false
+        }
+      ]
+    },
+    "star": {
+      "nodeId": "15624:30747",
+      "rawSetName": "star",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Property 1",
+          "values": [
+            "Default",
+            "Variant3"
+          ],
+          "default": "Default",
+          "isBoolean": false
+        }
+      ]
+    },
+    "favorite": {
+      "nodeId": "15624:30755",
+      "rawSetName": "favorite",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Property 1",
+          "values": [
+            "Default",
+            "Variant3"
+          ],
+          "default": "Default",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Dot": {
+      "nodeId": "15624:30763",
+      "rawSetName": "Dot",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Property 1",
+          "values": [
+            "Green",
+            "Disabled"
+          ],
+          "default": "Green",
+          "isBoolean": false
+        }
+      ]
+    },
+    "task_alt": {
+      "nodeId": "15624:30770",
+      "rawSetName": "task_alt",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Property 1",
+          "values": [
+            "Default",
+            "Filled"
+          ],
+          "default": "Default",
+          "isBoolean": false
+        }
+      ]
+    },
+    "MobileStepper": {
+      "nodeId": "6576:51238",
+      "rawSetName": "<MobileStepper>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 3,
+      "props": [
+        {
+          "name": "Progress Type",
+          "values": [
+            "Text",
+            "Dots",
+            "Progress"
+          ],
+          "default": "Text",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Step": {
+      "nodeId": "6576:50986",
+      "rawSetName": "<Step>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 5,
+      "variantCount": 15,
+      "props": [
+        {
+          "name": "Text",
+          "values": [
+            "Center",
+            "Left"
+          ],
+          "default": "Left",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Active",
+            "Inactive",
+            "Complete",
+            "Error",
+            "Warning",
+            "Info",
+            "Success"
+          ],
+          "default": "Inactive",
+          "isBoolean": false
+        },
+        {
+          "name": "Optional",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Step Title Content",
+          "type": "text",
+          "default": "Step title"
+        },
+        {
+          "name": "Optional Content",
+          "type": "text",
+          "default": "Optional"
+        }
+      ]
+    },
+    "Inner Slider": {
+      "nodeId": "16132:14636",
+      "rawSetName": "Inner Slider",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Property 1",
+          "values": [
+            "Default",
+            "Multiples"
+          ],
+          "default": "Default",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Container": {
+      "nodeId": "7660:81184",
+      "rawSetName": "<Container>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 10,
+      "props": [
+        {
+          "name": "Max Width",
+          "values": [
+            "Extra Large",
+            "Large",
+            "Medium",
+            "Small",
+            "Extra Small"
+          ],
+          "default": "Extra Large",
+          "isBoolean": false
+        },
+        {
+          "name": "Disable Gutters",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Aspect ratio": {
+      "nodeId": "1537:7427",
+      "rawSetName": "Aspect ratio",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 63,
+      "props": [
+        {
+          "name": "Aspect ratio",
+          "values": [
+            "1:1",
+            "1:2",
+            "2:1",
+            "2:3",
+            "3:1",
+            "3:2",
+            "3:4",
+            "4:1",
+            "4:3",
+            "4:5",
+            "5:2",
+            "5:4",
+            "6:7",
+            "8:3",
+            "8:5",
+            "9:8",
+            "9:16",
+            "9:21",
+            "10:16",
+            "14:3",
+            "16:5",
+            "16:9",
+            "16:10",
+            "21:9",
+            "32:9"
+          ],
+          "default": "1:1",
+          "isBoolean": false
+        }
+      ]
+    },
+    "ImageListItemBar": {
+      "nodeId": "1606:8880",
+      "rawSetName": "<ImageListItemBar>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 8,
+      "variantCount": 3,
+      "props": [
+        {
+          "name": "Action Position",
+          "values": [
+            "Left",
+            "Right",
+            "Square"
+          ],
+          "default": "Right",
+          "isBoolean": false
+        },
+        {
+          "name": "Subtitle",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Title",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Action",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "ImageListItemBar",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Title",
+          "type": "text",
+          "default": "{Title}"
+        },
+        {
+          "name": "Subtitle",
+          "type": "text",
+          "default": "{Subtitle}"
+        },
+        {
+          "name": "↳ Action",
+          "type": "instance",
+          "default": "11496:178655",
+          "instanceOptions": [
+            {
+              "type": "COMPONENT_SET",
+              "key": "f190eca307f2e7453c56620d328235a0db92b49f"
+            }
+          ]
+        }
+      ]
+    },
+    "DataGrid | Header": {
+      "nodeId": "6603:52316",
+      "rawSetName": "<DataGrid> | Header",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 6,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Checkbox",
+          "values": [
+            "False"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Hovered"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        },
+        {
+          "name": "Sort",
+          "values": [
+            "Right"
+          ],
+          "default": "Right",
+          "isBoolean": false
+        },
+        {
+          "name": "Active Filters",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Not last of type",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Header",
+          "type": "text",
+          "default": "Head"
+        }
+      ]
+    },
+    "DataGrid | Header | Column Group": {
+      "nodeId": "177:82627",
+      "rawSetName": "<DataGrid> | Header | Column Group",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 6,
+      "variantCount": 7,
+      "props": [
+        {
+          "name": "Checkbox?",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "True",
+          "isBoolean": false
+        },
+        {
+          "name": "Grouped?",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Empty?",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "True",
+          "isBoolean": false
+        },
+        {
+          "name": "Last-of-type",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Show Separator",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Instance",
+          "type": "instance",
+          "default": "272:88408",
+          "instanceOptions": []
+        }
+      ]
+    },
+    "DataGrid | Cell": {
+      "nodeId": "6603:52491",
+      "rawSetName": "<DataGrid> | Cell",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 6,
+      "variantCount": 43,
+      "props": [
+        {
+          "name": "State",
+          "values": [
+            "Enabled",
+            "Focused",
+            "Active",
+            "Pinned (Pro)",
+            "Selected (Premium)"
+          ],
+          "default": "Enabled",
+          "isBoolean": false
+        },
+        {
+          "name": "Type",
+          "values": [
+            "Checkbox",
+            "String",
+            "Number",
+            "Date / Time",
+            "Boolean",
+            "Rating (custom)",
+            "🔼 Master detail",
+            "🔼 Row Ordering",
+            "Select"
+          ],
+          "default": "String",
+          "isBoolean": false
+        },
+        {
+          "name": "Edit Mode",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Check: False",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Check: True",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Instance",
+          "type": "instance",
+          "default": "6605:52866",
+          "instanceOptions": []
+        }
+      ]
+    },
+    "DataGrid | Cell Rows": {
+      "nodeId": "10136:136874",
+      "rawSetName": "<DataGrid> | Cell Rows",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 4,
+      "variantCount": 36,
+      "props": [
+        {
+          "name": "Columns",
+          "values": [
+            "3",
+            "4",
+            "5",
+            "6",
+            "8",
+            "10"
+          ],
+          "default": "3",
+          "isBoolean": false
+        },
+        {
+          "name": "State",
+          "values": [
+            "Resting",
+            "Hover",
+            "Selected"
+          ],
+          "default": "Resting",
+          "isBoolean": false
+        },
+        {
+          "name": "Divider",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": "True",
+          "isBoolean": false
+        },
+        {
+          "name": "Checkbox",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        }
+      ]
+    },
+    "DataGrid | Header Rows": {
+      "nodeId": "6603:52552",
+      "rawSetName": "<DataGrid> | Header Rows",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 6,
+      "props": [
+        {
+          "name": "Columns",
+          "values": [
+            "3",
+            "4",
+            "5",
+            "6",
+            "8",
+            "10"
+          ],
+          "default": "3",
+          "isBoolean": false
+        },
+        {
+          "name": "Checkbox",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        }
+      ]
+    },
+    "DataGrid | Header Rows | Column Group": {
+      "nodeId": "177:82411",
+      "rawSetName": "<DataGrid> | Header Rows | Column Group",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 6,
+      "props": [
+        {
+          "name": "Columns",
+          "values": [
+            "3",
+            "4",
+            "5",
+            "6",
+            "8",
+            "10"
+          ],
+          "default": "3",
+          "isBoolean": false
+        },
+        {
+          "name": "Checkbox",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        }
+      ]
+    },
+    "DataGridTable": {
+      "nodeId": "6603:52661",
+      "rawSetName": "<DataGridTable>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 9,
+      "variantCount": 12,
+      "props": [
+        {
+          "name": "Checkbox",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": "False",
+          "isBoolean": false
+        },
+        {
+          "name": "Density",
+          "values": [
+            "Standard",
+            "Compact",
+            "Comfortable"
+          ],
+          "default": "Standard",
+          "isBoolean": false
+        },
+        {
+          "name": "Rows",
+          "values": [
+            "5",
+            "10"
+          ],
+          "default": "5",
+          "isBoolean": false
+        },
+        {
+          "name": "Table Footer",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Toolbar Filter",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "ColumnGroup",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "ColumnGroup",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "(Pro) Header Filters",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Quick Filter",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        }
+      ]
+    },
+    "GridToolbarQuickFilter": {
+      "nodeId": "9893:16342",
+      "rawSetName": "<GridToolbarQuickFilter>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 3,
+      "props": [
+        {
+          "name": "State",
+          "values": [
+            "Default",
+            "Active",
+            "Persistent"
+          ],
+          "default": "Default",
+          "isBoolean": false
+        }
+      ]
+    },
+    "DataGrid | Header | Filter": {
+      "nodeId": "9630:12777",
+      "rawSetName": "<DataGrid> | Header | Filter",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 1,
+      "props": [
+        {
+          "name": "Type",
+          "values": [
+            "String",
+            "Number",
+            "Is/Is Not",
+            "Date"
+          ],
+          "default": "String",
+          "isBoolean": false
+        }
+      ]
+    },
+    "DataGrid Menu": {
+      "nodeId": "9647:13815",
+      "rawSetName": "DataGrid Menu",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Type",
+          "values": [
+            "Community",
+            "Pro/Premium"
+          ],
+          "default": "Community",
+          "isBoolean": false
+        }
+      ]
+    },
+    "TimeField": {
+      "nodeId": "1268:106844",
+      "rawSetName": "<TimeField>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Clearable",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        }
+      ]
+    },
+    "DateField": {
+      "nodeId": "1174:13306",
+      "rawSetName": "<DateField>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Clearable",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Native / Date Time Picker": {
+      "nodeId": "6569:39491",
+      "rawSetName": "Native / Date Time Picker",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 3,
+      "props": [
+        {
+          "name": "Content Type",
+          "values": [
+            "Date",
+            "Time",
+            "Time and Date"
+          ],
+          "default": "Time and Date",
+          "isBoolean": false
+        }
+      ]
+    },
+    "StaticDateTimePicker": {
+      "nodeId": "1267:20267",
+      "rawSetName": "<StaticDateTimePicker>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 4,
+      "props": [
+        {
+          "name": "Tab",
+          "values": [
+            "Date",
+            "Time"
+          ],
+          "default": "Date",
+          "isBoolean": false
+        },
+        {
+          "name": "Orientation",
+          "values": [
+            "Portrait",
+            "Landscape"
+          ],
+          "default": "Portrait",
+          "isBoolean": false
+        }
+      ]
+    },
+    "DateTimeField": {
+      "nodeId": "1251:806500",
+      "rawSetName": "<DateTimeField>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Clearable",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Elements / Lines": {
+      "nodeId": "1231:7768",
+      "rawSetName": "Elements / Lines",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 4,
+      "variantCount": 3,
+      "props": [
+        {
+          "name": "Data Values",
+          "values": [
+            "1",
+            "2",
+            "3"
+          ],
+          "default": "1",
+          "isBoolean": false
+        },
+        {
+          "name": "Data Sets",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Fill Background",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Bullets",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        }
+      ]
+    },
+    "Elements / Axis X | Groups Bottom": {
+      "nodeId": "1190:12755",
+      "rawSetName": "Elements / Axis X | Groups Bottom",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 1,
+      "props": [
+        {
+          "name": "Groups",
+          "values": [
+            "7"
+          ],
+          "default": "7",
+          "isBoolean": false
+        },
+        {
+          "name": "Label",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Label",
+          "type": "text",
+          "default": "Label"
+        }
+      ]
+    },
+    "Elements / Axis X | Groups Top": {
+      "nodeId": "1190:14930",
+      "rawSetName": "Elements / Axis X | Groups Top",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 1,
+      "props": [
+        {
+          "name": "Groups",
+          "values": [
+            "7"
+          ],
+          "default": "7",
+          "isBoolean": false
+        },
+        {
+          "name": "Label",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Label",
+          "type": "text",
+          "default": "Label"
+        }
+      ]
+    },
+    "Elements / Axis X | Values Bottom": {
+      "nodeId": "1196:7397",
+      "rawSetName": "Elements / Axis X | Values Bottom",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 1,
+      "props": [
+        {
+          "name": "Values",
+          "values": [
+            "7"
+          ],
+          "default": "7",
+          "isBoolean": false
+        },
+        {
+          "name": "Label",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Label",
+          "type": "text",
+          "default": "Label"
+        }
+      ]
+    },
+    "Elements / Axis X | Values Top": {
+      "nodeId": "1196:7687",
+      "rawSetName": "Elements / Axis X | Values Top",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 1,
+      "props": [
+        {
+          "name": "Values",
+          "values": [
+            "7"
+          ],
+          "default": "7",
+          "isBoolean": false
+        },
+        {
+          "name": "Label",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Label",
+          "type": "text",
+          "default": "Label"
+        }
+      ]
+    },
+    "Elements / Axis Y | Values Left": {
+      "nodeId": "1190:15192",
+      "rawSetName": "Elements / Axis Y | Values Left",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Data Key",
+          "values": [
+            "Values",
+            "Months"
+          ],
+          "default": "Values",
+          "isBoolean": false
+        },
+        {
+          "name": "Label",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Label",
+          "type": "text",
+          "default": "Label"
+        }
+      ]
+    },
+    "Elements / Axis Y | Values Right": {
+      "nodeId": "1193:160337",
+      "rawSetName": "Elements / Axis Y | Values Right",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Data Key",
+          "values": [
+            "Values",
+            "Months"
+          ],
+          "default": "Values",
+          "isBoolean": false
+        },
+        {
+          "name": "Label",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Label",
+          "type": "text",
+          "default": "Label"
+        }
+      ]
+    },
+    "Elements / Axis Y | Groups Left": {
+      "nodeId": "9811:20605",
+      "rawSetName": "Elements / Axis Y | Groups Left",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Data Key",
+          "values": [
+            "Values",
+            "Months"
+          ],
+          "default": "Values",
+          "isBoolean": false
+        },
+        {
+          "name": "Label",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        },
+        {
+          "name": "Label",
+          "type": "text",
+          "default": "Label"
+        }
+      ]
+    },
+    "Elements / Legend": {
+      "nodeId": "1182:11802",
+      "rawSetName": "Elements / Legend",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 8,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Direction",
+          "values": [
+            "Horizontal",
+            "Vertical"
+          ],
+          "default": "Horizontal",
+          "isBoolean": false
+        },
+        {
+          "name": "Series 2",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Series 3",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Series 4",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        },
+        {
+          "name": "Series 1",
+          "type": "text",
+          "default": "Series 1"
+        },
+        {
+          "name": "Series 2",
+          "type": "text",
+          "default": "Series 2"
+        },
+        {
+          "name": "Series 3",
+          "type": "text",
+          "default": "Series 3"
+        },
+        {
+          "name": "Series 4",
+          "type": "text",
+          "default": "Series 4"
+        }
+      ]
+    },
+    "Elements / Tooltip": {
+      "nodeId": "1182:11837",
+      "rawSetName": "Elements / Tooltip",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 1,
+      "variantCount": 2,
+      "props": [
+        {
+          "name": "Property 1",
+          "values": [
+            "axis",
+            "item"
+          ],
+          "default": "item",
+          "isBoolean": false
+        }
+      ]
+    },
+    "Elements / Series Bar": {
+      "nodeId": "1182:11861",
+      "rawSetName": "Elements / Series Bar",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 4,
+      "variantCount": 12,
+      "props": [
+        {
+          "name": "Series",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "default": "1",
+          "isBoolean": false
+        },
+        {
+          "name": "Stacked",
+          "values": [
+            "1",
+            "2",
+            "3"
+          ],
+          "default": "1",
+          "isBoolean": false
+        },
+        {
+          "name": "Orientation",
+          "values": [
+            "Vertical",
+            "Horizontal"
+          ],
+          "default": "Vertical",
+          "isBoolean": false
+        },
+        {
+          "name": "Show 12 Bars",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": false,
+          "isBoolean": true
+        }
+      ]
+    },
+    "BarChart / Vertical": {
+      "nodeId": "1182:11927",
+      "rawSetName": "<BarChart> / Vertical",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 4,
+      "variantCount": 15,
+      "props": [
+        {
+          "name": "Type",
+          "values": [
+            "Simple",
+            "Grouped Bars",
+            "Stacked Bars"
+          ],
+          "default": "Simple",
+          "isBoolean": false
+        },
+        {
+          "name": "X Axis?",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "True",
+          "isBoolean": false
+        },
+        {
+          "name": "Y Axis?",
+          "values": [
+            "True",
+            "False",
+            "Biaxial"
+          ],
+          "default": "True",
+          "isBoolean": false
+        },
+        {
+          "name": "Legend",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        }
+      ]
+    },
+    "BarChart / Horizontal": {
+      "nodeId": "9810:16811",
+      "rawSetName": "<BarChart> / Horizontal",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 4,
+      "variantCount": 9,
+      "props": [
+        {
+          "name": "Type",
+          "values": [
+            "Simple",
+            "Grouped",
+            "Stacked"
+          ],
+          "default": "Simple",
+          "isBoolean": false
+        },
+        {
+          "name": "X Axis?",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": "True",
+          "isBoolean": false
+        },
+        {
+          "name": "Y Axis?",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": "True",
+          "isBoolean": false
+        },
+        {
+          "name": "Legend",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        }
+      ]
+    },
+    "LineChart": {
+      "nodeId": "1236:8811",
+      "rawSetName": "<LineChart>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 4,
+      "variantCount": 15,
+      "props": [
+        {
+          "name": "Type",
+          "values": [
+            "Simple",
+            "Grouped Bars",
+            "Stacked Bars"
+          ],
+          "default": "Simple",
+          "isBoolean": false
+        },
+        {
+          "name": "X Axis?",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "True",
+          "isBoolean": false
+        },
+        {
+          "name": "Y Axis?",
+          "values": [
+            "True",
+            "False",
+            "Biaxial"
+          ],
+          "default": "True",
+          "isBoolean": false
+        },
+        {
+          "name": "Legend",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": true,
+          "isBoolean": true
+        }
+      ]
+    },
+    "PieChart": {
+      "nodeId": "1182:12705",
+      "rawSetName": "<PieChart>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 3,
+      "variantCount": 13,
+      "props": [
+        {
+          "name": "Type",
+          "values": [
+            "Simple",
+            "StraightAngle",
+            "TwoLevel",
+            "PaddingAngle",
+            "CenterLabel",
+            "PaddingStraightAngle",
+            "CustomizedLabel"
+          ],
+          "default": "Simple",
+          "isBoolean": false
+        },
+        {
+          "name": "Hole",
+          "values": [
+            "75%",
+            "0%",
+            "25%",
+            "50%"
+          ],
+          "default": "0%",
+          "isBoolean": false
+        },
+        {
+          "name": "Text",
+          "type": "text",
+          "default": "Label"
+        }
+      ]
+    },
+    "ScatterChart": {
+      "nodeId": "1182:11949",
+      "rawSetName": "<ScatterChart>",
+      "source": "componentPropertyDefinitions",
+      "figmaPropCount": 2,
+      "variantCount": 6,
+      "props": [
+        {
+          "name": "Data",
+          "values": [
+            "1",
+            "2",
+            "3"
+          ],
+          "default": "1",
+          "isBoolean": false
+        },
+        {
+          "name": "Axis",
+          "values": [
+            "Single",
+            "Multiple"
+          ],
+          "default": "Single",
+          "isBoolean": false
+        }
+      ]
+    }
+  }
+}
