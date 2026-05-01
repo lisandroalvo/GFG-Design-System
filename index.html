@@ -11750,36 +11750,71 @@ File Key: ${component.key}</div>
             }
         }
 
+        // Find the variant whose name best matches the current property selections.
+        // Variant names look like: "Size=Medium, Color=Primary, State=Enabled, Variant=Contained"
+        function findMatchingVariant(components, selections) {
+            if (!components || !components.length) return null;
+            const escape = s => String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            let best = { variant: components[0], score: -1 };
+            components.forEach(v => {
+                const name = v.name || '';
+                let score = 0;
+                for (const [key, val] of Object.entries(selections)) {
+                    if (val === undefined || val === null || val === '') continue;
+                    const cleanKey = key.replace(/\?$/, '');
+                    const valStr = (val === true) ? 'True' : (val === false) ? 'False' : String(val);
+                    const re = new RegExp(`(?:^|,\\s*)${escape(cleanKey)}\\??=${escape(valStr)}(?:,|$)`, 'i');
+                    if (re.test(name)) score++;
+                }
+                if (score > best.score) best = { variant: v, score };
+            });
+            return best.variant;
+        }
+
         function renderLiveComponent() {
             const container = document.getElementById('playgroundPreviewContainer');
             if (!container) return;
 
-            const { setName, components } = currentComponents;
-
-            // Alert has its own class-based renderer
-            if (setName === 'Alert' || setName === '<Alert>') {
-                const severity = currentPropertySelections['severity'] || 'Success';
-                const variant = currentPropertySelections['variant'] || 'Standard';
-                const actionEnabled = currentPropertySelections['action?'] || false;
-                const onCloseEnabled = currentPropertySelections['onClose?'] || false;
-                const titleEnabled = currentPropertySelections['title?'] || false;
-                const descEnabled  = currentPropertySelections['description?'] !== undefined ? currentPropertySelections['description?'] : true;
-                const titleText    = currentPropertySelections['title_text']       || 'Alert Title';
-                const descText     = currentPropertySelections['description_text'] || 'This is an alert message.';
-                const alert = new AlertComponent({ severity, variant, title: titleEnabled, titleText, description: descEnabled, descriptionText: descText, action: actionEnabled, actionInstance: 'Text', onClose: onCloseEnabled });
-                container.innerHTML = alert.render();
-            } else {
-                container.innerHTML = getComponentHTMLPreview(setName, currentPropertySelections);
+            const { components } = currentComponents;
+            const variant = findMatchingVariant(components, currentPropertySelections);
+            if (!variant) {
+                container.innerHTML = '<div style="color:var(--graphite);font-size:13px;text-align:center;">No variant available.</div>';
+                return;
             }
 
-            // Update measurements
+            // Always render directly from the Figma source of truth: the variant's pre-rendered thumbnail.
+            // Local component-thumbs/*.png are fast; if missing, fall back to Figma's hosted thumbnail URL.
+            const localThumb = `component-thumbs/${variant.name}.png`;
+            const figmaThumb = variant.thumbnail || '';
+
+            container.innerHTML = `
+                <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+                    <img src="${localThumb}"
+                         alt="${variant.name}"
+                         onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='${figmaThumb}';}else{this.style.display='none';this.nextElementSibling.style.display='block';}"
+                         style="max-width:100%; max-height:280px; object-fit:contain;" />
+                    <div style="display:none;color:var(--graphite);font-size:13px;text-align:center;padding:24px;">No Figma render available for this variant yet.</div>
+                    <div style="font-size:11px; color:var(--graphite); text-align:center;">
+                        <strong style="color:var(--dust-dark);">Live from Figma:</strong> ${variant.name}
+                    </div>
+                </div>
+            `;
+
+            // Update measurements from the actual Figma image dimensions
             setTimeout(() => {
-                const el = container.firstElementChild;
-                if (el) {
-                    document.getElementById('compWidth').textContent = el.offsetWidth + 'px';
-                    document.getElementById('compHeight').textContent = el.offsetHeight + 'px';
+                const img = container.querySelector('img');
+                if (img) {
+                    const updateDims = () => {
+                        if (img.naturalWidth) {
+                            document.getElementById('compWidth').textContent  = img.naturalWidth  + 'px';
+                            document.getElementById('compHeight').textContent = img.naturalHeight + 'px';
+                        }
+                    };
+                    if (img.complete) updateDims(); else img.addEventListener('load', updateDims, { once: true });
                 }
-            }, 100);
+                const cv = document.getElementById('currentVariant');
+                if (cv) cv.textContent = variant.name;
+            }, 50);
         }
 
         function renderPlaygroundControls(properties, selections) {
