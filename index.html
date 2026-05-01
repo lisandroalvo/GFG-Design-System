@@ -14,15 +14,23 @@
         }
 
         :root {
-            --dust-dark: #AF9577;
-            --dust-rodeo: #C8B298;
-            --dust-light: #F4EFEA;
-            --dust-clear: #F8F9F7;
-            --rodeo-black: #333333;
-            --graphite: #606060;
-            --smoke: #C4C8C8;
-            --wax: #F3F3F5;
-            --background: #F4F4FA;
+            /* GFG Color System — synced from Figma file OjFchNAdeHiNH5W4wYLSGS */
+            /* Primary Palette (Dust System) */
+            --dust-dark: #AF9577;     /* palette.primary.main */
+            --dust-rodeo: #C8B298;    /* palette.primary.light */
+            --dust-light: #F4EFEA;    /* palette.primary.lighter */
+            --dust-clear: #FBF9F7;    /* palette.primary.lightest */
+            /* Neutral Palette */
+            --rodeo-black: #333333;   /* palette.text.primary */
+            --graphite: #6D6D6D;      /* palette.text.secondary */
+            --smoke: #E0E0E0;         /* palette.divider */
+            --wax: #F5F5F5;           /* palette.grey[100] */
+            --background: #FAFAFA;    /* palette.background.default */
+            /* Semantic */
+            --good-sage: #637058;     /* palette.success.main */
+            --good-wine: #A34740;     /* palette.error.main */
+            --good-ochre: #8A5D1F;    /* palette.warning.main */
+            --good-night: #2B4A60;    /* palette.info.main */
         }
 
         body {
@@ -9701,32 +9709,129 @@
                 
             } else if (pageName === 'colors') {
                 document.getElementById('pageTitle').textContent = 'Colors';
-                document.getElementById('pageDescription').textContent = 'Full token palette. Click any swatch to copy its hex value.';
-                
+                document.getElementById('pageDescription').textContent = 'Full GFG colour system synced live from Figma. Click any swatch to copy its hex value.';
+
+                // GFG Color System — sourced from Figma file OjFchNAdeHiNH5W4wYLSGS, frame 'Color Palette' (15608:5742)
+                const colorPalettes = {
+                    'Primary Palette (Dust System)': {
+                        desc: 'The Dust System — warm earthy primary colours used for actions, surfaces and accents.',
+                        colors: [
+                            { name: 'Dark Dust',  hex: '#AF9577', cssVar: '--color-dark-dust',   muiKey: 'palette.primary.main',     use: 'Primary actions, buttons' },
+                            { name: 'Rodeo Dust', hex: '#C8B298', cssVar: '--color-rodeo-dust',  muiKey: 'palette.primary.light',    use: 'Hover / secondary surfaces' },
+                            { name: 'Light Dust', hex: '#F4EFEA', cssVar: '--color-light-dust',  muiKey: 'palette.primary.lighter',  use: 'Background accents' },
+                            { name: 'Clear Dust', hex: '#FBF9F7', cssVar: '--color-clear-dust',  muiKey: 'palette.primary.lightest', use: 'Page backgrounds, cards' },
+                        ]
+                    },
+                    'Neutral Palette': {
+                        desc: 'Text, dividers and surface tones for the UI chrome.',
+                        colors: [
+                            { name: 'Rodeo Black', hex: '#333333', cssVar: '--color-rodeo-black', muiKey: 'palette.text.primary',       use: 'Primary text' },
+                            { name: 'Graphite',    hex: '#6D6D6D', cssVar: '--color-graphite',    muiKey: 'palette.text.secondary',     use: 'Secondary text' },
+                            { name: 'Smoke',       hex: '#E0E0E0', cssVar: '--color-smoke',       muiKey: 'palette.divider',            use: 'Borders / dividers' },
+                            { name: 'Wax',         hex: '#F5F5F5', cssVar: '--color-wax',         muiKey: 'palette.grey[100]',          use: 'Subtle backgrounds' },
+                            { name: 'White',       hex: '#FFFFFF', cssVar: '--color-white',       muiKey: 'palette.background.paper',   use: 'Cards / surfaces' },
+                            { name: 'Background',  hex: '#FAFAFA', cssVar: '--color-background',  muiKey: 'palette.background.default', use: 'App background' },
+                        ]
+                    },
+                    'Good Sage (Success)': {
+                        desc: 'Sage green — semantic success palette.',
+                        muiKey: 'palette.success',
+                        colors: [
+                            { name: 'Sage 1', hex: '#637058', cssVar: '--color-good-sage',   use: 'Primary success' },
+                            { name: 'Sage 2', hex: '#8C9583', cssVar: '--color-good-sage-2', use: 'Hover / mid' },
+                            { name: 'Sage 3', hex: '#B5BBAF', cssVar: '--color-good-sage-3', use: 'Disabled / subtle' },
+                            { name: 'Sage 4', hex: '#E0E3DD', cssVar: '--color-good-sage-4', use: 'Background' },
+                            { name: 'Sage 5', hex: '#F5F6F4', cssVar: '--color-good-sage-5', use: 'Light background' },
+                        ]
+                    },
+                    'Good Wine (Error)': {
+                        desc: 'Wine red — semantic error palette.',
+                        muiKey: 'palette.error',
+                        colors: [
+                            { name: 'Wine 1', hex: '#A34740', cssVar: '--color-good-wine',    use: 'Primary error' },
+                            { name: 'Wine 2', hex: '#BB7570', cssVar: '--color-good-wine-2',  use: 'Hover' },
+                            { name: 'Wine 3', hex: '#D4A4A1', cssVar: '--color-good-wine-3',  use: 'Disabled' },
+                            { name: 'Wine 4', hex: '#EED4D3', cssVar: '--color-good-wine-4',  use: 'Background' },
+                            { name: 'Wine 5', hex: '#F9F1F0', cssVar: '--color-good-wine-bg', use: 'Light background' },
+                        ]
+                    },
+                    'Good Ochre (Warning)': {
+                        desc: 'Ochre golden brown — semantic warning palette.',
+                        muiKey: 'palette.warning',
+                        colors: [
+                            { name: 'Ochre 1', hex: '#8A5D1F', cssVar: '--color-good-ochre',    use: 'Primary warning' },
+                            { name: 'Ochre 2', hex: '#AC8958', cssVar: '--color-good-ochre-2',  use: 'Hover' },
+                            { name: 'Ochre 3', hex: '#CFB591', cssVar: '--color-good-ochre-3',  use: 'Disabled' },
+                            { name: 'Ochre 4', hex: '#F3E3CD', cssVar: '--color-good-ochre-4',  use: 'Background' },
+                            { name: 'Ochre 5', hex: '#FBF6EF', cssVar: '--color-good-ochre-bg', use: 'Light background' },
+                        ]
+                    },
+                    'Good Night (Info)': {
+                        desc: 'Night blue — semantic info palette.',
+                        muiKey: 'palette.info',
+                        colors: [
+                            { name: 'Night 1', hex: '#2B4A60', cssVar: '--color-good-night',    use: 'Primary info' },
+                            { name: 'Night 2', hex: '#5E798C', cssVar: '--color-good-night-2',  use: 'Hover' },
+                            { name: 'Night 3', hex: '#91A8B8', cssVar: '--color-good-night-3',  use: 'Disabled' },
+                            { name: 'Night 4', hex: '#C7D9E6', cssVar: '--color-good-night-4',  use: 'Background' },
+                            { name: 'Night 5', hex: '#F1F5F9', cssVar: '--color-good-night-bg', use: 'Light background' },
+                        ]
+                    },
+                };
+
                 documentation.innerHTML = `
                     <div class="doc-panel">
-                        <div class="doc-title">Color Palette</div>
+                        <div class="doc-title">Color System</div>
                         <div class="doc-content">
-                            <p><strong>Brand Palette (Dust Tones):</strong></p>
-                            <ul class="doc-list">
-                                <li>Dark Dust: #AF9577</li>
-                                <li>Rodeo Dust: #C8B298</li>
-                                <li>Light Dust: #F4EFEA</li>
-                                <li>Clear Dust: #F8F9F7</li>
-                            </ul>
-                            <p style="margin-top: 16px;"><strong>Neutrals:</strong></p>
-                            <ul class="doc-list">
-                                <li>Rodeo Black: #333333</li>
-                                <li>Graphite: #606060</li>
-                                <li>Smoke: #C4C8C8</li>
-                                <li>Wax: #F3F3F5</li>
-                                <li>Background: #F4F4FA</li>
-                            </ul>
+                            <p>The GFG palette is built around four semantic colour families plus the warm <strong>Dust</strong> primary system and a neutral chrome palette.</p>
+                            <p style="margin-top:8px;"><strong>Click any swatch</strong> to copy its hex value. Each colour also lists its CSS custom property and its Material UI palette key.</p>
                         </div>
                     </div>
                 `;
-                content.innerHTML = '';
-                
+
+                const isLight = (hex) => {
+                    const h = hex.replace('#','');
+                    const r = parseInt(h.slice(0,2),16), g = parseInt(h.slice(2,4),16), b = parseInt(h.slice(4,6),16);
+                    return (0.299*r + 0.587*g + 0.114*b) > 160;
+                };
+
+                content.innerHTML = Object.entries(colorPalettes).map(([title, pal]) => `
+                    <div class="component-section" style="margin-bottom:48px;">
+                        <div style="margin-bottom:16px;">
+                            <div style="font-size:18px;font-weight:600;color:var(--rodeo-black);">${title}${pal.muiKey ? `<span style="font-family:'Monaco',monospace;font-size:12px;color:var(--graphite);font-weight:400;margin-left:12px;">${pal.muiKey}</span>` : ''}</div>
+                            <div style="font-size:13px;color:var(--graphite);margin-top:4px;">${pal.desc}</div>
+                        </div>
+                        <div class="components-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px;">
+                            ${pal.colors.map(c => `
+                                <div class="component-card color-swatch-card" data-hex="${c.hex}" style="padding:0;overflow:hidden;cursor:pointer;">
+                                    <div style="height:96px;background:${c.hex};border-bottom:1px solid ${isLight(c.hex) ? 'rgba(0,0,0,.08)' : 'transparent'};display:flex;align-items:flex-end;justify-content:flex-end;padding:8px;">
+                                        <span style="font-size:11px;font-family:'Monaco',monospace;color:${isLight(c.hex) ? '#333' : '#fff'};opacity:.85;">${c.hex}</span>
+                                    </div>
+                                    <div style="padding:14px 16px;">
+                                        <div style="font-size:14px;font-weight:600;color:var(--rodeo-black);">${c.name}</div>
+                                        <div style="font-size:11px;color:var(--graphite);margin-top:2px;">${c.use}</div>
+                                        <div style="font-size:11px;font-family:'Monaco',monospace;color:var(--graphite);margin-top:8px;">${c.cssVar}</div>
+                                        ${c.muiKey ? `<div style="font-size:11px;font-family:'Monaco',monospace;color:var(--graphite);">${c.muiKey}</div>` : ''}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('');
+
+                // Click-to-copy
+                content.querySelectorAll('.color-swatch-card').forEach(card => {
+                    card.addEventListener('click', async () => {
+                        const hex = card.dataset.hex;
+                        try {
+                            await navigator.clipboard.writeText(hex);
+                            const originalBg = card.style.boxShadow;
+                            card.style.boxShadow = '0 0 0 2px var(--dust-dark)';
+                            setTimeout(() => { card.style.boxShadow = originalBg; }, 600);
+                        } catch(e) { console.warn('Clipboard write failed', e); }
+                    });
+                });
+
             } else if (pageName === 'typography') {
                 document.getElementById('pageTitle').textContent = 'Typography';
                 document.getElementById('pageDescription').textContent = 'Text styles synced live from the GFG Figma design system.';

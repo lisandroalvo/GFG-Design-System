@@ -1,0 +1,69 @@
+{
+  "_source": "Fetched from Figma file OjFchNAdeHiNH5W4wYLSGS, frame 'Color Palette' (15608:5742) via REST API",
+  "palettes": {
+    "Primary Palette (Dust System)": {
+      "description": "The Dust System — warm earthy primary colours used for actions, surfaces and accents.",
+      "colors": [
+        { "name": "Dark Dust",   "hex": "#AF9577", "cssVar": "--color-dark-dust",   "muiKey": "palette.primary.main",     "use": "Primary actions, buttons" },
+        { "name": "Rodeo Dust",  "hex": "#C8B298", "cssVar": "--color-rodeo-dust",  "muiKey": "palette.primary.light",    "use": "Hover / secondary surfaces" },
+        { "name": "Light Dust",  "hex": "#F4EFEA", "cssVar": "--color-light-dust",  "muiKey": "palette.primary.lighter",  "use": "Background accents" },
+        { "name": "Clear Dust",  "hex": "#FBF9F7", "cssVar": "--color-clear-dust",  "muiKey": "palette.primary.lightest", "use": "Page backgrounds, cards" }
+      ]
+    },
+    "Neutral Palette": {
+      "description": "Text, dividers and surface tones for the UI chrome.",
+      "colors": [
+        { "name": "Rodeo Black", "hex": "#333333", "cssVar": "--color-rodeo-black", "muiKey": "palette.text.primary",       "use": "Primary text" },
+        { "name": "Graphite",    "hex": "#6D6D6D", "cssVar": "--color-graphite",    "muiKey": "palette.text.secondary",     "use": "Secondary text" },
+        { "name": "Smoke",       "hex": "#E0E0E0", "cssVar": "--color-smoke",       "muiKey": "palette.divider",            "use": "Borders / dividers" },
+        { "name": "Wax",         "hex": "#F5F5F5", "cssVar": "--color-wax",         "muiKey": "palette.grey[100]",          "use": "Subtle backgrounds" },
+        { "name": "White",       "hex": "#FFFFFF", "cssVar": "--color-white",       "muiKey": "palette.background.paper",   "use": "Cards / surfaces" },
+        { "name": "Background",  "hex": "#FAFAFA", "cssVar": "--color-background",  "muiKey": "palette.background.default", "use": "App background" }
+      ]
+    },
+    "Good Sage (Success)": {
+      "description": "Sage green — semantic success palette.",
+      "muiKey": "palette.success",
+      "colors": [
+        { "name": "Sage 1", "hex": "#637058", "cssVar": "--color-good-sage",   "use": "Primary success" },
+        { "name": "Sage 2", "hex": "#8C9583", "cssVar": "--color-good-sage-2", "use": "Hover / mid" },
+        { "name": "Sage 3", "hex": "#B5BBAF", "cssVar": "--color-good-sage-3", "use": "Disabled / subtle" },
+        { "name": "Sage 4", "hex": "#E0E3DD", "cssVar": "--color-good-sage-4", "use": "Background" },
+        { "name": "Sage 5", "hex": "#F5F6F4", "cssVar": "--color-good-sage-5", "use": "Light background" }
+      ]
+    },
+    "Good Wine (Error)": {
+      "description": "Wine red — semantic error palette.",
+      "muiKey": "palette.error",
+      "colors": [
+        { "name": "Wine 1", "hex": "#A34740", "cssVar": "--color-good-wine",    "use": "Primary error" },
+        { "name": "Wine 2", "hex": "#BB7570", "cssVar": "--color-good-wine-2",  "use": "Hover" },
+        { "name": "Wine 3", "hex": "#D4A4A1", "cssVar": "--color-good-wine-3",  "use": "Disabled" },
+        { "name": "Wine 4", "hex": "#EED4D3", "cssVar": "--color-good-wine-4",  "use": "Background" },
+        { "name": "Wine 5", "hex": "#F9F1F0", "cssVar": "--color-good-wine-bg", "use": "Light background" }
+      ]
+    },
+    "Good Ochre (Warning)": {
+      "description": "Ochre golden brown — semantic warning palette.",
+      "muiKey": "palette.warning",
+      "colors": [
+        { "name": "Ochre 1", "hex": "#8A5D1F", "cssVar": "--color-good-ochre",    "use": "Primary warning" },
+        { "name": "Ochre 2", "hex": "#AC8958", "cssVar": "--color-good-ochre-2",  "use": "Hover" },
+        { "name": "Ochre 3", "hex": "#CFB591", "cssVar": "--color-good-ochre-3",  "use": "Disabled" },
+        { "name": "Ochre 4", "hex": "#F3E3CD", "cssVar": "--color-good-ochre-4",  "use": "Background" },
+        { "name": "Ochre 5", "hex": "#FBF6EF", "cssVar": "--color-good-ochre-bg", "use": "Light background" }
+      ]
+    },
+    "Good Night (Info)": {
+      "description": "Night blue — semantic info palette.",
+      "muiKey": "palette.info",
+      "colors": [
+        { "name": "Night 1", "hex": "#2B4A60", "cssVar": "--color-good-night",    "use": "Primary info" },
+        { "name": "Night 2", "hex": "#5E798C", "cssVar": "--color-good-night-2",  "use": "Hover" },
+        { "name": "Night 3", "hex": "#91A8B8", "cssVar": "--color-good-night-3",  "use": "Disabled" },
+        { "name": "Night 4", "hex": "#C7D9E6", "cssVar": "--color-good-night-4",  "use": "Background" },
+        { "name": "Night 5", "hex": "#F1F5F9", "cssVar": "--color-good-night-bg", "use": "Light background" }
+      ]
+    }
+  }
+}
