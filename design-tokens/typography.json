@@ -1,0 +1,19 @@
+{
+  "_source": "Fetched from Figma file OjFchNAdeHiNH5W4wYLSGS via REST API",
+  "fontFamilies": {
+    "display": "Crimson Text",
+    "body": "Lato"
+  },
+  "styles": [
+    { "name": "Stat",            "category": "Display",  "fontFamily": "Crimson Text", "fontWeight": 400, "fontSize": 42, "lineHeight": 55, "letterSpacing": 0,    "textCase": null,    "use": "Large numbers, KPIs, hero stats" },
+    { "name": "H1",              "category": "Heading",  "fontFamily": "Crimson Text", "fontWeight": 400, "fontSize": 30, "lineHeight": 39, "letterSpacing": 0,    "textCase": null,    "use": "Page titles" },
+    { "name": "H2",              "category": "Heading",  "fontFamily": "Crimson Text", "fontWeight": 400, "fontSize": 24, "lineHeight": 31, "letterSpacing": 0,    "textCase": null,    "use": "Section headings" },
+    { "name": "H3",              "category": "Heading",  "fontFamily": "Crimson Text", "fontWeight": 400, "fontSize": 22, "lineHeight": 29, "letterSpacing": 0,    "textCase": null,    "use": "Subsection headings" },
+    { "name": "H4",              "category": "Heading",  "fontFamily": "Crimson Text", "fontWeight": 400, "fontSize": 20, "lineHeight": 26, "letterSpacing": 0,    "textCase": null,    "use": "Card titles, smaller headings" },
+    { "name": "Supporting Text", "category": "Body",     "fontFamily": "Lato",         "fontWeight": 600, "fontSize": 18, "lineHeight": 22, "letterSpacing": 0,    "textCase": null,    "use": "Emphasised supporting copy" },
+    { "name": "Body 1",          "category": "Body",     "fontFamily": "Lato",         "fontWeight": 400, "fontSize": 16, "lineHeight": 19, "letterSpacing": 0,    "textCase": null,    "use": "Default body text" },
+    { "name": "Body 2",          "category": "Body",     "fontFamily": "Lato",         "fontWeight": 400, "fontSize": 13, "lineHeight": 16, "letterSpacing": 0,    "textCase": null,    "use": "Secondary body text" },
+    { "name": "Caption",         "category": "Micro",    "fontFamily": "Lato",         "fontWeight": 400, "fontSize": 12, "lineHeight": 14, "letterSpacing": 0,    "textCase": null,    "use": "Captions, helper text" },
+    { "name": "Overline",        "category": "Micro",    "fontFamily": "Lato",         "fontWeight": 700, "fontSize": 11, "lineHeight": 13, "letterSpacing": 1.98, "textCase": "UPPER", "use": "Section labels, eyebrow text" }
+  ]
+}

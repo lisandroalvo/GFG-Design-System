@@ -9685,7 +9685,7 @@
                             <p>All components use the GFG design tokens:</p>
                             <ul class="doc-list">
                                 <li><strong>Colors:</strong> Dust Dark (#AF9577), Rodeo Dust (#C8B298), Neutrals</li>
-                                <li><strong>Typography:</strong> Inter font family, 10 text styles</li>
+                                <li><strong>Typography:</strong> Crimson Text (display) + Lato (body), 10 text styles</li>
                                 <li><strong>Spacing:</strong> 8px base unit system</li>
                                 <li><strong>Effects:</strong> Elevation Cards shadow</li>
                             </ul>
@@ -9729,27 +9729,73 @@
                 
             } else if (pageName === 'typography') {
                 document.getElementById('pageTitle').textContent = 'Typography';
-                document.getElementById('pageDescription').textContent = 'Text styles and hierarchy for the design system.';
-                
+                document.getElementById('pageDescription').textContent = 'Text styles synced live from the GFG Figma design system.';
+
+                // GFG Typography styles — sourced from Figma file OjFchNAdeHiNH5W4wYLSGS via REST API
+                const typeStyles = [
+                    { name: 'Stat',            category: 'Display', family: 'Crimson Text', weight: 400, size: 42, lineHeight: 55, letterSpacing: 0,    upper: false, use: 'Large numbers, KPIs, hero stats' },
+                    { name: 'H1',              category: 'Heading', family: 'Crimson Text', weight: 400, size: 30, lineHeight: 39, letterSpacing: 0,    upper: false, use: 'Page titles' },
+                    { name: 'H2',              category: 'Heading', family: 'Crimson Text', weight: 400, size: 24, lineHeight: 31, letterSpacing: 0,    upper: false, use: 'Section headings' },
+                    { name: 'H3',              category: 'Heading', family: 'Crimson Text', weight: 400, size: 22, lineHeight: 29, letterSpacing: 0,    upper: false, use: 'Subsection headings' },
+                    { name: 'H4',              category: 'Heading', family: 'Crimson Text', weight: 400, size: 20, lineHeight: 26, letterSpacing: 0,    upper: false, use: 'Card titles, smaller headings' },
+                    { name: 'Supporting Text', category: 'Body',    family: 'Lato',         weight: 600, size: 18, lineHeight: 22, letterSpacing: 0,    upper: false, use: 'Emphasised supporting copy' },
+                    { name: 'Body 1',          category: 'Body',    family: 'Lato',         weight: 400, size: 16, lineHeight: 19, letterSpacing: 0,    upper: false, use: 'Default body text' },
+                    { name: 'Body 2',          category: 'Body',    family: 'Lato',         weight: 400, size: 13, lineHeight: 16, letterSpacing: 0,    upper: false, use: 'Secondary body text' },
+                    { name: 'Caption',         category: 'Micro',   family: 'Lato',         weight: 400, size: 12, lineHeight: 14, letterSpacing: 0,    upper: false, use: 'Captions, helper text' },
+                    { name: 'Overline',        category: 'Micro',   family: 'Lato',         weight: 700, size: 11, lineHeight: 13, letterSpacing: 1.98, upper: true,  use: 'Section labels, eyebrow text' },
+                ];
+
+                const sample = 'The quick brown fox jumps over the lazy dog';
+
                 documentation.innerHTML = `
                     <div class="doc-panel">
                         <div class="doc-title">Typography System</div>
                         <div class="doc-content">
-                            <p><strong>Font Family:</strong> Inter</p>
-                            <p><strong>Text Styles:</strong></p>
-                            <ul class="doc-list">
-                                <li>H1, H2, H3, H4 - Headings</li>
-                                <li>Body 1, Body 2 - Body text</li>
-                                <li>Caption - Small text</li>
-                                <li>Overline - Labels</li>
-                                <li>Supporting Text - Helper text</li>
-                                <li>Stat - Large numbers</li>
-                            </ul>
+                            <p><strong>Display / Headings:</strong> Crimson Text — used for H1–H4 and Stat numbers.</p>
+                            <p><strong>UI / Body:</strong> Lato — used for body copy, supporting text, captions and labels.</p>
+                            <p style="margin-top:12px;">All ${typeStyles.length} text styles below are pulled directly from the GFG Figma file and reflect the exact size, weight, line-height and letter-spacing.</p>
                         </div>
                     </div>
                 `;
-                content.innerHTML = '';
-                
+
+                content.innerHTML = `
+                    <div class="component-section">
+                        <div class="components-grid" style="grid-template-columns: 1fr; gap: 12px;">
+                            ${typeStyles.map(s => `
+                                <div class="component-card" style="padding: 24px; cursor: default;">
+                                    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;margin-bottom:16px;">
+                                        <div>
+                                            <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--graphite);font-weight:600;margin-bottom:4px;">${s.category}</div>
+                                            <div style="font-size:18px;font-weight:600;color:var(--rodeo-black);">${s.name}</div>
+                                            <div style="font-size:13px;color:var(--graphite);margin-top:4px;">${s.use}</div>
+                                        </div>
+                                        <div style="display:flex;gap:18px;font-size:12px;color:var(--graphite);font-family:'Monaco',monospace;align-items:center;flex-wrap:wrap;">
+                                            <span><strong style="color:var(--rodeo-black);">${s.family}</strong></span>
+                                            <span>${s.weight}</span>
+                                            <span>${s.size}px</span>
+                                            <span>${s.lineHeight}px lh</span>
+                                            ${s.letterSpacing ? `<span>${s.letterSpacing}px ls</span>` : ''}
+                                        </div>
+                                    </div>
+                                    <div style="
+                                        font-family: '${s.family}', ${s.family === 'Crimson Text' ? 'Georgia, serif' : 'sans-serif'};
+                                        font-weight: ${s.weight};
+                                        font-size: ${s.size}px;
+                                        line-height: ${s.lineHeight}px;
+                                        letter-spacing: ${s.letterSpacing}px;
+                                        color: var(--rodeo-black);
+                                        ${s.upper ? 'text-transform: uppercase;' : ''}
+                                        padding-top: 8px;
+                                        border-top: 1px solid #F0EAE2;
+                                    ">
+                                        ${sample}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+
             } else {
                 const pageData = organizedData.byPage[pageName];
                 document.getElementById('pageTitle').textContent = pageName;
