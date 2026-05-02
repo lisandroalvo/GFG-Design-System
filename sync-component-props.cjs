@@ -158,6 +158,22 @@ function propsFromVariantNames(variants) {
   const raw = JSON.parse(fs.readFileSync('design-tokens/components.json', 'utf8'));
   const allVariants = raw.components || [];
 
+  // Group variants by their containingComponentSet.nodeId so we can resolve
+  // setId → [variants] later (each variant carries name, nodeId, thumbnail).
+  const variantsByContainingSet = {};
+  for (const v of allVariants) {
+    const setId = v.containingFrame && v.containingFrame.containingComponentSet && v.containingFrame.containingComponentSet.nodeId;
+    if (!setId) continue;
+    if (!variantsByContainingSet[setId]) variantsByContainingSet[setId] = [];
+    variantsByContainingSet[setId].push({
+      name: v.name,
+      nodeId: v.nodeId,
+      thumbnail: v.thumbnail || '',
+    });
+  }
+  console.log('   Variants grouped by set:', Object.keys(variantsByContainingSet).length, 'sets,',
+              allVariants.length, 'total variants');
+
   // Group variants by their containing set (we need to figure out which set each belongs to).
   // Use Figma file index to map componentId -> componentSetId -> setName.
   console.log('🔄 Fetching file index from Figma…');
@@ -219,17 +235,28 @@ function propsFromVariantNames(variants) {
         props = normaliseProps(propDefs);
         source = 'componentPropertyDefinitions';
       } else {
-        // Fallback: parse from variant names
-        const variants = variantsFromFile[t.name] || [];
+        // Fallback: parse from variant names (use richest source available)
+        const variants = (variantsByContainingSet[t.id] || []).length
+          ? variantsByContainingSet[t.id]
+          : (variantsFromFile[t.name] || []);
         props = propsFromVariantNames(variants);
         source = 'variant-name parse';
       }
+      // Build full variant list (name, nodeId, thumbnail) for findMatchingVariant
+      const rawVariants = variantsByContainingSet[t.id] || [];
+      const variants = rawVariants.map(v => ({
+        name: v.name,
+        nodeId: v.nodeId,
+        thumbnail: v.thumbnail || '',
+      }));
+
       result[t.name] = {
         nodeId: t.id,
         rawSetName: t.rawName,
         source,
         figmaPropCount: Object.keys(propDefs).length,
-        variantCount: (variantsFromFile[t.name] || []).length,
+        variantCount: variants.length,
+        variants,
         props,
       };
     }

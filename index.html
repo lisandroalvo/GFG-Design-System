@@ -11763,21 +11763,38 @@ File Key: ${component.key}</div>
 
         // Find the variant whose name best matches the current property selections.
         // Variant names look like: "Size=Medium, Color=Primary, State=Enabled, Variant=Contained"
-        function findMatchingVariant(components, selections) {
-            if (!components || !components.length) return null;
+        function findMatchingVariant(components, selections, setName) {
+            // Prefer the rich synced list of every variant (includes name + nodeId + thumbnail).
+            // The `components` argument from organized-components.json is just a set summary.
+            const synced = window.COMPONENT_PROPERTIES && window.COMPONENT_PROPERTIES.components;
+            const cleanSetName = (setName || '').replace(/[<>]/g, '').trim();
+            const syncedEntry = synced && (synced[cleanSetName] || synced[setName]);
+            const pool = (syncedEntry && syncedEntry.variants && syncedEntry.variants.length)
+                ? syncedEntry.variants
+                : (components || []);
+            if (!pool.length) return null;
+
             const escape = s => String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            let best = { variant: components[0], score: -1 };
-            components.forEach(v => {
+            let best = { variant: pool[0], score: -1, max: 0 };
+            pool.forEach(v => {
                 const name = v.name || '';
                 let score = 0;
+                let max = 0;
                 for (const [key, val] of Object.entries(selections)) {
                     if (val === undefined || val === null || val === '') continue;
                     const cleanKey = key.replace(/\?$/, '');
                     const valStr = (val === true) ? 'True' : (val === false) ? 'False' : String(val);
+                    // Only score against axes that exist in the variant name (so text props don't penalise)
+                    const axisRe = new RegExp(`(?:^|,\\s*)${escape(cleanKey)}\\??=`, 'i');
+                    if (!axisRe.test(name)) continue;
+                    max++;
                     const re = new RegExp(`(?:^|,\\s*)${escape(cleanKey)}\\??=${escape(valStr)}(?:,|$)`, 'i');
                     if (re.test(name)) score++;
                 }
-                if (score > best.score) best = { variant: v, score };
+                // Prefer variants where ALL applicable axes match
+                if (score > best.score || (score === best.score && max > best.max)) {
+                    best = { variant: v, score, max };
+                }
             });
             return best.variant;
         }
@@ -11786,8 +11803,8 @@ File Key: ${component.key}</div>
             const container = document.getElementById('playgroundPreviewContainer');
             if (!container) return;
 
-            const { components } = currentComponents;
-            const variant = findMatchingVariant(components, currentPropertySelections);
+            const { components, setName } = currentComponents;
+            const variant = findMatchingVariant(components, currentPropertySelections, setName);
             if (!variant) {
                 container.innerHTML = '<div style="color:var(--graphite);font-size:13px;text-align:center;">No variant available.</div>';
                 return;
