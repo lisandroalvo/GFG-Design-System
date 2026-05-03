@@ -10192,23 +10192,43 @@
                     ? 'Live design view from Figma — pan, zoom and inspect every variant.'
                     : 'Click, hover and interact with this component.';
 
+                // Check if this component also has an interactive prototype link
+                const cleanSetName = (setName || '').replace(/[<>]/g, '').trim();
+                const interactiveProtoUrl = COMPONENT_PROTOTYPES[cleanSetName] || COMPONENT_PROTOTYPES[setName] || '';
+
                 console.log('✅ Showing prototype section:', { nodeId: finalPrototype.nodeId, mode, prototypeUrl });
                 modalContent += `
                 <div class="modal-section" style="background: linear-gradient(135deg, #F4EFEA 0%, #FAFAFA 100%); padding: 32px; border-radius: 12px; margin-bottom: 32px; border: 2px solid var(--dust-dark);">
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-                        <span style="font-size: 28px;">${mode === 'design' ? '🎨' : '⚡'}</span>
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                        <span style="font-size: 28px;">🎨</span>
                         <div>
-                            <div style="font-size: 20px; font-weight: 600; color: var(--rodeo-black); margin-bottom: 4px;">${heading}</div>
-                            <p style="font-size: 13px; color: var(--graphite); margin: 0;">${subhead}</p>
+                            <div style="font-size: 20px; font-weight: 600; color: var(--rodeo-black); margin-bottom: 4px;">Live Figma Preview</div>
+                            <p style="font-size: 13px; color: var(--graphite); margin: 0;">Live design view from Figma — pan, zoom and inspect every variant.</p>
                         </div>
                     </div>
-                    <iframe
-                        class="prototype-frame"
-                        src="${prototypeUrl}"
-                        allowfullscreen
-                        allow="fullscreen"
-                        style="border: none;">
-                    </iframe>
+                    <div class="preview-tabs" style="margin-bottom: 0; border-bottom: 2px solid rgba(175,149,119,0.3);">
+                        <button class="preview-tab-btn active" onclick="switchFigmaTab(this, 'figma-design-frame')">🎨 Live Design</button>
+                        ${interactiveProtoUrl ? `<button class="preview-tab-btn" onclick="switchFigmaTab(this, 'figma-proto-frame')">🎬 Interactive Prototype</button>` : ''}
+                    </div>
+                    <div id="figma-design-frame" style="display:block;">
+                        <iframe
+                            class="prototype-frame"
+                            src="${prototypeUrl}"
+                            allowfullscreen
+                            allow="fullscreen"
+                            style="border: none;">
+                        </iframe>
+                    </div>
+                    ${interactiveProtoUrl ? `
+                    <div id="figma-proto-frame" style="display:none;">
+                        <iframe
+                            class="prototype-frame"
+                            src="${interactiveProtoUrl}"
+                            allowfullscreen
+                            allow="fullscreen"
+                            style="border: none;">
+                        </iframe>
+                    </div>` : ''}
                 </div>
                 `;
             } else {
@@ -10259,19 +10279,10 @@
                                 </div>
                             </div>
                             <div>
-                                <div style="font-size: 14px; font-weight: 600; margin-bottom: 16px; color: var(--rodeo-black);">Preview</div>
-                                <div class="preview-tabs">
-                                    <button class="preview-tab-btn active" onclick="switchPreviewTab('design')">🎨 Live Design</button>
-                                    <button class="preview-tab-btn" id="prototypeTabBtn" onclick="switchPreviewTab('prototype')" style="display: none;">🎬 Interactive Prototype</button>
-                                </div>
+                                <div style="font-size: 14px; font-weight: 600; margin-bottom: 16px; color: var(--rodeo-black);">Live Preview</div>
                                 <div style="background: white; border: 1px solid #E8E8E8; border-radius: 8px; padding: 32px; min-height: 200px; display: flex; align-items: center; justify-content: center;">
-                                    <div id="previewTabContent_design" class="preview-tab-content active">
-                                        <div id="playgroundPreviewContainer" style="width: 100%; max-width: 600px;">
-                                            <!-- Live component will be rendered here -->
-                                        </div>
-                                    </div>
-                                    <div id="previewTabContent_prototype" class="preview-tab-content">
-                                        <iframe id="prototypeEmbed" class="prototype-embed-container" style="border: none;"></iframe>
+                                    <div id="playgroundPreviewContainer" style="width: 100%; max-width: 600px;">
+                                        <!-- Live component will be rendered here -->
                                     </div>
                                 </div>
                                 <div style="margin-top: 12px; padding: 12px; background: white; border-radius: 8px; border: 1px solid #E8E8E8;">
@@ -11865,6 +11876,16 @@ File Key: ${component.key}</div>
                 }
             });
             return best.variant;
+        }
+
+        function switchFigmaTab(btn, targetId) {
+            // Find the parent modal-section and scope tab switching to it
+            const section = btn.closest('.modal-section');
+            section.querySelectorAll('.preview-tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            section.querySelectorAll('[id^="figma-"]').forEach(el => el.style.display = 'none');
+            const target = section.querySelector('#' + targetId);
+            if (target) target.style.display = 'block';
         }
 
         function switchPreviewTab(tabName) {
