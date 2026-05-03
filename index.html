@@ -395,6 +395,52 @@
             font-weight: 500;
         }
 
+        /* Preview Tabs */
+        .preview-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #E8E8E8;
+        }
+
+        .preview-tab-btn {
+            padding: 10px 16px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--graphite);
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s ease;
+        }
+
+        .preview-tab-btn:hover {
+            color: var(--dust-dark);
+        }
+
+        .preview-tab-btn.active {
+            color: var(--dust-dark);
+            border-bottom-color: var(--dust-dark);
+        }
+
+        .preview-tab-content {
+            display: none;
+        }
+
+        .preview-tab-content.active {
+            display: block;
+        }
+
+        .prototype-embed-container {
+            width: 100%;
+            min-height: 600px;
+            border: 1px solid #E8E8E8;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
         /* Documentation Panel */
         .doc-panel {
             background: white;
@@ -9974,6 +10020,14 @@
             })));
         }
 
+        // Component Prototype Links — add Figma prototype URLs here
+        const COMPONENT_PROTOTYPES = {
+            'Alert': 'https://www.figma.com/proto/YOUR_FILE_ID/YOUR_PROTOTYPE_ID',
+            // 'Button': 'https://www.figma.com/proto/YOUR_FILE_ID/YOUR_PROTOTYPE_ID',
+            // 'Fab': 'https://www.figma.com/proto/YOUR_FILE_ID/YOUR_PROTOTYPE_ID',
+            // Add more components as needed
+        };
+
         let currentComponents = {};
         let currentSetName = '';
 
@@ -10205,10 +10259,19 @@
                                 </div>
                             </div>
                             <div>
-                                <div style="font-size: 14px; font-weight: 600; margin-bottom: 16px; color: var(--rodeo-black);">Live Preview</div>
+                                <div style="font-size: 14px; font-weight: 600; margin-bottom: 16px; color: var(--rodeo-black);">Preview</div>
+                                <div class="preview-tabs">
+                                    <button class="preview-tab-btn active" onclick="switchPreviewTab('design')">🎨 Live Design</button>
+                                    <button class="preview-tab-btn" id="prototypeTabBtn" onclick="switchPreviewTab('prototype')" style="display: none;">🎬 Interactive Prototype</button>
+                                </div>
                                 <div style="background: white; border: 1px solid #E8E8E8; border-radius: 8px; padding: 32px; min-height: 200px; display: flex; align-items: center; justify-content: center;">
-                                    <div id="playgroundPreviewContainer" style="width: 100%; max-width: 600px;">
-                                        <!-- Live component will be rendered here -->
+                                    <div id="previewTabContent_design" class="preview-tab-content active">
+                                        <div id="playgroundPreviewContainer" style="width: 100%; max-width: 600px;">
+                                            <!-- Live component will be rendered here -->
+                                        </div>
+                                    </div>
+                                    <div id="previewTabContent_prototype" class="preview-tab-content">
+                                        <iframe id="prototypeEmbed" class="prototype-embed-container" style="border: none;"></iframe>
                                     </div>
                                 </div>
                                 <div style="margin-top: 12px; padding: 12px; background: white; border-radius: 8px; border: 1px solid #E8E8E8;">
@@ -10419,10 +10482,15 @@ File Key: ${component.key}</div>
             `;
 
             modal.classList.add('active');
-            
+
+            // Update preview tabs based on whether this component has a prototype
+            setTimeout(() => {
+                updatePreviewTabs(setName);
+            }, 10);
+
             // Load and display the extracted component code
             loadAndDisplayComponentCode(component.name);
-            
+
             // Render the initial live component after modal is visible
             setTimeout(() => {
                 renderLiveComponent();
@@ -11797,6 +11865,48 @@ File Key: ${component.key}</div>
                 }
             });
             return best.variant;
+        }
+
+        function switchPreviewTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.preview-tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.preview-tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            const tabContent = document.getElementById(`previewTabContent_${tabName}`);
+            if (tabContent) {
+                tabContent.classList.add('active');
+            }
+
+            // Mark button as active
+            const tabBtn = event.target;
+            if (tabBtn) {
+                tabBtn.classList.add('active');
+            }
+        }
+
+        function updatePreviewTabs(setName) {
+            const cleanSetName = (setName || '').replace(/[<>]/g, '').trim();
+            const prototypeLink = COMPONENT_PROTOTYPES[cleanSetName] || COMPONENT_PROTOTYPES[setName];
+            const prototypeTabBtn = document.getElementById('prototypeTabBtn');
+            const prototypeEmbed = document.getElementById('prototypeEmbed');
+
+            if (prototypeLink && prototypeLink !== '') {
+                // Show prototype tab
+                prototypeTabBtn.style.display = 'inline-block';
+                prototypeEmbed.src = prototypeLink;
+            } else {
+                // Hide prototype tab
+                prototypeTabBtn.style.display = 'none';
+                // Reset to design tab if currently on prototype
+                if (document.getElementById('previewTabContent_prototype').classList.contains('active')) {
+                    switchPreviewTab('design');
+                }
+            }
         }
 
         function renderLiveComponent() {

@@ -1,0 +1,928 @@
+{
+  "Primary Palette (Dust System)": [
+    [
+      "",
+      "Dark Dust",
+      "#AF9577",
+      "--color-dark-dust",
+      "palette.primary.main",
+      "Primary actions, buttons"
+    ],
+    [
+      "",
+      "Rodeo Dust",
+      "#C8B298",
+      "--color-rodeo-dust",
+      "palette.primary.light",
+      "Hover / secondary surfaces"
+    ],
+    [
+      "",
+      "Light Dust",
+      "#F4EFEA",
+      "--color-light-dust",
+      "palette.primary.lighter",
+      "Background accents"
+    ],
+    [
+      "",
+      "Clear Dust",
+      "#FBF9F7",
+      "--color-clear-dust",
+      "palette.primary.lightest",
+      "Page backgrounds, cards"
+    ],
+    [
+      "",
+      "Rodeo Black",
+      "#333333",
+      "--color-rodeo-black",
+      "palette.text.primary",
+      "Primary text"
+    ],
+    [
+      "",
+      "Graphite",
+      "#6D6D6D",
+      "--color-graphite",
+      "palette.text.secondary",
+      "Secondary text"
+    ],
+    [
+      "",
+      "Smoke",
+      "#E0E0E0",
+      "--color-smoke",
+      "palette.divider",
+      "Borders / dividers"
+    ],
+    [
+      "",
+      "Wax",
+      "#F5F5F5",
+      "--color-wax",
+      "palette.grey[100]",
+      "Subtle backgrounds"
+    ],
+    [
+      "",
+      "White",
+      "#FFFFFF",
+      "--color-white",
+      "palette.background.paper",
+      "Cards / surfaces"
+    ],
+    [
+      "",
+      "Background",
+      "#FAFAFA",
+      "--color-background",
+      "palette.background.default",
+      "App background"
+    ],
+    [
+      "",
+      "Sage 1",
+      "#637058",
+      "--color-good-sage",
+      "Primary success"
+    ],
+    [
+      "",
+      "Sage 2",
+      "#8C9583",
+      "--color-good-sage-2",
+      "Hover / mid"
+    ],
+    [
+      "",
+      "Sage 3",
+      "#B5BBAF",
+      "--color-good-sage-3",
+      "Disabled / subtle"
+    ],
+    [
+      "",
+      "Sage 4",
+      "#E0E3DD",
+      "--color-good-sage-4",
+      "Background"
+    ],
+    [
+      "",
+      "Sage 5",
+      "#F5F6F4",
+      "--color-good-sage-5",
+      "Light background"
+    ],
+    [
+      "",
+      "Wine 1",
+      "#A34740",
+      "--color-good-wine",
+      "Primary error"
+    ],
+    [
+      "",
+      "Wine 2",
+      "#BB7570",
+      "--color-good-wine-2",
+      "Hover"
+    ],
+    [
+      "",
+      "Wine 3",
+      "#D4A4A1",
+      "--color-good-wine-3",
+      "Disabled"
+    ],
+    [
+      "",
+      "Wine 4",
+      "#EED4D3",
+      "--color-good-wine-4",
+      "Background"
+    ],
+    [
+      "",
+      "Wine 5",
+      "#F9F1F0",
+      "--color-good-wine-bg",
+      "Light background"
+    ],
+    [
+      "",
+      "Ochre 1",
+      "#8A5D1F",
+      "--color-good-ochre",
+      "Primary warning"
+    ],
+    [
+      "",
+      "Ochre 2",
+      "#AC8958",
+      "--color-good-ochre-2",
+      "Hover"
+    ],
+    [
+      "",
+      "Ochre 3",
+      "#CFB591",
+      "--color-good-ochre-3",
+      "Disabled"
+    ],
+    [
+      "",
+      "Ochre 4",
+      "#F3E3CD",
+      "--color-good-ochre-4",
+      "Background"
+    ],
+    [
+      "",
+      "Ochre 5",
+      "#FBF6EF",
+      "--color-good-ochre-bg",
+      "Light background"
+    ],
+    [
+      "",
+      "Night 1",
+      "#2B4A60",
+      "--color-good-night",
+      "Primary info"
+    ],
+    [
+      "",
+      "Night 2",
+      "#5E798C",
+      "--color-good-night-2",
+      "Hover"
+    ],
+    [
+      "",
+      "Night 3",
+      "#91A8B8",
+      "--color-good-night-3",
+      "Disabled"
+    ],
+    [
+      "",
+      "Night 4",
+      "#C7D9E6",
+      "--color-good-night-4",
+      "Background"
+    ],
+    [
+      "",
+      "Night 5",
+      "#F1F5F9",
+      "--color-good-night-bg",
+      "Light background"
+    ]
+  ],
+  "Usage": [
+    [
+      "",
+      "Rodeo Black",
+      "#333333",
+      "--color-rodeo-black",
+      "palette.text.primary",
+      "Primary text"
+    ],
+    [
+      "",
+      "Graphite",
+      "#6D6D6D",
+      "--color-graphite",
+      "palette.text.secondary",
+      "Secondary text"
+    ],
+    [
+      "",
+      "Smoke",
+      "#E0E0E0",
+      "--color-smoke",
+      "palette.divider",
+      "Borders / dividers"
+    ],
+    [
+      "",
+      "Wax",
+      "#F5F5F5",
+      "--color-wax",
+      "palette.grey[100]",
+      "Subtle backgrounds"
+    ],
+    [
+      "",
+      "White",
+      "#FFFFFF",
+      "--color-white",
+      "palette.background.paper",
+      "Cards / surfaces"
+    ],
+    [
+      "",
+      "Background",
+      "#FAFAFA",
+      "--color-background",
+      "palette.background.default",
+      "App background"
+    ]
+  ],
+  "palette.primary.main": [
+    [
+      "",
+      "Dark Dust",
+      "#AF9577",
+      "--color-dark-dust",
+      "palette.primary.main",
+      "Primary actions, buttons"
+    ],
+    [
+      "",
+      "Rodeo Dust",
+      "#C8B298",
+      "--color-rodeo-dust",
+      "palette.primary.light",
+      "Hover / secondary surfaces"
+    ],
+    [
+      "",
+      "Light Dust",
+      "#F4EFEA",
+      "--color-light-dust",
+      "palette.primary.lighter",
+      "Background accents"
+    ],
+    [
+      "",
+      "Clear Dust",
+      "#FBF9F7",
+      "--color-clear-dust",
+      "palette.primary.lightest",
+      "Page backgrounds, cards"
+    ]
+  ],
+  "palette.primary.light": [
+    [
+      "",
+      "Rodeo Dust",
+      "#C8B298",
+      "--color-rodeo-dust",
+      "palette.primary.light",
+      "Hover / secondary surfaces"
+    ]
+  ],
+  "palette.primary.lighter": [
+    [
+      "",
+      "Light Dust",
+      "#F4EFEA",
+      "--color-light-dust",
+      "palette.primary.lighter",
+      "Background accents"
+    ]
+  ],
+  "palette.primary.lightest": [
+    [
+      "",
+      "Clear Dust",
+      "#FBF9F7",
+      "--color-clear-dust",
+      "palette.primary.lightest",
+      "Page backgrounds, cards"
+    ]
+  ],
+  "Neutral Palette": [
+    [
+      "",
+      "Rodeo Black",
+      "#333333",
+      "--color-rodeo-black",
+      "palette.text.primary",
+      "Primary text"
+    ],
+    [
+      "",
+      "Graphite",
+      "#6D6D6D",
+      "--color-graphite",
+      "palette.text.secondary",
+      "Secondary text"
+    ],
+    [
+      "",
+      "Smoke",
+      "#E0E0E0",
+      "--color-smoke",
+      "palette.divider",
+      "Borders / dividers"
+    ],
+    [
+      "",
+      "Wax",
+      "#F5F5F5",
+      "--color-wax",
+      "palette.grey[100]",
+      "Subtle backgrounds"
+    ],
+    [
+      "",
+      "White",
+      "#FFFFFF",
+      "--color-white",
+      "palette.background.paper",
+      "Cards / surfaces"
+    ],
+    [
+      "",
+      "Background",
+      "#FAFAFA",
+      "--color-background",
+      "palette.background.default",
+      "App background"
+    ]
+  ],
+  "palette.text.primary": [
+    [
+      "",
+      "Rodeo Black",
+      "#333333",
+      "--color-rodeo-black",
+      "palette.text.primary",
+      "Primary text"
+    ],
+    [
+      "",
+      "Graphite",
+      "#6D6D6D",
+      "--color-graphite",
+      "palette.text.secondary",
+      "Secondary text"
+    ],
+    [
+      "",
+      "Smoke",
+      "#E0E0E0",
+      "--color-smoke",
+      "palette.divider",
+      "Borders / dividers"
+    ],
+    [
+      "",
+      "Wax",
+      "#F5F5F5",
+      "--color-wax",
+      "palette.grey[100]",
+      "Subtle backgrounds"
+    ],
+    [
+      "",
+      "White",
+      "#FFFFFF",
+      "--color-white",
+      "palette.background.paper",
+      "Cards / surfaces"
+    ],
+    [
+      "",
+      "Background",
+      "#FAFAFA",
+      "--color-background",
+      "palette.background.default",
+      "App background"
+    ]
+  ],
+  "palette.text.secondary": [
+    [
+      "",
+      "Graphite",
+      "#6D6D6D",
+      "--color-graphite",
+      "palette.text.secondary",
+      "Secondary text"
+    ]
+  ],
+  "palette.divider": [
+    [
+      "",
+      "Smoke",
+      "#E0E0E0",
+      "--color-smoke",
+      "palette.divider",
+      "Borders / dividers"
+    ]
+  ],
+  "palette.grey[100]": [
+    [
+      "",
+      "Wax",
+      "#F5F5F5",
+      "--color-wax",
+      "palette.grey[100]",
+      "Subtle backgrounds"
+    ]
+  ],
+  "palette.background.paper": [
+    [
+      "",
+      "White",
+      "#FFFFFF",
+      "--color-white",
+      "palette.background.paper",
+      "Cards / surfaces"
+    ]
+  ],
+  "palette.background.default": [
+    [
+      "",
+      "Background",
+      "#FAFAFA",
+      "--color-background",
+      "palette.background.default",
+      "App background"
+    ]
+  ],
+  "Good Sage (Success)": [
+    [
+      "",
+      "Sage 1",
+      "#637058",
+      "--color-good-sage",
+      "Primary success"
+    ],
+    [
+      "",
+      "Sage 2",
+      "#8C9583",
+      "--color-good-sage-2",
+      "Hover / mid"
+    ],
+    [
+      "",
+      "Sage 3",
+      "#B5BBAF",
+      "--color-good-sage-3",
+      "Disabled / subtle"
+    ],
+    [
+      "",
+      "Sage 4",
+      "#E0E3DD",
+      "--color-good-sage-4",
+      "Background"
+    ],
+    [
+      "",
+      "Sage 5",
+      "#F5F6F4",
+      "--color-good-sage-5",
+      "Light background"
+    ]
+  ],
+  "Sage 1": [
+    [
+      "",
+      "Sage 1",
+      "#637058",
+      "--color-good-sage",
+      "Primary success"
+    ],
+    [
+      "",
+      "Sage 2",
+      "#8C9583",
+      "--color-good-sage-2",
+      "Hover / mid"
+    ],
+    [
+      "",
+      "Sage 3",
+      "#B5BBAF",
+      "--color-good-sage-3",
+      "Disabled / subtle"
+    ],
+    [
+      "",
+      "Sage 4",
+      "#E0E3DD",
+      "--color-good-sage-4",
+      "Background"
+    ],
+    [
+      "",
+      "Sage 5",
+      "#F5F6F4",
+      "--color-good-sage-5",
+      "Light background"
+    ]
+  ],
+  "Sage 2": [
+    [
+      "",
+      "Sage 2",
+      "#8C9583",
+      "--color-good-sage-2",
+      "Hover / mid"
+    ]
+  ],
+  "Sage 3": [
+    [
+      "",
+      "Sage 3",
+      "#B5BBAF",
+      "--color-good-sage-3",
+      "Disabled / subtle"
+    ]
+  ],
+  "Sage 4": [
+    [
+      "",
+      "Sage 4",
+      "#E0E3DD",
+      "--color-good-sage-4",
+      "Background"
+    ]
+  ],
+  "Sage 5": [
+    [
+      "",
+      "Sage 5",
+      "#F5F6F4",
+      "--color-good-sage-5",
+      "Light background"
+    ]
+  ],
+  "Good Wine (Error)": [
+    [
+      "",
+      "Wine 1",
+      "#A34740",
+      "--color-good-wine",
+      "Primary error"
+    ],
+    [
+      "",
+      "Wine 2",
+      "#BB7570",
+      "--color-good-wine-2",
+      "Hover"
+    ],
+    [
+      "",
+      "Wine 3",
+      "#D4A4A1",
+      "--color-good-wine-3",
+      "Disabled"
+    ],
+    [
+      "",
+      "Wine 4",
+      "#EED4D3",
+      "--color-good-wine-4",
+      "Background"
+    ],
+    [
+      "",
+      "Wine 5",
+      "#F9F1F0",
+      "--color-good-wine-bg",
+      "Light background"
+    ]
+  ],
+  "Wine 1": [
+    [
+      "",
+      "Wine 1",
+      "#A34740",
+      "--color-good-wine",
+      "Primary error"
+    ],
+    [
+      "",
+      "Wine 2",
+      "#BB7570",
+      "--color-good-wine-2",
+      "Hover"
+    ],
+    [
+      "",
+      "Wine 3",
+      "#D4A4A1",
+      "--color-good-wine-3",
+      "Disabled"
+    ],
+    [
+      "",
+      "Wine 4",
+      "#EED4D3",
+      "--color-good-wine-4",
+      "Background"
+    ],
+    [
+      "",
+      "Wine 5",
+      "#F9F1F0",
+      "--color-good-wine-bg",
+      "Light background"
+    ]
+  ],
+  "Wine 2": [
+    [
+      "",
+      "Wine 2",
+      "#BB7570",
+      "--color-good-wine-2",
+      "Hover"
+    ]
+  ],
+  "Wine 3": [
+    [
+      "",
+      "Wine 3",
+      "#D4A4A1",
+      "--color-good-wine-3",
+      "Disabled"
+    ]
+  ],
+  "Wine 4": [
+    [
+      "",
+      "Wine 4",
+      "#EED4D3",
+      "--color-good-wine-4",
+      "Background"
+    ]
+  ],
+  "Wine 5": [
+    [
+      "",
+      "Wine 5",
+      "#F9F1F0",
+      "--color-good-wine-bg",
+      "Light background"
+    ]
+  ],
+  "Good Ochre (Warning)": [
+    [
+      "",
+      "Ochre 1",
+      "#8A5D1F",
+      "--color-good-ochre",
+      "Primary warning"
+    ],
+    [
+      "",
+      "Ochre 2",
+      "#AC8958",
+      "--color-good-ochre-2",
+      "Hover"
+    ],
+    [
+      "",
+      "Ochre 3",
+      "#CFB591",
+      "--color-good-ochre-3",
+      "Disabled"
+    ],
+    [
+      "",
+      "Ochre 4",
+      "#F3E3CD",
+      "--color-good-ochre-4",
+      "Background"
+    ],
+    [
+      "",
+      "Ochre 5",
+      "#FBF6EF",
+      "--color-good-ochre-bg",
+      "Light background"
+    ]
+  ],
+  "Ochre 1": [
+    [
+      "",
+      "Ochre 1",
+      "#8A5D1F",
+      "--color-good-ochre",
+      "Primary warning"
+    ],
+    [
+      "",
+      "Ochre 2",
+      "#AC8958",
+      "--color-good-ochre-2",
+      "Hover"
+    ],
+    [
+      "",
+      "Ochre 3",
+      "#CFB591",
+      "--color-good-ochre-3",
+      "Disabled"
+    ],
+    [
+      "",
+      "Ochre 4",
+      "#F3E3CD",
+      "--color-good-ochre-4",
+      "Background"
+    ],
+    [
+      "",
+      "Ochre 5",
+      "#FBF6EF",
+      "--color-good-ochre-bg",
+      "Light background"
+    ]
+  ],
+  "Ochre 2": [
+    [
+      "",
+      "Ochre 2",
+      "#AC8958",
+      "--color-good-ochre-2",
+      "Hover"
+    ]
+  ],
+  "Ochre 3": [
+    [
+      "",
+      "Ochre 3",
+      "#CFB591",
+      "--color-good-ochre-3",
+      "Disabled"
+    ]
+  ],
+  "Ochre 4": [
+    [
+      "",
+      "Ochre 4",
+      "#F3E3CD",
+      "--color-good-ochre-4",
+      "Background"
+    ]
+  ],
+  "Ochre 5": [
+    [
+      "",
+      "Ochre 5",
+      "#FBF6EF",
+      "--color-good-ochre-bg",
+      "Light background"
+    ]
+  ],
+  "Good Night (Info)": [
+    [
+      "",
+      "Night 1",
+      "#2B4A60",
+      "--color-good-night",
+      "Primary info"
+    ],
+    [
+      "",
+      "Night 2",
+      "#5E798C",
+      "--color-good-night-2",
+      "Hover"
+    ],
+    [
+      "",
+      "Night 3",
+      "#91A8B8",
+      "--color-good-night-3",
+      "Disabled"
+    ],
+    [
+      "",
+      "Night 4",
+      "#C7D9E6",
+      "--color-good-night-4",
+      "Background"
+    ],
+    [
+      "",
+      "Night 5",
+      "#F1F5F9",
+      "--color-good-night-bg",
+      "Light background"
+    ]
+  ],
+  "Night 1": [
+    [
+      "",
+      "Night 1",
+      "#2B4A60",
+      "--color-good-night",
+      "Primary info"
+    ],
+    [
+      "",
+      "Night 2",
+      "#5E798C",
+      "--color-good-night-2",
+      "Hover"
+    ],
+    [
+      "",
+      "Night 3",
+      "#91A8B8",
+      "--color-good-night-3",
+      "Disabled"
+    ],
+    [
+      "",
+      "Night 4",
+      "#C7D9E6",
+      "--color-good-night-4",
+      "Background"
+    ],
+    [
+      "",
+      "Night 5",
+      "#F1F5F9",
+      "--color-good-night-bg",
+      "Light background"
+    ]
+  ],
+  "Night 2": [
+    [
+      "",
+      "Night 2",
+      "#5E798C",
+      "--color-good-night-2",
+      "Hover"
+    ]
+  ],
+  "Night 3": [
+    [
+      "",
+      "Night 3",
+      "#91A8B8",
+      "--color-good-night-3",
+      "Disabled"
+    ]
+  ],
+  "Night 4": [
+    [
+      "",
+      "Night 4",
+      "#C7D9E6",
+      "--color-good-night-4",
+      "Background"
+    ]
+  ],
+  "Night 5": [
+    [
+      "",
+      "Night 5",
+      "#F1F5F9",
+      "--color-good-night-bg",
+      "Light background"
+    ]
+  ]
+}
