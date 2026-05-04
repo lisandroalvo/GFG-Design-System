@@ -10020,19 +10020,12 @@
             })));
         }
 
-        // Cloudflare Worker proxy — strips Figma's X-Frame-Options so prototypes load inline
-        const PROXY = 'https://figma-proxy-worker.talknotes-live.workers.dev/?url=';
-
-        // Component Prototype Links — add Figma prototype URLs here (proxy applied automatically)
-        const COMPONENT_PROTOTYPES_RAW = {
-            'Alert': 'https://embed.figma.com/proto/OjFchNAdeHiNH5W4wYLSGS/GFG---Design-System-2026?node-id=15883-11857&viewport=653%2C-326%2C0.37&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=15883%3A11857&page-id=6595%3A48177&embed-host=share',
+        // Component Prototype Links — add Figma prototype URLs here
+        const COMPONENT_PROTOTYPES = {
+            'Alert': 'https://www.figma.com/proto/OjFchNAdeHiNH5W4wYLSGS/GFG---Design-System-2026?node-id=15883-11857&viewport=653%2C-326%2C0.37&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=15883%3A11857&page-id=6595%3A48177',
             // 'Button': '',
-            // 'Fab': '',
             // Add more components as needed
         };
-        const COMPONENT_PROTOTYPES = Object.fromEntries(
-            Object.entries(COMPONENT_PROTOTYPES_RAW).map(([k,v]) => [k, PROXY + encodeURIComponent(v)])
-        );
 
         let currentComponents = {};
         let currentSetName = '';
@@ -10227,12 +10220,83 @@
                     </div>
                     ${interactiveProtoUrl ? `
                     <div id="figma-proto-frame" style="display:none; margin-top:12px;">
-                        <iframe
-                            src="${interactiveProtoUrl}"
-                            style="width:100%; height:600px; border:none; border-radius:8px;"
-                            allowfullscreen
-                            allow="fullscreen; clipboard-write; clipboard-read">
-                        </iframe>
+                        <div style="position:relative; border-radius:12px; overflow:hidden; background:#111; min-height:480px; display:flex; flex-direction:column;">
+
+                            <!-- Blurred component thumbnail as background -->
+                            <div style="
+                                position:absolute; inset:0;
+                                background-image: url('component-thumbs/${cleanSetName}.png');
+                                background-size: cover;
+                                background-position: center;
+                                filter: blur(12px) brightness(0.35) saturate(0.8);
+                                transform: scale(1.08);
+                            "></div>
+
+                            <!-- Noise texture overlay -->
+                            <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(30,20,40,0.7) 0%,rgba(10,10,20,0.85) 100%);"></div>
+
+                            <!-- Content -->
+                            <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:28px;padding:56px 40px;">
+
+                                <!-- Component thumbnail preview (sharp) -->
+                                <div style="
+                                    width:180px; height:120px;
+                                    border-radius:12px;
+                                    overflow:hidden;
+                                    border:1.5px solid rgba(255,255,255,0.12);
+                                    box-shadow:0 8px 40px rgba(0,0,0,0.5);
+                                    background:rgba(255,255,255,0.06);
+                                    display:flex;align-items:center;justify-content:center;
+                                ">
+                                    <img src="component-thumbs/${cleanSetName}.png"
+                                         style="width:100%;height:100%;object-fit:cover;"
+                                         onerror="this.parentElement.innerHTML='<span style=\\'font-size:40px\\'>🎬</span>'" />
+                                </div>
+
+                                <!-- Label -->
+                                <div style="text-align:center;">
+                                    <div style="color:#fff;font-size:20px;font-weight:700;letter-spacing:-0.3px;margin-bottom:8px;">${cleanSetName}</div>
+                                    <div style="color:rgba(255,255,255,0.5);font-size:13px;line-height:1.6;max-width:320px;">
+                                        Full prototype with interactions, animations &amp; flows — opens in Figma for the complete experience.
+                                    </div>
+                                </div>
+
+                                <!-- CTA button -->
+                                <a href="${interactiveProtoUrl}" target="_blank" rel="noopener noreferrer"
+                                   style="
+                                       display:inline-flex;align-items:center;gap:10px;
+                                       padding:13px 28px;
+                                       background:#fff;
+                                       color:#111;
+                                       font-size:14px;font-weight:700;
+                                       text-decoration:none;
+                                       border-radius:100px;
+                                       box-shadow:0 4px 24px rgba(0,0,0,0.4);
+                                       transition:transform 0.15s,box-shadow 0.15s;
+                                       letter-spacing:0.1px;
+                                   "
+                                   onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.5)'"
+                                   onmouseout="this.style.transform='';this.style.boxShadow='0 4px 24px rgba(0,0,0,0.4)'"
+                                >
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 2C4.686 2 2 4.686 2 8s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm-1 8.5v-5l4 2.5-4 2.5z" fill="#111"/>
+                                    </svg>
+                                    Open Interactive Prototype
+                                </a>
+
+                                <!-- Figma badge -->
+                                <div style="display:flex;align-items:center;gap:6px;color:rgba(255,255,255,0.25);font-size:11px;font-weight:500;">
+                                    <svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 7A2 2 0 1 1 5 3a2 2 0 0 1 0 4z" fill="rgba(255,255,255,0.3)"/>
+                                        <path d="M1 5a2 2 0 0 1 2-2h2v4H3a2 2 0 0 1-2-2z" fill="rgba(255,255,255,0.3)"/>
+                                        <path d="M5 3h2a2 2 0 0 1 0 4H5V3z" fill="rgba(255,255,255,0.3)"/>
+                                        <path d="M1 9a2 2 0 0 1 2-2h2v2a2 2 0 0 1-4 0z" fill="rgba(255,255,255,0.3)"/>
+                                        <path d="M5 9h2a2 2 0 0 1 0 4 2 2 0 0 1-2-2V9z" fill="rgba(255,255,255,0.3)"/>
+                                    </svg>
+                                    Powered by Figma
+                                </div>
+                            </div>
+                        </div>
                     </div>` : ''}
                 </div>
                 `;
