@@ -10020,13 +10020,19 @@
             })));
         }
 
-        // Component Prototype Links — add Figma prototype URLs here
-        const COMPONENT_PROTOTYPES = {
+        // Cloudflare Worker proxy — strips Figma's X-Frame-Options so prototypes load inline
+        const PROXY = 'https://figma-proxy-worker.talknotes-live.workers.dev/?url=';
+
+        // Component Prototype Links — add Figma prototype URLs here (proxy applied automatically)
+        const COMPONENT_PROTOTYPES_RAW = {
             'Alert': 'https://embed.figma.com/proto/OjFchNAdeHiNH5W4wYLSGS/GFG---Design-System-2026?node-id=15883-11857&viewport=653%2C-326%2C0.37&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=15883%3A11857&page-id=6595%3A48177&embed-host=share',
             // 'Button': '',
             // 'Fab': '',
             // Add more components as needed
         };
+        const COMPONENT_PROTOTYPES = Object.fromEntries(
+            Object.entries(COMPONENT_PROTOTYPES_RAW).map(([k,v]) => [k, PROXY + encodeURIComponent(v)])
+        );
 
         let currentComponents = {};
         let currentSetName = '';
@@ -10220,75 +10226,13 @@
                         </iframe>
                     </div>
                     ${interactiveProtoUrl ? `
-                    <div id="figma-proto-frame" style="display:none;">
-                        <div style="
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
-                            justify-content: center;
-                            gap: 24px;
-                            padding: 48px 32px;
-                            background: linear-gradient(135deg, #1E1E1E 0%, #2C2C2C 100%);
-                            border-radius: 12px;
-                            margin-top: 12px;
-                            position: relative;
-                            overflow: hidden;
-                            min-height: 320px;
-                        ">
-                            <!-- Background grid pattern -->
-                            <div style="
-                                position: absolute; inset: 0;
-                                background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
-                                background-size: 24px 24px;
-                                pointer-events: none;
-                            "></div>
-
-                            <!-- Figma icon -->
-                            <div style="position:relative; z-index:1; text-align:center;">
-                                <div style="
-                                    width: 72px; height: 72px;
-                                    background: linear-gradient(135deg, #FF7262 0%, #F24E1E 50%, #A259FF 100%);
-                                    border-radius: 18px;
-                                    display: flex; align-items: center; justify-content: center;
-                                    font-size: 36px;
-                                    margin: 0 auto 16px;
-                                    box-shadow: 0 8px 32px rgba(242,78,30,0.4);
-                                ">🎬</div>
-                                <div style="color: #FFFFFF; font-size: 22px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.3px;">${cleanSetName} — Interactive Prototype</div>
-                                <div style="color: rgba(255,255,255,0.55); font-size: 14px; max-width: 360px; line-height: 1.6;">
-                                    Experience the full interactive prototype with animations, transitions and flows — directly in Figma.
-                                </div>
-                            </div>
-
-                            <!-- Launch button -->
-                            <a href="${interactiveProtoUrl}" target="_blank" rel="noopener" style="
-                                position: relative; z-index: 1;
-                                display: inline-flex; align-items: center; gap: 10px;
-                                padding: 14px 28px;
-                                background: linear-gradient(135deg, #FF7262, #F24E1E);
-                                color: #FFFFFF;
-                                font-size: 15px; font-weight: 600;
-                                text-decoration: none;
-                                border-radius: 10px;
-                                box-shadow: 0 4px 20px rgba(242,78,30,0.45);
-                                transition: transform 0.15s ease, box-shadow 0.15s ease;
-                                letter-spacing: 0.1px;
-                            "
-                            onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(242,78,30,0.55)'"
-                            onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 20px rgba(242,78,30,0.45)'"
-                            >
-                                ▶&nbsp; Launch Prototype
-                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
-
-                            <!-- Badge -->
-                            <div style="position:relative;z-index:1;display:flex;align-items:center;gap:6px;color:rgba(255,255,255,0.35);font-size:11px;">
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 4v2.5L7.5 8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-                                Opens in Figma — full interactions, animations & flows
-                            </div>
-                        </div>
+                    <div id="figma-proto-frame" style="display:none; margin-top:12px;">
+                        <iframe
+                            src="${interactiveProtoUrl}"
+                            style="width:100%; height:600px; border:none; border-radius:8px;"
+                            allowfullscreen
+                            allow="fullscreen; clipboard-write; clipboard-read">
+                        </iframe>
                     </div>` : ''}
                 </div>
                 `;
