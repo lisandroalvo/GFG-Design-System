@@ -1,0 +1,947 @@
+{
+  "syncedAt": "2026-05-04T11:04:09.376Z",
+  "figmaFileKey": "OjFchNAdeHiNH5W4wYLSGS",
+  "totalComponents": 3028,
+  "totalComponentSets": 145,
+  "totalStyles": 11,
+  "componentSets": [
+    {
+      "name": "<Tabs>",
+      "nodeId": "6579:45197",
+      "key": "dd68ffe52f3355262f33a57f949bf1add2ec79f0",
+      "description": "Tabs make it easy to explore and switch between different views."
+    },
+    {
+      "name": "<TableHeadRow>",
+      "nodeId": "6686:36863",
+      "key": "591c91587e33a64666ba0d7b5d2887fc316f2367",
+      "description": ""
+    },
+    {
+      "name": "<DataGrid> | Header Rows",
+      "nodeId": "6603:52552",
+      "key": "3a6f815de64628df8f37d418e38f398f3088057d",
+      "description": ""
+    },
+    {
+      "name": "<Checkbox>",
+      "nodeId": "6543:43052",
+      "key": "39ff2f02b9ac03d7169432293f4dfa63bbf3c5f5",
+      "description": "Checkboxes allow the user to select one or more items from a set."
+    },
+    {
+      "name": "Alert",
+      "nodeId": "6595:48211",
+      "key": "b4712b1cfcf4df05c00c273f8a7318ccd4e0f836",
+      "description": "An alert displays a short, important message in a way that attracts the user's attention without interrupting the user's task."
+    },
+    {
+      "name": "<Avatar>",
+      "nodeId": "6587:47403",
+      "key": "b188311a08bc63bf44506d7a933f25737789fc08",
+      "description": ""
+    },
+    {
+      "name": "<InputLabel>",
+      "nodeId": "11140:154655",
+      "key": "a6c86df115e0edc1caee827bb4e78f25cf2df1c4",
+      "description": ""
+    },
+    {
+      "name": "*Library / MUI Logos",
+      "nodeId": "275:89633",
+      "key": "b2ec84f856678fcfe00c3dc635f1e9b38688b172",
+      "description": ""
+    },
+    {
+      "name": "*Native Browser Scroll",
+      "nodeId": "613:92863",
+      "key": "69da5490c25124988d1fcaaa15e89495faf2c695",
+      "description": ""
+    },
+    {
+      "name": "*Library / Logo Placeholder",
+      "nodeId": "9157:90561",
+      "key": "a40b1d50e954ef0ec09fc7e8446c3f279ab84401",
+      "description": "Placeholder logo SVGs"
+    },
+    {
+      "name": "<TimeField>",
+      "nodeId": "1268:106844",
+      "key": "9187b459df8de1f9d06ab9e25b7f8118f6d5183a",
+      "description": ""
+    },
+    {
+      "name": "*Custom / Sidenav",
+      "nodeId": "9177:91957",
+      "key": "4fb65e014729f8e70e07c1a654d5164ed3079867",
+      "description": ""
+    },
+    {
+      "name": "*Library / Component Properties",
+      "nodeId": "10988:155545",
+      "key": "46f8aedcd0e58ee612c42819ea6693329bf3e838",
+      "description": ""
+    },
+    {
+      "name": "<TimelineDot>",
+      "nodeId": "6602:51786",
+      "key": "45f845f36d64cfb486e467f5c0cfd571fc00622c",
+      "description": ""
+    },
+    {
+      "name": "<Skeleton>",
+      "nodeId": "6596:49017",
+      "key": "c29fa88e8f0510824960e81a84da7081ec87abec",
+      "description": "Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration."
+    },
+    {
+      "name": "<Table>",
+      "nodeId": "6594:46634",
+      "key": "04702eeb04b110390caf3ecc8f706f4790fd6de0",
+      "description": "Tables display sets of data. They can be fully customized."
+    },
+    {
+      "name": "<Switch>",
+      "nodeId": "6564:39128",
+      "key": "83df8e5f8911a1fafee38ab2621344368f82ecc4",
+      "description": "Switches toggle the state of a single setting on or off."
+    },
+    {
+      "name": "Spacing | Horizontal",
+      "nodeId": "8991:87925",
+      "key": "e7b1d7fcaa22587c619751f64f481adbecfb9aa2",
+      "description": ""
+    },
+    {
+      "name": "<MenuList>",
+      "nodeId": "11404:174321",
+      "key": "f6df6ed641c6d47b8376124337e883c550b001c3",
+      "description": ""
+    },
+    {
+      "name": "*Custom / Table / Custom Cell",
+      "nodeId": "8609:90180",
+      "key": "70edd49d4f5c1059b87172eec1f3d6f68a57c8fa",
+      "description": ""
+    },
+    {
+      "name": "*Custom / Flags",
+      "nodeId": "6704:38891",
+      "key": "a8a6f8a4da534afc1ed7bae41e1642bc56a4bc4b",
+      "description": ""
+    },
+    {
+      "name": "<Radio>",
+      "nodeId": "6558:39273",
+      "key": "71d3f2201a11d9b92a1d7b73af06c5ec9843b1e9",
+      "description": "Radio buttons allow the user to select one option from a set."
+    },
+    {
+      "name": "<DateField>",
+      "nodeId": "1174:13306",
+      "key": "23771bcd81850cbec405ce0c6b9a220f686b3cbb",
+      "description": ""
+    },
+    {
+      "name": "*SliderMark",
+      "nodeId": "6562:39002",
+      "key": "e76cdb7edb892901592285af7fdcc77ee9c1ff61",
+      "description": ""
+    },
+    {
+      "name": "<TextField>",
+      "nodeId": "6570:48313",
+      "key": "3ad52e45eb9ce55f734e5c66ad602550b3340fd8",
+      "description": ""
+    },
+    {
+      "name": "<FormLabel>",
+      "nodeId": "11436:165380",
+      "key": "ca479e197f0334fd025af6da5c3284f4b9e4e5f6",
+      "description": ""
+    },
+    {
+      "name": "*SliderThumb",
+      "nodeId": "6562:39018",
+      "key": "bedf25ca5720c05b0777ca1550ec264d02ed1f1d",
+      "description": ""
+    },
+    {
+      "name": "<Container>",
+      "nodeId": "7660:81184",
+      "key": "d542d2ef2122eef3f3cf8d5491623fb558c3d682",
+      "description": ""
+    },
+    {
+      "name": "Spacing | Vertical",
+      "nodeId": "9402:94892",
+      "key": "cf51d13bc7ffda39bcbf2570cb1223117ee371df",
+      "description": ""
+    },
+    {
+      "name": "*SliderTrack",
+      "nodeId": "6562:38988",
+      "key": "9d43d4b765b940936a9a15075243a0bc61172bf5",
+      "description": ""
+    },
+    {
+      "name": "Star",
+      "nodeId": "6562:39569",
+      "key": "eb24f49a0ee89381b98618fef03e7bb4bcb462fd",
+      "description": ""
+    },
+    {
+      "name": "Elements / Axis X | Values Top",
+      "nodeId": "1196:7687",
+      "key": "da16779a6cdec835a8830d0d543988f2af5c570e",
+      "description": ""
+    },
+    {
+      "name": "<FormGroup> | <Checkbox>",
+      "nodeId": "6543:43147",
+      "key": "2422c3831721c04ed7869241cb32df472e7a6b12",
+      "description": ""
+    },
+    {
+      "name": "Elements / Lines",
+      "nodeId": "1231:7768",
+      "key": "791cff545878bbb02ba3457ab6d88c5798c24bef",
+      "description": ""
+    },
+    {
+      "name": "Aspect ratio",
+      "nodeId": "1537:7427",
+      "key": "af57bbdbfcc7b208eca62533de11c5cb4dfea513",
+      "description": ""
+    },
+    {
+      "name": "<Chip>",
+      "nodeId": "6588:47683",
+      "key": "f9e0bdd98f61e1617a1b4d4fe425231c8aa56b87",
+      "description": "Chips are compact elements that represent an input, attribute, or action."
+    },
+    {
+      "name": "Elements / Legend",
+      "nodeId": "1182:11802",
+      "key": "b33c5eac0b8701c10e2c4ef8467710d8ebf041af",
+      "description": ""
+    },
+    {
+      "name": "*SliderRail",
+      "nodeId": "6562:38995",
+      "key": "254042efa0f126c3b75bb2e1bce1ff35d4dd97e8",
+      "description": ""
+    },
+    {
+      "name": "<Icon>",
+      "nodeId": "6594:47648",
+      "key": "9a0c3cf9979d88a4f4292910f980e4817007ce0f",
+      "description": ""
+    },
+    {
+      "name": "<ScatterChart>",
+      "nodeId": "1182:11949",
+      "key": "0d561fbb3f3f181d6309ddb0234714091ed7f2c7",
+      "description": ""
+    },
+    {
+      "name": "Elements / Series Bar",
+      "nodeId": "1182:11861",
+      "key": "ba961d5c803550287569c6ce62492232b6875d3e",
+      "description": ""
+    },
+    {
+      "name": "Rich Text Editor",
+      "nodeId": "16069:8321",
+      "key": "8e0612daaa235ff351f6f595e130f9ef97a13bc8",
+      "description": ""
+    },
+    {
+      "name": "Drag and Drop ",
+      "nodeId": "16073:6728",
+      "key": "cfe096ae67179e10815dd035a0cac30d170a533e",
+      "description": ""
+    },
+    {
+      "name": "*SliderValue Label",
+      "nodeId": "6562:39027",
+      "key": "20b2abc70702e640a7057693310f70a548c85a65",
+      "description": ""
+    },
+    {
+      "name": "<Link>",
+      "nodeId": "6574:50682",
+      "key": "31915bd9207b79f945a39b7615441059339831fd",
+      "description": "The Link component allows you to easily customize anchor elements with your theme colors and typography styles."
+    },
+    {
+      "name": "<BottomNavigationAction>",
+      "nodeId": "6572:50288",
+      "key": "77f8950096e9f652b4eb371ffd20241ab44347a8",
+      "description": ""
+    },
+    {
+      "name": "<BottomNavigation>",
+      "nodeId": "6572:50307",
+      "key": "c37255eaa33a8d3066fcb8d196df8cdc4e391b97",
+      "description": "Bottom navigation bars allow movement between primary destinations in an app."
+    },
+    {
+      "name": "Elements / Axis X | Groups Top",
+      "nodeId": "1190:14930",
+      "key": "d407a279083b264b9e4bd81b92bdefab54881d4b",
+      "description": ""
+    },
+    {
+      "name": "task_alt",
+      "nodeId": "15624:30770",
+      "key": "81a35d4bd64ce2c997ec50005d7476a95c2057b9",
+      "description": ""
+    },
+    {
+      "name": "favorite",
+      "nodeId": "15624:30755",
+      "key": "35de7a904adfe1f6d10134a6922a7dc2bdec4362",
+      "description": ""
+    },
+    {
+      "name": "star",
+      "nodeId": "15624:30747",
+      "key": "c53c96066d2eab8d215d68a621bcd00ee6e99254",
+      "description": ""
+    },
+    {
+      "name": "Dot",
+      "nodeId": "15624:30763",
+      "key": "7716676effc37cf795aae272918dc9bf73eeb040",
+      "description": ""
+    },
+    {
+      "name": "<TableCellRow>",
+      "nodeId": "6594:46473",
+      "key": "068bf2ab02a1147c8606931fa3ae8978ec2356d6",
+      "description": ""
+    },
+    {
+      "name": "<TableHead>",
+      "nodeId": "6594:46364",
+      "key": "2d571f39792496182ad91c6e2f2cbe779f8c307a",
+      "description": ""
+    },
+    {
+      "name": "<Fab>",
+      "nodeId": "6556:38264",
+      "key": "d44f44fc363c91e1b402efdf9aacc99df856e4de",
+      "description": "A floating action button (FAB) performs the primary, or most common, action on a screen."
+    },
+    {
+      "name": "<DataGrid> | Header",
+      "nodeId": "6603:52316",
+      "key": "086da39f66cfbc5e48be511d52a6919b749ecccd",
+      "description": ""
+    },
+    {
+      "name": "<PieChart>",
+      "nodeId": "1182:12705",
+      "key": "11025837bf8a9a2c8e92237aacb2aefbf691edaa",
+      "description": ""
+    },
+    {
+      "name": "Native / Date Time Picker",
+      "nodeId": "6569:39491",
+      "key": "68b21f6be62b888f2cfa39e10e9ba7b10689467c",
+      "description": "Date pickers and Time pickers allow selecting a single value from a pre-determined set."
+    },
+    {
+      "name": "<Select>",
+      "nodeId": "6570:41424",
+      "key": "7ca3a9f8c98d969c7c6ad02368b5dcb8bed62909",
+      "description": ""
+    },
+    {
+      "name": "<TimelineItem>",
+      "nodeId": "6602:51383",
+      "key": "82ac37b1175129f8cee1ca11cf8cbcf7d2c0afe9",
+      "description": ""
+    },
+    {
+      "name": "<ToggleButtonGroup>",
+      "nodeId": "6601:51012",
+      "key": "93b8b4074d842eadcd32788f9bbd78eafb1742fe",
+      "description": ""
+    },
+    {
+      "name": "<TableCell>",
+      "nodeId": "6594:46413",
+      "key": "bfefa5ddfc879a396a350cb24fd220886fdcd573",
+      "description": ""
+    },
+    {
+      "name": "*Custom / Page Heading",
+      "nodeId": "9056:89876",
+      "key": "1c610f45cf27cb2dc6c405a3ff2cdbee3fd3bb65",
+      "description": "Click on the description and actions slots for more options."
+    },
+    {
+      "name": "<Stack>",
+      "nodeId": "11114:137757",
+      "key": "28f1ca704969c5334abf3ab65a80d509ebbe2972",
+      "description": ""
+    },
+    {
+      "name": "<DataGrid> | Header Rows | Column Group",
+      "nodeId": "177:82411",
+      "key": "38c82374fda2cac49a03338d3b66562ef34ff6a7",
+      "description": ""
+    },
+    {
+      "name": "*Custom / Uploader / Item",
+      "nodeId": "9390:94126",
+      "key": "4ceb578884e93653e520aae195fb724c3a2cab71",
+      "description": ""
+    },
+    {
+      "name": "<DateTimeField>",
+      "nodeId": "1251:806500",
+      "key": "690045af8403d2d8bb2deee933c5ed4e0f0e37b3",
+      "description": ""
+    },
+    {
+      "name": "<DataGrid> | Header | Column Group",
+      "nodeId": "177:82627",
+      "key": "b83532352db1e63c21a0328b85e359166b9b155b",
+      "description": ""
+    },
+    {
+      "name": "<DataGrid> | Cell",
+      "nodeId": "6603:52491",
+      "key": "bf00959e9f691f8b5ddddf1859232350c6af00f9",
+      "description": ""
+    },
+    {
+      "name": "*Custom / Uploader / Container",
+      "nodeId": "9384:94015",
+      "key": "9edb51773a2e7a43cbdd03400aa40f0694bda9c6",
+      "description": ""
+    },
+    {
+      "name": "<ToggleButton>",
+      "nodeId": "6601:50975",
+      "key": "3805c08b66e994da651dfafb4ff8f2b15c809f96",
+      "description": ""
+    },
+    {
+      "name": "*Custom / Section Headings",
+      "nodeId": "9099:95498",
+      "key": "85a48b92de73be0a563310a737cf6431ccbed3cf",
+      "description": "Provide content and actions relative to a page."
+    },
+    {
+      "name": "*Custom / Expandable Nav Item",
+      "nodeId": "9166:91861",
+      "key": "4af721be1378e396574a704388b3c2bc36c58110",
+      "description": ""
+    },
+    {
+      "name": "<Timeline>",
+      "nodeId": "6602:51689",
+      "key": "dcf0877c952bd6303b5c38abc575c79226c2c274",
+      "description": "The timeline displays a list of events in chronological order."
+    },
+    {
+      "name": "<TreeItem>",
+      "nodeId": "6601:51139",
+      "key": "e34b0e481322e5935a3a3f4e7508b7a786398a11",
+      "description": ""
+    },
+    {
+      "name": "<DialogContent>",
+      "nodeId": "127:59928",
+      "key": "68337a6345f1e033bc1f1100b31c256e035f8031",
+      "description": ""
+    },
+    {
+      "name": "<Accordion>",
+      "nodeId": "6583:46084",
+      "key": "aa2fe34f5af7ccce7efed7923f539b53ee3a52d5",
+      "description": "The accordion component allows the user to show and hide sections of related content on a page."
+    },
+    {
+      "name": "<Step>",
+      "nodeId": "6576:50986",
+      "key": "78ec6a53fdd839b8857beb0e85137f2d6a409baa",
+      "description": ""
+    },
+    {
+      "name": "<FormGroup> | <RadioGroup>",
+      "nodeId": "1479:32615",
+      "key": "f842eb9d286113547acfe81445c7ffc525d7ef58",
+      "description": ""
+    },
+    {
+      "name": "<ImageListItemBar>",
+      "nodeId": "1606:8880",
+      "key": "ad0a146b507852e4fa8ea83929d4982509731b02",
+      "description": ""
+    },
+    {
+      "name": "<Tab>",
+      "nodeId": "6579:45104",
+      "key": "f4baa45725d3ebce1ce6df4a14984724ec376b66",
+      "description": ""
+    },
+    {
+      "name": "<MenuItem>",
+      "nodeId": "6576:50735",
+      "key": "ddb6abe4c8a881336df7266a6c791367ed1645ed",
+      "description": "Menus display a list of choices on temporary surfaces."
+    },
+    {
+      "name": "<PaginationItem>",
+      "nodeId": "6598:49207",
+      "key": "ea0c52d665e081feac92a0e7253bd50a343e0a8e",
+      "description": ""
+    },
+    {
+      "name": "<Autocomplete>",
+      "nodeId": "6570:49856",
+      "key": "e0c0612a8f522545de8efd8e7bc9727723a99d67",
+      "description": ""
+    },
+    {
+      "name": "<Progress> | Linear",
+      "nodeId": "6586:46855",
+      "key": "ae2418d8c84a47c756bcc1dbcd22d9a55d0cf4ab",
+      "description": "Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process."
+    },
+    {
+      "name": "<Rating>",
+      "nodeId": "6562:39624",
+      "key": "ae59e7d421fa996782f9c9989936bbd4f07c9a55",
+      "description": "Ratings provide insight regarding others' opinions and experiences, and can allow the user to submit a rating of their own."
+    },
+    {
+      "name": "Step Icon",
+      "nodeId": "6576:51232",
+      "key": "89d9fd573bea31fecae7d030b1c383ee78ef1e4d",
+      "description": ""
+    },
+    {
+      "name": "<TextField> | Multiline",
+      "nodeId": "7551:51690",
+      "key": "0f4ec73b2aaf7846fe3453d6bd45edd6b979e045",
+      "description": "Sizes, states and other props can be set from the inside TextField component."
+    },
+    {
+      "name": "Elements / Axis X | Groups Bottom",
+      "nodeId": "1190:12755",
+      "key": "6c301b4be2695525e66f127bbeaea595b8a6dcee",
+      "description": ""
+    },
+    {
+      "name": "<LineChart>",
+      "nodeId": "1236:8811",
+      "key": "86dde32d85503ccccf4c64bdade52db73e78d577",
+      "description": ""
+    },
+    {
+      "name": "<DataGrid> | Cell Rows",
+      "nodeId": "10136:136874",
+      "key": "8337e320c7982946feac5517f8ccd3b6d6651015",
+      "description": ""
+    },
+    {
+      "name": "<FormControlLabel> | Checkbox",
+      "nodeId": "642:114394",
+      "key": "b4f5e443206796d8850b5f8ab543ddf816490d85",
+      "description": "Drop-in replacement of the Radio, Switch and Checkbox component. Use this component if you want to display an extra label."
+    },
+    {
+      "name": "<ListItem>",
+      "nodeId": "6591:48882",
+      "key": "db017edf03f10ccb350b41f83779b469c83ae479",
+      "description": "Lists are continuous, vertical indexes of text or images."
+    },
+    {
+      "name": "<Tooltip>",
+      "nodeId": "6590:48770",
+      "key": "df567a7862d88b4c63db1fc32544cee805435710",
+      "description": "Tooltips display informative text when users hover over, focus on, or tap an element."
+    },
+    {
+      "name": "Elements / Axis X | Values Bottom",
+      "nodeId": "1196:7397",
+      "key": "04a0390fd1c1d8e8585f6ec27f7c86428e67405a",
+      "description": ""
+    },
+    {
+      "name": "*SliderLabel",
+      "nodeId": "6562:39032",
+      "key": "30eef3a5531330d59d05ab3daaeda6dc1ba0b8ed",
+      "description": ""
+    },
+    {
+      "name": "<Badge> | With Instance ",
+      "nodeId": "6587:47527",
+      "key": "4ca9af57bdfe849413903db1ac29329fcca18222",
+      "description": ""
+    },
+    {
+      "name": "<FormGroup> | <Switch>",
+      "nodeId": "642:108242",
+      "key": "21bb1da990700b2f3339900b35474c7a9b757893",
+      "description": ""
+    },
+    {
+      "name": "*Elements / Day Cell",
+      "nodeId": "1161:1867",
+      "key": "9cc6ad770770d8904e06631f677e9181edde9988",
+      "description": ""
+    },
+    {
+      "name": "<Toolbar>",
+      "nodeId": "6583:46318",
+      "key": "507d696307c642dbbd88ae0c0acf5713e518ce31",
+      "description": "The App Bar displays information and actions relating to the current screen."
+    },
+    {
+      "name": "<AppBar>",
+      "nodeId": "11545:171494",
+      "key": "c1ce98ddb5ba3e4c4bece2f4ba84e1d5e3b31310",
+      "description": ""
+    },
+    {
+      "name": "<FormControlLabel> | Switch",
+      "nodeId": "642:114423",
+      "key": "a629a419dd5b084318f0d63040990e3cb233af7e",
+      "description": ""
+    },
+    {
+      "name": "<Pagination>",
+      "nodeId": "6598:49376",
+      "key": "ff1cc5798bbbcd6a22f5dc63eb42c6cd416b0ebc",
+      "description": "The Pagination component enables the user to select a specific page from a range of pages."
+    },
+    {
+      "name": "<Menu>",
+      "nodeId": "11402:158079",
+      "key": "c1b1a384c1ce383e9d85a84d1545116d98fe870d",
+      "description": "Menus display a list of choices on temporary surfaces."
+    },
+    {
+      "name": "Elements / Axis Y | Groups Left",
+      "nodeId": "9811:20605",
+      "key": "c7ebc5b7618aba950b0a90d722a527b53f4f7f82",
+      "description": ""
+    },
+    {
+      "name": "Elements / Axis Y | Values Left",
+      "nodeId": "1190:15192",
+      "key": "deb30d74c835d12d9851678ac2d6af8c001debf7",
+      "description": ""
+    },
+    {
+      "name": "<FormControlLabel> | Radio",
+      "nodeId": "634:100262",
+      "key": "4f4b637d6e0122f3de2bd29539e19084e46295c7",
+      "description": "Drop-in replacement of the Radio, Switch and Checkbox component. Use this component if you want to display an extra label."
+    },
+    {
+      "name": "<Paper>",
+      "nodeId": "6584:46711",
+      "key": "de36ae69bb1e687ec9bad910c0f95e39a7ae949c",
+      "description": "The elevation can be used to establish a hierarchy between other content. In practical terms, the elevation controls the size of the shadow applied to the surface. In dark mode, raising the elevation also makes the surface lighter."
+    },
+    {
+      "name": "<Badge>",
+      "nodeId": "6587:47500",
+      "key": "46f5a5e85db7bc2cd50f1f7fd8bf0021d70bdef4",
+      "description": ""
+    },
+    {
+      "name": "<RadioGroup>",
+      "nodeId": "6558:39344",
+      "key": "023e2a3b75b0fad7d446c7445f3ddef9760724cf",
+      "description": ""
+    },
+    {
+      "name": "<BarChart> / Horizontal",
+      "nodeId": "9810:16811",
+      "key": "416f63fadda03ff5e2c23acc90eb37648dad8214",
+      "description": ""
+    },
+    {
+      "name": "<Breadcrumbs>",
+      "nodeId": "6572:50436",
+      "key": "4dc10d53ef2f57890dcb2784837e60cf38bb889b",
+      "description": "Breadcrumbs consist of a list of links that help a user visualize a page's location within the hierarchical structure of a website, and allow navigation up to any of its \"ancestors\"."
+    },
+    {
+      "name": "Elements / Axis Y | Values Right",
+      "nodeId": "1193:160337",
+      "key": "74b19fdb77cffe4f4fa79ef1f492f49a6a51eb7f",
+      "description": ""
+    },
+    {
+      "name": "<BarChart> / Vertical",
+      "nodeId": "1182:11927",
+      "key": "76dee47bf3115dacadc62960f129168b50ad0168",
+      "description": ""
+    },
+    {
+      "name": "Elements / Tooltip",
+      "nodeId": "1182:11837",
+      "key": "8508beab326170eb4a826a4cc740c867935ea056",
+      "description": ""
+    },
+    {
+      "name": "DataGrid Menu",
+      "nodeId": "9647:13815",
+      "key": "76be4a2036773e2c405bd61cbdb0dc42e3342261",
+      "description": ""
+    },
+    {
+      "name": "<FormHelperText>",
+      "nodeId": "11140:154883",
+      "key": "c092ba72efbd5fe458b2c0294ae727c8c32b99f2",
+      "description": ""
+    },
+    {
+      "name": "<TransferList>",
+      "nodeId": "6562:38660",
+      "key": "a3524d09da8bc935f1215f2fb4f4e4c5273366be",
+      "description": "import * as React from 'react';\nimport Grid from '@mui/material/Grid';\nimport List from '@mui/material/List';\nimport ListItem from '@mui/material/ListItem';\nimport ListItemIcon from '@mui/material/ListItemIcon';\nimport ListItemText from '@mui/material/ListItemText';\nimport Checkbox from '@mui/material/Checkbox';\nimport Button from '@mui/material/Button';\nimport Paper from '@mui/material/Paper';\n\nfunction not(a, b) {\n  return a.filter((value) => b.indexOf(value) === -1);\n}\n\nfunction intersection(a, b) {\n  return a.filter((value) => b.indexOf(value) !== -1);\n}\n\nexport default function TransferList() {\n  const [checked, setChecked] = React.useState([]);\n  const [left, setLeft] = React.useState([0, 1, 2, 3]);\n  const [right, setRight] = React.useState([4, 5, 6, 7]);\n\n  const leftChecked = intersection(checked, left);\n  const rightChecked = intersection(checked, right);\n\n  const handleToggle = (value) => () => {\n    const currentIndex = checked.indexOf(value);\n    const newChecked = [...checked];\n\n    if (currentIndex === -1) {\n      newChecked.push(value);\n    } else {\n      newChecked.splice(currentIndex, 1);\n    }\n\n    setChecked(newChecked);\n  };\n\n  const handleAllRight = () => {\n    setRight(right.concat(left));\n    setLeft([]);\n  };\n\n  const handleCheckedRight = () => {\n    setRight(right.concat(leftChecked));\n    setLeft(not(left, leftChecked));\n    setChecked(not(checked, leftChecked));\n  };\n\n  const handleCheckedLeft = () => {\n    setLeft(left.concat(rightChecked));\n    setRight(not(right, rightChecked));\n    setChecked(not(checked, rightChecked));\n  };\n\n  const handleAllLeft = () => {\n    setLeft(left.concat(right));\n    setRight([]);\n  };\n\n  const customList = (items) => (\n    <Paper sx={{ width: 200, height: 230, overflow: 'auto' }}>\n      <List dense component=\"div\" role=\"list\">\n        {items.map((value) => {\n          const labelId = `transfer-list-item-${value}-label`;\n\n          return (\n            <ListItem\n              key={value}\n              role=\"listitem\"\n              button\n              onClick={handleToggle(value)}\n            >\n              <ListItemIcon>\n                <Checkbox\n                  checked={checked.indexOf(value) !== -1}\n                  tabIndex={-1}\n                  disableRipple\n                  inputProps={{\n                    'aria-labelledby': labelId,\n                  }}\n                />\n              </ListItemIcon>\n              <ListItemText id={labelId} primary={`List item ${value + 1}`} />\n            </ListItem>\n          );\n        })}\n      </List>\n    </Paper>\n  );\n\n  return (\n    <Grid container spacing={2} justifyContent=\"center\" alignItems=\"center\">\n      <Grid item>{customList(left)}</Grid>\n      <Grid item>\n        <Grid container direction=\"column\" alignItems=\"center\">\n          <Button\n            sx={{ my: 0.5 }}\n            variant=\"outlined\"\n            size=\"small\"\n            onClick={handleAllRight}\n            disabled={left.length === 0}\n            aria-label=\"move all right\"\n          >\n            ≫\n          </Button>\n          <Button\n            sx={{ my: 0.5 }}\n            variant=\"outlined\"\n            size=\"small\"\n            onClick={handleCheckedRight}\n            disabled={leftChecked.length === 0}\n            aria-label=\"move selected right\"\n          >\n            &gt;\n          </Button>\n          <Button\n            sx={{ my: 0.5 }}\n            variant=\"outlined\"\n            size=\"small\"\n            onClick={handleCheckedLeft}\n            disabled={rightChecked.length === 0}\n            aria-label=\"move selected left\"\n          >\n            &lt;\n          </Button>\n          <Button\n            sx={{ my: 0.5 }}\n            variant=\"outlined\"\n            size=\"small\"\n            onClick={handleAllLeft}\n            disabled={right.length === 0}\n            aria-label=\"move all left\"\n          >\n            ≪\n          </Button>\n        </Grid>\n      </Grid>\n      <Grid item>{customList(right)}</Grid>\n    </Grid>\n  );\n}"
+    },
+    {
+      "name": "<Slider>",
+      "nodeId": "6562:39045",
+      "key": "6f8a103968cdcd3f8c7d7f78ca7ce0083792aa6d",
+      "description": "Sliders allow users to make selections from a range of values."
+    },
+    {
+      "name": "<Progress> | Circular",
+      "nodeId": "6586:47016",
+      "key": "853243925e6ae4099125f4561f32143ecf3c13ab",
+      "description": "Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process."
+    },
+    {
+      "name": "*Pickers / Date Time",
+      "nodeId": "1268:78423",
+      "key": "00d268e4778c6aba78c4331fa8573a5848b912db",
+      "description": ""
+    },
+    {
+      "name": "*Pickers / Time",
+      "nodeId": "1268:46905",
+      "key": "19f3d986013c9c640c39ad5299b5fcbeaecabef7",
+      "description": ""
+    },
+    {
+      "name": "<GridToolbarQuickFilter>",
+      "nodeId": "9893:16342",
+      "key": "3dba36d1762a3a1b93d71c37328055f6ef0a9030",
+      "description": ""
+    },
+    {
+      "name": "<DataGridTable>",
+      "nodeId": "6603:52661",
+      "key": "0f9bc75a0773c2da2a7856e336730d657eef8efd",
+      "description": ""
+    },
+    {
+      "name": "Avatars",
+      "nodeId": "15700:10446",
+      "key": "18e7df2134264dcdc79e28054ab4dc9ee65062ec",
+      "description": ""
+    },
+    {
+      "name": "*Custom / Table / Toolbar",
+      "nodeId": "8997:89048",
+      "key": "2d9f1581c17b8d0cc160adb3e24706c503d062c0",
+      "description": ""
+    },
+    {
+      "name": "*Custom / Settings / Plan Item",
+      "nodeId": "9458:95524",
+      "key": "a003c49b32158e07b15021ea11a1648f426fa63e",
+      "description": ""
+    },
+    {
+      "name": "<AvatarGroup>",
+      "nodeId": "7432:52415",
+      "key": "0db14cd0d695c68aee6596dbca770e8115de1637",
+      "description": "import Avatar from '@mui/material/Avatar';\nimport AvatarGroup from '@mui/material/AvatarGroup';\n\nexport default function GroupAvatarsDemo() {\n  return (\n    <AvatarGroup max={4}>\n      <Avatar alt=\"Remy Sharp\" />\n      <Avatar alt=\"Travis Howard\" />\n      <Avatar alt=\"Cindy Baker\" />\n      <Avatar alt=\"Agnes Walker\" />\n      <Avatar alt=\"Trevor Henderson\" />\n    </AvatarGroup>\n  );\n}\n"
+    },
+    {
+      "name": "<List>",
+      "nodeId": "11566:157133",
+      "key": "49a417633aaeca846f5e85684672008e722e146b",
+      "description": ""
+    },
+    {
+      "name": "Aspect ratio",
+      "nodeId": "15705:15667",
+      "key": "c5164233b1c667614996bb6a348f7337dd3b32f6",
+      "description": ""
+    },
+    {
+      "name": "<SpeedDial>",
+      "nodeId": "6599:50822",
+      "key": "6f3aa038dd0df2625cc64b4136883af899758739",
+      "description": "When pressed, a floating action button can display three to six related actions in the form of a speed dial."
+    },
+    {
+      "name": "*Pickers / Date",
+      "nodeId": "1258:36081",
+      "key": "4c44a2c8c269d066055ad2a33b6c3d7291fb990f",
+      "description": ""
+    },
+    {
+      "name": "<StaticDateTimePicker>",
+      "nodeId": "1267:20267",
+      "key": "7eb26605c78d4fc41429991220ef13cc24666ae5",
+      "description": "Date pickers and Time pickers allow selecting a single value from a pre-determined set."
+    },
+    {
+      "name": "<CardHeader>",
+      "nodeId": "15704:10477",
+      "key": "49d49b84aee17fe6f87be7fda560e6e0fccf8521",
+      "description": ""
+    },
+    {
+      "name": "Inner Slider",
+      "nodeId": "16132:14636",
+      "key": "588f586756e16f8e002cd888fb8a921a676ec617",
+      "description": ""
+    },
+    {
+      "name": "<Button>",
+      "nodeId": "6543:36744",
+      "key": "ab1f4d09c3f219f8b13e9bcd59e9f915b8066f48",
+      "description": ""
+    },
+    {
+      "name": "Drag and Drop ",
+      "nodeId": "16073:5506",
+      "key": "4e0e2434382e12f256eb007b20d975ded1766820",
+      "description": ""
+    },
+    {
+      "name": "*Custom / Actions Slot",
+      "nodeId": "9085:89657",
+      "key": "744625509d17856827ecef918eab403f5fc1471a",
+      "description": ""
+    },
+    {
+      "name": "<MobileDateTimePicker>",
+      "nodeId": "7494:50237",
+      "key": "c79b1ec2e0424c52cdfc095bad7a0a216dce4bd1",
+      "description": "Date pickers and Time pickers allow selecting a single value from a pre-determined set."
+    },
+    {
+      "name": "Dialog Elements",
+      "nodeId": "127:59653",
+      "key": "e8ae750efd720e737d31fc94af91d154a4a8fdff",
+      "description": ""
+    },
+    {
+      "name": "<Dialog>",
+      "nodeId": "6586:47183",
+      "key": "edbb34e3c994738b9a0af37a680f8d7973c792b4",
+      "description": "Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks."
+    },
+    {
+      "name": "<ButtonGroup>",
+      "nodeId": "6543:39843",
+      "key": "2b483f5ccedc0b42d8bb1cfaece9fd3563316f25",
+      "description": "The ButtonGroup component can be used to group related buttons."
+    },
+    {
+      "name": "<DialogActions>",
+      "nodeId": "170:161662",
+      "key": "2f981329de39700cacba456e2438ad65c3120b51",
+      "description": ""
+    },
+    {
+      "name": "<MobileStepper>",
+      "nodeId": "6576:51238",
+      "key": "a060c006ad0cebaeab971c03316ae6c51d4639f6",
+      "description": ""
+    },
+    {
+      "name": "*Custom / Forms / Passwordless",
+      "nodeId": "9411:94541",
+      "key": "d08dcc378efcb26fdec26c09f961b401a4b6f102",
+      "description": ""
+    }
+  ],
+  "styles": [
+    {
+      "name": "GFG - Typography/Micro Text/Overline",
+      "nodeId": "15607:6647",
+      "styleType": "TEXT",
+      "key": "3a7995c1a6bca635a169ef09c92e7891d1b4c31f"
+    },
+    {
+      "name": "Elevation Cards",
+      "nodeId": "15715:11858",
+      "styleType": "EFFECT",
+      "key": "86dda7d6f9a33c74bd077bafb143dcadfc190fef"
+    },
+    {
+      "name": "GFG - Typography/Supporting Text/Supporting Text",
+      "nodeId": "15607:6641",
+      "styleType": "TEXT",
+      "key": "113d952bf9dcddfba9365459549532a034d555d6"
+    },
+    {
+      "name": "GFG - Typography/Body/body-1",
+      "nodeId": "15607:6642",
+      "styleType": "TEXT",
+      "key": "5c3cac84bb7305bee806d6eb5f4b4de638a85e67"
+    },
+    {
+      "name": "GFG - Typography/Heaeding/H2",
+      "nodeId": "15607:6636",
+      "styleType": "TEXT",
+      "key": "76898b08d2b7e828fdb4a3851e8a9c3a5907c4a8"
+    },
+    {
+      "name": "GFG - Typography/Body/body-2",
+      "nodeId": "15607:6643",
+      "styleType": "TEXT",
+      "key": "df87b3f26fde7d1be874e5729824eba020d484e3"
+    },
+    {
+      "name": "GFG - Typography/Heaeding/H3",
+      "nodeId": "15607:6637",
+      "styleType": "TEXT",
+      "key": "ede5d3033cce716964a84d9de07073d663d822b8"
+    },
+    {
+      "name": "GFG - Typography/Heaeding/H4",
+      "nodeId": "15607:6640",
+      "styleType": "TEXT",
+      "key": "01aa14b85a82d72f95785cc3f7ac3f5acf32c960"
+    },
+    {
+      "name": "GFG - Typography/Micro Text/caption",
+      "nodeId": "15607:6646",
+      "styleType": "TEXT",
+      "key": "08e9251411071db1214018c8c16ee66dd9340a75"
+    },
+    {
+      "name": "GFG - Typography/Heaeding/H1",
+      "nodeId": "15607:6635",
+      "styleType": "TEXT",
+      "key": "4994bcd2a41816b1fd94a1997d00316c3192e324"
+    },
+    {
+      "name": "GFG - Typography/Stat/Stat",
+      "nodeId": "15607:6648",
+      "styleType": "TEXT",
+      "key": "fa00ed01aa445ed493f129713423381360bd2b2d"
+    }
+  ]
+}
