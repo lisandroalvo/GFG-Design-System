@@ -10022,7 +10022,7 @@
 
         // Component Prototype Links — add Figma prototype URLs here
         const COMPONENT_PROTOTYPES = {
-            'Alert': 'https://embed.figma.com/proto/OjFchNAdeHiNH5W4wYLSGS/GFG---Design-System-2026?node-id=15883-11857&viewport=653%2C-326%2C0.37&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=15883%3A11857&page-id=6595%3A48177&embed-host=share',
+            'Alert': 'https://embed.figma.com/design/OjFchNAdeHiNH5W4wYLSGS/GFG---Design-System-2026?node-id=15883-11857&embed-host=share&hide-ui=0',
             // 'Button': '',
             // 'Fab': '',
             // Add more components as needed
@@ -10221,17 +10221,11 @@
                     </div>
                     ${interactiveProtoUrl ? `
                     <div id="figma-proto-frame" style="display:none;">
-                        <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; padding:56px 32px; text-align:center;">
-                            <div style="font-size:48px;">🎬</div>
-                            <div>
-                                <div style="font-size:17px; font-weight:600; color:var(--rodeo-black); margin-bottom:8px;">Interactive Prototype</div>
-                                <p style="font-size:13px; color:var(--graphite); max-width:300px; line-height:1.6; margin:0;">Figma restricts prototype embedding for security. Open it directly in Figma for the full interactive experience.</p>
-                            </div>
-                            <a href="${interactiveProtoUrl.replace('embed.figma.com', 'www.figma.com')}" target="_blank" rel="noopener noreferrer"
-                               style="display:inline-flex; align-items:center; gap:8px; padding:12px 24px; background:var(--dust-dark); color:white; border-radius:8px; text-decoration:none; font-size:14px; font-weight:600;">
-                                Open Prototype in Figma ↗
-                            </a>
-                        </div>
+                        <iframe
+                            style="border: 1px solid rgba(0,0,0,0.1); width:100%; height:600px; border-radius:8px;"
+                            src="${interactiveProtoUrl}"
+                            allowfullscreen>
+                        </iframe>
                     </div>` : ''}
                 </div>
                 `;
