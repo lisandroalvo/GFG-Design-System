@@ -10494,11 +10494,6 @@ File Key: ${component.key}</div>
 
             modal.classList.add('active');
 
-            // Update preview tabs based on whether this component has a prototype
-            setTimeout(() => {
-                updatePreviewTabs(setName);
-            }, 10);
-
             // Load and display the extracted component code
             loadAndDisplayComponentCode(component.name);
 
@@ -11911,23 +11906,7 @@ File Key: ${component.key}</div>
         }
 
         function updatePreviewTabs(setName) {
-            const cleanSetName = (setName || '').replace(/[<>]/g, '').trim();
-            const prototypeLink = COMPONENT_PROTOTYPES[cleanSetName] || COMPONENT_PROTOTYPES[setName];
-            const prototypeTabBtn = document.getElementById('prototypeTabBtn');
-            const prototypeEmbed = document.getElementById('prototypeEmbed');
-
-            if (prototypeLink && prototypeLink !== '') {
-                // Show prototype tab
-                prototypeTabBtn.style.display = 'inline-block';
-                prototypeEmbed.src = prototypeLink;
-            } else {
-                // Hide prototype tab
-                prototypeTabBtn.style.display = 'none';
-                // Reset to design tab if currently on prototype
-                if (document.getElementById('previewTabContent_prototype').classList.contains('active')) {
-                    switchPreviewTab('design');
-                }
-            }
+            // No-op: tabs are now handled inline in the Live Figma Preview section
         }
 
         function renderLiveComponent() {
