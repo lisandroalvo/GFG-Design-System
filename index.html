@@ -10020,11 +10020,13 @@
             })));
         }
 
-        // Component Prototype Links — add Figma prototype URLs here
+        // Component Prototype Links — full Figma proto URL (opens same-tab) + design embed for preview
         const COMPONENT_PROTOTYPES = {
-            'Alert': 'https://embed.figma.com/proto/OjFchNAdeHiNH5W4wYLSGS/GFG---Design-System-2026?node-id=15883-11857&viewport=653%2C-326%2C0.37&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=15883%3A11857&page-id=6595%3A48177&embed-host=share',
-            // 'Button': '',
-            // Add more components as needed
+            'Alert': {
+                protoUrl:  'https://www.figma.com/proto/OjFchNAdeHiNH5W4wYLSGS/GFG---Design-System-2026?node-id=15883-11857&viewport=653%2C-326%2C0.37&t=CIYo9SjD8BlZjlo9-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=15883%3A11857&page-id=6595%3A48177',
+                embedUrl:  'https://embed.figma.com/design/OjFchNAdeHiNH5W4wYLSGS/GFG---Design-System-2026?node-id=15883-11857&embed-host=share',
+            },
+            // 'Button': { protoUrl: '', embedUrl: '' },
         };
 
         let currentComponents = {};
@@ -10193,7 +10195,9 @@
 
                 // Check if this component also has an interactive prototype link
                 const cleanSetName = (setName || '').replace(/[<>]/g, '').trim();
-                const interactiveProtoUrl = COMPONENT_PROTOTYPES[cleanSetName] || COMPONENT_PROTOTYPES[setName] || '';
+                const protoEntry = COMPONENT_PROTOTYPES[cleanSetName] || COMPONENT_PROTOTYPES[setName] || null;
+                const interactiveProtoUrl = protoEntry ? (protoEntry.protoUrl || protoEntry) : '';
+                const interactiveEmbedUrl = protoEntry ? (protoEntry.embedUrl || '') : '';
 
                 console.log('✅ Showing prototype section:', { nodeId: finalPrototype.nodeId, mode, prototypeUrl });
                 modalContent += `
@@ -10220,13 +10224,46 @@
                     </div>
                     ${interactiveProtoUrl ? `
                     <div id="figma-proto-frame" style="display:none; margin-top:12px;">
-                        <iframe
-                            style="border: 1px solid rgba(0,0,0,0.1); border-radius:8px;"
-                            width="100%"
-                            height="600"
-                            src="${interactiveProtoUrl}"
-                            allowfullscreen>
-                        </iframe>
+                        <!-- Design embed preview of the prototype starting frame -->
+                        <div style="position:relative; border-radius:10px; overflow:hidden; border:1px solid rgba(0,0,0,0.08);">
+                            <iframe
+                                src="${interactiveEmbedUrl}"
+                                style="width:100%; height:500px; border:none; display:block; background:#f5f5f5;"
+                                allowfullscreen>
+                            </iframe>
+                            <!-- Run button overlay -->
+                            <div style="
+                                position:absolute; inset:0;
+                                display:flex; align-items:center; justify-content:center;
+                                background:rgba(0,0,0,0.38);
+                                backdrop-filter:blur(2px);
+                                -webkit-backdrop-filter:blur(2px);
+                            ">
+                                <button onclick="window.location.href='${interactiveProtoUrl}'" style="
+                                    display:inline-flex; align-items:center; gap:12px;
+                                    padding:16px 32px;
+                                    background:#fff;
+                                    color:#111;
+                                    font-size:16px; font-weight:700;
+                                    border:none; border-radius:100px;
+                                    cursor:pointer;
+                                    box-shadow:0 8px 32px rgba(0,0,0,0.35);
+                                    transition:transform 0.15s, box-shadow 0.15s;
+                                "
+                                onmouseover="this.style.transform='scale(1.04)';this.style.boxShadow='0 12px 40px rgba(0,0,0,0.45)'"
+                                onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.35)'"
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <circle cx="10" cy="10" r="9" stroke="#111" stroke-width="1.5"/>
+                                        <path d="M8 6.5l6 3.5-6 3.5V6.5z" fill="#111"/>
+                                    </svg>
+                                    Run Interactive Prototype
+                                </button>
+                            </div>
+                        </div>
+                        <p style="text-align:center; font-size:12px; color:var(--graphite); margin:8px 0 0;">
+                            Press <strong>← Back</strong> in your browser to return to the Design System
+                        </p>
                     </div>` : ''}
                 </div>
                 `;
