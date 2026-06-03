@@ -10,10 +10,11 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
-const FILE_KEY = 'OjFchNAdeHiNH5W4wYLSGS';
+const FILE_KEY = process.env.FIGMA_FILE_KEY || 'OjFchNAdeHiNH5W4wYLSGS';
 const TOKEN = process.env.FIGMA_TOKEN;
 
 if (!TOKEN) { console.error('❌ Set FIGMA_TOKEN env var'); process.exit(1); }
+if (!process.env.FIGMA_FILE_KEY) { console.warn('⚠️  FIGMA_FILE_KEY not set — using hardcoded fallback. Add it to .env'); }
 
 async function figma(endpoint) {
   const res = await fetch(`https://api.figma.com/v1${endpoint}`, {

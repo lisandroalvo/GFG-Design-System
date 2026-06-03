@@ -6,8 +6,8 @@ const path = require('path');
 require('dotenv').config();
 
 // Figma API credentials
-const FIGMA_TOKEN = process.env.FIGMA_TOKEN || 'YOUR_FIGMA_TOKEN_HERE';
-const FILE_KEY = 'OjFchNAdeHiNH5W4wYLSGS';
+const FIGMA_TOKEN = process.env.FIGMA_TOKEN;
+const FILE_KEY = process.env.FIGMA_FILE_KEY || 'OjFchNAdeHiNH5W4wYLSGS';
 const OUTPUT_DIR = path.join(__dirname, 'design-tokens');
 
 class FigmaTokenSync {

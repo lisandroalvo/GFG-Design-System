@@ -16,11 +16,15 @@ const fs = require('fs');
 require('dotenv').config();
 
 const TOKEN = process.env.FIGMA_TOKEN;
-const FILE_KEY = 'OjFchNAdeHiNH5W4wYLSGS';
+const FILE_KEY = process.env.FIGMA_FILE_KEY || 'OjFchNAdeHiNH5W4wYLSGS';
 
 if (!TOKEN) {
   console.error('Missing FIGMA_TOKEN in .env');
   process.exit(1);
+}
+
+if (!process.env.FIGMA_FILE_KEY) {
+  console.warn('Warning: FIGMA_FILE_KEY not set in .env — using hardcoded fallback. Add FIGMA_FILE_KEY to .env to remove this warning.');
 }
 
 function get(path) {
