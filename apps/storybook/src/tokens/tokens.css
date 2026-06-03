@@ -1,0 +1,92 @@
+/* GFG Design System Tokens */
+/* Auto-generated from design-tokens/colors.json and typography.json */
+/* Do not hand-edit — run sync scripts to update */
+
+:root {
+  /* ── Color Tokens ── */
+
+  /* Primary Palette (Dust System) */
+  --color-dark-dust: #AF9577;
+  --color-rodeo-dust: #C8B298;
+  --color-light-dust: #F4EFEA;
+  --color-clear-dust: #FBF9F7;
+
+  /* Neutral Palette */
+  --color-rodeo-black: #333333;
+  --color-graphite: #6D6D6D;
+  --color-smoke: #E0E0E0;
+  --color-wax: #F5F5F5;
+  --color-white: #FFFFFF;
+  --color-background: #FAFAFA;
+
+  /* Good Sage (Success) */
+  --color-good-sage: #637058;
+  --color-good-sage-2: #8C9583;
+  --color-good-sage-3: #B5BBAF;
+  --color-good-sage-4: #E0E3DD;
+  --color-good-sage-5: #F5F6F4;
+
+  /* Good Wine (Error) */
+  --color-good-wine: #A34740;
+  --color-good-wine-2: #BB7570;
+  --color-good-wine-3: #D4A4A1;
+  --color-good-wine-4: #EED4D3;
+  --color-good-wine-bg: #F9F1F0;
+
+  /* Good Ochre (Warning) */
+  --color-good-ochre: #8A5D1F;
+  --color-good-ochre-2: #AC8958;
+  --color-good-ochre-3: #CFB591;
+  --color-good-ochre-4: #F3E3CD;
+  --color-good-ochre-bg: #FBF6EF;
+
+  /* Good Night (Info) */
+  --color-good-night: #2B4A60;
+  --color-good-night-2: #5E798C;
+  --color-good-night-3: #91A8B8;
+  --color-good-night-4: #C7D9E6;
+  --color-good-night-bg: #F1F5F9;
+
+  /* ── Typography Tokens ── */
+  --typography-stat-size: 42px;
+  --typography-stat-line-height: 55;
+  --typography-stat-weight: 400;
+  --typography-stat-family: "Crimson Text";
+  --typography-h1-size: 30px;
+  --typography-h1-line-height: 39;
+  --typography-h1-weight: 400;
+  --typography-h1-family: "Crimson Text";
+  --typography-h2-size: 24px;
+  --typography-h2-line-height: 31;
+  --typography-h2-weight: 400;
+  --typography-h2-family: "Crimson Text";
+  --typography-h3-size: 22px;
+  --typography-h3-line-height: 29;
+  --typography-h3-weight: 400;
+  --typography-h3-family: "Crimson Text";
+  --typography-h4-size: 20px;
+  --typography-h4-line-height: 26;
+  --typography-h4-weight: 400;
+  --typography-h4-family: "Crimson Text";
+  --typography-supporting-text-size: 18px;
+  --typography-supporting-text-line-height: 22;
+  --typography-supporting-text-weight: 600;
+  --typography-supporting-text-family: "Lato";
+  --typography-body-1-size: 16px;
+  --typography-body-1-line-height: 19;
+  --typography-body-1-weight: 400;
+  --typography-body-1-family: "Lato";
+  --typography-body-2-size: 13px;
+  --typography-body-2-line-height: 16;
+  --typography-body-2-weight: 400;
+  --typography-body-2-family: "Lato";
+  --typography-caption-size: 12px;
+  --typography-caption-line-height: 14;
+  --typography-caption-weight: 400;
+  --typography-caption-family: "Lato";
+  --typography-overline-size: 11px;
+  --typography-overline-line-height: 13;
+  --typography-overline-weight: 700;
+  --typography-overline-tracking: 1.98px;
+  --typography-overline-family: "Lato";
+}
