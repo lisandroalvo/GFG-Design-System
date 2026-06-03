@@ -12,12 +12,31 @@ const meta: Meta<typeof Dialog> = {
     docs: {
       description: {
         component: `
-**Figma source:** [Open in Figma](https://www.figma.com/file/OjFchNAdeHiNH5W4wYLSGS)
+**Figma source:** [Open in Figma](https://www.figma.com/file/OjFchNAdeHiNH5W4wYLSGS) · Node \`127:59921\` · 5 variants
 
-Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks. GFG Design System has **5 variants** in Figma.
+Built on **MUI Dialog** with the GFG theme applied. Border radius 4px, standard MUI elevation-24 shadow.
 
-**Figma props:**
-- \`Max Width\` → \`maxWidth\` (xs / sm / md / lg / xl)
+### Figma → Code prop mapping
+| Figma prop | Code prop | Values |
+|---|---|---|
+| Max Width | \`maxWidth\` | xs / sm / md / lg / xl |
+
+### Developer usage
+\`\`\`tsx
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+
+<Dialog open={open} maxWidth="sm" fullWidth onClose={handleClose}>
+  <DialogTitle>Title</DialogTitle>
+  <DialogContent>Content</DialogContent>
+  <DialogActions>
+    <Button onClick={handleClose}>Cancel</Button>
+    <Button variant="contained" onClick={handleConfirm}>Confirm</Button>
+  </DialogActions>
+</Dialog>
+\`\`\`
         `,
       },
     },
@@ -27,7 +46,7 @@ Dialogs inform users about a task and can contain critical information, require 
     maxWidth: {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg', 'xl'],
-      description: 'Maps to Figma "Max Width" property',
+      description: 'Maps to Figma "Max Width" — 5 variants',
     },
     title: { control: 'text' },
   },
@@ -41,11 +60,11 @@ export const Default: Story = {
     open: true,
     maxWidth: 'sm',
     title: 'Dialog Title',
-    children: 'Dialog content goes here. Use dialogs sparingly — only for critical information that requires user attention.',
+    children: 'Dialog content goes here. Use dialogs sparingly — only for information that requires user attention or action.',
     actions: (
       <>
-        <Button variant="text" color="primary" label="Cancel" size="medium" />
-        <Button variant="contained" color="primary" label="Confirm" size="medium" />
+        <Button variant="text" color="primary">Cancel</Button>
+        <Button variant="contained" color="primary">Confirm</Button>
       </>
     ),
   },
@@ -56,7 +75,7 @@ export const Interactive: Story = {
     const [open, setOpen] = useState(false);
     return (
       <div style={{ padding: '40px' }}>
-        <Button label="Open Dialog" onClick={() => setOpen(true)} />
+        <Button onClick={() => setOpen(true)}>Open Dialog</Button>
         <Dialog
           open={open}
           maxWidth="sm"
@@ -64,8 +83,8 @@ export const Interactive: Story = {
           onClose={() => setOpen(false)}
           actions={
             <>
-              <Button variant="text" color="primary" label="Cancel" onClick={() => setOpen(false)} />
-              <Button variant="contained" color="error" label="Delete" onClick={() => setOpen(false)} />
+              <Button variant="text" color="primary" onClick={() => setOpen(false)}>Cancel</Button>
+              <Button variant="contained" color="error" onClick={() => setOpen(false)}>Delete</Button>
             </>
           }
         >
@@ -74,34 +93,31 @@ export const Interactive: Story = {
       </div>
     );
   },
-  parameters: {
-    docs: { description: { story: 'Interactive example — click the button to open and close the dialog. Press Escape or click the backdrop to close.' } },
-  },
+  parameters: { docs: { description: { story: 'Interactive example — click to open. Escape key or backdrop click closes.' } } },
 };
 
 export const AllSizes: Story = {
   render: () => {
-    const [size, setSize] = useState<'xs' | 'sm' | 'md'>('sm');
     const [open, setOpen] = useState(false);
+    const [size, setSize] = useState<'xs' | 'sm' | 'md' | 'lg' | 'xl'>('sm');
     return (
       <div style={{ padding: '40px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-        {(['xs', 'sm', 'md'] as const).map(s => (
-          <Button key={s} label={`Open ${s.toUpperCase()}`} variant="outlined"
-            onClick={() => { setSize(s); setOpen(true); }} />
+        {(['xs','sm','md','lg','xl'] as const).map(s => (
+          <Button key={s} variant="outlined" onClick={() => { setSize(s); setOpen(true); }}>
+            Open {s.toUpperCase()}
+          </Button>
         ))}
         <Dialog
           open={open}
           maxWidth={size}
           title={`Max Width: ${size}`}
           onClose={() => setOpen(false)}
-          actions={
-            <Button variant="contained" label="Close" onClick={() => setOpen(false)} />
-          }
+          actions={<Button variant="contained" onClick={() => setOpen(false)}>Close</Button>}
         >
-          This dialog uses maxWidth="{size}" — maps to Figma "Max Width" property.
+          This dialog uses maxWidth="{size}" — maps to Figma "Max Width" property (5 variants total).
         </Dialog>
       </div>
     );
   },
-  parameters: { docs: { description: { story: 'Demonstrates all 5 Figma Max Width variants.' } } },
+  parameters: { docs: { description: { story: 'All 5 Figma Max Width variants — xs | sm | md | lg | xl' } } },
 };

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import MuiButton from '@mui/material/Button';
 import { Alert } from './Alert';
 
 const meta: Meta<typeof Alert> = {
@@ -9,17 +10,30 @@ const meta: Meta<typeof Alert> = {
     docs: {
       description: {
         component: `
-**Figma source:** [Open in Figma](https://www.figma.com/file/OjFchNAdeHiNH5W4wYLSGS)
+**Figma source:** [Open in Figma](https://www.figma.com/file/OjFchNAdeHiNH5W4wYLSGS) · 12 variants
 
-Alert communicates a short, important message to attract the user's attention without interrupting their task.
+Built on **MUI Alert** with the GFG theme applied.
 
-**Figma props:**
-- \`Type\` → \`severity\` (Error / Warning / Info / Success)
-- \`Variant\` → \`variant\` (Filled / Outlined / Standard)
-- \`On Close\` → \`onClose\` callback (boolean in Figma)
-- \`Title\` → \`title\` string (boolean in Figma)
-- \`Description\` → \`children\`
-- \`Action\` → \`action\` slot (boolean in Figma)
+### Figma → Code prop mapping
+| Figma prop | Code prop | Values |
+|---|---|---|
+| Type | \`severity\` | Error / Warning / Info / Success |
+| Variant | \`variant\` | Filled / Outlined / Standard |
+| On Close | \`onClose\` | boolean in Figma → callback in code |
+| Title | \`title\` | boolean in Figma → string in code |
+| Description | \`children\` | text |
+| Action | \`action\` | boolean in Figma → ReactNode in code |
+
+### Developer usage
+\`\`\`tsx
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+
+<Alert severity="success" variant="standard" onClose={() => {}}>
+  <AlertTitle>Title</AlertTitle>
+  Your message here.
+</Alert>
+\`\`\`
         `,
       },
     },
@@ -28,23 +42,20 @@ Alert communicates a short, important message to attract the user's attention wi
     severity: {
       control: 'select',
       options: ['success', 'error', 'warning', 'info'],
-      description: 'Maps to Figma "Type" property',
+      description: 'Maps to Figma "Type"',
     },
     variant: {
       control: 'select',
       options: ['standard', 'filled', 'outlined'],
-      description: 'Maps to Figma "Variant" property',
+      description: 'Maps to Figma "Variant"',
     },
     title: {
       control: 'text',
-      description: 'Maps to Figma "Title" boolean — leave empty to hide',
+      description: 'Maps to Figma "Title" boolean — provide string to show title',
     },
     children: {
       control: 'text',
       description: 'Maps to Figma "Description"',
-    },
-    onClose: {
-      description: 'Maps to Figma "On Close" boolean — provide handler to show × button',
     },
   },
 };
@@ -52,8 +63,7 @@ Alert communicates a short, important message to attract the user's attention wi
 export default meta;
 type Story = StoryObj<typeof Alert>;
 
-// ── Default ────────────────────────────────────────────────────────────────
-export const Default: Story = {
+export const Playground: Story = {
   args: {
     severity: 'success',
     variant: 'standard',
@@ -61,8 +71,7 @@ export const Default: Story = {
   },
 };
 
-// ── All Severities ─────────────────────────────────────────────────────────
-export const Severities: Story = {
+export const AllSeverities: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxWidth: '560px' }}>
       <Alert severity="success">Success — your changes have been saved.</Alert>
@@ -71,54 +80,49 @@ export const Severities: Story = {
       <Alert severity="info">Info — a new version of the app is available.</Alert>
     </div>
   ),
-  parameters: {
-    docs: { description: { story: 'All four severity types using the Standard variant.' } },
-  },
+  parameters: { docs: { description: { story: 'Figma: Type = Error | Warning | Info | Success (Standard variant)' } } },
 };
 
-// ── All Variants ───────────────────────────────────────────────────────────
-export const Variants: Story = {
+export const AllVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxWidth: '560px' }}>
-      <Alert severity="info" variant="standard">Standard variant — subtle background.</Alert>
-      <Alert severity="info" variant="filled">Filled variant — strong background colour.</Alert>
-      <Alert severity="info" variant="outlined">Outlined variant — border only.</Alert>
+      <Alert severity="info" variant="standard">Standard — subtle background.</Alert>
+      <Alert severity="info" variant="filled">Filled — strong background colour.</Alert>
+      <Alert severity="info" variant="outlined">Outlined — border only.</Alert>
     </div>
   ),
-  parameters: {
-    docs: { description: { story: 'All three variants using the Info severity.' } },
-  },
+  parameters: { docs: { description: { story: 'Figma: Variant = Standard | Filled | Outlined' } } },
 };
 
-// ── With Title ─────────────────────────────────────────────────────────────
 export const WithTitle: Story = {
   args: {
     severity: 'warning',
-    variant: 'standard',
     title: 'Low storage',
     children: 'Your account is almost out of storage. Delete unused files to continue.',
   },
-  parameters: {
-    docs: { description: { story: 'Maps to Figma "Title" boolean — provide a title string to enable.' } },
-  },
+  parameters: { docs: { description: { story: 'Figma: "Title" boolean enabled — provide a title string' } } },
 };
 
-// ── With Close Button ──────────────────────────────────────────────────────
 export const WithClose: Story = {
   args: {
     severity: 'info',
-    variant: 'standard',
     children: 'This alert can be dismissed.',
     // eslint-disable-next-line no-console
-    onClose: () => console.log('Alert closed'),
+    onClose: () => console.log('closed'),
   },
-  parameters: {
-    docs: { description: { story: 'Maps to Figma "On Close" boolean — provide an onClose handler to show the × button.' } },
-  },
+  parameters: { docs: { description: { story: 'Figma: "On Close" boolean — provide onClose handler to show × button' } } },
 };
 
-// ── Filled All Severities ──────────────────────────────────────────────────
-export const FilledVariants: Story = {
+export const WithAction: Story = {
+  args: {
+    severity: 'warning',
+    children: 'Your trial ends in 3 days.',
+    action: <MuiButton color="inherit" size="small">Upgrade</MuiButton>,
+  },
+  parameters: { docs: { description: { story: 'Figma: "Action" boolean — pass action element' } } },
+};
+
+export const FilledAllSeverities: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxWidth: '560px' }}>
       <Alert severity="success" variant="filled">Success — filled.</Alert>
@@ -129,8 +133,7 @@ export const FilledVariants: Story = {
   ),
 };
 
-// ── Outlined All Severities ────────────────────────────────────────────────
-export const OutlinedVariants: Story = {
+export const OutlinedAllSeverities: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxWidth: '560px' }}>
       <Alert severity="success" variant="outlined">Success — outlined.</Alert>

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import Typography from '@mui/material/Typography';
 import { Card } from './Card';
 import { Button } from '../Button/Button';
 
@@ -10,29 +11,28 @@ const meta: Meta<typeof Card> = {
     docs: {
       description: {
         component: `
-**Figma source:** [Open in Figma](https://www.figma.com/file/OjFchNAdeHiNH5W4wYLSGS)
+**Figma source:** [Open in Figma](https://www.figma.com/file/OjFchNAdeHiNH5W4wYLSGS) · Node \`6562:38678\`
 
-Cards contain content and actions about a single subject.
+Built on **MUI Card** with the GFG theme applied. Border radius 4px, standard MUI elevation shadows.
 
-**Figma props:**
-- \`Small Screen\` → \`smallScreen\` boolean — reduces padding on small screens
-- \`Blank\` → \`blank\` boolean — renders an empty card shell
+### Developer usage
+\`\`\`tsx
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardHeader from '@mui/material/CardHeader';
+import CardActions from '@mui/material/CardActions';
+
+<Card>
+  <CardHeader title="Title" subheader="Subtitle" />
+  <CardContent>Content goes here.</CardContent>
+  <CardActions>
+    <Button>Action</Button>
+  </CardActions>
+</Card>
+\`\`\`
         `,
       },
     },
-  },
-  argTypes: {
-    title: { control: 'text' },
-    subtitle: { control: 'text' },
-    smallScreen: {
-      control: 'boolean',
-      description: 'Maps to Figma "Small Screen" boolean',
-    },
-    blank: {
-      control: 'boolean',
-      description: 'Maps to Figma "Blank" boolean',
-    },
-    raised: { control: 'boolean' },
   },
 };
 
@@ -42,22 +42,21 @@ type Story = StoryObj<typeof Card>;
 export const Default: Story = {
   args: {
     title: 'Card Title',
-    subtitle: 'Secondary text',
-    children: 'Card content goes here. Cards can contain text, media, and actions.',
-    raised: true,
+    subheader: 'Secondary text',
+    children: <Typography variant="body2" color="text.secondary">Card content goes here. Cards can contain text, media, and actions.</Typography>,
   },
 };
 
 export const WithMedia: Story = {
   args: {
     title: 'Shrimp and Chorizo Paella',
-    subtitle: 'September 14, 2024',
-    media: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=194&fit=crop',
-    children: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests.',
+    subheader: 'September 14, 2024',
+    image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=194&fit=crop',
+    children: <Typography variant="body2" color="text.secondary">This impressive paella is a perfect party dish and a fun meal to cook together with your guests.</Typography>,
     actions: (
       <>
-        <Button variant="text" color="primary" label="Share" size="small" />
-        <Button variant="text" color="primary" label="Learn More" size="small" />
+        <Button variant="text" color="primary" size="small">Share</Button>
+        <Button variant="text" color="primary" size="small">Learn More</Button>
       </>
     ),
   },
@@ -65,12 +64,12 @@ export const WithMedia: Story = {
 
 export const WithActions: Story = {
   args: {
-    title: 'Confirm action',
-    children: 'Are you sure you want to delete this item? This action cannot be undone.',
+    title: 'Confirm deletion',
+    children: <Typography variant="body2">Are you sure you want to delete this item? This action cannot be undone.</Typography>,
     actions: (
       <>
-        <Button variant="text" color="primary" label="Cancel" size="small" />
-        <Button variant="contained" color="error" label="Delete" size="small" />
+        <Button variant="text" color="primary" size="small">Cancel</Button>
+        <Button variant="contained" color="error" size="small">Delete</Button>
       </>
     ),
   },
@@ -78,27 +77,15 @@ export const WithActions: Story = {
 
 export const Blank: Story = {
   args: { blank: true },
-  parameters: { docs: { description: { story: 'Maps to Figma "Blank=True" — an empty card shell.' } } },
+  parameters: { docs: { description: { story: 'Figma: "Blank=True" — empty card shell' } } },
 };
 
 export const SmallScreen: Story = {
   args: {
     title: 'Small Screen Card',
-    children: 'This card uses reduced padding for small screen layouts.',
+    subheader: 'Compact layout',
+    children: <Typography variant="body2" color="text.secondary">Reduced padding for mobile layouts.</Typography>,
     smallScreen: true,
-    raised: true,
   },
-  parameters: {
-    viewport: { defaultViewport: 'mobile1' },
-    docs: { description: { story: 'Maps to Figma "Small Screen=True" — compact padding.' } },
-  },
-};
-
-export const NotRaised: Story = {
-  args: {
-    title: 'Outlined Card',
-    subtitle: 'No elevation — border only',
-    children: 'This card uses a border instead of a shadow.',
-    raised: false,
-  },
+  parameters: { docs: { description: { story: 'Figma: "Small Screen=True" — full width' } } },
 };

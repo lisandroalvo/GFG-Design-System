@@ -1,39 +1,38 @@
 /**
  * Dialog — GFG Design System
  *
- * Figma props (from componentPropertyDefinitions — 5 variants):
+ * Built on MUI Dialog with the GFG theme applied.
+ * Figma file OjFchNAdeHiNH5W4wYLSGS · node 127:59921 · 5 variants
+ *
+ * Figma props:
  *   Max Width → xs | sm | md | lg | xl
  *
- * Figma node: component set in file OjFchNAdeHiNH5W4wYLSGS
+ * Developer usage:
+ *   import Dialog from '@mui/material/Dialog';
  */
 
-import React, { useEffect } from 'react';
-
-export type DialogMaxWidth = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+import React from 'react';
+import MuiDialog from '@mui/material/Dialog';
+import MuiDialogTitle from '@mui/material/DialogTitle';
+import MuiDialogContent from '@mui/material/DialogContent';
+import MuiDialogContentText from '@mui/material/DialogContentText';
+import MuiDialogActions from '@mui/material/DialogActions';
 
 export interface DialogProps {
-  /** Whether the dialog is open */
+  /** Controls open state */
   open?: boolean;
-  /** Maps to Figma "Max Width" property */
-  maxWidth?: DialogMaxWidth;
+  /** Maps to Figma "Max Width" — xs | sm | md | lg | xl */
+  maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   /** Dialog title */
   title?: string;
   /** Dialog content */
   children?: React.ReactNode;
-  /** Action buttons rendered at the bottom */
+  /** Action buttons */
   actions?: React.ReactNode;
-  /** Called when backdrop is clicked */
+  /** Callback when backdrop/Escape pressed */
   onClose?: () => void;
-  className?: string;
+  fullWidth?: boolean;
 }
-
-const maxWidthMap: Record<DialogMaxWidth, string> = {
-  xs: '444px',
-  sm: '600px',
-  md: '900px',
-  lg: '1200px',
-  xl: '1536px',
-};
 
 export function Dialog({
   open = true,
@@ -42,108 +41,25 @@ export function Dialog({
   children,
   actions,
   onClose,
-  className,
+  fullWidth = true,
 }: DialogProps) {
-  // Close on Escape
-  useEffect(() => {
-    if (!open) return;
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose?.();
-    };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
-  }, [open, onClose]);
-
-  if (!open) return null;
-
   return (
-    /* Backdrop */
-    <div
-      style={{
-        position: 'fixed',
-        inset: 0,
-        backgroundColor: 'rgba(0,0,0,0.5)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 1300,
-      }}
-      onClick={(e) => {
-        if (e.target === e.currentTarget) onClose?.();
-      }}
-      aria-modal="true"
-      role="dialog"
-      aria-labelledby={title ? 'dialog-title' : undefined}
+    <MuiDialog
+      open={open}
+      maxWidth={maxWidth}
+      fullWidth={fullWidth}
+      onClose={onClose}
     >
-      {/* Paper */}
-      <div
-        className={className}
-        style={{
-          backgroundColor: '#fff',
-          borderRadius: '4px',
-          maxWidth: maxWidthMap[maxWidth],
-          width: '100%',
-          margin: '32px',
-          display: 'flex',
-          flexDirection: 'column',
-          boxShadow: '0px 11px 15px -7px rgba(0,0,0,0.2), 0px 24px 38px 3px rgba(0,0,0,0.14), 0px 9px 46px 8px rgba(0,0,0,0.12)',
-          fontFamily: 'Roboto, sans-serif',
-          maxHeight: 'calc(100% - 64px)',
-          overflow: 'hidden',
-        }}
-      >
-        {/* Title */}
-        {title && (
-          <div style={{ padding: '16px 24px' }}>
-            <p
-              id="dialog-title"
-              style={{
-                margin: 0,
-                fontSize: '20px',
-                fontWeight: 400,
-                lineHeight: 1.6,
-                color: 'rgba(0,0,0,0.87)',
-                letterSpacing: '0.15px',
-              }}
-            >
-              {title}
-            </p>
-          </div>
-        )}
-
-        {/* Content */}
-        {children && (
-          <div
-            style={{
-              padding: '16px 24px',
-              flex: '1 1 auto',
-              overflowY: 'auto',
-              borderTop: title ? '1px solid rgba(0,0,0,0.12)' : 'none',
-              borderBottom: actions ? '1px solid rgba(0,0,0,0.12)' : 'none',
-            }}
-          >
-            {typeof children === 'string' ? (
-              <p style={{ margin: 0, fontSize: '16px', color: 'rgba(0,0,0,0.87)', lineHeight: 1.5 }}>
-                {children}
-              </p>
-            ) : children}
-          </div>
-        )}
-
-        {/* Actions */}
-        {actions && (
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-end',
-            gap: '8px',
-            padding: '8px',
-          }}>
-            {actions}
-          </div>
-        )}
-      </div>
-    </div>
+      {title && <MuiDialogTitle>{title}</MuiDialogTitle>}
+      {children && (
+        <MuiDialogContent dividers={!!title}>
+          {typeof children === 'string'
+            ? <MuiDialogContentText>{children}</MuiDialogContentText>
+            : children}
+        </MuiDialogContent>
+      )}
+      {actions && <MuiDialogActions>{actions}</MuiDialogActions>}
+    </MuiDialog>
   );
 }
 

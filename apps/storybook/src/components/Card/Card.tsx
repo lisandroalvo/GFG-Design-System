@@ -1,135 +1,80 @@
 /**
  * Card — GFG Design System
  *
- * Figma props (from componentPropertyDefinitions):
- *   Small Screen → boolean (False | True)
- *   Blank        → boolean (False | True)
+ * Built on MUI Card with the GFG theme applied.
+ * Figma file OjFchNAdeHiNH5W4wYLSGS · node 6562:38678
  *
- * Figma node: component set in file OjFchNAdeHiNH5W4wYLSGS
+ * Figma props:
+ *   Small Screen → reduces padding on mobile layouts
+ *   Blank        → renders an empty card shell
+ *
+ * Developer usage:
+ *   import Card from '@mui/material/Card';
+ *   import CardContent from '@mui/material/CardContent';
  */
 
 import React from 'react';
+import MuiCard from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardActions from '@mui/material/CardActions';
 
 export interface CardProps {
   /** Card title */
   title?: string;
   /** Card subtitle / secondary text */
-  subtitle?: string;
-  /** Media area — pass an image URL or a React element */
-  media?: string | React.ReactNode;
-  /** Main content of the card */
+  subheader?: string;
+  /** Media — image URL */
+  image?: string;
+  /** Media height in px */
+  imageHeight?: number;
+  /** Card body content */
   children?: React.ReactNode;
-  /** Action buttons rendered at the bottom */
+  /** Action buttons */
   actions?: React.ReactNode;
-  /** Maps to Figma "Small Screen" boolean — reduces padding on small screens */
+  /** Maps to Figma "Small Screen" boolean */
   smallScreen?: boolean;
-  /** Maps to Figma "Blank" boolean — renders a minimal empty card */
+  /** Maps to Figma "Blank" boolean — empty card shell */
   blank?: boolean;
-  /** Adds a box shadow (elevation) */
-  raised?: boolean;
-  className?: string;
+  /** Elevation shadow (Figma default: 1) */
+  elevation?: number;
+  sx?: object;
 }
 
 export function Card({
   title,
-  subtitle,
-  media,
+  subheader,
+  image,
+  imageHeight = 194,
   children,
   actions,
   smallScreen = false,
   blank = false,
-  raised = true,
-  className,
+  elevation = 1,
+  sx,
 }: CardProps) {
-  const padding = smallScreen ? '12px' : '16px';
-
-  const cardStyle: React.CSSProperties = {
-    backgroundColor: '#fff',
-    borderRadius: '4px',
-    overflow: 'hidden',
-    width: smallScreen ? '100%' : '344px',
-    display: 'flex',
-    flexDirection: 'column',
-    boxShadow: raised
-      ? '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)'
-      : 'none',
-    border: raised ? 'none' : '1px solid rgba(0,0,0,0.12)',
-    fontFamily: 'Roboto, sans-serif',
-  };
+  const width = smallScreen ? '100%' : 344;
 
   if (blank) {
-    return (
-      <div className={className} style={{ ...cardStyle, minHeight: '120px' }} />
-    );
+    return <MuiCard elevation={elevation} sx={{ width, minHeight: 120, ...sx }} />;
   }
 
   return (
-    <div className={className} style={cardStyle}>
-      {/* Header */}
-      {(title || subtitle) && (
-        <div style={{ padding }}>
-          {title && (
-            <p style={{
-              margin: 0,
-              fontSize: '20px',
-              fontWeight: 500,
-              lineHeight: 1.334,
-              color: 'rgba(0,0,0,0.87)',
-              letterSpacing: '0px',
-            }}>
-              {title}
-            </p>
-          )}
-          {subtitle && (
-            <p style={{
-              margin: '4px 0 0',
-              fontSize: '14px',
-              color: 'rgba(0,0,0,0.54)',
-              lineHeight: 1.43,
-            }}>
-              {subtitle}
-            </p>
-          )}
-        </div>
+    <MuiCard elevation={elevation} sx={{ width, ...sx }}>
+      {(title || subheader) && (
+        <CardHeader title={title} subheader={subheader} />
       )}
-
-      {/* Media */}
-      {media && (
-        <div style={{ width: '100%', height: '194px', overflow: 'hidden', flexShrink: 0 }}>
-          {typeof media === 'string' ? (
-            <img
-              src={media}
-              alt=""
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-            />
-          ) : (
-            <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              {media}
-            </div>
-          )}
-        </div>
+      {image && (
+        <CardMedia component="img" height={imageHeight} image={image} alt={title || ''} />
       )}
-
-      {/* Content */}
       {children && (
-        <div style={{ padding, flex: 1 }}>
-          {children}
-        </div>
+        <CardContent>{children}</CardContent>
       )}
-
-      {/* Actions */}
       {actions && (
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'flex-end',
-          gap: '8px',
-          padding: '8px',
-        }}>
-          {actions}
-        </div>
+        <CardActions sx={{ justifyContent: 'flex-end' }}>{actions}</CardActions>
       )}
-    </div>
+    </MuiCard>
   );
 }
 
