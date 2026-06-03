@@ -17,18 +17,26 @@ const meta: Meta<typeof Button> = {
 
 Built on **MUI Button** with the GFG theme applied. 270 variants in Figma.
 
-### Exact Figma tokens
-| Token | Value | Used for |
-|---|---|---|
-| \`--primary/dark-dust\` | \`#af9577\` | Contained bg, Outlined border/text, Text color |
-| \`--primary/clear-dust\` | \`#fbf9f7\` | Contained text color |
-| \`--font/family/body\` | Lato Bold | Button label font |
-| \`--font/size/overline\` | 11px | Button label size |
-| Letter spacing | 1.98px | Button label tracking |
-| \`--radius/button\` | 6px | Border radius |
-| Height Large | 44px | Large button height |
-| Height Medium | 34px | Medium button height |
-| Height Small | 24px | Small button height |
+### Exact Figma color tokens (sourced from Figma MCP per variant node)
+| Color | Contained BG | Text | Outlined / Text color | Figma token |
+|---|---|---|---|---|
+| Primary | \`#af9577\` | \`#fbf9f7\` | \`#af9577\` | \`--primary/dark-dust\` |
+| Secondary | \`#333333\` | \`#ffffff\` | \`#333333\` | \`--neutral/rodeo-black\` |
+| Error | \`#a34740\` | \`#fbf9f7\` | \`#a34740\` | \`--good-wine-(error)/wine-1\` |
+| Warning | \`#8a5d1f\` | \`#ffffff\` | \`#8a5d1f\` | \`--good-ochre-(warning)/ochre-1\` |
+| Info | \`#2b4a60\` | \`#fbf9f7\` | \`#2b4a60\` | \`--good-night-(info)/night-1\` |
+| Success | \`#637058\` | \`#fbf9f7\` | \`#637058\` | \`--good-sage-(success)/sage-1\` |
+
+### Typography tokens
+| Token | Value |
+|---|---|
+| \`--font/family/body\` | Lato Bold |
+| \`--font/size/overline\` | 11px |
+| Letter spacing | 1.98px |
+| \`--radius/button\` | 6px |
+| Height Large | 44px |
+| Height Medium | 34px |
+| Height Small | 24px |
 
 ### Developer usage
 \`\`\`tsx
