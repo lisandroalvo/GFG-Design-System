@@ -38,11 +38,17 @@ jobs:
         run: npm run build-storybook
         working-directory: apps/storybook
       
-      - name: Deploy to GitHub Pages (storybook subdirectory)
+      - name: Prepare deployment directory
+        run: |
+          mkdir -p ./storybook-deploy/storybook
+          cp -r ./apps/storybook/storybook-static/* ./storybook-deploy/storybook/
+          echo "Storybook files prepared in storybook-deploy/storybook/"
+          ls -la ./storybook-deploy/storybook/
+      
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./apps/storybook/storybook-static
+          publish_dir: ./storybook-deploy
           publish_branch: gh-pages
-          destination_dir: storybook
           keep_files: true
