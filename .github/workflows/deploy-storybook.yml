@@ -1,0 +1,46 @@
+name: Deploy Storybook
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/storybook/**'
+      - '.github/workflows/deploy-storybook.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: apps/storybook/package-lock.json
+      
+      - name: Install dependencies
+        run: npm ci
+        working-directory: apps/storybook
+      
+      - name: Build Storybook
+        run: npm run build-storybook
+        working-directory: apps/storybook
+      
+      - name: Deploy to GitHub Pages (storybook branch)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./apps/storybook/storybook-static
+          publish_branch: gh-pages-storybook
+          cname: false
