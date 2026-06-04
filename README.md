@@ -2,7 +2,9 @@
 
 A live design system portal synced with Figma. Component metadata, tokens, and variant data are pulled directly from the Figma file via the REST API and served as a static web app.
 
-**Live site:** https://lisandroalvo.github.io/GFG-Design-System/
+**Live sites:**
+- 🌐 **Design System Portal**: https://lisandroalvo.github.io/GFG-Design-System/
+- 📚 **Storybook (Components)**: https://lisandroalvo.github.io/GFG-Design-System/storybook/
 
 ---
 
