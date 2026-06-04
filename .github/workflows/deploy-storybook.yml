@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -38,11 +38,14 @@ jobs:
         run: npm run build-storybook
         working-directory: apps/storybook
       
-      - name: Deploy to GitHub Pages (design-system-live-app repo)
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
-          external_repository: lisandroalvo/design-system-live-app
-          publish_dir: ./apps/storybook/storybook-static
-          publish_branch: gh-pages
-          force_orphan: true
+          path: ./apps/storybook/storybook-static
+      
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
