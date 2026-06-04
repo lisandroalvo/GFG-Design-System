@@ -38,10 +38,11 @@ jobs:
         run: npm run build-storybook
         working-directory: apps/storybook
       
-      - name: Deploy to GitHub Pages (separate branch)
+      - name: Deploy to GitHub Pages (design-system-live-app repo)
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          external_repository: lisandroalvo/design-system-live-app
           publish_dir: ./apps/storybook/storybook-static
-          publish_branch: storybook-pages
+          publish_branch: gh-pages
           force_orphan: true
