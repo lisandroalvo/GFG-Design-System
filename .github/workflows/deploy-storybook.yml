@@ -7,6 +7,7 @@ on:
     paths:
       - 'apps/storybook/**'
       - '.github/workflows/deploy-storybook.yml'
+      - 'index.html'
   workflow_dispatch:
 
 permissions:
