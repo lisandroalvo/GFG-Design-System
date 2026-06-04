@@ -9718,19 +9718,39 @@
             const documentation = document.getElementById('documentation');
             
             if (pageName === 'overview') {
-                document.getElementById('pageTitle').textContent = 'Component Library';
-                document.getElementById('pageDescription').textContent = 'Interactive reference of every UI component used in the Campaign Builder prototype. Each component is shown with its actual design tokens, all visual states, and implementation notes for the React + Tailwind + Material UI rebuild.';
+                document.getElementById('pageTitle').textContent = 'Storybook Components';
+                document.getElementById('pageDescription').textContent = 'Live coded components built on MUI with GFG theme. These 6 components are deployed to Storybook with full interactive controls and documentation.';
                 
                 documentation.innerHTML = `
                     <div class="doc-panel">
+                        <div class="doc-title">📚 Live Storybook</div>
+                        <div class="doc-content">
+                            <p>All 6 components below are live in Storybook with interactive controls:</p>
+                            <div style="margin: 16px 0;">
+                                <a href="https://lisandroalvo.github.io/GFG-Design-System/storybook/" target="_blank" style="display: inline-block; background: #af9577; color: #fbf9f7; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 14px;">
+                                    Open Storybook →
+                                </a>
+                            </div>
+                            <ul class="doc-list">
+                                <li><strong>Button</strong> — 270 variants (6 colors × 3 variants × 3 sizes × 5 states)</li>
+                                <li><strong>Alert</strong> — 12 variants (4 severities × 3 variants)</li>
+                                <li><strong>Badge</strong> — 13 variants (7 colors × 2 variants)</li>
+                                <li><strong>Card</strong> — Elevation and layout variants</li>
+                                <li><strong>TextField</strong> — 60 variants (3 variants × 2 sizes × states)</li>
+                                <li><strong>Dialog</strong> — 5 max-width variants</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="doc-panel">
                         <div class="doc-title">🚀 Getting Started</div>
                         <div class="doc-content">
-                            <p>This design system is built with <strong>React + Tailwind CSS + Material UI</strong>. All components are synced live from Figma and update automatically.</p>
+                            <p>This design system is built with <strong>MUI (Material UI)</strong> with custom GFG theme tokens.</p>
                             <ul class="doc-list">
-                                <li><strong>Framework:</strong> React 18+</li>
-                                <li><strong>Styling:</strong> Tailwind CSS 3.x + Material UI 5.x</li>
-                                <li><strong>Icons:</strong> Material Icons</li>
-                                <li><strong>Auto-sync:</strong> Updates from Figma every 60 seconds</li>
+                                <li><strong>Framework:</strong> React 18+ with TypeScript</li>
+                                <li><strong>Styling:</strong> MUI v5 + Emotion</li>
+                                <li><strong>Icons:</strong> @mui/icons-material</li>
+                                <li><strong>Storybook:</strong> v8.6 for component development</li>
                             </ul>
                         </div>
                     </div>
@@ -9757,11 +9777,25 @@
                     </div>
                 `;
                 
-                const allPages = Object.keys(organizedData.byPage).sort().slice(0, 8);
-                content.innerHTML = allPages.map(page => {
+                // Filter to show only components that are in Storybook
+                const storybookComponents = ['Button', 'Alert', 'Badge', 'Card', 'TextField', 'Dialog'];
+                
+                // Collect all components from all pages
+                let allComponents = [];
+                for (const page in organizedData.byPage) {
                     const pageData = organizedData.byPage[page];
-                    return renderComponentSection(page, pageData.components.slice(0, 6));
-                }).join('');
+                    allComponents = allComponents.concat(pageData.components);
+                }
+                
+                // Filter to only Storybook components
+                const filteredComponents = allComponents.filter(comp => {
+                    const setName = comp.setName || comp.name || '';
+                    return storybookComponents.some(sb => 
+                        setName.includes(sb) || setName.includes(`<${sb}>`)
+                    );
+                });
+                
+                content.innerHTML = renderComponentSection('Storybook Components (6)', filteredComponents);
                 
             } else if (pageName === 'colors') {
                 document.getElementById('pageTitle').textContent = 'Colors';
