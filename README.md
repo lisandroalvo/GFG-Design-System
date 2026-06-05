@@ -10,10 +10,11 @@ A live design system portal synced with Figma. Component metadata, tokens, and v
 
 ## What This Is
 
-- A **custom design system portal** showing components, tokens, variants, and code
-- Powered by **static HTML** deployed to GitHub Pages
+- A **custom design system portal** showing 6 coded components
+- **Storybook** with interactive component playground
+- Powered by **GitHub Pages** (portal) + **Vercel** (Storybook)
 - Synced from a **Figma file** using Node.js scripts and the Figma REST API
-- 128 component sets · 3,028 variants · 83 extracted React components
+- 6 production-ready components: Button, Alert, Badge, Card, TextField, Dialog
 
 ---
 
@@ -50,11 +51,14 @@ node sync-figma-tokens.cjs
 ### Deploy
 
 ```bash
-# Commit synced data and push to deploy remote
-git add design-tokens/
-git commit -m "chore: sync from Figma"
-git push gfg main
-# GitHub Actions deploys to GitHub Pages (~2 min)
+# Commit and push changes
+git add .
+git commit -m "Update components"
+git push origin main
+
+# Auto-deploys:
+# • Portal → GitHub Pages (~1-2 min)
+# • Storybook → Vercel (~2-3 min)
 ```
 
 ---
