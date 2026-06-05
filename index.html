@@ -9717,6 +9717,10 @@
             const content = document.getElementById('content');
             const documentation = document.getElementById('documentation');
             
+            // Add version banner for debugging
+            console.log('🔍 Portal Version: v20260605-storybook-6-components-only');
+            console.log('📦 Rendering page:', pageName);
+            
             if (pageName === 'overview') {
                 document.getElementById('pageTitle').textContent = 'Storybook Components';
                 document.getElementById('pageDescription').textContent = 'Live coded components built on MUI with GFG theme. These 6 components are deployed to Storybook with full interactive controls and documentation.';
@@ -9780,6 +9784,7 @@
                 
                 // Filter to show only components that are in Storybook
                 const storybookComponents = ['Button', 'Alert', 'Badge', 'Card', 'TextField', 'Dialog'];
+                console.log('🎯 Filtering to Storybook components:', storybookComponents);
                 
                 // Collect all components from all pages
                 let allComponents = [];
@@ -9787,6 +9792,7 @@
                     const pageData = organizedData.byPage[page];
                     allComponents = allComponents.concat(pageData.components);
                 }
+                console.log('📊 Total components before filter:', allComponents.length);
                 
                 // Filter to only Storybook components
                 const filteredComponents = allComponents.filter(comp => {
@@ -9795,6 +9801,7 @@
                         setName.includes(sb) || setName.includes(`<${sb}>`)
                     );
                 });
+                console.log('✅ Filtered components:', filteredComponents.length, filteredComponents.map(c => c.setName || c.name));
                 
                 content.innerHTML = renderComponentSection('Storybook Components (6)', filteredComponents);
                 
