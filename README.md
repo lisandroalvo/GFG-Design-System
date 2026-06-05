@@ -4,7 +4,7 @@ A live design system portal synced with Figma. Component metadata, tokens, and v
 
 **Live sites:**
 - 🌐 **Design System Portal**: https://lisandroalvo.github.io/GFG-Design-System/
-- 📚 **Storybook (Components)**: https://lisandroalvo.github.io/GFG-Design-System/storybook/
+- 📚 **Storybook (Components)**: https://gfg-design-system.vercel.app/
 
 ---
 
