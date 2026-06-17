@@ -16,6 +16,15 @@ const meta: Meta<typeof TextField> = {
 
 Built on **MUI TextField** with the GFG theme applied.
 
+### Exact Figma color tokens
+| Element | Hex | Figma token |
+|---|---|---|
+| Primary (focus) | \`#af9577\` | \`--primary/dark-dust\` |
+| Error | \`#a34740\` | \`--good-wine-(error)/wine-1\` |
+| Label text | \`rgba(0,0,0,0.6)\` | Secondary text |
+| Input text | \`rgba(0,0,0,0.87)\` | Primary text |
+| Border | \`rgba(0,0,0,0.23)\` | Default border |
+
 ### Figma → Code prop mapping
 | Figma prop | Code prop | Values |
 |---|---|---|

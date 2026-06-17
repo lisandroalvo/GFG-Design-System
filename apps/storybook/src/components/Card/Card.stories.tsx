@@ -15,6 +15,14 @@ const meta: Meta<typeof Card> = {
 
 Built on **MUI Card** with the GFG theme applied. Border radius 4px, standard MUI elevation shadows.
 
+### Exact Figma color tokens
+| Element | Hex | Figma token |
+|---|---|---|
+| Background | \`#ffffff\` | \`--color-white\` |
+| Border | \`#e0e0e0\` | \`--color-smoke\` |
+| Title text | \`rgba(0,0,0,0.87)\` | Primary text |
+| Subtitle text | \`rgba(0,0,0,0.6)\` | Secondary text |
+
 ### Developer usage
 \`\`\`tsx
 import Card from '@mui/material/Card';

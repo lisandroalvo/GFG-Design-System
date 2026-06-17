@@ -16,6 +16,14 @@ const meta: Meta<typeof Dialog> = {
 
 Built on **MUI Dialog** with the GFG theme applied. Border radius 4px, standard MUI elevation-24 shadow.
 
+### Exact Figma color tokens
+| Element | Hex | Figma token |
+|---|---|---|
+| Background | \`#ffffff\` | \`--color-white\` |
+| Backdrop | \`rgba(0,0,0,0.5)\` | Overlay |
+| Title text | \`rgba(0,0,0,0.87)\` | Primary text |
+| Content text | \`rgba(0,0,0,0.6)\` | Secondary text |
+
 ### Figma → Code prop mapping
 | Figma prop | Code prop | Values |
 |---|---|---|

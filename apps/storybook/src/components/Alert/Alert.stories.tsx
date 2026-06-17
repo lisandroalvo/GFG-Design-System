@@ -14,6 +14,14 @@ const meta: Meta<typeof Alert> = {
 
 Built on **MUI Alert** with the GFG theme applied.
 
+### Exact Figma color tokens
+| Severity | Hex | Figma token |
+|---|---|---|
+| Success | \`#637058\` | \`--good-sage-(success)/sage-1\` |
+| Error | \`#a34740\` | \`--good-wine-(error)/wine-1\` |
+| Warning | \`#8a5d1f\` | \`--good-ochre-(warning)/ochre-1\` |
+| Info | \`#2b4a60\` | \`--good-night-(info)/night-1\` |
+
 ### Figma → Code prop mapping
 | Figma prop | Code prop | Values |
 |---|---|---|

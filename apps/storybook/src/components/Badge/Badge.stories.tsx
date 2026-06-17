@@ -16,16 +16,16 @@ const meta: Meta<typeof Badge> = {
 
 Built on **MUI Badge** with the GFG theme applied.
 
-### Exact Figma token values (Badge uses standard MUI palette)
-| Color | Hex |
-|---|---|
-| Primary | \`#1976d2\` |
-| Secondary | \`#9c27b0\` |
-| Error | \`#d32f2f\` |
-| Warning | \`#ef6c00\` |
-| Info | \`#0288d1\` |
-| Success | \`#2e7d32\` |
-| Font | Roboto Medium 12px |
+### Exact Figma color tokens
+| Color | Hex | Figma token |
+|---|---|---|
+| Primary | \`#af9577\` | \`--primary/dark-dust\` |
+| Secondary | \`#333333\` | \`--neutral/rodeo-black\` |
+| Error | \`#a34740\` | \`--good-wine-(error)/wine-1\` |
+| Warning | \`#8a5d1f\` | \`--good-ochre-(warning)/ochre-1\` |
+| Info | \`#2b4a60\` | \`--good-night-(info)/night-1\` |
+| Success | \`#637058\` | \`--good-sage-(success)/sage-1\` |
+| Font | Lato Bold 12px |
 | Dot size | 8×8px |
 
 ### Developer usage
