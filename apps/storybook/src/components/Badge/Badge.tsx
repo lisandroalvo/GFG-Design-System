@@ -4,13 +4,13 @@
  * Built on MUI Badge with the GFG theme applied.
  * Figma file OjFchNAdeHiNH5W4wYLSGS · node 6587:47500 · 13 variants
  *
- * Exact Figma token values:
- *   Primary:   --primary/main   #1976d2  (MUI default — Badge uses standard MUI palette)
- *   Secondary: --secondary/main #9c27b0
- *   Error:     --error/main     #d32f2f
- *   Warning:   --warning/main   #ef6c00
- *   Info:      --info/main      #0288d1
- *   Success:   --success/main   #2e7d32
+ * Exact Figma color tokens (from GFG theme):
+ *   Primary:   --primary/dark-dust           #af9577
+ *   Secondary: --neutral/rodeo-black         #333333
+ *   Error:     --good-wine-(error)/wine-1    #a34740
+ *   Warning:   --good-ochre-(warning)/ochre-1 #8a5d1f
+ *   Info:      --good-night-(info)/night-1   #2b4a60
+ *   Success:   --good-sage-(success)/sage-1  #637058
  *   Font:      Roboto Medium 12px, tracking 0.14px
  *   Dot size:  8px × 8px
  *
