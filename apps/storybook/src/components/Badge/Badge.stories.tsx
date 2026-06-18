@@ -11,9 +11,11 @@ const meta: Meta<typeof Badge> = {
     docs: {
       description: {
         component: `
-**Figma source:** [Open in Figma](https://www.figma.com/file/OjFchNAdeHiNH5W4wYLSGS) · Node \`6587:47500\` · 13 variants
+**Figma source:** [Open in Figma](https://www.figma.com/file/OjFchNAdeHiNH5W4wYLSGS) · Node \`6587:47476\` · 13 variants
 
 Built on **MUI Badge** with the GFG theme applied.
+
+**Last synced:** June 18, 2026 - Updated colors detected from Figma
 
 ### Exact Figma color tokens
 | Color | Hex | Figma token |

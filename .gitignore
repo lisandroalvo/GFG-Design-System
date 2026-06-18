@@ -27,3 +27,4 @@ deploy-temp/
 # Python
 __pycache__/
 *.pyc
+.env.save
