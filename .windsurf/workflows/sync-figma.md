@@ -4,34 +4,47 @@ description: Sync all changes from Figma and push to GitHub
 
 # Figma Sync Workflow
 
-This workflow uses Figma MCP to detect 100% of changes accurately and push them to GitHub.
+This workflow uses Figma MCP to detect 100% of changes accurately and deploy to Storybook.
 
 ## Steps:
 
 // turbo
-1. Search for all updated components using `mcp0_search_design_system`
+1. Search for updated components using `mcp0_search_design_system`
 
-2. For each updated component (Badge, Button, Alert, Card, TextField, Dialog):
+2. For each updated component:
    - Get screenshot using `mcp0_get_screenshot` to see visual changes
-   - Compare with previous version
-   - Identify what changed (colors, icons, spacing, etc.)
+   - Identify exact changes (colors, icons, spacing, typography)
 
-3. Update the corresponding React component files:
-   - Update colors in theme file if needed
-   - Update component documentation
-   - Update story files with new variants
+3. Update code files:
+   - Update `gfgTheme.ts` for color changes
+   - Update component `.stories.tsx` files for documentation
+   - Add sync timestamp
 
-4. Generate metadata file with all changes
-
-5. Commit all changes with descriptive message
+4. Commit with descriptive message including:
+   - What changed (e.g., "Primary color: #af9577 → #d946ef")
+   - Date/time of Figma update
+   - "Updated via MCP-powered Figma sync"
 
 // turbo
-6. Push to GitHub main branch
+5. Push to GitHub main branch
 
-7. Confirm that Vercel will auto-deploy
+6. Verify Vercel auto-deployment (2-3 minutes)
+
+7. Confirm changes are live at https://gfg-design-system.vercel.app
 
 ## Usage:
 
-Just say: "Sync all Figma changes and push to GitHub"
+**User says:** "Sync Figma"
 
-Or run: `npm run sync-figma` (which reminds you to ask Cascade)
+**Cascade will:**
+- Detect all changes from Figma
+- Update theme and component files
+- Push to GitHub
+- Verify deployment
+
+## Expected Result:
+
+- ✅ Changes visible on localhost:6006 immediately
+- ✅ Changes deployed to Vercel in 2-3 minutes
+- ✅ All color values documented with hex codes
+- ✅ Sync timestamp added to component docs
