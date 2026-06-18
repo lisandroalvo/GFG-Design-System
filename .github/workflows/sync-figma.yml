@@ -1,0 +1,65 @@
+name: Sync Figma Design System
+
+on:
+  schedule:
+    # Run every day at 9 AM UTC (adjust timezone as needed)
+    - cron: '0 9 * * *'
+  workflow_dispatch: # Allow manual trigger
+  
+jobs:
+  sync-figma:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Sync Figma components
+        env:
+          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+          FIGMA_FILE_KEY: OjFchNAdeHiNH5W4wYLSGS
+        run: |
+          node scripts/sync-from-figma.js
+          
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: Create Pull Request
+        if: steps.check_changes.outputs.changes == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: sync design system from Figma'
+          title: '🎨 Sync Design System from Figma'
+          body: |
+            ## Automated Figma Sync
+            
+            This PR contains the latest changes from Figma.
+            
+            ### What changed:
+            - Component properties updated
+            - Design tokens synced
+            - Color values refreshed
+            
+            **Figma File:** [GFG Design System 2026](https://www.figma.com/file/OjFchNAdeHiNH5W4wYLSGS)
+            
+            Please review the changes and merge if everything looks correct.
+          branch: figma-sync-${{ github.run_number }}
+          delete-branch: true
+          labels: |
+            figma-sync
+            automated
