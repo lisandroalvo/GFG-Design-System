@@ -15,15 +15,15 @@ const meta: Meta<typeof Badge> = {
 
 Built on **MUI Badge** with the GFG theme applied.
 
-**Last synced:** June 18, 2026 at 6:41 PM - Updated colors detected from Figma
+**Last synced:** June 18, 2026 at 6:51 PM - Synced from Figma via MCP
 
 ### Exact Figma color tokens
 | Color | Hex | Figma token |
 |---|---|---|
-| Primary | \`#d946ef\` | Updated - pink/magenta |
-| Secondary | \`#d946ef\` | Updated - pink/magenta |
-| Error | \`#d946ef\` | Updated - pink/magenta |
-| Warning | \`#d946ef\` | Updated - pink/magenta |
+| Primary | \`#d946ef\` | Pink/magenta accent |
+| Secondary | \`#333333\` | \`--neutral/rodeo-black\` |
+| Error | \`#a34740\` | \`--good-wine-(error)/wine-1\` |
+| Warning | \`#8a5d1f\` | \`--good-ochre-(warning)/ochre-1\` |
 | Info | \`#2b4a60\` | \`--good-night-(info)/night-1\` |
 | Success | \`#637058\` | \`--good-sage-(success)/sage-1\` |
 | Font | Lato Bold 12px |

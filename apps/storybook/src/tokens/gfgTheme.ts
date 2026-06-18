@@ -24,24 +24,24 @@
 import { createTheme } from '@mui/material/styles';
 
 // ── GFG Semantic Colour Tokens (exact from Figma) ──────────────────────────
-// Updated June 18, 2026 - Synced from Figma via MCP
+// Updated June 18, 2026 at 6:51 PM - Synced from Figma via MCP
 const GFG = {
-  // Primary palette — Updated to pink/magenta
-  primary:          '#d946ef',  // Updated from Figma - pink/magenta
-  primaryText:      '#ffffff',  // --primary/clear-dust (text on primary bg)
+  // Primary palette — Dust System (with pink accent)
+  primary:          '#d946ef',  // Pink/magenta from Figma
+  primaryText:      '#fbf9f7',  // --primary/clear-dust (text on primary bg)
   primaryHover:     '#e879f9',  // Lighter pink for hover
   primaryDark:      '#c026d3',  // Darker pink
 
-  // Secondary — Updated to pink/magenta
-  secondary:        '#d946ef',  // Updated from Figma - pink/magenta
+  // Secondary — Neutral Rodeo Black
+  secondary:        '#333333',  // --neutral/rodeo-black (reverted from Figma)
   secondaryText:    '#ffffff',
 
-  // Error — Updated to pink/magenta
-  error:            '#d946ef',  // Updated from Figma - pink/magenta
-  errorText:        '#ffffff',  // --primary/clear-dust
+  // Error — Good Wine palette
+  error:            '#a34740',  // --good-wine-(error)/wine-1 (reverted from Figma)
+  errorText:        '#fbf9f7',  // --primary/clear-dust
 
-  // Warning — Updated to pink/magenta
-  warning:          '#d946ef',  // Updated from Figma - pink/magenta
+  // Warning — Good Ochre palette
+  warning:          '#8a5d1f',  // --good-ochre-(warning)/ochre-1 (reverted from Figma)
   warningText:      '#ffffff',  // --warning/contrasttext
 
   // Info — Good Night palette
