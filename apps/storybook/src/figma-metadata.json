@@ -1,0 +1,2138 @@
+{
+  "generatedAt": "2026-06-18T09:41:18.078Z",
+  "totalComponents": 133,
+  "components": [
+    {
+      "name": "*Custom / Flags",
+      "nodeId": "6704:38891",
+      "variantCount": 9,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "ad",
+            "ae",
+            "ao",
+            "ch",
+            "cn",
+            "co",
+            "in",
+            "kw",
+            "tt"
+          ],
+          "default": "kw"
+        }
+      }
+    },
+    {
+      "name": "Autocomplete",
+      "nodeId": "6570:49856",
+      "variantCount": 4,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<Button>",
+      "nodeId": "6543:36744",
+      "variantCount": 270,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Contained",
+            "Outlined",
+            "Text"
+          ],
+          "default": "Contained"
+        }
+      }
+    },
+    {
+      "name": "<Icon Button>",
+      "nodeId": "15687:1425",
+      "variantCount": 271,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Contained",
+            "Outlined",
+            "Text",
+            "number text"
+          ],
+          "default": "Contained"
+        }
+      }
+    },
+    {
+      "name": "<Fab>",
+      "nodeId": "6556:38264",
+      "variantCount": 150,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Enabled",
+            "Hovered",
+            "Focused",
+            "Pressed",
+            "Disabled"
+          ],
+          "default": "Enabled"
+        }
+      }
+    },
+    {
+      "name": "<ButtonGroup>",
+      "nodeId": "6543:39843",
+      "variantCount": 42,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Primary",
+            "Secondary",
+            "Error",
+            "Warning",
+            "Info",
+            "Success",
+            "Inherit"
+          ],
+          "default": "Primary"
+        }
+      }
+    },
+    {
+      "name": "<Checkbox>",
+      "nodeId": "6543:43052",
+      "variantCount": 246,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Enabled",
+            "Hovered",
+            "Focused",
+            "Pressed",
+            "Disabled"
+          ],
+          "default": "Enabled"
+        }
+      }
+    },
+    {
+      "name": "<FormControlLabel> | Checkbox",
+      "nodeId": "642:114394",
+      "variantCount": 8,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<FormGroup> | <Checkbox>",
+      "nodeId": "6543:43147",
+      "variantCount": 6,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "3",
+            "5"
+          ],
+          "default": "3"
+        }
+      }
+    },
+    {
+      "name": "<Radio>",
+      "nodeId": "6558:39273",
+      "variantCount": 174,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Enabled",
+            "Hovered",
+            "Focused",
+            "Disabled",
+            "Pressed"
+          ],
+          "default": "Enabled"
+        }
+      }
+    },
+    {
+      "name": "<FormControlLabel> | Radio",
+      "nodeId": "634:100262",
+      "variantCount": 8,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<RadioGroup>",
+      "nodeId": "6558:39344",
+      "variantCount": 8,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<FormGroup> | <RadioGroup>",
+      "nodeId": "1479:32615",
+      "variantCount": 3,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "3"
+          ],
+          "default": "3"
+        }
+      }
+    },
+    {
+      "name": "Star",
+      "nodeId": "6562:39569",
+      "variantCount": 15,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "false",
+            "true"
+          ],
+          "default": "false"
+        }
+      }
+    },
+    {
+      "name": "<Rating>",
+      "nodeId": "6562:39624",
+      "variantCount": 6,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<InputLabel>",
+      "nodeId": "11140:154655",
+      "variantCount": 9,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Error"
+          ],
+          "default": "Enabled"
+        }
+      }
+    },
+    {
+      "name": "<FormHelperText>",
+      "nodeId": "11140:154883",
+      "variantCount": 3,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Error",
+            "Disabled",
+            "Enabled"
+          ],
+          "default": "Enabled"
+        }
+      }
+    },
+    {
+      "name": "<FormLabel>",
+      "nodeId": "11436:165380",
+      "variantCount": 9,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Error"
+          ],
+          "default": "Enabled"
+        }
+      }
+    },
+    {
+      "name": "<Slider>",
+      "nodeId": "6562:39045",
+      "variantCount": 66,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Horizontal",
+            "Vertical"
+          ],
+          "default": "Horizontal"
+        }
+      }
+    },
+    {
+      "name": "*SliderLabel",
+      "nodeId": "6562:39032",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Horizontal",
+            "Vertical"
+          ],
+          "default": "Horizontal"
+        }
+      }
+    },
+    {
+      "name": "Input Field",
+      "nodeId": "6570:41424",
+      "variantCount": 66,
+      "props": {}
+    },
+    {
+      "name": "DropDown",
+      "nodeId": "15662:1418",
+      "variantCount": 45,
+      "props": {}
+    },
+    {
+      "name": "<Switch>",
+      "nodeId": "6564:39128",
+      "variantCount": 117,
+      "props": {}
+    },
+    {
+      "name": "Switch",
+      "nodeId": "16299:12464",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "On",
+            "Off"
+          ],
+          "default": "On"
+        }
+      }
+    },
+    {
+      "name": "<FormControlLabel> | Switch",
+      "nodeId": "642:114423",
+      "variantCount": 8,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<FormGroup> | <Switch>",
+      "nodeId": "642:108242",
+      "variantCount": 6,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "3",
+            "5"
+          ],
+          "default": "3"
+        }
+      }
+    },
+    {
+      "name": "Drag and Drop ",
+      "nodeId": "16073:6728",
+      "variantCount": 3,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Default",
+            "Hover",
+            "Uploaded"
+          ],
+          "default": "Default"
+        }
+      }
+    },
+    {
+      "name": "<TextField>",
+      "nodeId": "6570:48313",
+      "variantCount": 60,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "True"
+        }
+      }
+    },
+    {
+      "name": "<TextField> | Multiline",
+      "nodeId": "7551:51690",
+      "variantCount": 21,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Flexible",
+            "4",
+            "6",
+            "8"
+          ],
+          "default": "Flexible"
+        }
+      }
+    },
+    {
+      "name": "<TransferList>",
+      "nodeId": "16354:3142",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Enhanced",
+            "Simpled"
+          ],
+          "default": "Simpled"
+        }
+      }
+    },
+    {
+      "name": "<ToggleButton>",
+      "nodeId": "16354:5851",
+      "variantCount": 30,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<ToggleButtonGroup>",
+      "nodeId": "16354:4658",
+      "variantCount": 9,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "Avatars",
+      "nodeId": "15700:10446",
+      "variantCount": 5,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Default",
+            "5",
+            "2",
+            "3",
+            "4"
+          ],
+          "default": "Default"
+        }
+      }
+    },
+    {
+      "name": "<Avatar>",
+      "nodeId": "16355:2273",
+      "variantCount": 36,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Text",
+            "Icon",
+            "Image"
+          ],
+          "default": "Text"
+        }
+      }
+    },
+    {
+      "name": "<AvatarGroup>",
+      "nodeId": "16355:2743",
+      "variantCount": 36,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "40px",
+            "32px",
+            "24px"
+          ],
+          "default": "40px"
+        }
+      }
+    },
+    {
+      "name": "<Badge>",
+      "nodeId": "16355:5137",
+      "variantCount": 13,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Default",
+            "Primary",
+            "Secondary",
+            "Error",
+            "Warning",
+            "Info",
+            "Success"
+          ],
+          "default": "Default"
+        }
+      }
+    },
+    {
+      "name": "<Badge> | With Instance ",
+      "nodeId": "16355:5203",
+      "variantCount": 13,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Default",
+            "Primary",
+            "Secondary",
+            "Error",
+            "Warning",
+            "Info",
+            "Success"
+          ],
+          "default": "Default"
+        }
+      }
+    },
+    {
+      "name": "<Chip>",
+      "nodeId": "6588:47683",
+      "variantCount": 210,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Filled",
+            "Outlined"
+          ],
+          "default": "Filled"
+        }
+      }
+    },
+    {
+      "name": "Rich Text Editor",
+      "nodeId": "16069:8321",
+      "variantCount": 4,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Default",
+            "Hover",
+            "Focused",
+            "Disabled"
+          ],
+          "default": "Default"
+        }
+      }
+    },
+    {
+      "name": "Text Area",
+      "nodeId": "16480:12566",
+      "variantCount": 4,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Default",
+            "Hover",
+            "Focused",
+            "Disabled"
+          ],
+          "default": "Default"
+        }
+      }
+    },
+    {
+      "name": "star",
+      "nodeId": "15624:30747",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Default",
+            "Variant3"
+          ],
+          "default": "Default"
+        }
+      }
+    },
+    {
+      "name": "favorite",
+      "nodeId": "15624:30755",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Default",
+            "Variant3"
+          ],
+          "default": "Default"
+        }
+      }
+    },
+    {
+      "name": "Dot",
+      "nodeId": "15624:30763",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Green",
+            "Disabled"
+          ],
+          "default": "Green"
+        }
+      }
+    },
+    {
+      "name": "task_alt",
+      "nodeId": "15624:30770",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Default",
+            "Filled"
+          ],
+          "default": "Default"
+        }
+      }
+    },
+    {
+      "name": "<ListItem>",
+      "nodeId": "6591:48882",
+      "variantCount": 24,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Enabled",
+            "Hovered",
+            "Selected",
+            "Focused",
+            "Pressed",
+            "Disabled"
+          ],
+          "default": "Enabled"
+        }
+      }
+    },
+    {
+      "name": "<TableHead>",
+      "nodeId": "6594:46364",
+      "variantCount": 4,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<TableCell>",
+      "nodeId": "6594:46413",
+      "variantCount": 4,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<TableHeadRow>",
+      "nodeId": "6686:36863",
+      "variantCount": 36,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "3",
+            "4",
+            "5",
+            "6",
+            "8",
+            "10"
+          ],
+          "default": "3"
+        }
+      }
+    },
+    {
+      "name": "<TableCellRow>",
+      "nodeId": "6594:46473",
+      "variantCount": 144,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": "True"
+        }
+      }
+    },
+    {
+      "name": "<Table>",
+      "nodeId": "6594:46634",
+      "variantCount": 16,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "5",
+            "10"
+          ],
+          "default": "5"
+        }
+      }
+    },
+    {
+      "name": "<Tooltip>",
+      "nodeId": "6590:48770",
+      "variantCount": 5,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "None",
+            "Down",
+            "Up",
+            "Left",
+            "Right"
+          ],
+          "default": "None"
+        }
+      }
+    },
+    {
+      "name": "Alert",
+      "nodeId": "6595:48211",
+      "variantCount": 12,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Filled",
+            "Outlined",
+            "Standard"
+          ],
+          "default": "Filled"
+        }
+      }
+    },
+    {
+      "name": "<DialogContent>",
+      "nodeId": "127:59928",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<DialogActions>",
+      "nodeId": "170:161662",
+      "variantCount": 3,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "1",
+            "2",
+            "3"
+          ],
+          "default": "1"
+        }
+      }
+    },
+    {
+      "name": "Dialog Elements",
+      "nodeId": "127:59653",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": "True"
+        }
+      }
+    },
+    {
+      "name": "<Dialog>",
+      "nodeId": "6586:47183",
+      "variantCount": 5,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl"
+          ],
+          "default": "xs"
+        }
+      }
+    },
+    {
+      "name": "<Progress> | Linear",
+      "nodeId": "6586:46855",
+      "variantCount": 9,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Inherit",
+            "Primary",
+            "Secondary"
+          ],
+          "default": "Primary"
+        }
+      }
+    },
+    {
+      "name": "<Progress> | Circular",
+      "nodeId": "6586:47016",
+      "variantCount": 6,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "32px",
+            "16px"
+          ],
+          "default": "32px"
+        }
+      }
+    },
+    {
+      "name": "<Skeleton>",
+      "nodeId": "6596:49017",
+      "variantCount": 3,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Text",
+            "Circle",
+            "Rectangle"
+          ],
+          "default": "Text"
+        }
+      }
+    },
+    {
+      "name": "<Accordion>",
+      "nodeId": "6583:46084",
+      "variantCount": 9,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<Toolbar>",
+      "nodeId": "16399:7156",
+      "variantCount": 3,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<AppBar>",
+      "nodeId": "16399:7198",
+      "variantCount": 5,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Default",
+            "Primary",
+            "Secondary",
+            "Inherit White",
+            "Transparent"
+          ],
+          "default": "Primary"
+        }
+      }
+    },
+    {
+      "name": "<CardHeader>",
+      "nodeId": "15704:10477",
+      "variantCount": 54,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Default",
+            "Flexible"
+          ],
+          "default": "Default"
+        }
+      }
+    },
+    {
+      "name": "<Paper>",
+      "nodeId": "16402:19263",
+      "variantCount": 52,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<BottomNavigationAction>",
+      "nodeId": "16402:20419",
+      "variantCount": 14,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Enabled",
+            "Focused",
+            "Disabled",
+            "Pressed"
+          ],
+          "default": "Enabled"
+        }
+      }
+    },
+    {
+      "name": "<BottomNavigation>",
+      "nodeId": "16402:20499",
+      "variantCount": 4,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Three",
+            "Four"
+          ],
+          "default": "Three"
+        }
+      }
+    },
+    {
+      "name": "<Breadcrumbs>",
+      "nodeId": "16430:15064",
+      "variantCount": 4,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<Link>",
+      "nodeId": "16430:29494",
+      "variantCount": 14,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Enabled",
+            "Hovered",
+            "Focused"
+          ],
+          "default": "Enabled"
+        }
+      }
+    },
+    {
+      "name": "<MenuItem>",
+      "nodeId": "6576:50735",
+      "variantCount": 12,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Enabled",
+            "Hovered",
+            "Selected",
+            "Disabled"
+          ],
+          "default": "Enabled"
+        }
+      }
+    },
+    {
+      "name": "<MenuList>",
+      "nodeId": "11404:174321",
+      "variantCount": 12,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<Menu>",
+      "nodeId": "11402:158079",
+      "variantCount": 4,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<PaginationItem>",
+      "nodeId": "6598:49207",
+      "variantCount": 84,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<Pagination>",
+      "nodeId": "6598:49376",
+      "variantCount": 48,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<SpeedDial>",
+      "nodeId": "16452:7760",
+      "variantCount": 4,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Up",
+            "Left",
+            "Right",
+            "Down"
+          ],
+          "default": "Up"
+        }
+      }
+    },
+    {
+      "name": "Step Icon",
+      "nodeId": "6576:51232",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Default",
+            "Done"
+          ],
+          "default": "Default"
+        }
+      }
+    },
+    {
+      "name": "<Step>",
+      "nodeId": "6576:50986",
+      "variantCount": 14,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Active",
+            "Inactive",
+            "Complete",
+            "Error",
+            "Warning",
+            "Info",
+            "Success"
+          ],
+          "default": "Inactive"
+        }
+      }
+    },
+    {
+      "name": "<MobileStepper>",
+      "nodeId": "6576:51238",
+      "variantCount": 3,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Text",
+            "Dots",
+            "Progress"
+          ],
+          "default": "Text"
+        }
+      }
+    },
+    {
+      "name": "Stepper",
+      "nodeId": "15857:6247",
+      "variantCount": 12,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Horizontal*",
+            "Vertical"
+          ],
+          "default": "Horizontal*"
+        }
+      }
+    },
+    {
+      "name": "<Tab>",
+      "nodeId": "6579:45104",
+      "variantCount": 48,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Focused",
+            "Pressed"
+          ],
+          "default": "Enabled"
+        }
+      }
+    },
+    {
+      "name": "<Tabs>",
+      "nodeId": "6579:45197",
+      "variantCount": 6,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Standard",
+            "Scrollable",
+            "Full Width"
+          ],
+          "default": "Standard"
+        }
+      }
+    },
+    {
+      "name": "Inner Slider",
+      "nodeId": "16132:14636",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Default",
+            "Multiples"
+          ],
+          "default": "Default"
+        }
+      }
+    },
+    {
+      "name": "<Container>",
+      "nodeId": "7660:81184",
+      "variantCount": 10,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "Spacing | Horizontal",
+      "nodeId": "16430:40079",
+      "variantCount": 16,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "True"
+        }
+      }
+    },
+    {
+      "name": "Spacing | Vertical",
+      "nodeId": "16430:40194",
+      "variantCount": 16,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": "True"
+        }
+      }
+    },
+    {
+      "name": "<TimelineItem>",
+      "nodeId": "6602:51383",
+      "variantCount": 4,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Filled",
+            "Outlined"
+          ],
+          "default": "Filled"
+        }
+      }
+    },
+    {
+      "name": "<TimelineDot>",
+      "nodeId": "6602:51786",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Filled*",
+            "Outlined"
+          ],
+          "default": "Filled*"
+        }
+      }
+    },
+    {
+      "name": "<Timeline>",
+      "nodeId": "6602:51689",
+      "variantCount": 12,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Right",
+            "Left",
+            "Alternating"
+          ],
+          "default": "Left"
+        }
+      }
+    },
+    {
+      "name": "<Stack>",
+      "nodeId": "11114:137757",
+      "variantCount": 75,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "1",
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "default": "1"
+        }
+      }
+    },
+    {
+      "name": "Aspect ratio",
+      "nodeId": "15705:15667",
+      "variantCount": 38,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Donation $5",
+            "Donation $20",
+            "Donation $150",
+            "Donation $65",
+            "Donation $200",
+            "Donation $75",
+            "Donation $30",
+            "VarianCharity Impact $58",
+            "Donation $250",
+            "Donation $115",
+            "Donation $40",
+            "Donation $50",
+            "Donation $100",
+            "Donation $10",
+            "Donation $",
+            "Donation $300",
+            "Collection 15",
+            "Collection 13",
+            "Collection 14",
+            "Collection 12",
+            "Collection 11",
+            "Collection 9",
+            "Collection 6",
+            "Collection 4",
+            "Collection 7",
+            "Collection 5",
+            "Collection 10",
+            "Collection 8",
+            "Collection 3",
+            "Collection 1",
+            "Collection 2",
+            "Donation $500",
+            "VariaCollection 20",
+            "Collection 19",
+            "Collection 17",
+            "Collection 18",
+            "Collection 16",
+            "Cause"
+          ],
+          "default": "Donation $5"
+        }
+      }
+    },
+    {
+      "name": "<ImageListItemBar>",
+      "nodeId": "1606:8880",
+      "variantCount": 3,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Left",
+            "Right",
+            "Square"
+          ],
+          "default": "Right"
+        }
+      }
+    },
+    {
+      "name": "<DataGrid> | Header",
+      "nodeId": "6603:52316",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Right"
+          ],
+          "default": "Right"
+        }
+      }
+    },
+    {
+      "name": "_DataGrid / Cell Width",
+      "nodeId": "9930:68645",
+      "variantCount": 9,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "50",
+            "100",
+            "120",
+            "140",
+            "150",
+            "160",
+            "180",
+            "200",
+            "240"
+          ],
+          "default": "50"
+        }
+      }
+    },
+    {
+      "name": "<DataGrid> | Header | Column Group",
+      "nodeId": "177:82627",
+      "variantCount": 7,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<DataGrid> | Cell",
+      "nodeId": "6603:52491",
+      "variantCount": 43,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<DataGrid> | Cell Rows",
+      "nodeId": "10136:136874",
+      "variantCount": 36,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": "True"
+        }
+      }
+    },
+    {
+      "name": "<DataGrid> | Header Rows",
+      "nodeId": "6603:52552",
+      "variantCount": 6,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "3",
+            "4",
+            "5",
+            "6",
+            "8",
+            "10"
+          ],
+          "default": "3"
+        }
+      }
+    },
+    {
+      "name": "<DataGrid> | Header Rows | Column Group",
+      "nodeId": "177:82411",
+      "variantCount": 6,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "3",
+            "4",
+            "5",
+            "6",
+            "8",
+            "10"
+          ],
+          "default": "3"
+        }
+      }
+    },
+    {
+      "name": "<DataGridTable>",
+      "nodeId": "6603:52661",
+      "variantCount": 12,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "5",
+            "10"
+          ],
+          "default": "5"
+        }
+      }
+    },
+    {
+      "name": "<GridToolbarQuickFilter>",
+      "nodeId": "9893:16342",
+      "variantCount": 3,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Default",
+            "Active",
+            "Persistent"
+          ],
+          "default": "Default"
+        }
+      }
+    },
+    {
+      "name": "DataGrid Menu",
+      "nodeId": "9647:13815",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Community",
+            "Pro/Premium"
+          ],
+          "default": "Community"
+        }
+      }
+    },
+    {
+      "name": "*Elements / Day Cell",
+      "nodeId": "1161:1867",
+      "variantCount": 7,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Hover",
+            "Selected",
+            "Today",
+            "Pressed",
+            "Selected Disabled"
+          ],
+          "default": "Enabled"
+        }
+      }
+    },
+    {
+      "name": "*Pickers / Date",
+      "nodeId": "1258:36081",
+      "variantCount": 6,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Date",
+            "Month",
+            "Year",
+            "Date Dynamic Data",
+            "Date Outside Current",
+            "Date Week Number"
+          ],
+          "default": "Date"
+        }
+      }
+    },
+    {
+      "name": "*Pickers / Time",
+      "nodeId": "1268:46905",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Desktop",
+            "Mobile"
+          ],
+          "default": "Mobile"
+        }
+      }
+    },
+    {
+      "name": "*Pickers / Date Time",
+      "nodeId": "1268:78423",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Desktop",
+            "Mobile"
+          ],
+          "default": "Mobile"
+        }
+      }
+    },
+    {
+      "name": "<TimeField>",
+      "nodeId": "1268:106844",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "<DateField>",
+      "nodeId": "1174:13306",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "Native / Date Time Picker",
+      "nodeId": "6569:39491",
+      "variantCount": 3,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Date",
+            "Time",
+            "Time and Date"
+          ],
+          "default": "Time and Date"
+        }
+      }
+    },
+    {
+      "name": "<MobileDateTimePicker>",
+      "nodeId": "7494:50237",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Date",
+            "Time"
+          ],
+          "default": "Date"
+        }
+      }
+    },
+    {
+      "name": "<StaticDateTimePicker>",
+      "nodeId": "1267:20267",
+      "variantCount": 4,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Portrait",
+            "Landscape"
+          ],
+          "default": "Portrait"
+        }
+      }
+    },
+    {
+      "name": "<DateTimeField>",
+      "nodeId": "1251:806500",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "_Elements / Bars",
+      "nodeId": "1182:10909",
+      "variantCount": 90,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "False",
+            "True"
+          ],
+          "default": "False"
+        }
+      }
+    },
+    {
+      "name": "Elements / Lines",
+      "nodeId": "1231:7768",
+      "variantCount": 3,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "1",
+            "2",
+            "3"
+          ],
+          "default": "1"
+        }
+      }
+    },
+    {
+      "name": "Elements / Axis X | Groups Bottom",
+      "nodeId": "1190:12755",
+      "variantCount": 1,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "7"
+          ],
+          "default": "7"
+        }
+      }
+    },
+    {
+      "name": "Elements / Axis X | Groups Top",
+      "nodeId": "1190:14930",
+      "variantCount": 1,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "7"
+          ],
+          "default": "7"
+        }
+      }
+    },
+    {
+      "name": "Elements / Axis X | Values Bottom",
+      "nodeId": "1196:7397",
+      "variantCount": 1,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "7"
+          ],
+          "default": "7"
+        }
+      }
+    },
+    {
+      "name": "Elements / Axis X | Values Top",
+      "nodeId": "1196:7687",
+      "variantCount": 1,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "7"
+          ],
+          "default": "7"
+        }
+      }
+    },
+    {
+      "name": "Elements / Axis Y | Values Left",
+      "nodeId": "1190:15192",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Values",
+            "Months"
+          ],
+          "default": "Values"
+        }
+      }
+    },
+    {
+      "name": "Elements / Axis Y | Values Right",
+      "nodeId": "1193:160337",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Values",
+            "Months"
+          ],
+          "default": "Values"
+        }
+      }
+    },
+    {
+      "name": "Elements / Axis Y | Groups Left",
+      "nodeId": "9811:20605",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Values",
+            "Months"
+          ],
+          "default": "Values"
+        }
+      }
+    },
+    {
+      "name": "Elements / Legend",
+      "nodeId": "1182:11802",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Horizontal",
+            "Vertical"
+          ],
+          "default": "Horizontal"
+        }
+      }
+    },
+    {
+      "name": "Elements / Tooltip",
+      "nodeId": "16450:62499",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "axis",
+            "item"
+          ],
+          "default": "item"
+        }
+      }
+    },
+    {
+      "name": "Elements / Series Bar",
+      "nodeId": "1182:11861",
+      "variantCount": 12,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Vertical",
+            "Horizontal"
+          ],
+          "default": "Vertical"
+        }
+      }
+    },
+    {
+      "name": "<BarChart> / Vertical",
+      "nodeId": "1182:11927",
+      "variantCount": 15,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "True",
+            "False",
+            "Biaxial"
+          ],
+          "default": "True"
+        }
+      }
+    },
+    {
+      "name": "<BarChart> / Horizontal",
+      "nodeId": "9810:16811",
+      "variantCount": 9,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "True",
+            "False"
+          ],
+          "default": "True"
+        }
+      }
+    },
+    {
+      "name": "<LineChart>",
+      "nodeId": "1236:8811",
+      "variantCount": 15,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "True",
+            "False",
+            "Biaxial"
+          ],
+          "default": "True"
+        }
+      }
+    },
+    {
+      "name": "<PieChart>",
+      "nodeId": "1182:12705",
+      "variantCount": 13,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "75%",
+            "0%",
+            "25%",
+            "50%"
+          ],
+          "default": "0%"
+        }
+      }
+    },
+    {
+      "name": "<ScatterChart>",
+      "nodeId": "1182:11949",
+      "variantCount": 6,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Single",
+            "Multiple"
+          ],
+          "default": "Single"
+        }
+      }
+    },
+    {
+      "name": "<TreeItem>",
+      "nodeId": "6601:51139",
+      "variantCount": 9,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Default",
+            "Expandable",
+            "Expanded"
+          ],
+          "default": "Default"
+        }
+      }
+    },
+    {
+      "name": "*Custom / Forms / Passwordless",
+      "nodeId": "9411:94541",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Email",
+            "Code"
+          ],
+          "default": "Email"
+        }
+      }
+    },
+    {
+      "name": "*Custom / Settings / Plan Item",
+      "nodeId": "9458:95524",
+      "variantCount": 2,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Resting",
+            "Selected"
+          ],
+          "default": "Resting"
+        }
+      }
+    },
+    {
+      "name": "*Custom / Uploader / Container",
+      "nodeId": "9384:94015",
+      "variantCount": 3,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Resting",
+            "Hover",
+            "Failure"
+          ],
+          "default": "Resting"
+        }
+      }
+    },
+    {
+      "name": "*Custom / Uploader / Item",
+      "nodeId": "9390:94126",
+      "variantCount": 6,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Circle",
+            "Linear"
+          ],
+          "default": "Circle"
+        }
+      }
+    },
+    {
+      "name": "Sidebar",
+      "nodeId": "16450:79788",
+      "variantCount": 11,
+      "props": {
+        "undefined": {
+          "type": "VARIANT",
+          "values": [
+            "Default",
+            "Dashboard",
+            "False",
+            "Collection",
+            "Lock",
+            "Collections",
+            "My Campaigns",
+            "My Campaings"
+          ],
+          "default": "False"
+        }
+      }
+    }
+  ]
+}

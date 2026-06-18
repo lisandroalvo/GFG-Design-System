@@ -29,6 +29,10 @@ jobs:
         run: |
           node scripts/sync-from-figma.js
           
+      - name: Generate React components
+        run: |
+          node scripts/generate-components.js
+          
       - name: Check for changes
         id: check_changes
         run: |
@@ -48,16 +52,22 @@ jobs:
           body: |
             ## Automated Figma Sync
             
-            This PR contains the latest changes from Figma.
+            This PR contains the latest changes from Figma with automatically generated code updates.
             
             ### What changed:
-            - Component properties updated
-            - Design tokens synced
-            - Color values refreshed
+            - ✅ Component properties synced from Figma
+            - ✅ Design tokens updated
+            - ✅ React component documentation refreshed
+            - ✅ Component metadata regenerated
             
             **Figma File:** [GFG Design System 2026](https://www.figma.com/file/OjFchNAdeHiNH5W4wYLSGS)
             
-            Please review the changes and merge if everything looks correct.
+            ### Next Steps:
+            1. Review the changes in the Files tab
+            2. Check that component properties match Figma
+            3. Merge this PR to deploy to Storybook
+            
+            Once merged, Vercel will automatically deploy the updates to your Storybook.
           branch: figma-sync-${{ github.run_number }}
           delete-branch: true
           labels: |
