@@ -20,10 +20,10 @@ Built on **MUI Badge** with the GFG theme applied.
 ### Exact Figma color tokens
 | Color | Hex | Figma token |
 |---|---|---|
-| Primary | \`#af9577\` | \`--primary/dark-dust\` |
-| Secondary | \`#333333\` | \`--neutral/rodeo-black\` |
-| Error | \`#a34740\` | \`--good-wine-(error)/wine-1\` |
-| Warning | \`#8a5d1f\` | \`--good-ochre-(warning)/ochre-1\` |
+| Primary | \`#d946ef\` | Updated - pink/magenta |
+| Secondary | \`#d946ef\` | Updated - pink/magenta |
+| Error | \`#d946ef\` | Updated - pink/magenta |
+| Warning | \`#d946ef\` | Updated - pink/magenta |
 | Info | \`#2b4a60\` | \`--good-night-(info)/night-1\` |
 | Success | \`#637058\` | \`--good-sage-(success)/sage-1\` |
 | Font | Lato Bold 12px |
