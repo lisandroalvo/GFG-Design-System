@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import MailIcon from '@mui/icons-material/Mail';
 import { Badge } from './Badge';
 
 const meta: Meta<typeof Badge> = {
@@ -94,7 +94,7 @@ export const DotVariant: Story = {
       {(['primary','error','success','warning','info','secondary'] as const).map(color => (
         <div key={color} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
           <Badge variant="dot" color={color}>
-            <MailOutlineIcon sx={{ fontSize: 32, color: '#af9577' }} />
+            <MailIcon sx={{ fontSize: 32, color: '#af9577' }} />
           </Badge>
           <span style={{ fontSize: '11px', color: '#666', fontFamily: 'Roboto, sans-serif' }}>{color}</span>
         </div>
