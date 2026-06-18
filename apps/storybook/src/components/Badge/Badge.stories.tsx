@@ -15,7 +15,7 @@ const meta: Meta<typeof Badge> = {
 
 Built on **MUI Badge** with the GFG theme applied.
 
-**Last synced:** June 18, 2026 - Updated colors detected from Figma
+**Last synced:** June 18, 2026 at 6:41 PM - Updated colors detected from Figma
 
 ### Exact Figma color tokens
 | Color | Hex | Figma token |
