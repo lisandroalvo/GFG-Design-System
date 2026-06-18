@@ -7,9 +7,13 @@
  * from Figma and updates the local files.
  */
 
-const https = require('https');
-const fs = require('fs');
-const path = require('path');
+import https from 'https';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const FIGMA_TOKEN = process.env.FIGMA_TOKEN;
 const FIGMA_FILE_KEY = process.env.FIGMA_FILE_KEY || 'OjFchNAdeHiNH5W4wYLSGS';
