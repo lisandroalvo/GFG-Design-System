@@ -1,14 +1,34 @@
 # Figma Auto-Sync Setup
 
-This project includes automated syncing from Figma to keep your Storybook components up-to-date.
+This project includes **fully automated syncing** from Figma to Storybook with zero manual intervention.
 
 ## How It Works
 
 A GitHub Action runs daily (9 AM UTC) to:
-1. Fetch latest component properties from Figma
-2. Fetch latest design tokens (colors, typography, etc.)
-3. Update local files
-4. Create a Pull Request if changes are detected
+1. ✅ Fetch latest component properties from Figma
+2. ✅ Fetch latest design tokens (colors, typography, etc.)
+3. ✅ **Automatically generate/update React component code**
+4. ✅ Update component documentation
+5. ✅ Create a Pull Request if changes are detected
+6. ✅ **Auto-deploy to Storybook** when PR is merged (via Vercel)
+
+## Complete Automation Flow
+
+```
+Figma (Publish Changes)
+    ↓
+GitHub Action (Daily at 9 AM UTC)
+    ↓
+Sync JSON Data + Generate React Code
+    ↓
+Create Pull Request
+    ↓
+You Review & Merge
+    ↓
+Vercel Auto-Deploy
+    ↓
+Storybook Updated! 🎉
+```
 
 ## Setup Instructions
 
@@ -53,11 +73,18 @@ export FIGMA_TOKEN="your-figma-token-here"
 node scripts/sync-from-figma.js
 ```
 
-## What Gets Synced
+## What Gets Synced & Generated
 
+### Automatically Synced:
 - ✅ Component properties (variants, props)
 - ✅ Design tokens (colors, typography)
 - ✅ Component metadata
+
+### Automatically Generated:
+- ✅ React component documentation updates
+- ✅ Component story files (node IDs, variant counts)
+- ✅ Figma metadata JSON for all 133 components
+- ✅ Theme file validation
 
 ## Schedule
 
