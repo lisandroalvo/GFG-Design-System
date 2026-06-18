@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-import MailIcon from '@mui/icons-material/Mail';
+import EmailIcon from '@mui/icons-material/Email';
 import { Badge } from './Badge';
 
 const meta: Meta<typeof Badge> = {
@@ -32,10 +31,10 @@ Built on **MUI Badge** with the GFG theme applied.
 ### Developer usage
 \`\`\`tsx
 import Badge from '@mui/material/Badge';
-import MailIcon from '@mui/icons-material/Mail';
+import EmailIcon from '@mui/icons-material/Email';
 
 <Badge badgeContent={4} color="primary">
-  <MailIcon />
+  <EmailIcon />
 </Badge>
 \`\`\`
         `,
@@ -67,7 +66,7 @@ export const Playground: Story = {
   args: { color: 'primary', variant: 'standard', badgeContent: 4 },
   render: (args) => (
     <div style={{ padding: '20px' }}>
-      <Badge {...args}><ShoppingBagIcon sx={{ fontSize: 32, color: '#af9577' }} /></Badge>
+      <Badge {...args}><EmailIcon sx={{ fontSize: 32 }} /></Badge>
     </div>
   ),
 };
@@ -78,7 +77,7 @@ export const AllColors: Story = {
       {(['default','primary','secondary','error','warning','info','success'] as const).map(color => (
         <div key={color} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
           <Badge color={color} badgeContent={4}>
-            <ShoppingBagIcon sx={{ fontSize: 32, color: '#af9577' }} />
+            <EmailIcon sx={{ fontSize: 32 }} />
           </Badge>
           <span style={{ fontSize: '11px', color: '#666', fontFamily: 'Roboto, sans-serif' }}>{color}</span>
         </div>
@@ -94,7 +93,7 @@ export const DotVariant: Story = {
       {(['primary','error','success','warning','info','secondary'] as const).map(color => (
         <div key={color} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
           <Badge variant="dot" color={color}>
-            <MailIcon sx={{ fontSize: 32, color: '#af9577' }} />
+            <EmailIcon sx={{ fontSize: 32 }} />
           </Badge>
           <span style={{ fontSize: '11px', color: '#666', fontFamily: 'Roboto, sans-serif' }}>{color}</span>
         </div>
@@ -107,10 +106,10 @@ export const DotVariant: Story = {
 export const LargeValues: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '32px', padding: '20px', alignItems: 'center' }}>
-      <Badge badgeContent={1} color="primary"><ShoppingBagIcon sx={{ fontSize: 32 }} /></Badge>
-      <Badge badgeContent={12} color="error"><ShoppingBagIcon sx={{ fontSize: 32 }} /></Badge>
-      <Badge badgeContent={100} color="secondary" max={99}><ShoppingBagIcon sx={{ fontSize: 32 }} /></Badge>
-      <Badge badgeContent={0} color="primary" showZero><ShoppingBagIcon sx={{ fontSize: 32 }} /></Badge>
+      <Badge badgeContent={1} color="primary"><EmailIcon sx={{ fontSize: 32 }} /></Badge>
+      <Badge badgeContent={12} color="error"><EmailIcon sx={{ fontSize: 32 }} /></Badge>
+      <Badge badgeContent={100} color="secondary" max={99}><EmailIcon sx={{ fontSize: 32 }} /></Badge>
+      <Badge badgeContent={0} color="primary" showZero><EmailIcon sx={{ fontSize: 32 }} /></Badge>
     </div>
   ),
   parameters: { docs: { description: { story: 'Various badge content values — max prop caps at 99+, showZero forces display of 0' } } },
