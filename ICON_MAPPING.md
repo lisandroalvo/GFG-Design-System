@@ -6,7 +6,7 @@ This document maps icons from the **Icon MS3** library in Figma (Material Design
 
 | Figma Icon MS3 | MUI Component | Import Statement | Status |
 |----------------|---------------|------------------|--------|
-| `mail` | `Mail` | `import Mail from '@mui/icons-material/Mail';` | ✅ Verified |
+| `mail` | `MailOutlined` | `import MailOutlined from '@mui/icons-material/MailOutlined';` | ✅ Verified |
 | `home` | `Home` | `import Home from '@mui/icons-material/Home';` | 🔄 Pending |
 | `settings` | `Settings` | `import Settings from '@mui/icons-material/Settings';` | 🔄 Pending |
 | `person` | `Person` | `import Person from '@mui/icons-material/Person';` | 🔄 Pending |
@@ -29,11 +29,11 @@ Use this table to find the correct MUI component name.
 
 ### 3. Update Storybook
 ```tsx
-// Before (incorrect)
-import SomeIcon from '@mui/icons-material/SomeIcon';
-
-// After (correct)
+// Before (incorrect - filled icon)
 import Mail from '@mui/icons-material/Mail';
+
+// After (correct - outlined icon)
+import MailOutlined from '@mui/icons-material/MailOutlined';
 ```
 
 ## Icon Naming Convention
@@ -50,9 +50,11 @@ import Mail from '@mui/icons-material/Mail';
 
 ## Conversion Rules
 
-1. **Simple names:** `mail` → `Mail`
-2. **Snake case:** `arrow_back` → `ArrowBack`
-3. **Multiple words:** `more_vert` → `MoreVert`
+1. **Icon MS3 base names are OUTLINED:** `mail` → `MailOutlined` (not `Mail`)
+2. **Snake case:** `arrow_back` → `ArrowBackOutlined`
+3. **Multiple words:** `more_vert` → `MoreVertOutlined`
+
+**Important:** Icon MS3 icons in Figma are outlined by default. Always use the `*Outlined` variant in MUI.
 
 ## Automated Sync
 
