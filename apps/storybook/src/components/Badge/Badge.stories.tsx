@@ -14,18 +14,19 @@ const meta: Meta<typeof Badge> = {
 
 Built on **MUI Badge** with the GFG theme applied.
 
-**Last synced:** June 18, 2026 at 6:51 PM - Synced from Figma via MCP
+**Last synced:** June 20, 2026 — Figma REST API (node \`6587:47476\`)
 
 ### Exact Figma color tokens
 | Color | Hex | Figma token |
 |---|---|---|
-| Primary | \`#d946ef\` | Pink/magenta accent |
+| Primary | \`#af9577\` | \`--primary/dark-dust\` |
 | Secondary | \`#333333\` | \`--neutral/rodeo-black\` |
 | Error | \`#a34740\` | \`--good-wine-(error)/wine-1\` |
 | Warning | \`#8a5d1f\` | \`--good-ochre-(warning)/ochre-1\` |
 | Info | \`#2b4a60\` | \`--good-night-(info)/night-1\` |
 | Success | \`#637058\` | \`--good-sage-(success)/sage-1\` |
-| Font | Lato Bold 12px |
+| Font | Roboto Medium (weight 500) 12px |
+| Badge size | 20×20px |
 | Dot size | 8×8px |
 
 ### Developer usage
@@ -66,7 +67,7 @@ export const Playground: Story = {
   args: { color: 'primary', variant: 'standard', badgeContent: 4 },
   render: (args) => (
     <div style={{ padding: '20px' }}>
-      <Badge {...args}><MailOutlined sx={{ fontSize: 32 }} /></Badge>
+      <Badge {...args}><MailOutlined sx={{ fontSize: 32, color: '#af9577' }} /></Badge>
     </div>
   ),
 };
@@ -77,7 +78,7 @@ export const AllColors: Story = {
       {(['default','primary','secondary','error','warning','info','success'] as const).map(color => (
         <div key={color} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
           <Badge color={color} badgeContent={4}>
-            <MailOutlined sx={{ fontSize: 32 }} />
+            <MailOutlined sx={{ fontSize: 32, color: '#af9577' }} />
           </Badge>
           <span style={{ fontSize: '11px', color: '#666', fontFamily: 'Roboto, sans-serif' }}>{color}</span>
         </div>
@@ -93,7 +94,7 @@ export const DotVariant: Story = {
       {(['primary','error','success','warning','info','secondary'] as const).map(color => (
         <div key={color} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
           <Badge variant="dot" color={color}>
-            <MailOutlined sx={{ fontSize: 32 }} />
+            <MailOutlined sx={{ fontSize: 32, color: '#af9577' }} />
           </Badge>
           <span style={{ fontSize: '11px', color: '#666', fontFamily: 'Roboto, sans-serif' }}>{color}</span>
         </div>
@@ -106,10 +107,10 @@ export const DotVariant: Story = {
 export const LargeValues: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '32px', padding: '20px', alignItems: 'center' }}>
-      <Badge badgeContent={1} color="primary"><MailOutlined sx={{ fontSize: 32 }} /></Badge>
-      <Badge badgeContent={12} color="error"><MailOutlined sx={{ fontSize: 32 }} /></Badge>
-      <Badge badgeContent={100} color="secondary" max={99}><MailOutlined sx={{ fontSize: 32 }} /></Badge>
-      <Badge badgeContent={0} color="primary" showZero><MailOutlined sx={{ fontSize: 32 }} /></Badge>
+      <Badge badgeContent={1} color="primary"><MailOutlined sx={{ fontSize: 32, color: '#af9577' }} /></Badge>
+      <Badge badgeContent={12} color="error"><MailOutlined sx={{ fontSize: 32, color: '#af9577' }} /></Badge>
+      <Badge badgeContent={100} color="secondary" max={99}><MailOutlined sx={{ fontSize: 32, color: '#af9577' }} /></Badge>
+      <Badge badgeContent={0} color="primary" showZero><MailOutlined sx={{ fontSize: 32, color: '#af9577' }} /></Badge>
     </div>
   ),
   parameters: { docs: { description: { story: 'Various badge content values — max prop caps at 99+, showZero forces display of 0' } } },

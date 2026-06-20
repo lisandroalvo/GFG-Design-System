@@ -6,7 +6,7 @@
  *
  * ── Button color token map (verified from Figma nodes) ──────────────────────
  *  Color      Contained BG   Text       Outlined Border/Text  Figma token
- *  Primary    #af9577        #fbf9f7    #af9577               --primary/dark-dust / --primary/clear-dust
+ *  Primary    #af9577        #fbf9f7    #af9577               --primary/dark-dust (verified June 20, 2026)
  *  Secondary  #333333        #ffffff    #333333               --neutral/rodeo-black
  *  Error      #a34740        #fbf9f7    #a34740               --good-wine-(error)/wine-1
  *  Warning    #8a5d1f        #ffffff    #8a5d1f               --good-ochre-(warning)/ochre-1
@@ -24,13 +24,13 @@
 import { createTheme } from '@mui/material/styles';
 
 // ── GFG Semantic Colour Tokens (exact from Figma) ──────────────────────────
-// Updated June 18, 2026 at 6:51 PM - Synced from Figma via MCP
+// Updated June 20, 2026 - Synced from Figma REST API (node 6587:47476)
 const GFG = {
-  // Primary palette — Dust System (with pink accent)
-  primary:          '#d946ef',  // Pink/magenta from Figma
+  // Primary palette — Dust System (#af9577 dark-dust / #fbf9f7 clear-dust)
+  primary:          '#af9577',  // --primary/dark-dust (Badge, Button Primary bg in Figma)
   primaryText:      '#fbf9f7',  // --primary/clear-dust (text on primary bg)
-  primaryHover:     '#e879f9',  // Lighter pink for hover
-  primaryDark:      '#c026d3',  // Darker pink
+  primaryHover:     '#c4aa8f',  // Lighter dust for hover
+  primaryDark:      '#8c7560',  // Darker dust for active/pressed
 
   // Secondary — Neutral Rodeo Black
   secondary:        '#333333',  // --neutral/rodeo-black (reverted from Figma)
@@ -130,10 +130,10 @@ export const gfgTheme = createTheme({
 
         // ── Contained ────────────────────────────────────────────────────────
         containedPrimary: {
-          backgroundColor: GFG.primary,
+          backgroundColor: GFG.primary,       // #af9577 --primary/dark-dust
           color:           GFG.primaryText,
-          '&:hover':       { backgroundColor: GFG.primaryHover },
-          '&:active':      { backgroundColor: GFG.primaryDark },
+          '&:hover':       { backgroundColor: GFG.primaryHover },  // #c4aa8f
+          '&:active':      { backgroundColor: GFG.primaryDark },   // #8c7560
           '&.Mui-disabled':{ backgroundColor: `${GFG.primary}60`, color: GFG.primaryText },
         },
         containedSecondary: {
