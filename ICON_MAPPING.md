@@ -7,6 +7,10 @@ This document maps icons from the **Icon MS3** library in Figma (Material Design
 | Figma Icon MS3 | MUI Component | Import Statement | Status |
 |----------------|---------------|------------------|--------|
 | `mail` | `MailOutlined` | `import MailOutlined from '@mui/icons-material/MailOutlined';` | ✅ Verified |
+| `format_align_left` | `FormatAlignLeftOutlined` | `import FormatAlignLeftOutlined from '@mui/icons-material/FormatAlignLeftOutlined';` | ✅ Verified |
+| `format_align_center` | `FormatAlignCenterOutlined` | `import FormatAlignCenterOutlined from '@mui/icons-material/FormatAlignCenterOutlined';` | ✅ Verified |
+| `format_align_right` | `FormatAlignRightOutlined` | `import FormatAlignRightOutlined from '@mui/icons-material/FormatAlignRightOutlined';` | ✅ Verified |
+| `format_align_justify` | `FormatAlignJustifyOutlined` | `import FormatAlignJustifyOutlined from '@mui/icons-material/FormatAlignJustifyOutlined';` | ✅ Verified |
 | `home` | `Home` | `import Home from '@mui/icons-material/Home';` | 🔄 Pending |
 | `settings` | `Settings` | `import Settings from '@mui/icons-material/Settings';` | 🔄 Pending |
 | `person` | `Person` | `import Person from '@mui/icons-material/Person';` | 🔄 Pending |
