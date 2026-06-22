@@ -214,14 +214,17 @@ export const gfgTheme = createTheme({
       },
     },
 
+    // ── Badge ────────────────────────────────────────────────────────────────
+    // Exact values from Figma node 6587:47476, verified 2026-06-22
+    //   text node: Lato 12px / weight 400 / lh 14.4px / tracking 0
     MuiBadge: {
       styleOverrides: {
         badge: {
-          fontFamily:   '"Roboto", sans-serif',
-          fontWeight:   500,
+          fontFamily:   '"Lato", sans-serif',  // Figma: Lato (was Roboto)
+          fontWeight:   400,                    // Figma: 400 (was 500)
           fontSize:     '12px',
-          letterSpacing:'0.14px',
-          lineHeight:   '20px',
+          letterSpacing: 0,                     // Figma: 0 (was 0.14px)
+          lineHeight:   '14.4px',               // Figma: 14.4px (was 20px)
           minWidth:     '20px',
           height:       '20px',
           padding:      '0 6px',

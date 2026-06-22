@@ -14,7 +14,7 @@ const meta: Meta<typeof Badge> = {
 
 Built on **MUI Badge** with the GFG theme applied.
 
-**Last synced:** June 20, 2026 — Figma REST API (node \`6587:47476\`)
+**Last synced:** 2026-06-22 — Figma REST API (node \`6587:47476\`)
 
 ### Exact Figma color tokens
 | Color | Hex | Figma token |
@@ -25,7 +25,7 @@ Built on **MUI Badge** with the GFG theme applied.
 | Warning | \`#8a5d1f\` | \`--good-ochre-(warning)/ochre-1\` |
 | Info | \`#2b4a60\` | \`--good-night-(info)/night-1\` |
 | Success | \`#637058\` | \`--good-sage-(success)/sage-1\` |
-| Font | Roboto Medium (weight 500) 12px |
+| Font | Lato Regular (weight 400) 12px / lh 14.4px / tracking 0 |
 | Badge size | 20×20px |
 | Dot size | 8×8px |
 
