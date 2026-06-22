@@ -237,17 +237,197 @@ export const gfgTheme = createTheme({
       },
     },
 
+    // ── Alert ───────────────────────────────────────────────────────────────
+    // Exact values from Figma node 6595:48211 (12 variants), verified 2026-06-22
+    //   Title:       Lato 16px / weight 400 / lh 19.2px / tracking 0
+    //   Description: Lato 13px / weight 400 / lh 15.6px / tracking 0
     MuiAlert: {
       styleOverrides: {
-        root:    { borderRadius: '4px', padding: '6px 16px', fontFamily: '"Roboto", sans-serif' },
-        message: { fontSize: '14px', lineHeight: '1.43', letterSpacing: '0.17px', padding: '8px 0' },
-        icon:    { paddingTop: '7px' },
+        root: {
+          borderRadius: '4px',
+          padding:      '6px 16px',
+          fontFamily:   '"Lato", sans-serif',
+        },
+        message: {
+          fontFamily:    '"Lato", sans-serif',
+          fontSize:      '13px',       // Figma: Description 13px
+          fontWeight:    400,
+          lineHeight:    '15.6px',     // Figma: lh 15.6px
+          letterSpacing: 0,            // Figma: tracking 0
+          padding:       '8px 0',
+        },
+        // MuiAlert composes title via `.MuiAlertTitle-root` — override separately
+        icon: { paddingTop: '7px' },
+      },
+    },
+    MuiAlertTitle: {
+      styleOverrides: {
+        root: {
+          fontFamily:    '"Lato", sans-serif',
+          fontSize:      '16px',       // Figma: Title 16px
+          fontWeight:    400,          // Figma: weight 400
+          lineHeight:    '19.2px',     // Figma: lh 19.2px
+          letterSpacing: 0,            // Figma: tracking 0
+          marginBottom:  '2px',
+        },
       },
     },
 
+    // ── TextField / Input Fields ────────────────────────────────────────────
+    // Exact values from Figma node 6570:48313 (60 variants), verified 2026-06-21
+    //
+    // Figma token map:
+    //   Label colour (default/hover/focus) → #af9577  (--color-dark-dust)
+    //   Label colour (error)               → #a34740  (--color-good-wine)
+    //   Label colour (disabled)            → #e0e0e0  (--color-smoke)
+    //   Outlined border (enabled)          → #6d6d6d  (--color-graphite)   w=1
+    //   Outlined border (hover)            → #e0e0e0  (--color-smoke)      w=1
+    //   Outlined border (focused)          → #af9577  (--color-dark-dust)  w=2
+    //   Outlined border (error)            → #a34740  (--color-good-wine)  w=1
+    //   Outlined border (disabled)         → #6d6d6d  (--color-graphite)   w=1
+    //   Underline (Standard/Filled, enabled/disabled) → #c8b298 (--color-rodeo-dust) w=1
+    //   Underline (Standard/Filled, hover/focus)      → #af9577 (--color-dark-dust)  w=2
+    //   Underline (Standard/Filled, error)            → #a34740 (--color-good-wine)  w=2
+    //   Helper text colour (default) → #af9577
+    //   Helper text colour (error)   → #a34740
+    //   Helper text colour (disabled)→ #e0e0e0
+    //   Value text                   → #333333 (--color-rodeo-black)
+    //   Placeholder text             → rgba(0,0,0,0.38)
+    //   Value text (disabled)        → #e0e0e0
+    //   Outlined radius              → 4px
+    //   Filled bg                    → #ffffff, radius 4 4 0 0
+    //   Medium h=51px (padding-y 16px x-14px)  Small h=35px (padding-y 8px x-14px)
+    //   Label font: 11px/700 Lato   Value font: 16px/400 Lato   Helper: 12px/400 Lato
     MuiTextField: {
       styleOverrides: {
-        root: { fontFamily: '"Roboto", sans-serif' },
+        root: { fontFamily: '"Lato", sans-serif' },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          fontFamily:  '"Lato", sans-serif',
+          fontSize:    '16px',
+          fontWeight:  400,
+          color:       GFG.primary,           // #af9577 --color-dark-dust
+          '&.Mui-focused':   { color: GFG.primary },
+          '&.Mui-error':     { color: GFG.error },
+          '&.Mui-disabled':  { color: GFG.secondary === '#333333' ? '#e0e0e0' : '#e0e0e0' },
+        },
+        shrink: {
+          fontSize:    '11px',
+          fontWeight:  700,
+          letterSpacing: '0.5px',
+          textTransform: 'uppercase',
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          fontFamily:  '"Lato", sans-serif',
+          fontSize:    '16px',
+          fontWeight:  400,
+          borderRadius: '4px',
+          color:        '#333333',
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#6d6d6d',   // Figma Enabled
+            borderWidth: '1px',
+          },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#e0e0e0',   // Figma Hovered
+            borderWidth: '1px',
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: GFG.primary, // #af9577 Figma Focused
+            borderWidth: '2px',
+          },
+          '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+            borderColor: GFG.error,   // #a34740 Figma Error
+            borderWidth: '1px',
+          },
+          '&.Mui-disabled .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#6d6d6d',   // Figma Disabled
+            borderWidth: '1px',
+          },
+          '&.Mui-disabled': { color: '#e0e0e0' },
+        },
+        input: {
+          fontFamily: '"Lato", sans-serif',
+          fontSize:   '16px',
+          fontWeight: 400,
+          color:      '#333333',
+          '&::placeholder': { color: 'rgba(0,0,0,0.38)', opacity: 1 },
+          '&.Mui-disabled': { WebkitTextFillColor: '#e0e0e0' },
+        },
+        sizeSmall: {
+          paddingTop: '8px', paddingBottom: '8px',
+          paddingLeft: '14px', paddingRight: '14px',
+        },
+      },
+    },
+    MuiFilledInput: {
+      styleOverrides: {
+        root: {
+          fontFamily:  '"Lato", sans-serif',
+          fontSize:    '16px',
+          fontWeight:  400,
+          color:       '#333333',
+          backgroundColor: '#ffffff',
+          borderRadius: '4px 4px 0 0',
+          '&:hover':            { backgroundColor: '#ffffff' },
+          '&.Mui-focused':      { backgroundColor: '#ffffff' },
+          '&.Mui-disabled':     { backgroundColor: '#ffffff', color: '#e0e0e0' },
+          '&::before': { borderBottomColor: '#c8b298', borderBottomWidth: '1px' }, // enabled/disabled
+          '&:hover:not(.Mui-disabled)::before': { borderBottomColor: GFG.primary, borderBottomWidth: '2px' },
+          '&::after':           { borderBottomColor: GFG.primary, borderBottomWidth: '2px' },
+          '&.Mui-error::before':{ borderBottomColor: GFG.error, borderBottomWidth: '2px' },
+          '&.Mui-error::after': { borderBottomColor: GFG.error, borderBottomWidth: '2px' },
+          '&.Mui-disabled::before': { borderBottomColor: '#c8b298', borderBottomWidth: '1px', borderBottomStyle: 'solid' },
+        },
+        input: {
+          fontFamily: '"Lato", sans-serif',
+          fontSize:   '16px',
+          fontWeight: 400,
+          '&::placeholder': { color: 'rgba(0,0,0,0.38)', opacity: 1 },
+          '&.Mui-disabled': { WebkitTextFillColor: '#e0e0e0' },
+        },
+      },
+    },
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          fontFamily:  '"Lato", sans-serif',
+          fontSize:    '16px',
+          fontWeight:  400,
+          color:       '#333333',
+          '&::before': { borderBottomColor: '#c8b298', borderBottomWidth: '1px' },
+          '&:hover:not(.Mui-disabled)::before': { borderBottomColor: GFG.primary, borderBottomWidth: '2px' },
+          '&::after':           { borderBottomColor: GFG.primary, borderBottomWidth: '2px' },
+          '&.Mui-error::before':{ borderBottomColor: GFG.error, borderBottomWidth: '2px' },
+          '&.Mui-error::after': { borderBottomColor: GFG.error, borderBottomWidth: '2px' },
+          '&.Mui-disabled::before': { borderBottomColor: '#c8b298', borderBottomWidth: '1px', borderBottomStyle: 'solid' },
+          '&.Mui-disabled': { color: '#e0e0e0' },
+        },
+        input: {
+          fontFamily: '"Lato", sans-serif',
+          fontSize:   '16px',
+          fontWeight: 400,
+          '&::placeholder': { color: 'rgba(0,0,0,0.38)', opacity: 1 },
+          '&.Mui-disabled': { WebkitTextFillColor: '#e0e0e0' },
+        },
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          fontFamily:  '"Lato", sans-serif',
+          fontSize:    '12px',
+          fontWeight:  400,
+          color:       GFG.primary,   // #af9577
+          '&.Mui-error':    { color: GFG.error },    // #a34740
+          '&.Mui-disabled': { color: '#e0e0e0' },
+        },
       },
     },
 

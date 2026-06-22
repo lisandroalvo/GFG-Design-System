@@ -74,13 +74,15 @@ export function TextField({
       value={value}
       onChange={onChange}
       fullWidth={fullWidth}
-      InputProps={{
-        startAdornment: startAdornment
-          ? <InputAdornment position="start">{startAdornment}</InputAdornment>
-          : undefined,
-        endAdornment: endAdornment
-          ? <InputAdornment position="end">{endAdornment}</InputAdornment>
-          : undefined,
+      slotProps={{
+        input: {
+          startAdornment: startAdornment
+            ? <InputAdornment position="start">{startAdornment}</InputAdornment>
+            : undefined,
+          endAdornment: endAdornment
+            ? <InputAdornment position="end">{endAdornment}</InputAdornment>
+            : undefined,
+        },
       }}
     />
   );
