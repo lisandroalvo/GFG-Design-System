@@ -118,7 +118,7 @@ import { TextField } from './TextField';
     },
     helperText: {
       control: 'text',
-      description: 'Figma: Helper boolean → helper text string',
+      description: 'Figma: Helper? = boolean (default False/off) — provide a string to enable',
     },
     placeholder: {
       control: 'text',
@@ -141,7 +141,7 @@ export const Playground: Story = {
     variant: 'outlined',
     size: 'medium',
     label: 'Label',
-    helperText: 'Helper text',
+    helperText: undefined,   // Figma: Helper? = False (off by default)
     placeholder: '',
     error: false,
     disabled: false,
