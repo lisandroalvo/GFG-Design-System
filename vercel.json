@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd apps/storybook && npm ci && npm run build-storybook",
+  "outputDirectory": "apps/storybook/storybook-static",
+  "installCommand": "echo 'skip root install'"
+}
