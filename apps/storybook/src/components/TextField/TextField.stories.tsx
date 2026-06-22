@@ -4,12 +4,12 @@ import SearchOutlined from '@mui/icons-material/SearchOutlined';
 import VisibilityOutlined from '@mui/icons-material/VisibilityOutlined';
 import { TextField } from './TextField';
 
-// ── Figma source: OjFchNAdeHiNH5W4wYLSGS · node 6570:48313 · 60 variants ───
-// Verified via Figma REST API 2026-06-21
+// ── Figma source: OjFchNAdeHiNH5W4wYLSGS · node 16350:35724 · 60 variants ──
+// Verified via Figma REST API 2026-06-22
 //
 // Figma property axes:
 //   Variant    → Standard | Filled | Outlined
-//   Size       → Medium (h=51px) | Small (h=35px)
+//   Size       → Medium | Small
 //   State      → Enabled | Hovered | Focused | Disabled | Error
 //   Has Value  → True | False
 //   Booleans   → Helper, Adorn.Start, Adorn.End, Value, Placeholder, Type:number
@@ -24,26 +24,30 @@ const meta: Meta<typeof TextField> = {
     docs: {
       description: {
         component: `
-**Figma source:** [Open in Figma](https://www.figma.com/file/OjFchNAdeHiNH5W4wYLSGS) · Node \`6570:48313\` · 60 variants
+**Figma source:** [Open in Figma](https://www.figma.com/design/OjFchNAdeHiNH5W4wYLSGS) · Node \`16350:35724\` · 60 variants
 
 Built on **MUI TextField** with exact GFG theme tokens applied.
 
-**Last synced:** 2026-06-21 — Figma REST API
+**Last synced:** 2026-06-22 — Figma REST API
 
 ### Figma Variants
 | Axis | Options |
 |---|---|
 | Variant | Standard · Filled · Outlined |
-| Size | Medium (51px) · Small (35px) |
+| Size | Medium · Small |
 | State | Enabled · Hovered · Focused · Disabled · Error |
 | Has Value | True · False |
 
 ### Exact Figma color tokens
 | Element | State | Color | Figma token |
 |---|---|---|---|
-| Label / Helper | Default, Hover, Focus | \`#af9577\` | \`--color-dark-dust\` |
-| Label / Helper | Error | \`#a34740\` | \`--color-good-wine\` |
-| Label / Helper | Disabled | \`#e0e0e0\` | \`--color-smoke\` |
+| Label (not-shrunk) | All states | \`#6d6d6d\` | \`--color-graphite\` |
+| Label (floating/shrunk) | Focused | \`#af9577\` | \`--color-dark-dust\` |
+| Label (floating/shrunk) | Error | \`#a34740\` | \`--color-good-wine\` |
+| Label (any) | Disabled | \`#e0e0e0\` | \`--color-smoke\` |
+| Helper text | Default | \`#af9577\` | \`--color-dark-dust\` |
+| Helper text | Error | \`#a34740\` | \`--color-good-wine\` |
+| Helper text | Disabled | \`#e0e0e0\` | \`--color-smoke\` |
 | Outlined border | Enabled | \`#6d6d6d\` 1px | \`--color-graphite\` |
 | Outlined border | Hovered | \`#e0e0e0\` 1px | \`--color-smoke\` |
 | Outlined border | Focused | \`#af9577\` 2px | \`--color-dark-dust\` |
@@ -57,11 +61,13 @@ Built on **MUI TextField** with exact GFG theme tokens applied.
 | Filled background | All states | \`#ffffff\` | — |
 
 ### Typography
-| Element | Font | Size | Weight |
-|---|---|---|---|
-| Label (floating) | Lato | 11px | 700 |
-| Value / Placeholder | Lato | 16px | 400 |
-| Helper text | Lato | 12px | 400 |
+| Element | Font | Size | Weight | Line-height | Letter-spacing |
+|---|---|---|---|---|---|
+| Label (not-shrunk) — Outlined/Standard | Lato | 16px | 400 | 19.2px | 0 |
+| Label (not-shrunk) — Filled | Roboto | 16px | 400 | 24px | 0.15px |
+| Label (floating/shrunk) — all variants | Lato | 11px | 700 | 13.2px | 1.98px |
+| Value / Placeholder | Lato | 16px | 400 | 19.2px | 0 |
+| Helper text — all variants | Roboto | 12px | 400 | 19.9px | 0.40px |
 
 ### Developer usage
 \`\`\`tsx
@@ -96,7 +102,7 @@ import { TextField } from './TextField';
     size: {
       control: 'select',
       options: ['medium', 'small'],
-      description: 'Figma: Size — Medium (51px) | Small (35px)',
+      description: 'Figma: Size — Medium | Small (heights differ per variant)',
     },
     label: {
       control: 'text',

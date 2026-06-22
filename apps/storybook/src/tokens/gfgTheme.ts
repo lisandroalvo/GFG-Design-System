@@ -277,12 +277,13 @@ export const gfgTheme = createTheme({
     },
 
     // ── TextField / Input Fields ────────────────────────────────────────────
-    // Exact values from Figma node 6570:48313 (60 variants), verified 2026-06-21
+    // Exact values from Figma node 16350:35724 (60 variants), verified 2026-06-22
     //
     // Figma token map:
-    //   Label colour (default/hover/focus) → #af9577  (--color-dark-dust)
-    //   Label colour (error)               → #a34740  (--color-good-wine)
-    //   Label colour (disabled)            → #e0e0e0  (--color-smoke)
+    //   Label colour (not-shrunk, all states except focused) → #6d6d6d (--color-graphite)
+    //   Label colour (shrunk/floating, focused)  → #af9577  (--color-dark-dust)
+    //   Label colour (shrunk, error)             → #a34740  (--color-good-wine)
+    //   Label colour (shrunk/not, disabled)      → #e0e0e0  (--color-smoke)
     //   Outlined border (enabled)          → #6d6d6d  (--color-graphite)   w=1
     //   Outlined border (hover)            → #e0e0e0  (--color-smoke)      w=1
     //   Outlined border (focused)          → #af9577  (--color-dark-dust)  w=2
@@ -299,8 +300,11 @@ export const gfgTheme = createTheme({
     //   Value text (disabled)        → #e0e0e0
     //   Outlined radius              → 4px
     //   Filled bg                    → #ffffff, radius 4 4 0 0
-    //   Medium h=51px (padding-y 16px x-14px)  Small h=35px (padding-y 8px x-14px)
-    //   Label font: 11px/700 Lato   Value font: 16px/400 Lato   Helper: 12px/400 Lato
+    //   Outlined Medium h=51px · Filled Medium h=56px · Standard Medium h=41px
+    //   Outlined Small  h=35px · Filled Small  h=48px · Standard Small  h=41px
+    //   Label (not-shrunk): Lato 16px/400 (Outlined/Standard) · Roboto 16px/400 lh=24 ls=0.15 (Filled)
+    //   Label (shrunk/floating): Lato 11px/700/ls=1.98px (all variants)
+    //   Value font: 16px/400 Lato · Helper: Roboto 12px/400 lh=19.9px ls=0.40px
     MuiTextField: {
       styleOverrides: {
         root: { fontFamily: '"Lato", sans-serif' },
@@ -312,15 +316,15 @@ export const gfgTheme = createTheme({
           fontFamily:  '"Lato", sans-serif',
           fontSize:    '16px',
           fontWeight:  400,
-          color:       GFG.primary,           // #af9577 --color-dark-dust
-          '&.Mui-focused':   { color: GFG.primary },
-          '&.Mui-error':     { color: GFG.error },
-          '&.Mui-disabled':  { color: GFG.secondary === '#333333' ? '#e0e0e0' : '#e0e0e0' },
+          color:       '#6d6d6d',              // Figma: #6d6d6d --color-graphite (not-shrunk)
+          '&.Mui-focused':   { color: GFG.primary },   // #af9577 when shrunk+focused
+          '&.Mui-error':     { color: GFG.error },     // #a34740
+          '&.Mui-disabled':  { color: '#e0e0e0' },
         },
         shrink: {
-          fontSize:    '11px',
-          fontWeight:  700,
-          letterSpacing: '0.5px',
+          fontSize:      '11px',
+          fontWeight:    700,
+          letterSpacing: '1.98px',             // Figma: ls=1.98px (was 0.5px — wrong)
           textTransform: 'uppercase',
         },
       },
@@ -424,10 +428,12 @@ export const gfgTheme = createTheme({
     MuiFormHelperText: {
       styleOverrides: {
         root: {
-          fontFamily:  '"Lato", sans-serif',
-          fontSize:    '12px',
-          fontWeight:  400,
-          color:       GFG.primary,   // #af9577
+          fontFamily:    '"Roboto", sans-serif',  // Figma: Roboto (not Lato)
+          fontSize:      '12px',
+          fontWeight:    400,
+          lineHeight:    '19.92px',               // Figma: lh=19.9px
+          letterSpacing: '0.4px',                 // Figma: ls=0.40px (was 0 — wrong)
+          color:         GFG.primary,             // #af9577
           '&.Mui-error':    { color: GFG.error },    // #a34740
           '&.Mui-disabled': { color: '#e0e0e0' },
         },
