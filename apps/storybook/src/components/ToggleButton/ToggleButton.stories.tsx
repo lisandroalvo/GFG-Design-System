@@ -15,24 +15,33 @@ const meta: Meta<typeof ToggleButton> = {
     docs: {
       description: {
         component: `
-# Toggle Button
+**Figma source:** [Open in Figma](https://www.figma.com/design/OjFchNAdeHiNH5W4wYLSGS) · Node \`6601:50950\` (component set \`16354:5851\`) · 30 variants
 
-A toggle button allows users to select from a group of options. Based on Material Design specifications.
+Built on **MUI ToggleButton** with exact GFG theme tokens applied.
 
-**Synced from Figma:** Node 16354:3941
+**Last synced:** 2026-06-23 — Figma REST API
 
-### Variants
-- **Size:** Small (40px), Medium (48px), Large (56px)
-- **State:** Enabled, Hovered, Focused, Pressed, Disabled
-- **Selected:** True/False
+### Figma Variants
+| Axis | Options |
+|---|---|
+| Size | Large (56px) · Medium (48px) · Small (40px) |
+| State | Enabled · Hovered · Focused · Pressed · Disabled |
+| Selected | True · False |
+| Icon? | Boolean (default True) |
+| Text? | Boolean (default False) |
 
-### Colors (from Figma)
-| Color | Hex | Usage |
-|-------|-----|-------|
-| Selected BG | Brown/Tan | Active button background |
-| Unselected | Outlined | Inactive button border |
+### Exact Figma color tokens
+| Element | State | Color | Figma token |
+|---|---|---|---|
+| Border | All | \`#c8b298\` 1px | \`--color-rodeo-dust\` |
+| Selected background | Selected | \`#af9577\` | \`--primary/dark-dust\` |
+| Icon | Unselected | \`#6d6d6d\` | \`--color-graphite\` |
+| Icon | Selected | \`#ffffff\` | — |
+| Icon | Disabled | \`#f5f5f5\` | \`--color-smoke\` |
+| Hover fill | Hovered | \`rgba(0,0,0,0.04)\` | — |
+| Focus ripple | Focused | \`#f4efea\` | \`--primary/clear-dust\` |
 
-### Icons (Icon MS3)
+### Icons (MS3 Outlined convention)
 - \`format_align_left\` → \`FormatAlignLeftOutlined\`
 - \`format_align_center\` → \`FormatAlignCenterOutlined\`
 - \`format_align_right\` → \`FormatAlignRightOutlined\`
