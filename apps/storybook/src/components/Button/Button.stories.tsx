@@ -1,8 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import StarIcon from '@mui/icons-material/Star';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import DeleteIcon from '@mui/icons-material/Delete';
-import SendIcon from '@mui/icons-material/Send';
+// MS3 icon library — Figma uses *Filled naming → MUI base name (no suffix)
+// Default Start Icon: ChevronLeftFilled  [7475:54235] → ChevronLeft
+// Default End Icon:   ChevronRightFilled [7475:54246] → ChevronRight
+import ChevronLeft from '@mui/icons-material/ChevronLeft';
+import ChevronRight from '@mui/icons-material/ChevronRight';
+import ArrowForward from '@mui/icons-material/ArrowForward';   // ArrowForwardFilled [7475:54125]
+import Delete from '@mui/icons-material/Delete';                // DeleteFilled       [9602:112393]
+import Send from '@mui/icons-material/Send';                    // SendFilled         [9602:112395]
+import Add from '@mui/icons-material/Add';                      // AddFilled          [7475:65638]
 import { Button } from './Button';
 
 const meta: Meta<typeof Button> = {
@@ -38,11 +43,26 @@ Built on **MUI Button** with the GFG theme applied. 270 variants in Figma.
 | Height Medium | 34px |
 | Height Small | 24px |
 
+### Icon convention — MS3 library
+Figma uses the **MS3 icon library** with \`*Filled\` naming (e.g. \`ChevronLeftFilled\`).
+MUI equivalent: strip the \`Filled\` suffix and import from \`@mui/icons-material\`.
+
+| Figma MS3 icon | MUI import | Usage |
+|---|---|---|
+| \`ChevronLeftFilled\` | \`ChevronLeft\` | Default Start Icon |
+| \`ChevronRightFilled\` | \`ChevronRight\` | Default End Icon |
+| \`ArrowForwardFilled\` | \`ArrowForward\` | Navigation forward |
+| \`AddFilled\` | \`Add\` | Add / create |
+| \`DeleteFilled\` | \`Delete\` | Destructive actions |
+| \`SendFilled\` | \`Send\` | Submit / send |
+
 ### Developer usage
 \`\`\`tsx
 import Button from '@mui/material/Button';
-// Wrap app with <ThemeProvider theme={gfgTheme}>
-<Button variant="contained" color="primary" size="medium">
+import ChevronLeft from '@mui/icons-material/ChevronLeft';
+import ChevronRight from '@mui/icons-material/ChevronRight';
+
+<Button variant="contained" color="primary" startIcon={<ChevronLeft />}>
   Button
 </Button>
 \`\`\`
@@ -136,17 +156,20 @@ export const Sizes: Story = {
 };
 
 // ── With Icons ─────────────────────────────────────────────────────────────
+// Figma default icons: ChevronLeftFilled (start) · ChevronRightFilled (end)
+// All from MS3 icon library — *Filled naming → MUI base name
 export const WithIcons: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
-      <Button startIcon={<StarIcon />}>Start Icon</Button>
-      <Button endIcon={<ArrowForwardIcon />}>End Icon</Button>
-      <Button startIcon={<SendIcon />} endIcon={<ArrowForwardIcon />}>Both Icons</Button>
-      <Button variant="outlined" startIcon={<DeleteIcon />} color="error">Delete</Button>
+      <Button startIcon={<ChevronLeft />}>Start Icon</Button>
+      <Button endIcon={<ChevronRight />}>End Icon</Button>
+      <Button startIcon={<Send />} endIcon={<ArrowForward />}>Both Icons</Button>
+      <Button variant="outlined" startIcon={<Delete />} color="error">Delete</Button>
+      <Button startIcon={<Add />} color="secondary">Add</Button>
     </div>
   ),
   parameters: {
-    docs: { description: { story: 'Figma: "Start Icon" and "End Icon" boolean properties' } },
+    docs: { description: { story: 'Figma: "Start Icon?=True" / "End Icon?=True" — MS3 icons, default ChevronLeftFilled / ChevronRightFilled. MUI convention: *Filled → base name (ChevronLeft, ChevronRight, etc.)' } },
   },
 };
 
