@@ -440,60 +440,6 @@ export const gfgTheme = createTheme({
       },
     },
 
-    // ── ToggleButton ────────────────────────────────────────────────────────
-    // Exact values from Figma node 6601:50950 (component set 16354:5851), verified 2026-06-23
-    //   30 variants: Size(L/M/S) × State(Enabled/Hovered/Focused/Pressed/Disabled) × Selected(T/F)
-    //   Border:          #c8b298 1px  (--color-rodeo-dust)
-    //   Selected bg:     #af9577      (--primary/dark-dust)
-    //   Icon unselected: #6d6d6d      (--color-graphite)
-    //   Icon selected:   #ffffff
-    //   Icon disabled:   #f5f5f5
-    //   Hover fill:      rgba(0,0,0,0.04)
-    //   Focus ripple:    #f4efea      (--primary/clear-dust)
-    //   Large=56px  Medium=48px  Small=40px
-    MuiToggleButton: {
-      styleOverrides: {
-        root: {
-          border:     '1px solid #c8b298',    // Figma: rodeo-dust (not MUI default)
-          color:      '#6d6d6d',              // Figma: icon unselected = graphite
-          '&:hover': {
-            backgroundColor: 'rgba(0,0,0,0.04)',  // Figma: hover fill
-          },
-          '&.Mui-selected': {
-            backgroundColor: GFG.primary,    // Figma: #af9577 selected bg
-            color:           '#ffffff',       // Figma: icon selected = white
-            borderColor:     '#c8b298',
-            '&:hover': {
-              backgroundColor: `${GFG.primary}CC`, // slight darken on hover
-            },
-          },
-          '&.Mui-disabled': {
-            color:       '#f5f5f5',           // Figma: disabled icon color
-            borderColor: '#c8b298',
-          },
-          '&.Mui-focusVisible': {
-            backgroundColor: '#f4efea',      // Figma: focus ripple = clear-dust
-          },
-          // Sizes
-          '&.MuiToggleButton-sizeLarge':  { width: '56px', height: '56px', padding: 0 },
-          '&.MuiToggleButton-sizeMedium': { width: '48px', height: '48px', padding: 0 },
-          '&.MuiToggleButton-sizeSmall':  { width: '40px', height: '40px', padding: 0 },
-        },
-      },
-    },
-    MuiToggleButtonGroup: {
-      styleOverrides: {
-        root: {
-          '& .MuiToggleButtonGroup-grouped': {
-            borderColor: '#c8b298',
-            '&:not(:first-of-type)': {
-              borderLeftColor: '#c8b298',
-            },
-          },
-        },
-      },
-    },
-
     MuiDialog: {
       styleOverrides: {
         paper: {
