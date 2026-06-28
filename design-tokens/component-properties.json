@@ -8771,24 +8771,8 @@
     },
     "variants": [
       {
-        "name": "Dense=False, Disabled Gutters=False, State=Enabled",
-        "nodeId": "6591:48892"
-      },
-      {
         "name": "Dense=False, Disabled Gutters=True, State=Enabled",
         "nodeId": "7313:41984"
-      },
-      {
-        "name": "Dense=False, Disabled Gutters=False, State=Hovered",
-        "nodeId": "6730:43067"
-      },
-      {
-        "name": "Dense=False, Disabled Gutters=False, State=Focused",
-        "nodeId": "11076:152345"
-      },
-      {
-        "name": "Dense=False, Disabled Gutters=False, State=Pressed",
-        "nodeId": "1484:135349"
       },
       {
         "name": "Dense=False, Disabled Gutters=True, State=Hovered",
@@ -8803,14 +8787,6 @@
         "nodeId": "1484:135358"
       },
       {
-        "name": "Dense=False, Disabled Gutters=False, State=Selected",
-        "nodeId": "6730:44043"
-      },
-      {
-        "name": "Dense=False, Disabled Gutters=False, State=Disabled",
-        "nodeId": "7320:45947"
-      },
-      {
         "name": "Dense=False, Disabled Gutters=True, State=Selected",
         "nodeId": "7313:41992"
       },
@@ -8819,24 +8795,8 @@
         "nodeId": "7320:45955"
       },
       {
-        "name": "Dense=True, Disabled Gutters=False, State=Enabled",
-        "nodeId": "6591:48905"
-      },
-      {
         "name": "Dense=True, Disabled Gutters=True, State=Enabled",
         "nodeId": "7313:42017"
-      },
-      {
-        "name": "Dense=True, Disabled Gutters=False, State=Hovered",
-        "nodeId": "6730:43081"
-      },
-      {
-        "name": "Dense=True, Disabled Gutters=False, State=Focused",
-        "nodeId": "11076:152365"
-      },
-      {
-        "name": "Dense=True, Disabled Gutters=False, State=Pressed",
-        "nodeId": "1484:135367"
       },
       {
         "name": "Dense=True, Disabled Gutters=True, State=Hovered",
@@ -8849,14 +8809,6 @@
       {
         "name": "Dense=True, Disabled Gutters=True, State=Pressed",
         "nodeId": "1484:135376"
-      },
-      {
-        "name": "Dense=True, Disabled Gutters=False, State=Selected",
-        "nodeId": "6730:44057"
-      },
-      {
-        "name": "Dense=True, Disabled Gutters=False, State=Disabled",
-        "nodeId": "7320:45991"
       },
       {
         "name": "Dense=True, Disabled Gutters=True, State=Selected",
@@ -10830,9 +10782,7 @@
       "undefined": {
         "type": "VARIANT",
         "values": [
-          "Enabled",
-          "Hovered",
-          "Focused"
+          "Enabled"
         ],
         "default": "Enabled"
       }
@@ -10861,38 +10811,6 @@
       {
         "name": "Color=Inherit, Underline=None, State=Enabled",
         "nodeId": "16430:29509"
-      },
-      {
-        "name": "Color=Primary, Underline=Always, State=Hovered",
-        "nodeId": "16430:29511"
-      },
-      {
-        "name": "Color=Inherit, Underline=Always, State=Hovered",
-        "nodeId": "16430:29515"
-      },
-      {
-        "name": "Color=Primary, Underline=Hover, State=Hovered",
-        "nodeId": "16430:29519"
-      },
-      {
-        "name": "Color=Inherit, Underline=Hover, State=Hovered",
-        "nodeId": "16430:29523"
-      },
-      {
-        "name": "Color=Primary, Underline=None, State=Hovered",
-        "nodeId": "16430:29527"
-      },
-      {
-        "name": "Color=Primary, Underline=None, State=Focused",
-        "nodeId": "16430:29529"
-      },
-      {
-        "name": "Color=Inherit, Underline=None, State=Hovered",
-        "nodeId": "16430:29531"
-      },
-      {
-        "name": "Color=Inherit, Underline=None, State=Focused",
-        "nodeId": "16430:29533"
       }
     ]
   },
