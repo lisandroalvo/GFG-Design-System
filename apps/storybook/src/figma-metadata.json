@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-18T09:41:18.078Z",
+  "generatedAt": "2026-06-29T13:11:33.638Z",
   "totalComponents": 133,
   "components": [
     {
@@ -686,7 +686,7 @@
     {
       "name": "<ListItem>",
       "nodeId": "6591:48882",
-      "variantCount": 24,
+      "variantCount": 12,
       "props": {
         "undefined": {
           "type": "VARIANT",
@@ -1054,14 +1054,12 @@
     {
       "name": "<Link>",
       "nodeId": "16430:29494",
-      "variantCount": 14,
+      "variantCount": 6,
       "props": {
         "undefined": {
           "type": "VARIANT",
           "values": [
-            "Enabled",
-            "Hovered",
-            "Focused"
+            "Enabled"
           ],
           "default": "Enabled"
         }
