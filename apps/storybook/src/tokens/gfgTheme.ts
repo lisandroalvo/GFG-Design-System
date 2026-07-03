@@ -30,7 +30,7 @@ const GFG = {
   // Primary palette — Dust System (#af9577 dark-dust / #fbf9f7 clear-dust)
   primary:          '#af9577',  // --primary/dark-dust (Badge, Button Primary bg in Figma)
   primaryText:      '#fbf9f7',  // --primary/clear-dust (text on primary bg)
-  primaryHover:     '#c4aa8f',  // Lighter dust for hover
+  primaryHover:     '#c8b298',  // Figma hover fill (verified 2026-07-03 via REST API)
   primaryDark:      '#8c7560',  // Darker dust for active/pressed
 
   // Secondary — Neutral Rodeo Black
@@ -54,8 +54,29 @@ const GFG = {
   successText:      '#fbf9f7',  // --primary/clear-dust
 } as const;
 
-// Helper: hover bg for outlined/text buttons (8% tint of main color)
-const hoverBg = (hex: string) => `${hex}14`; // 14 hex = ~8% opacity
+// Hover bg values — exact fills from Figma REST API (6543:36744), 2026-07-03
+// Contained: lighter tint of main color (verified per variant)
+// Outlined/Text: explicit Figma fills (NOT opacity tints)
+const BTN_HOVER = {
+  containedPrimary:   '#c8b298',
+  containedSecondary: '#6d6d6d',
+  containedError:     '#a34740', // Figma keeps same color on hover
+  containedWarning:   '#ac8958',
+  containedInfo:      '#5e798c',
+  containedSuccess:   '#8c9583',
+  outlinedPrimary:    '#ffffff', // Figma: white (no bg change on hover)
+  outlinedSecondary:  '#e0e0e0',
+  outlinedError:      '#f9f1f0',
+  outlinedWarning:    '#fbf6ef',
+  outlinedInfo:       '#f1f5f9',
+  outlinedSuccess:    '#e0e3dd',
+  textPrimary:        '#fbf9f7',
+  textSecondary:      '#f5f5f5',
+  textError:          '#f9f1f0',
+  textWarning:        '#f3e3cd',
+  textInfo:           '#c7d9e6',
+  textSuccess:        '#e0e3dd',
+} as const;
 
 export const gfgTheme = createTheme({
   palette: {
@@ -128,37 +149,37 @@ export const gfgTheme = createTheme({
           // ── Contained ──────────────────────────────────────────────────────
           '&.MuiButton-contained.MuiButton-colorPrimary': {
             backgroundColor: GFG.primary, color: GFG.primaryText,
-            '&:hover':  { backgroundColor: GFG.primaryHover },
+            '&:hover':  { backgroundColor: BTN_HOVER.containedPrimary },   // #c8b298 (Figma)
             '&:active': { backgroundColor: GFG.primaryDark },
             '&.Mui-disabled': { backgroundColor: '#e0e0e0', color: '#6d6d6d' },
           },
           '&.MuiButton-contained.MuiButton-colorSecondary': {
             backgroundColor: GFG.secondary, color: GFG.secondaryText,
-            '&:hover':  { backgroundColor: '#555555' },
+            '&:hover':  { backgroundColor: BTN_HOVER.containedSecondary }, // #6d6d6d (Figma)
             '&:active': { backgroundColor: '#111111' },
             '&.Mui-disabled': { backgroundColor: '#e0e0e0', color: '#6d6d6d' },
           },
           '&.MuiButton-contained.MuiButton-colorError': {
             backgroundColor: GFG.error, color: GFG.errorText,
-            '&:hover':  { backgroundColor: '#c25550' },
+            '&:hover':  { backgroundColor: BTN_HOVER.containedError },     // #a34740 (Figma — no change on hover)
             '&:active': { backgroundColor: '#7a2e2b' },
             '&.Mui-disabled': { backgroundColor: '#e0e0e0', color: '#6d6d6d' },
           },
           '&.MuiButton-contained.MuiButton-colorWarning': {
             backgroundColor: GFG.warning, color: GFG.warningText,
-            '&:hover':  { backgroundColor: '#b07a2e' },
+            '&:hover':  { backgroundColor: BTN_HOVER.containedWarning },   // #ac8958 (Figma)
             '&:active': { backgroundColor: '#5e3e10' },
             '&.Mui-disabled': { backgroundColor: '#e0e0e0', color: '#6d6d6d' },
           },
           '&.MuiButton-contained.MuiButton-colorInfo': {
             backgroundColor: GFG.info, color: GFG.infoText,
-            '&:hover':  { backgroundColor: '#3d6280' },
+            '&:hover':  { backgroundColor: BTN_HOVER.containedInfo },      // #5e798c (Figma)
             '&:active': { backgroundColor: '#1a2f3d' },
             '&.Mui-disabled': { backgroundColor: '#e0e0e0', color: '#6d6d6d' },
           },
           '&.MuiButton-contained.MuiButton-colorSuccess': {
             backgroundColor: GFG.success, color: GFG.successText,
-            '&:hover':  { backgroundColor: '#7a8f6e' },
+            '&:hover':  { backgroundColor: BTN_HOVER.containedSuccess },   // #8c9583 (Figma)
             '&:active': { backgroundColor: '#48513f' },
             '&.Mui-disabled': { backgroundColor: '#e0e0e0', color: '#6d6d6d' },
           },
@@ -166,42 +187,42 @@ export const gfgTheme = createTheme({
           // ── Outlined ───────────────────────────────────────────────────────
           '&.MuiButton-outlined.MuiButton-colorPrimary': {
             borderColor: GFG.primary, color: GFG.primary, backgroundColor: '#ffffff',
-            '&:hover':  { backgroundColor: hoverBg(GFG.primary), borderColor: GFG.primary },
+            '&:hover':  { backgroundColor: BTN_HOVER.outlinedPrimary, borderColor: GFG.primary },    // #ffffff (Figma)
             '&.Mui-disabled': { borderColor: '#6d6d6d', color: '#6d6d6d', backgroundColor: '#e0e0e0' },
           },
           '&.MuiButton-outlined.MuiButton-colorSecondary': {
             borderColor: GFG.secondary, color: GFG.secondary,
-            '&:hover':  { backgroundColor: hoverBg(GFG.secondary), borderColor: GFG.secondary },
+            '&:hover':  { backgroundColor: BTN_HOVER.outlinedSecondary, borderColor: GFG.secondary }, // #e0e0e0 (Figma)
             '&.Mui-disabled': { borderColor: '#6d6d6d', color: '#6d6d6d' },
           },
           '&.MuiButton-outlined.MuiButton-colorError': {
             borderColor: GFG.error, color: GFG.error,
-            '&:hover':  { backgroundColor: hoverBg(GFG.error), borderColor: GFG.error },
+            '&:hover':  { backgroundColor: BTN_HOVER.outlinedError, borderColor: GFG.error },        // #f9f1f0 (Figma)
             '&.Mui-disabled': { borderColor: '#6d6d6d', color: '#6d6d6d' },
           },
           '&.MuiButton-outlined.MuiButton-colorWarning': {
             borderColor: GFG.warning, color: GFG.warning,
-            '&:hover':  { backgroundColor: hoverBg(GFG.warning), borderColor: GFG.warning },
+            '&:hover':  { backgroundColor: BTN_HOVER.outlinedWarning, borderColor: GFG.warning },    // #fbf6ef (Figma)
             '&.Mui-disabled': { borderColor: '#6d6d6d', color: '#6d6d6d' },
           },
           '&.MuiButton-outlined.MuiButton-colorInfo': {
             borderColor: GFG.info, color: GFG.info,
-            '&:hover':  { backgroundColor: hoverBg(GFG.info), borderColor: GFG.info },
+            '&:hover':  { backgroundColor: BTN_HOVER.outlinedInfo, borderColor: GFG.info },          // #f1f5f9 (Figma)
             '&.Mui-disabled': { borderColor: '#6d6d6d', color: '#6d6d6d' },
           },
           '&.MuiButton-outlined.MuiButton-colorSuccess': {
             borderColor: GFG.success, color: GFG.success,
-            '&:hover':  { backgroundColor: hoverBg(GFG.success), borderColor: GFG.success },
+            '&:hover':  { backgroundColor: BTN_HOVER.outlinedSuccess, borderColor: GFG.success },    // #e0e3dd (Figma)
             '&.Mui-disabled': { borderColor: '#6d6d6d', color: '#6d6d6d' },
           },
 
           // ── Text ───────────────────────────────────────────────────────────
-          '&.MuiButton-text.MuiButton-colorPrimary':   { color: GFG.primary,   '&:hover': { backgroundColor: hoverBg(GFG.primary) },   '&.Mui-disabled': { color: '#6d6d6d' } },
-          '&.MuiButton-text.MuiButton-colorSecondary': { color: GFG.secondary, '&:hover': { backgroundColor: hoverBg(GFG.secondary) }, '&.Mui-disabled': { color: '#6d6d6d' } },
-          '&.MuiButton-text.MuiButton-colorError':     { color: GFG.error,     '&:hover': { backgroundColor: hoverBg(GFG.error) },     '&.Mui-disabled': { color: '#6d6d6d' } },
-          '&.MuiButton-text.MuiButton-colorWarning':   { color: GFG.warning,   '&:hover': { backgroundColor: hoverBg(GFG.warning) },   '&.Mui-disabled': { color: '#6d6d6d' } },
-          '&.MuiButton-text.MuiButton-colorInfo':      { color: GFG.info,      '&:hover': { backgroundColor: hoverBg(GFG.info) },      '&.Mui-disabled': { color: '#6d6d6d' } },
-          '&.MuiButton-text.MuiButton-colorSuccess':   { color: GFG.success,   '&:hover': { backgroundColor: hoverBg(GFG.success) },   '&.Mui-disabled': { color: '#6d6d6d' } },
+          '&.MuiButton-text.MuiButton-colorPrimary':   { color: GFG.primary,   '&:hover': { backgroundColor: BTN_HOVER.textPrimary },   '&.Mui-disabled': { color: '#6d6d6d' } }, // #fbf9f7
+          '&.MuiButton-text.MuiButton-colorSecondary': { color: GFG.secondary, '&:hover': { backgroundColor: BTN_HOVER.textSecondary }, '&.Mui-disabled': { color: '#6d6d6d' } }, // #f5f5f5
+          '&.MuiButton-text.MuiButton-colorError':     { color: GFG.error,     '&:hover': { backgroundColor: BTN_HOVER.textError },     '&.Mui-disabled': { color: '#6d6d6d' } }, // #f9f1f0
+          '&.MuiButton-text.MuiButton-colorWarning':   { color: GFG.warning,   '&:hover': { backgroundColor: BTN_HOVER.textWarning },   '&.Mui-disabled': { color: '#6d6d6d' } }, // #f3e3cd
+          '&.MuiButton-text.MuiButton-colorInfo':      { color: GFG.info,      '&:hover': { backgroundColor: BTN_HOVER.textInfo },      '&.Mui-disabled': { color: '#6d6d6d' } }, // #c7d9e6
+          '&.MuiButton-text.MuiButton-colorSuccess':   { color: GFG.success,   '&:hover': { backgroundColor: BTN_HOVER.textSuccess },   '&.Mui-disabled': { color: '#6d6d6d' } }, // #e0e3dd
         },
         sizeLarge:  { height: '44px', padding: '10px 20px' },
         sizeMedium: { height: '34px', padding: '8px 20px' },
