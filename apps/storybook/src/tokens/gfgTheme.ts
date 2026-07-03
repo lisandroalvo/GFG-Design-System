@@ -1,7 +1,8 @@
 /**
  * GFG Design System — MUI Theme
  *
- * ALL values sourced directly from Figma MCP (file OjFchNAdeHiNH5W4wYLSGS).
+ * ALL values sourced directly from Figma REST API (file OjFchNAdeHiNH5W4wYLSGS).
+ * Last full audit: 2026-06-25 — all 6 components verified node-by-node.
  * Do not hand-edit — every hex value has a corresponding Figma node + token name.
  *
  * ── Button color token map (verified from Figma nodes) ──────────────────────
@@ -123,94 +124,88 @@ export const gfgTheme = createTheme({
           lineHeight:      'normal',
           boxShadow:       'none',
           '&:hover':       { boxShadow: 'none' },
+
+          // ── Contained ──────────────────────────────────────────────────────
+          '&.MuiButton-contained.MuiButton-colorPrimary': {
+            backgroundColor: GFG.primary, color: GFG.primaryText,
+            '&:hover':  { backgroundColor: GFG.primaryHover },
+            '&:active': { backgroundColor: GFG.primaryDark },
+            '&.Mui-disabled': { backgroundColor: '#e0e0e0', color: '#6d6d6d' },
+          },
+          '&.MuiButton-contained.MuiButton-colorSecondary': {
+            backgroundColor: GFG.secondary, color: GFG.secondaryText,
+            '&:hover':  { backgroundColor: '#555555' },
+            '&:active': { backgroundColor: '#111111' },
+            '&.Mui-disabled': { backgroundColor: '#e0e0e0', color: '#6d6d6d' },
+          },
+          '&.MuiButton-contained.MuiButton-colorError': {
+            backgroundColor: GFG.error, color: GFG.errorText,
+            '&:hover':  { backgroundColor: '#c25550' },
+            '&:active': { backgroundColor: '#7a2e2b' },
+            '&.Mui-disabled': { backgroundColor: '#e0e0e0', color: '#6d6d6d' },
+          },
+          '&.MuiButton-contained.MuiButton-colorWarning': {
+            backgroundColor: GFG.warning, color: GFG.warningText,
+            '&:hover':  { backgroundColor: '#b07a2e' },
+            '&:active': { backgroundColor: '#5e3e10' },
+            '&.Mui-disabled': { backgroundColor: '#e0e0e0', color: '#6d6d6d' },
+          },
+          '&.MuiButton-contained.MuiButton-colorInfo': {
+            backgroundColor: GFG.info, color: GFG.infoText,
+            '&:hover':  { backgroundColor: '#3d6280' },
+            '&:active': { backgroundColor: '#1a2f3d' },
+            '&.Mui-disabled': { backgroundColor: '#e0e0e0', color: '#6d6d6d' },
+          },
+          '&.MuiButton-contained.MuiButton-colorSuccess': {
+            backgroundColor: GFG.success, color: GFG.successText,
+            '&:hover':  { backgroundColor: '#7a8f6e' },
+            '&:active': { backgroundColor: '#48513f' },
+            '&.Mui-disabled': { backgroundColor: '#e0e0e0', color: '#6d6d6d' },
+          },
+
+          // ── Outlined ───────────────────────────────────────────────────────
+          '&.MuiButton-outlined.MuiButton-colorPrimary': {
+            borderColor: GFG.primary, color: GFG.primary, backgroundColor: '#ffffff',
+            '&:hover':  { backgroundColor: hoverBg(GFG.primary), borderColor: GFG.primary },
+            '&.Mui-disabled': { borderColor: '#6d6d6d', color: '#6d6d6d', backgroundColor: '#e0e0e0' },
+          },
+          '&.MuiButton-outlined.MuiButton-colorSecondary': {
+            borderColor: GFG.secondary, color: GFG.secondary,
+            '&:hover':  { backgroundColor: hoverBg(GFG.secondary), borderColor: GFG.secondary },
+            '&.Mui-disabled': { borderColor: '#6d6d6d', color: '#6d6d6d' },
+          },
+          '&.MuiButton-outlined.MuiButton-colorError': {
+            borderColor: GFG.error, color: GFG.error,
+            '&:hover':  { backgroundColor: hoverBg(GFG.error), borderColor: GFG.error },
+            '&.Mui-disabled': { borderColor: '#6d6d6d', color: '#6d6d6d' },
+          },
+          '&.MuiButton-outlined.MuiButton-colorWarning': {
+            borderColor: GFG.warning, color: GFG.warning,
+            '&:hover':  { backgroundColor: hoverBg(GFG.warning), borderColor: GFG.warning },
+            '&.Mui-disabled': { borderColor: '#6d6d6d', color: '#6d6d6d' },
+          },
+          '&.MuiButton-outlined.MuiButton-colorInfo': {
+            borderColor: GFG.info, color: GFG.info,
+            '&:hover':  { backgroundColor: hoverBg(GFG.info), borderColor: GFG.info },
+            '&.Mui-disabled': { borderColor: '#6d6d6d', color: '#6d6d6d' },
+          },
+          '&.MuiButton-outlined.MuiButton-colorSuccess': {
+            borderColor: GFG.success, color: GFG.success,
+            '&:hover':  { backgroundColor: hoverBg(GFG.success), borderColor: GFG.success },
+            '&.Mui-disabled': { borderColor: '#6d6d6d', color: '#6d6d6d' },
+          },
+
+          // ── Text ───────────────────────────────────────────────────────────
+          '&.MuiButton-text.MuiButton-colorPrimary':   { color: GFG.primary,   '&:hover': { backgroundColor: hoverBg(GFG.primary) },   '&.Mui-disabled': { color: '#6d6d6d' } },
+          '&.MuiButton-text.MuiButton-colorSecondary': { color: GFG.secondary, '&:hover': { backgroundColor: hoverBg(GFG.secondary) }, '&.Mui-disabled': { color: '#6d6d6d' } },
+          '&.MuiButton-text.MuiButton-colorError':     { color: GFG.error,     '&:hover': { backgroundColor: hoverBg(GFG.error) },     '&.Mui-disabled': { color: '#6d6d6d' } },
+          '&.MuiButton-text.MuiButton-colorWarning':   { color: GFG.warning,   '&:hover': { backgroundColor: hoverBg(GFG.warning) },   '&.Mui-disabled': { color: '#6d6d6d' } },
+          '&.MuiButton-text.MuiButton-colorInfo':      { color: GFG.info,      '&:hover': { backgroundColor: hoverBg(GFG.info) },      '&.Mui-disabled': { color: '#6d6d6d' } },
+          '&.MuiButton-text.MuiButton-colorSuccess':   { color: GFG.success,   '&:hover': { backgroundColor: hoverBg(GFG.success) },   '&.Mui-disabled': { color: '#6d6d6d' } },
         },
         sizeLarge:  { height: '44px', padding: '10px 20px' },
         sizeMedium: { height: '34px', padding: '8px 20px' },
         sizeSmall:  { height: '24px', padding: '6px 16px', fontSize: '11px' },
-
-        // ── Contained ────────────────────────────────────────────────────────
-        containedPrimary: {
-          backgroundColor: GFG.primary,       // #af9577 --primary/dark-dust
-          color:           GFG.primaryText,
-          '&:hover':       { backgroundColor: GFG.primaryHover },  // #c4aa8f
-          '&:active':      { backgroundColor: GFG.primaryDark },   // #8c7560
-          '&.Mui-disabled':{ backgroundColor: `${GFG.primary}60`, color: GFG.primaryText },
-        },
-        containedSecondary: {
-          backgroundColor: GFG.secondary,
-          color:           GFG.secondaryText,
-          '&:hover':       { backgroundColor: '#555555' },
-          '&:active':      { backgroundColor: '#111111' },
-          '&.Mui-disabled':{ backgroundColor: `${GFG.secondary}60`, color: GFG.secondaryText },
-        },
-        containedError: {
-          backgroundColor: GFG.error,
-          color:           GFG.errorText,
-          '&:hover':       { backgroundColor: '#c25550' },
-          '&:active':      { backgroundColor: '#7a2e2b' },
-          '&.Mui-disabled':{ backgroundColor: `${GFG.error}60`, color: GFG.errorText },
-        },
-        containedWarning: {
-          backgroundColor: GFG.warning,
-          color:           GFG.warningText,
-          '&:hover':       { backgroundColor: '#b07a2e' },
-          '&:active':      { backgroundColor: '#5e3e10' },
-          '&.Mui-disabled':{ backgroundColor: `${GFG.warning}60`, color: GFG.warningText },
-        },
-        containedInfo: {
-          backgroundColor: GFG.info,
-          color:           GFG.infoText,
-          '&:hover':       { backgroundColor: '#3d6280' },
-          '&:active':      { backgroundColor: '#1a2f3d' },
-          '&.Mui-disabled':{ backgroundColor: `${GFG.info}60`, color: GFG.infoText },
-        },
-        containedSuccess: {
-          backgroundColor: GFG.success,
-          color:           GFG.successText,
-          '&:hover':       { backgroundColor: '#7a8f6e' },
-          '&:active':      { backgroundColor: '#48513f' },
-          '&.Mui-disabled':{ backgroundColor: `${GFG.success}60`, color: GFG.successText },
-        },
-
-        // ── Outlined ─────────────────────────────────────────────────────────
-        outlinedPrimary: {
-          borderColor: GFG.primary, color: GFG.primary, backgroundColor: 'transparent',
-          '&:hover':   { backgroundColor: hoverBg(GFG.primary), borderColor: GFG.primary },
-          '&.Mui-disabled': { borderColor: `${GFG.primary}60`, color: `${GFG.primary}60` },
-        },
-        outlinedSecondary: {
-          borderColor: GFG.secondary, color: GFG.secondary, backgroundColor: 'transparent',
-          '&:hover':   { backgroundColor: hoverBg(GFG.secondary), borderColor: GFG.secondary },
-          '&.Mui-disabled': { borderColor: `${GFG.secondary}60`, color: `${GFG.secondary}60` },
-        },
-        outlinedError: {
-          borderColor: GFG.error, color: GFG.error, backgroundColor: 'transparent',
-          '&:hover':   { backgroundColor: hoverBg(GFG.error), borderColor: GFG.error },
-          '&.Mui-disabled': { borderColor: `${GFG.error}60`, color: `${GFG.error}60` },
-        },
-        outlinedWarning: {
-          borderColor: GFG.warning, color: GFG.warning, backgroundColor: 'transparent',
-          '&:hover':   { backgroundColor: hoverBg(GFG.warning), borderColor: GFG.warning },
-          '&.Mui-disabled': { borderColor: `${GFG.warning}60`, color: `${GFG.warning}60` },
-        },
-        outlinedInfo: {
-          borderColor: GFG.info, color: GFG.info, backgroundColor: 'transparent',
-          '&:hover':   { backgroundColor: hoverBg(GFG.info), borderColor: GFG.info },
-          '&.Mui-disabled': { borderColor: `${GFG.info}60`, color: `${GFG.info}60` },
-        },
-        outlinedSuccess: {
-          borderColor: GFG.success, color: GFG.success, backgroundColor: 'transparent',
-          '&:hover':   { backgroundColor: hoverBg(GFG.success), borderColor: GFG.success },
-          '&.Mui-disabled': { borderColor: `${GFG.success}60`, color: `${GFG.success}60` },
-        },
-
-        // ── Text ─────────────────────────────────────────────────────────────
-        textPrimary:   { color: GFG.primary,   '&:hover': { backgroundColor: hoverBg(GFG.primary) },   '&.Mui-disabled': { color: `${GFG.primary}60` } },
-        textSecondary: { color: GFG.secondary, '&:hover': { backgroundColor: hoverBg(GFG.secondary) }, '&.Mui-disabled': { color: `${GFG.secondary}60` } },
-        textError:     { color: GFG.error,     '&:hover': { backgroundColor: hoverBg(GFG.error) },     '&.Mui-disabled': { color: `${GFG.error}60` } },
-        textWarning:   { color: GFG.warning,   '&:hover': { backgroundColor: hoverBg(GFG.warning) },   '&.Mui-disabled': { color: `${GFG.warning}60` } },
-        textInfo:      { color: GFG.info,      '&:hover': { backgroundColor: hoverBg(GFG.info) },      '&.Mui-disabled': { color: `${GFG.info}60` } },
-        textSuccess:   { color: GFG.success,   '&:hover': { backgroundColor: hoverBg(GFG.success) },   '&.Mui-disabled': { color: `${GFG.success}60` } },
       },
     },
 
@@ -248,8 +243,23 @@ export const gfgTheme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: '4px',
-          padding:      '6px 16px',
+          padding:      '16px',            // Figma: 16px all sides
           fontFamily:   '"Lato", sans-serif',
+          // ── Filled backgrounds (Figma exact) ──────────────────────────────
+          '&.MuiAlert-filled.MuiAlert-colorSuccess': { backgroundColor: '#637058' },
+          '&.MuiAlert-filled.MuiAlert-colorError':   { backgroundColor: '#a34740' },
+          '&.MuiAlert-filled.MuiAlert-colorWarning': { backgroundColor: '#8a5d1f' },
+          '&.MuiAlert-filled.MuiAlert-colorInfo':    { backgroundColor: '#2b4a60' },
+          // ── Standard backgrounds (Figma light tints) ──────────────────────
+          '&.MuiAlert-standard.MuiAlert-colorSuccess': { backgroundColor: '#e0e3dd', color: '#637058' },
+          '&.MuiAlert-standard.MuiAlert-colorError':   { backgroundColor: '#eed4d3', color: '#a34740' },
+          '&.MuiAlert-standard.MuiAlert-colorWarning': { backgroundColor: '#f3e3cd', color: '#8a5d1f' },
+          '&.MuiAlert-standard.MuiAlert-colorInfo':    { backgroundColor: '#c7d9e6', color: '#2b4a60' },
+          // ── Outlined borders ───────────────────────────────────────────────
+          '&.MuiAlert-outlined.MuiAlert-colorSuccess': { borderColor: '#637058', color: '#637058' },
+          '&.MuiAlert-outlined.MuiAlert-colorError':   { borderColor: '#a34740', color: '#a34740' },
+          '&.MuiAlert-outlined.MuiAlert-colorWarning': { borderColor: '#8a5d1f', color: '#8a5d1f' },
+          '&.MuiAlert-outlined.MuiAlert-colorInfo':    { borderColor: '#2b4a60', color: '#2b4a60' },
         },
         message: {
           fontFamily:    '"Lato", sans-serif',
@@ -259,7 +269,6 @@ export const gfgTheme = createTheme({
           letterSpacing: 0,            // Figma: tracking 0
           padding:       '8px 0',
         },
-        // MuiAlert composes title via `.MuiAlertTitle-root` — override separately
         icon: { paddingTop: '7px' },
       },
     },
