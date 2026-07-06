@@ -1,0 +1,11 @@
+# Add this file as .npmrc in the root of any repository that consumes
+# @lisandroalvo/gfg-design-system from GitHub Packages.
+#
+# 1. Copy this file to your project root and rename it to .npmrc
+# 2. Set NODE_AUTH_TOKEN in your environment (shell profile, CI secret, etc.)
+#    Use a GitHub token with at least `read:packages` scope.
+#    Do NOT paste a real token into .npmrc — use the env-variable syntax below.
+# 3. Run: npm install @lisandroalvo/gfg-design-system
+
+@lisandroalvo:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}

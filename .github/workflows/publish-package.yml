@@ -1,0 +1,82 @@
+name: Publish Design System Package
+
+# Trigger: only when a GitHub Release is explicitly published.
+# This ensures no accidental publishes from branch pushes.
+# To release: create a Release in the GitHub UI (or via gh CLI), tag as v0.1.0 etc.
+# The package version in packages/design-system/package.json must match the tag.
+on:
+  release:
+    types: [published]
+
+  # Manual fallback for testing the workflow without creating a real release.
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run — build and pack without publishing"
+        required: false
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    name: Build and publish @lisandroalvo/gfg-design-system
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@lisandroalvo"
+
+      - name: Install package dependencies
+        working-directory: packages/design-system
+        run: npm ci
+
+      - name: Type check
+        working-directory: packages/design-system
+        run: npm run typecheck
+
+      - name: Build package
+        working-directory: packages/design-system
+        run: npm run build
+
+      - name: Verify dist contents
+        working-directory: packages/design-system
+        run: |
+          echo "--- dist/ contents ---"
+          ls -la dist/
+          echo ""
+          echo "--- Checking required files exist ---"
+          test -f dist/index.js   && echo "✅ dist/index.js"
+          test -f dist/index.mjs  && echo "✅ dist/index.mjs"
+          test -f dist/index.d.ts && echo "✅ dist/index.d.ts"
+          echo ""
+          echo "--- Verifying excluded files are absent ---"
+          ! find dist/ -name "*.stories.*" | grep -q . && echo "✅ No story files in dist"
+          ! find dist/ -name "*.test.*"   | grep -q . && echo "✅ No test files in dist"
+
+      - name: Pack (dry run inspection)
+        working-directory: packages/design-system
+        run: |
+          npm pack --dry-run
+
+      - name: Publish to GitHub Packages
+        if: |
+          github.event_name == 'release' ||
+          (github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run == 'false')
+        working-directory: packages/design-system
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm publish
