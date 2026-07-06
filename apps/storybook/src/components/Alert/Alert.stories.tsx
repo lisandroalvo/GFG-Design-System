@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import MuiButton from '@mui/material/Button';
-import { Alert } from './Alert';
+import { Alert } from '@lisandroalvo/gfg-design-system';
 
 const meta: Meta<typeof Alert> = {
   title: 'Components/Alert',

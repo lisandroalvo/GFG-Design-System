@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
-import { gfgTheme } from '../src/tokens/gfgTheme';
+import { gfgTheme } from '@lisandroalvo/gfg-design-system';
 import '../src/tokens/tokens.css';
 
 const preview: Preview = {

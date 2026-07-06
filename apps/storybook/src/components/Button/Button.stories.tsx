@@ -8,7 +8,7 @@ import ArrowForward from '@mui/icons-material/ArrowForward';   // ArrowForwardFi
 import Delete from '@mui/icons-material/Delete';                // DeleteFilled       [9602:112393]
 import Send from '@mui/icons-material/Send';                    // SendFilled         [9602:112395]
 import Add from '@mui/icons-material/Add';                      // AddFilled          [7475:65638]
-import { Button } from './Button';
+import { Button } from '@lisandroalvo/gfg-design-system';
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',

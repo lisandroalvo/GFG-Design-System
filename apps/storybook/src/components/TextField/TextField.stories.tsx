@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import EmailOutlined from '@mui/icons-material/EmailOutlined';
 import SearchOutlined from '@mui/icons-material/SearchOutlined';
 import VisibilityOutlined from '@mui/icons-material/VisibilityOutlined';
-import { TextField } from './TextField';
+import { TextField } from '@lisandroalvo/gfg-design-system';
 
 // ── Figma source: OjFchNAdeHiNH5W4wYLSGS · node 16350:35724 · 60 variants ──
 // Verified via Figma REST API 2026-06-22
@@ -71,7 +71,7 @@ Built on **MUI TextField** with exact GFG theme tokens applied.
 
 ### Developer usage
 \`\`\`tsx
-import { TextField } from './TextField';
+import { TextField } from '@lisandroalvo/gfg-design-system';
 
 // Outlined (default)
 <TextField label="Email" helperText="Enter your email" />

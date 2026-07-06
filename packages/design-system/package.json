@@ -23,9 +23,9 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
-    "typecheck": "tsc --noEmit"
+    "build": "npx tsup",
+    "dev": "npx tsup --watch",
+    "typecheck": "npx tsc --noEmit"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import MailOutlined from '@mui/icons-material/MailOutlined';
-import { Badge } from './Badge';
+import { Badge } from '@lisandroalvo/gfg-design-system';
 
 const meta: Meta<typeof Badge> = {
   title: 'Components/Badge',
