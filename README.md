@@ -1,151 +1,169 @@
 # GFG Design System
 
-A live design system portal synced with Figma. Component metadata, tokens, and variant data are pulled directly from the Figma file via the REST API and served as a static web app.
+Monorepo for the GFG Design System — a React component library built on MUI, verified against Figma.
 
-**Live sites:**
-- 🌐 **Design System Portal**: https://lisandroalvo.github.io/GFG-Design-System/
-- 📚 **Storybook (Components)**: https://gfg-design-system.vercel.app/
+**Storybook (visual documentation):** https://gfg-design-system.vercel.app/ *(update URL after first Vercel deploy)*
 
 ---
 
-## What This Is
+## What is this?
 
-- A **custom design system portal** showing 6 coded components
-- **Storybook** with interactive component playground
-- Powered by **GitHub Pages** (portal) + **Vercel** (Storybook)
-- Synced from a **Figma file** using Node.js scripts and the Figma REST API
-- 6 production-ready components: Button, Alert, Badge, Card, TextField, Dialog
-
----
-
-## Quick Start
-
-### Prerequisites
-- Node.js 20+
-- A Figma Personal Access Token (see `.env.example`)
-
-### Setup
-
-```bash
-# Install dependencies
-npm install
-
-# Copy env file and add your token
-cp .env.example .env
-# Edit .env — set FIGMA_TOKEN and FIGMA_FILE_KEY
-
-# Run local dev server
-node server.cjs
-```
-
-### Sync from Figma
-
-```bash
-# Pull latest component properties + variants
-node sync-component-props.cjs
-
-# Pull latest color + typography tokens
-node sync-figma-tokens.cjs
-```
-
-### Deploy
-
-```bash
-# Commit and push changes
-git add .
-git commit -m "Update components"
-git push origin main
-
-# Auto-deploys:
-# • Portal → GitHub Pages (~1-2 min)
-# • Storybook → Vercel (~2-3 min)
-```
-
----
-
-## Project Structure
-
-```
-├── index.html                    # Live portal (production app — do not delete)
-├── design-tokens/                # Generated from Figma — do not hand-edit
-│   ├── component-properties.json # 128 components + 3,028 variants
-│   ├── component-properties.js   # Runtime wrapper loaded by index.html
-│   ├── colors.json               # Color tokens (6 palettes, 128+ swatches)
-│   └── typography.json           # Text styles (10 styles)
-├── extracted-components/         # 83 React .tsx components (Code tab source)
-├── public/
-│   └── component-thumbs/         # 70 component thumbnail PNGs
-├── code-connect/                 # Figma Code Connect definitions (future use)
-├── scripts/
-│   ├── sync-tokens.mjs           # Token sync (used by CI)
-│   └── check-drift.mjs           # Figma vs React drift detection
-├── sync-component-props.cjs      # Primary local sync script
-├── sync-figma-tokens.cjs         # Color and typography sync script
-├── server.cjs                    # Local development server
-├── .github/workflows/
-│   ├── deploy.yml                # Deploy to GitHub Pages on push to main
-│   ├── figma-sync.yml            # Weekly automated token sync (opens PR)
-│   └── consistency-check.yml    # Drift detection on PRs
-└── docs/
-    ├── architecture.md           # Current architecture deep-dive
-    └── migration-plan.md         # Roadmap toward Storybook + portal architecture
-```
-
----
-
-## Rules
-
-- **Never hand-edit files in `design-tokens/`** — they are generated from Figma
-- **Never invent component props** — if a prop is not in Figma it does not exist
-- **Never hardcode the Figma token** — keep it in `.env` only, never commit it
-- **Always run sync before editing** any generated data
-- **Push to `gfg` remote** to deploy to GitHub Pages; `origin` is the source repo
-
----
-
-## Environment Variables
-
-See `.env.example` for all required variables.
-
-| Variable | Description |
+| | |
 |---|---|
-| `FIGMA_TOKEN` | Figma Personal Access Token — never commit this value |
-| `FIGMA_FILE_KEY` | Figma file ID for the design system source file |
+| **`packages/design-system/`** | Canonical component source. Published to GitHub Packages as `@lisandroalvo/gfg-design-system`. |
+| **`apps/storybook/`** | Storybook documentation and visual QA. Deployed to Vercel. |
+| **Figma** | Design source of truth. All component tokens, variants, and states are verified against Figma file `OjFchNAdeHiNH5W4wYLSGS`. |
+| **GitHub Packages** | Distributes the installable npm package. |
 
 ---
 
-## CI Workflows
+## Approved components
+
+| Component | Figma node |
+|---|---|
+| Button | `6543:36744` |
+| TextField | `16350:35724` |
+| Alert | `6595:48211` |
+| Badge | `6587:47500` |
+
+Not yet approved (not exported): Card, Dialog.
+
+---
+
+## Local setup
+
+### Requirements
+
+- Node.js 22
+- pnpm 10.12.4 (`corepack enable` then `pnpm` is available, or `npm install -g pnpm@10.12.4`)
+
+### Install
+
+```bash
+pnpm install
+```
+
+### Run Storybook
+
+```bash
+pnpm storybook
+```
+
+Opens at `http://localhost:6006`.
+
+### Build the package
+
+```bash
+pnpm build
+```
+
+Outputs ESM, CJS, and TypeScript declarations to `packages/design-system/dist/`.
+
+### Build Storybook (production)
+
+```bash
+pnpm build:storybook
+```
+
+Outputs to `apps/storybook/storybook-static/`.
+
+### Type check
+
+```bash
+pnpm typecheck
+```
+
+### Validate package archive
+
+```bash
+pnpm --filter @lisandroalvo/gfg-design-system pack --dry-run
+```
+
+---
+
+## CI/CD
 
 | Workflow | Trigger | What it does |
 |---|---|---|
-| `deploy.yml` | Push to `main` | Builds and deploys static site to GitHub Pages |
-| `figma-sync.yml` | Weekly Monday 9am UTC | Syncs tokens from Figma, opens a PR if anything changed |
-| `consistency-check.yml` | PR to `main` | Checks Figma vs React drift, posts report as PR comment |
-
-The `figma-sync.yml` and `consistency-check.yml` workflows require a `FIGMA_TOKEN` secret configured in GitHub repository settings under Settings > Secrets and variables > Actions.
+| `ci.yml` | Push to `main`, pull requests | Typecheck → build package → build Storybook → validate archive |
+| `deploy-storybook-vercel.yml` | Push to `main` (storybook/package paths) | Deploy Storybook to Vercel |
+| `publish-package.yml` | GitHub Release published | Publish package to GitHub Packages |
 
 ---
 
-## Git Remotes
+## Publishing a new version
 
-| Remote | Repo | Purpose |
-|---|---|---|
-| `gfg` | `lisandroalvo/GFG-Design-System` | GitHub Pages deploy target |
-| `origin` | `lisandroalvo/design-system-live-app` | Source code repo |
+1. Update `packages/design-system/package.json` → `"version"`.
+2. Commit and merge the version bump to `main`.
+3. Confirm CI passes.
+4. Go to **GitHub → Releases → Draft a new release**.
+5. Create a tag matching the version with a `v` prefix — e.g. `v0.1.0`.
+6. Publish the release.
+7. The `publish-package.yml` workflow validates the tag matches the package version and publishes to GitHub Packages.
 
----
-
-## Architecture and Roadmap
-
-See [`docs/architecture.md`](docs/architecture.md) for the current architecture deep-dive.
-See [`docs/migration-plan.md`](docs/migration-plan.md) for the roadmap toward the Storybook and modular portal architecture.
+See [`docs/GITHUB_PACKAGES_SETUP.md`](docs/GITHUB_PACKAGES_SETUP.md) for the full manual GitHub setup checklist.
 
 ---
 
-## Security Notes
+## Installing the package in another project
 
-- The `.env` file is git-ignored and must never be committed
-- The Figma Personal Access Token must never be printed, logged, or hardcoded
-- Rotate the token immediately if it has ever appeared in a log, message, or document
-- The `FIGMA_TOKEN` GitHub Actions secret must be set separately in each repository's settings
-- When migrating to a company GitHub organization, rotate all tokens and reconfigure secrets
+Add a `.npmrc` to the consuming project:
+
+```
+@lisandroalvo:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
+```
+
+Set `NODE_AUTH_TOKEN` to a GitHub Personal Access Token with `read:packages` scope.
+
+Then install:
+
+```bash
+pnpm add @lisandroalvo/gfg-design-system
+# or
+npm install @lisandroalvo/gfg-design-system
+```
+
+Usage:
+
+```tsx
+import { Button, TextField, Alert, Badge, gfgTheme } from "@lisandroalvo/gfg-design-system";
+import { ThemeProvider, CssBaseline } from "@mui/material";
+
+function App() {
+  return (
+    <ThemeProvider theme={gfgTheme}>
+      <CssBaseline />
+      <Button variant="contained" color="primary">Save</Button>
+    </ThemeProvider>
+  );
+}
+```
+
+---
+
+## Repository structure
+
+```
+apps/
+  storybook/              Storybook documentation app
+packages/
+  design-system/          Component library source + npm package
+.github/
+  workflows/              CI, publish, Storybook deploy
+docs/
+  GITHUB_PACKAGES_SETUP.md   Manual GitHub setup guide
+pnpm-workspace.yaml       pnpm monorepo config
+pnpm-lock.yaml            Single lockfile
+package.json              Root monorepo scripts
+README.md                 This file
+```
+
+---
+
+## Security
+
+- Never commit `.env` or any Figma/GitHub token.
+- `FIGMA_TOKEN` is used only locally for Figma API access; set it in `.env` only.
+- Package publishing uses the built-in `GITHUB_TOKEN` in CI — no personal access token required.
+- See `docs/GITHUB_PACKAGES_SETUP.md` for token setup instructions for consumers.

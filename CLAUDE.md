@@ -1,161 +1,124 @@
-# GFG Design System Live App — Claude Context
+# GFG Design System — Claude Context
 
-## Project Overview
-Real-time design system application synced with Figma. All components, properties, typography, and colors reflect live Figma data via REST API integration.
+## Repository Overview
 
-**Live Demo:** https://lisandroalvo.github.io/GFG-Design-System/
+Monorepo for the GFG Design System.
 
-## Development Rules
+- `packages/design-system/` — canonical React component source, published to GitHub Packages as `@lisandroalvo/gfg-design-system`
+- `apps/storybook/` — Storybook documentation and visual QA, deployed to Vercel
+- Figma file `OjFchNAdeHiNH5W4wYLSGS` is the design source of truth
 
-⚠️ **Critical Constraints:**
-1. **Never create one-off styles** — Always use DS tokens from `design-tokens/` (colors, typography)
-2. **Always import from /components/ui** — Use existing UI components; don't reinvent
-3. **Match Figma MCP context** — All components must reflect live Figma data, not hardcoded defaults
-4. **Ask before creating new components** — Verify with user first; ensure alignment with Figma design system
+**Package manager:** pnpm@10.12.4 (workspace)
 
 ---
 
-## Key Architecture
+## Critical Rules
 
-### Data Pipeline
-1. **sync-component-props.cjs** — Authoritative sync script
-   - Fetches 128 component sets from Figma REST API
-   - Reads `componentPropertyDefinitions` (most accurate source)
-   - Fallback: Parses variant names for legacy components
-   - Outputs: `design-tokens/component-properties.json` + `.js` wrapper
+1. **Never modify component visuals without Figma verification.** Use the Figma REST API or MCP as the mandatory source of truth.
+2. **Single source of truth for components:** `packages/design-system/src/components/`. Storybook imports from `@lisandroalvo/gfg-design-system` — do not duplicate implementations.
+3. **Never commit the Figma API token.** It lives in `.env` only. The `.env` file is git-ignored.
+4. **Never publish the npm package manually.** Publishing is triggered by GitHub Release only.
+5. **Do not add Card or Dialog** to the package exports — they are not yet approved in the GFG Design System.
+6. **Never add components not verified in Figma.** All props, variants, and tokens must match `OjFchNAdeHiNH5W4wYLSGS`.
 
-2. **Design Tokens** (synced from Figma)
-   - `colors.json` — 6 palettes, 128+ swatches with CSS vars
-   - `typography.json` — 10 text styles (H1–H4, Body 1–2, Caption, Overline, etc.)
-   - `component-properties.json` — Full component metadata with all 3,028 variants
+---
 
-### Frontend (index.html)
-- Loads `component-properties.js` at runtime
-- **getPropertiesForComponent()** — Uses synced Figma data (not hardcoded)
-- **findMatchingVariant()** — Scores against axes in variant names; tiebreaks by "most axes matched"
-- **renderLiveComponent()** — Shows exact Figma variant PNG with thumbnail URL
-- Live preview: all components show Figma design embed (`/design/` mode)
+## Architecture
 
-### Deployment (deploy.yml)
-- Copies `design-tokens/` to dist folder
-- Deploys to GitHub Pages on push to main
-
-## Critical Fixes (Latest Session)
-
-| Issue | Fix |
-|-------|-----|
-| Alert prototype blank | Switched from `/proto/` to `/design/` embed mode |
-| Button props invented (startIcon/endIcon) | Built sync script to pull actual `componentPropertyDefinitions` |
-| Fab always showed generic preview | Updated sync to capture all 3,028 variants; rewrote matching algorithm |
-| Switch/Alert missing from synced props | Iterate ALL 128 component sets, not just ones in prototypeMap |
-| Boolean prop names doubled (On Close??) | Strip trailing `?` before returning from `normaliseProps()` |
-
-## Files & Responsibilities
+### Component pipeline
 
 ```
-design-tokens/
-  ├── colors.json                    # 128 color swatches (Figma sync)
-  ├── typography.json                # 10 text styles (Figma sync)
-  ├── component-properties.json       # All 128 components + 3,028 variants
-  └── component-properties.js         # Runtime wrapper (loaded in HTML)
-
-index.html                            # Main app; loads component-properties.js
-
-sync-component-props.cjs              # Run: node sync-component-props.cjs
-
-.github/workflows/deploy.yml          # Auto-deploy to GitHub Pages
-
+Figma file OjFchNAdeHiNH5W4wYLSGS
+        ↓ (manual verification via Figma REST API / MCP)
+packages/design-system/src/components/
+        ↓ (tsup build → dist/)
+@lisandroalvo/gfg-design-system (workspace:*)
+        ↓
+apps/storybook/ (imports and documents components)
+        ↓ (Vercel deploy)
+Public Storybook
 ```
 
-## Key Functions
+### Approved exports (packages/design-system/src/index.ts)
 
-### normaliseProps(propDefs)
-Converts Figma `componentPropertyDefinitions` → runtime format
-- Handles VARIANT, BOOLEAN, TEXT, INSTANCE_SWAP types
-- Strips trailing `?` from boolean names
-- Sorts by type (variants, booleans, text, instance)
+- `Alert`, `AlertProps`
+- `Badge`, `BadgeProps`
+- `Button`, `ButtonProps`
+- `TextField`, `TextFieldProps`
+- `gfgTheme` (MUI theme with GFG tokens)
 
-### propsFromVariantNames(variants)
-Fallback parser for components without `componentPropertyDefinitions`
-- Extracts axes from variant names (e.g., "Size=Medium, Color=Primary")
-- De-dupes case-insensitively, prefers uppercase versions
+Not exported: Card, Dialog (not yet approved).
 
-### findMatchingVariant(setName, selectedProps)
-Scores all variants in set against selected properties
-- Only scores axes that exist in variant name
-- Tiebreak: most axes matched wins
-- Returns variant.nodeId for thumbnail lookup
+### Design tokens
 
-### switchPreviewTab(tabName)
-Switches between "design" (Live Design) and "prototype" (Interactive Prototype) tabs
-- Called when user clicks tab button
-- Hides/shows corresponding content
+GFG color tokens (source: Figma file):
+- primary: `#af9577`
+- secondary: `#333333`
+- error: `#a34740`
+- warning: `#8a5d1f`
+- info: `#2b4a60`
+- success: `#637058`
 
-### updatePreviewTabs(setName)
-Checks if component has interactive prototype link & shows/hides prototype tab
-- Looks up `setName` in `COMPONENT_PROTOTYPES` config
-- If found: enables prototype tab + loads Figma embed URL
-- If not found: hides prototype tab (stays on design view)
+Theme lives in `packages/design-system/src/tokens/gfgTheme.ts`.
 
-## Recent Commits
-- **52028cb**: "Variant matching: use full Figma variant list, not just set summary"
-  - Updated sync script to capture all 3,028 variants with metadata
-  - Rewrote matching to score against actual variant axes
-  - Result: playground now shows exact Figma PNG for user's selections
+---
 
-## To Sync New Figma Changes
+## Common Tasks
+
+### Local setup
 ```bash
-cd "/Users/lisandroalvo/Desktop/Design  System Live App"
-node sync-component-props.cjs
-git add design-tokens/component-properties.*
-git commit -m "Sync component properties from Figma"
-git push origin main
+pnpm install
 ```
 
-## Adding Interactive Prototypes
-
-The app now has **two preview tabs**:
-1. **🎨 Live Design** — Figma design/variant view (always visible)
-2. **🎬 Interactive Prototype** — Figma prototype embed (conditional)
-
-### How to Add Prototype Links
-
-Edit `index.html` and find the `COMPONENT_PROTOTYPES` object (near line 10021):
-
-```javascript
-const COMPONENT_PROTOTYPES = {
-    'Alert': 'https://www.figma.com/proto/YOUR_FILE_ID/YOUR_PROTOTYPE_ID',
-    'Button': 'https://www.figma.com/proto/YOUR_FILE_ID/YOUR_PROTOTYPE_ID',
-    'Fab': 'https://www.figma.com/proto/YOUR_FILE_ID/YOUR_PROTOTYPE_ID',
-    // Add more as needed
-};
+### Run Storybook
+```bash
+pnpm storybook
 ```
 
-**To get a Figma prototype link:**
-1. In Figma, open the component's prototype page
-2. Click the **Share prototype** button (top right)
-3. Copy the **public link** 
-4. Add it to `COMPONENT_PROTOTYPES` with the component name as key
-
-**Example:**
-```javascript
-const COMPONENT_PROTOTYPES = {
-    'Alert': 'https://www.figma.com/proto/OjFchNAdeHiNH5W4wYLSGS/Design-System?node-id=15883%3A11893&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=15883%3A11893&embed-host=share',
-    // Tab will auto-appear when Alert component is opened
-};
+### Build package
+```bash
+pnpm build
 ```
 
-**Notes:**
-- Keys are component set names (e.g., 'Alert', 'Button', not '<Alert>' or 'Button/Prototype')
-- Only components with entries show the prototype tab
-- Missing or invalid URLs are gracefully handled (tab stays hidden)
-- Tabs reset to "Live Design" if prototype URL is empty
+### Build Storybook
+```bash
+pnpm build:storybook
+```
 
-## Deployment
-Push to `main` → GitHub Actions runs deploy.yml → Live on GitHub Pages (~2 min)
+### Type check
+```bash
+pnpm typecheck
+```
 
-**Repository:** https://github.com/lisandroalvo/GFG-Design-System
+### Validate package archive
+```bash
+pnpm --filter @lisandroalvo/gfg-design-system pack --dry-run
+```
 
 ---
 
-**User Priority:** Components & properties must match Figma exactly. Interactive playground accuracy is critical.
+## GitHub Actions
+
+| Workflow | Trigger | Purpose |
+|---|---|---|
+| `ci.yml` | Push to main, PRs | Typecheck + build + Storybook build + pack validation |
+| `publish-package.yml` | GitHub Release published | Publish `@lisandroalvo/gfg-design-system` to GitHub Packages |
+| `deploy-storybook-vercel.yml` | Push to main (storybook/package paths) | Deploy Storybook to Vercel |
+
+---
+
+## Figma Integration
+
+- Figma File Key: `OjFchNAdeHiNH5W4wYLSGS`
+- Use Figma REST API v1: `GET /v1/files/{key}/nodes?ids={node_id}` with `X-Figma-Token` header
+- Token is in `.env` as `FIGMA_TOKEN` — never commit it
+- MCP server (Figma Dev Mode) is available in Claude Desktop for live node inspection
+
+---
+
+## Security Notes
+
+- `.env` is git-ignored. Never commit it.
+- `FIGMA_TOKEN` secret must be set separately in GitHub Actions repository settings.
+- `NODE_AUTH_TOKEN` must be set for local publish; in CI it uses the built-in `GITHUB_TOKEN`.
+- The `publish-package.yml` workflow validates that the git release tag matches the package version before publishing.
