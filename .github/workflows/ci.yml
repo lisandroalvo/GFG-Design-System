@@ -1,20 +1,19 @@
-name: Deploy Storybook to Vercel
+name: CI
 
 on:
   push:
     branches:
       - main
-    paths:
-      - 'apps/storybook/**'
-      - 'packages/design-system/**'
-  workflow_dispatch:
+  pull_request:
 
 permissions:
   contents: read
 
 jobs:
-  deploy:
+  ci:
+    name: Type-check, build, validate
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -44,20 +43,25 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Type check
+        run: pnpm typecheck
+
       - name: Build design-system package
         run: pnpm build
 
-      - name: Install Vercel CLI
-        run: npm install -g vercel@latest
-
-      - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-        working-directory: apps/storybook
+      - name: Verify dist contents
+        working-directory: packages/design-system
+        run: |
+          echo "--- dist/ contents ---"
+          ls -la dist/
+          test -f dist/index.js   && echo "✅ dist/index.js"
+          test -f dist/index.mjs  && echo "✅ dist/index.mjs"
+          test -f dist/index.d.ts && echo "✅ dist/index.d.ts"
+          ! find dist/ -name "*.stories.*" | grep -q . && echo "✅ No story files in dist"
 
       - name: Build Storybook
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-        working-directory: apps/storybook
+        run: pnpm build:storybook
 
-      - name: Deploy to Vercel
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
-        working-directory: apps/storybook
+      - name: Validate package archive
+        working-directory: packages/design-system
+        run: npm pack --dry-run

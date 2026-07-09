@@ -1,14 +1,16 @@
 name: Publish Design System Package
 
 # Trigger: only when a GitHub Release is explicitly published.
-# This ensures no accidental publishes from branch pushes.
-# To release: create a Release in the GitHub UI (or via gh CLI), tag as v0.1.0 etc.
-# The package version in packages/design-system/package.json must match the tag.
+# This ensures no accidental publishes from branch pushes or PRs.
+# To release: create a Release in the GitHub UI (or via gh CLI),
+# tag as v0.1.0, v0.2.0, etc. The package version in
+# packages/design-system/package.json must match the tag (without the "v" prefix).
 on:
   release:
     types: [published]
 
   # Manual fallback for testing the workflow without creating a real release.
+  # Defaults to dry-run so it never accidentally publishes.
   workflow_dispatch:
     inputs:
       dry_run:
@@ -36,20 +38,52 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           registry-url: "https://npm.pkg.github.com"
           scope: "@lisandroalvo"
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: "10.12.4"
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: echo "dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.dir }}
+          key: pnpm-store-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            pnpm-store-${{ runner.os }}-
+
       - name: Install workspace dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate tag matches package version (release only)
+        if: github.event_name == 'release'
+        run: |
+          PKG_VERSION=$(node -p "require('./packages/design-system/package.json').version")
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          echo "Package version: $PKG_VERSION"
+          echo "Release tag version: $TAG_VERSION"
+          if [ "$PKG_VERSION" != "$TAG_VERSION" ]; then
+            echo "❌ Version mismatch: package.json has $PKG_VERSION but tag is $GITHUB_REF_NAME"
+            echo "Update packages/design-system/package.json version to match the release tag."
+            exit 1
+          fi
+          echo "✅ Versions match: $PKG_VERSION"
 
       - name: Type check
-        working-directory: packages/design-system
-        run: npm run typecheck
+        run: pnpm typecheck
 
-      - name: Build package
-        working-directory: packages/design-system
-        run: npm run build
+      - name: Build design-system package
+        run: pnpm build
+
+      - name: Build Storybook (smoke test)
+        run: pnpm build:storybook
 
       - name: Verify dist contents
         working-directory: packages/design-system
@@ -66,10 +100,9 @@ jobs:
           ! find dist/ -name "*.stories.*" | grep -q . && echo "✅ No story files in dist"
           ! find dist/ -name "*.test.*"   | grep -q . && echo "✅ No test files in dist"
 
-      - name: Pack (dry run inspection)
+      - name: Pack (dry-run inspection)
         working-directory: packages/design-system
-        run: |
-          npm pack --dry-run
+        run: npm pack --dry-run
 
       - name: Publish to GitHub Packages
         if: |

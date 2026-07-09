@@ -24,6 +24,14 @@ For CI, add `NODE_AUTH_TOKEN` as a repository secret and reference it in your wo
 
 ### 2. Install the package
 
+**pnpm**
+
+```bash
+pnpm add @lisandroalvo/gfg-design-system
+```
+
+**npm**
+
 ```bash
 npm install @lisandroalvo/gfg-design-system
 ```
@@ -31,6 +39,14 @@ npm install @lisandroalvo/gfg-design-system
 ### 3. Peer dependencies
 
 Your project must have these installed:
+
+**pnpm**
+
+```bash
+pnpm add react react-dom @mui/material @emotion/react @emotion/styled
+```
+
+**npm**
 
 ```bash
 npm install react react-dom @mui/material @emotion/react @emotion/styled
@@ -86,8 +102,8 @@ Components use MUI's CSS-in-JS (Emotion). No `.css` import is needed — styles 
 
 ## Approved components
 
-| Component  | Figma node     | Status   |
-|------------|----------------|----------|
+| Component  | Figma node     | Status      |
+|------------|----------------|-------------|
 | Button     | `6543:36744`   | ✅ Approved |
 | TextField  | `16350:35724`  | ✅ Approved |
 | Alert      | `6595:48211`   | ✅ Approved |
@@ -97,12 +113,63 @@ Components not yet approved (not exported): Card, Dialog.
 
 ---
 
+## Local development
+
+### Setup
+
+```bash
+# Enable corepack (first time only, may need sudo)
+corepack enable
+
+# Install all workspace dependencies
+pnpm install
+```
+
+### Run Storybook
+
+```bash
+pnpm storybook
+```
+
+### Build the package
+
+```bash
+pnpm build
+```
+
+### Build Storybook
+
+```bash
+pnpm build:storybook
+```
+
+### Type check (all packages)
+
+```bash
+pnpm typecheck
+```
+
+### Validate the package archive
+
+```bash
+cd packages/design-system
+npm pack --dry-run
+```
+
+This lists all files that will be included in the published package without creating a real release.
+
+---
+
 ## Releasing a new version
 
 1. Update the version in `packages/design-system/package.json` (semver: patch / minor / major).
-2. Commit and push to `main`.
-3. Create a GitHub Release in the repository UI, tagged `v0.1.x` (matching the package version).
-4. The `publish-package.yml` workflow triggers automatically and publishes to GitHub Packages.
+2. Commit and push the version bump to `main`.
+3. Wait for CI to pass.
+4. Go to **GitHub → Releases → Draft a new release**.
+5. Create a new tag matching the version with a `v` prefix — for example `v0.1.0`.
+6. Publish the release.
+7. The `publish-package.yml` workflow triggers automatically, validates that the tag matches the package version, and publishes to GitHub Packages.
+8. Verify the package under **GitHub → Packages → gfg-design-system**.
 
 ---
 
@@ -113,3 +180,5 @@ To allow another repository to install this package via `GITHUB_TOKEN` in CI, gr
 **GitHub → Settings → Packages → `gfg-design-system` → Manage access → Add repository**
 
 For personal access tokens, the token needs `read:packages` scope.
+
+See [docs/GITHUB_PACKAGES_SETUP.md](../../docs/GITHUB_PACKAGES_SETUP.md) for full step-by-step GitHub UI instructions.
