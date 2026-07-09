@@ -1,5 +1,6 @@
 {
+  "framework": null,
+  "installCommand": "pnpm install --frozen-lockfile",
   "buildCommand": "pnpm build && pnpm build:storybook",
-  "outputDirectory": "apps/storybook/storybook-static",
-  "installCommand": "pnpm install --frozen-lockfile"
+  "outputDirectory": "apps/storybook/storybook-static"
 }
