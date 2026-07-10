@@ -7,6 +7,7 @@ on:
     paths:
       - 'apps/storybook/**'
       - 'packages/design-system/**'
+      - '.github/workflows/deploy-storybook-vercel.yml'
   workflow_dispatch:
 
 permissions:
