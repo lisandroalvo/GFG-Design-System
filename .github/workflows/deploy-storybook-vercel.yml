@@ -29,6 +29,23 @@ jobs:
         with:
           version: "10.12.4"
 
+      - name: Validate required secrets
+        run: |
+          missing=""
+          [ -z "$VERCEL_TOKEN" ]      && missing="$missing VERCEL_TOKEN"
+          [ -z "$VERCEL_ORG_ID" ]     && missing="$missing VERCEL_ORG_ID"
+          [ -z "$VERCEL_PROJECT_ID" ] && missing="$missing VERCEL_PROJECT_ID"
+          if [ -n "$missing" ]; then
+            echo "❌ Missing required GitHub secrets:$missing"
+            echo "Add them at: Settings → Secrets and variables → Actions"
+            exit 1
+          fi
+          echo "✅ All required secrets are present"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
       - name: Get pnpm store directory
         id: pnpm-cache
         run: echo "dir=$(pnpm store path)" >> $GITHUB_OUTPUT
@@ -44,24 +61,26 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build design-system package
-        run: pnpm build
-
-      - name: Build Storybook
-        run: pnpm build:storybook
-
-      - name: Verify Storybook output
-        run: test -f apps/storybook/storybook-static/index.html && echo "✅ storybook-static/index.html exists"
-
       - name: Install Vercel CLI
         run: npm install -g vercel@latest
 
-      - name: Deploy prebuilt Storybook to Vercel
+      - name: Build and package for Vercel
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Verify Storybook output
         run: |
-          vercel deploy apps/storybook/storybook-static \
-            --prebuilt \
-            --prod \
-            --token=${{ secrets.VERCEL_TOKEN }}
+          test -f apps/storybook/storybook-static/index.html \
+            && echo "✅ storybook-static/index.html exists" \
+            || (echo "❌ storybook-static/index.html missing" && exit 1)
+          test -d .vercel/output \
+            && echo "✅ .vercel/output exists" \
+            || (echo "❌ .vercel/output missing" && exit 1)
+
+      - name: Deploy to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
