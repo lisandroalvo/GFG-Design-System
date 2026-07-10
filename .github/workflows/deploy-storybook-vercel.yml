@@ -62,23 +62,31 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Install Vercel CLI
-        run: npm install -g vercel@latest
+      - name: Build design-system package
+        run: pnpm build
 
-      - name: Build and package for Vercel
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      - name: Build Storybook
+        run: pnpm build:storybook
 
       - name: Verify Storybook output
         run: |
           test -f apps/storybook/storybook-static/index.html \
             && echo "✅ storybook-static/index.html exists" \
             || (echo "❌ storybook-static/index.html missing" && exit 1)
-          test -d .vercel/output \
-            && echo "✅ .vercel/output exists" \
-            || (echo "❌ .vercel/output missing" && exit 1)
+
+      - name: Package as Vercel Build Output
+        run: |
+          mkdir -p .vercel/output/static
+          cp -r apps/storybook/storybook-static/. .vercel/output/static/
+          cat > .vercel/output/config.json << 'EOF'
+          {"version": 3}
+          EOF
+          echo "✅ .vercel/output structure:"
+          ls -la .vercel/output/
+          ls .vercel/output/static/ | head -5
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
 
       - name: Deploy to Vercel
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
